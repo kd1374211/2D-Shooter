@@ -1,6 +1,7 @@
 #include "main.h"
 #include "Scene.h"
 #include "Scene/SceneManager.h"
+#include "Key/KeyStateManager.h"
 
 void Scene::Draw2D()
 {
@@ -12,6 +13,8 @@ void Scene::Draw2D()
 
 void Scene::Update()
 {
+    KEYMGR.UpdateKeyState();
+
 	SCENEMGR.Update();
 }
 
@@ -26,15 +29,64 @@ void Scene::Release()
 
 void Scene::ImGuiUpdate()
 {
-	return;
+	//return;
 
 	ImGui::SetNextWindowPos(ImVec2(20, 20), ImGuiSetCond_Once);
-	ImGui::SetNextWindowSize(ImVec2(200, 100), ImGuiSetCond_Once);
+	ImGui::SetNextWindowSize(ImVec2(200, 300), ImGuiSetCond_Once);
 
 	// デバッグウィンドウ
 	if (ImGui::Begin("Debug Window"))
 	{
 		ImGui::Text("FPS : %d", APP.m_fps);
+
+		for (int i = 0;i < (int)E_KeyChecks::Max;i++)
+		{
+			char *key,*keyState;
+
+			switch ((E_KeyChecks)i)
+			{
+			case E_KeyChecks::Up:
+				key = "Up";
+				break;
+			case E_KeyChecks::Left:
+				key = "Left";
+				break;
+			case E_KeyChecks::Down:
+				key = "Down";
+				break;
+			case E_KeyChecks::Right:
+				key = "Right";
+				break;
+			case E_KeyChecks::Enter:
+				key = "Enter";
+				break;
+			case E_KeyChecks::Space:
+				key = "Space";
+				break;
+			default:
+				key = "?";
+				break;
+			}
+
+			E_KeyState state = KEYMGR.GetKeyState((E_KeyChecks)i);
+			switch (state)
+			{
+			case E_KeyState::Hold:
+				keyState = "Hold";
+				break;
+			case E_KeyState::Pressed:
+				keyState = "Pressed";
+				break;
+			case E_KeyState::Released:
+				keyState = "Released";
+				break;
+			case E_KeyState::None:
+				keyState = "None";
+				break;
+			}
+
+			ImGui::Text("%s Key : %s\n", key, keyState);
+		}
 	}
 	ImGui::End();
 }
