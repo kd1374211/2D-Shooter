@@ -4,6 +4,8 @@ class Scene
 {
 private:
 
+	static const int test = 0;
+
 public:
 
 	// ‰Šúİ’è
