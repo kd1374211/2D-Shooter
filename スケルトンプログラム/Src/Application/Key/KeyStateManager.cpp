@@ -23,7 +23,8 @@ C_KeyStateManager::C_KeyStateManager()
 	for (int i = 0;i < (int)E_KeyChecks::Max;i++)
 	{
 		E_KeyChecks key = E_KeyChecks(i);
-		m_keyCheckState.emplace(key, false, false);
+		S_KeyCheckState value = { false,false };
+		m_keyCheckState.emplace(key, value);
 	}
 }
 
