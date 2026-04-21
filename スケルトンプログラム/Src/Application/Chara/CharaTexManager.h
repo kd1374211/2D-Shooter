@@ -5,16 +5,18 @@ class C_CharaTexManager
 public:
 
 	void LoadTexPathData();
-	void LoadTex();
-
-	void ReleaseTex();
 
 private:
 
 	C_CharaTexManager() {};
-	~C_CharaTexManager() {};
+	~C_CharaTexManager() { ReleaseTex(); }
 
-	std::map<int, char*> m_texPathData;
+	void ReleaseTex();
+
+	static const int CHARATEXNUM = 5;
+
+	std::map<int, KdTexture*> m_texData;
+	KdTexture m_tex[CHARATEXNUM];
 
 public:
 
