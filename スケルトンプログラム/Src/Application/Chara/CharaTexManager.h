@@ -14,6 +14,8 @@ private:
 	C_CharaTexManager() {};
 	~C_CharaTexManager() {};
 
+	std::map<int, char*> m_texPathData;
+
 public:
 
 	static C_CharaTexManager& GetInstance()
