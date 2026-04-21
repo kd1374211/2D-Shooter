@@ -42,6 +42,7 @@ public:
 
 	void UpdateKeyState();
 	E_KeyState GetKeyState(E_KeyChecks a_key);
+	bool GetIsPressed(E_KeyChecks a_key);
 
 private:
 

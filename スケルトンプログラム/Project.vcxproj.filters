@@ -58,6 +58,12 @@
     <Filter Include="Src\Application\Key">
       <UniqueIdentifier>{6f5614b6-31ff-48e6-ac37-a3434d1f2107}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Application\Weapon">
+      <UniqueIdentifier>{be0e1fff-b81a-4208-9366-f02b716873d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\Weapon\Bullet">
+      <UniqueIdentifier>{a01518b7-8092-40a0-8dd0-f245d1e33114}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Pch.h">
@@ -180,6 +186,21 @@
     <ClInclude Include="Src\Application\Key\KeyStateManager.h">
       <Filter>Src\Application\Key</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Application\Weapon\WeaponBase.h">
+      <Filter>Src\Application\Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\Weapon\AutoCannon.h">
+      <Filter>Src\Application\Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\Weapon\WeaponConst.h">
+      <Filter>Src\Application\Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\Weapon\BigSpaceGun.h">
+      <Filter>Src\Application\Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\Chara\CharaTexManager.h">
+      <Filter>Src\Application\Chara</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Pch.cpp">
@@ -265,6 +286,18 @@
     </ClCompile>
     <ClCompile Include="Src\Application\Key\KeyStateManager.cpp">
       <Filter>Src\Application\Key</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\Weapon\WeaponBase.cpp">
+      <Filter>Src\Application\Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\Weapon\AutoCannon.cpp">
+      <Filter>Src\Application\Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\Weapon\BigSpaceGun.cpp">
+      <Filter>Src\Application\Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\Chara\CharaTexManager.cpp">
+      <Filter>Src\Application\Chara</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

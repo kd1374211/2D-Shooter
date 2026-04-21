@@ -51,6 +51,14 @@ E_KeyState C_KeyStateManager::GetKeyState(E_KeyChecks a_key)
 	}
 }
 
+bool C_KeyStateManager::GetIsPressed(E_KeyChecks a_key)
+{
+	auto itr = m_keyCheckState.find(a_key);
+	S_KeyCheckState target = m_keyCheckState.find(a_key)->second;
+
+	return(target.m_bIsPressedCurrent);
+}
+
 C_KeyStateManager::C_KeyStateManager()
 {
 	for (int i = 0;i < (int)E_KeyChecks::Max;i++)
