@@ -1,10 +1,16 @@
 #pragma once
+#include "CharaTexConst.h"
 
 class C_CharaTexManager
 {
 public:
 
+	void LoadData();
+
 	void LoadTexPathData();
+	void LoadCharaTexData();
+
+	S_CharaTexData* GetTexData(E_CharaName a_name) { return(&m_texData[a_name]); }
 
 private:
 
@@ -13,10 +19,9 @@ private:
 
 	void ReleaseTex();
 
-	static const int CHARATEXNUM = 5;
-
-	std::map<int, KdTexture*> m_texData;
+	std::map<int, KdTexture*> m_texPathData;
 	KdTexture m_tex[CHARATEXNUM];
+	S_CharaTexData m_texData[E_CharaName::Max];
 
 public:
 

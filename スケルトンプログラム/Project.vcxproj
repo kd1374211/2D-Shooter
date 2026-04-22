@@ -160,6 +160,7 @@
     <ClInclude Include="..\Library\tinygltf\stb_image_write.h" />
     <ClInclude Include="..\Library\tinygltf\tiny_gltf.h" />
     <ClInclude Include="Src\Application\Chara\CharaBase.h" />
+    <ClInclude Include="Src\Application\Chara\CharaTexConst.h" />
     <ClInclude Include="Src\Application\Chara\CharaTexManager.h" />
     <ClInclude Include="Src\Application\Chara\Enemy\EnemyBase.h" />
     <ClInclude Include="Src\Application\Chara\Player\Player.h" />

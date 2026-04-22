@@ -1,5 +1,11 @@
 #include "CharaTexManager.h"
 
+void C_CharaTexManager::LoadData()
+{
+	LoadTexPathData();
+	LoadCharaTexData();
+}
+
 void C_CharaTexManager::LoadTexPathData()
 {
 	FILE* fp = nullptr;
@@ -12,14 +18,60 @@ void C_CharaTexManager::LoadTexPathData()
 		{
 			if (fgets(dummy, 100, fp) != nullptr)//1行読み
 			{
-				const int PATHLENG = 70;
-				char path[PATHLENG] = {};
+				char path[STRLENG] = {};
 				int yomi;
 
-				fscanf_s(fp, "%d,%s", &yomi, path, PATHLENG);
+				fscanf_s(fp, "%d,%s", &yomi, path, STRLENG);
 				m_tex[i].Load(path);
 
-				m_texData.emplace(yomi, &m_tex[i]);
+				m_texPathData.emplace(yomi, &m_tex[i]);
+			}
+		}
+
+		fclose(fp);
+	}
+}
+
+void C_CharaTexManager::LoadCharaTexData()
+{
+	FILE* fp = nullptr;
+
+	if (fopen_s(&fp, "Data/CharaTexData.csv", "r") == 0)
+	{
+		char dummy[250] = {};
+
+		for (int i = 0;i < E_CharaName::Max;i++)
+		{
+			char name[STRLENG] = {};
+
+			if (fgets(dummy, 250, fp) != nullptr)//1行読み
+			{
+				fscanf_s(fp, "%[^,],%f,%f,%f,%f,%f,%f,",
+					name, STRLENG,
+					&m_texData[i].m_texSize.x,
+					&m_texData[i].m_texSize.y,
+					&m_texData[i].m_texScale.x,
+					&m_texData[i].m_texScale.y,
+					&m_texData[i].m_hitSize.x,
+					&m_texData[i].m_hitSize.y
+				);
+
+				while (1)
+				{
+					int type;
+					fscanf_s(fp, "%d,", &type);
+					if (type == E_TexType::TexEnd)break;
+
+					E_TexType key = (E_TexType)type;
+					S_TexData value = {};
+
+					int ID;
+					fscanf_s(fp, "%d,%d,%f,", &ID, &value.m_texAnimMax, &value.m_texAnimMulti);
+					value.m_pTex= &m_tex[ID];
+					value.m_animCnt = 0;
+
+					m_texData[i].m_texData.emplace(key, value);
+				}
 			}
 		}
 

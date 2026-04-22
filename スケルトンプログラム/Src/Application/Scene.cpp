@@ -2,6 +2,7 @@
 #include "Scene.h"
 #include "Scene/SceneManager.h"
 #include "Key/KeyStateManager.h"
+#include "Chara/CharaTexManager.h"
 
 void Scene::Draw2D()
 {
@@ -20,7 +21,8 @@ void Scene::Update()
 
 void Scene::Init()
 {
-	SCENEMGR.SetScene(new C_TitleScene());
+	CHARATEXMGR.LoadData();
+	SCENEMGR.SetSceneQueue(E_SceneTypeTag::Title);
 }
 
 void Scene::Release()

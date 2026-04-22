@@ -4,7 +4,8 @@ enum class E_SceneTypeTag
 {
 	Title,
 	Game,
-	Max
+	Max,
+	None = -1
 };
 
 class C_SceneBase

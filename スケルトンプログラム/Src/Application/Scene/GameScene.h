@@ -1,6 +1,8 @@
 #pragma once
 #include "SceneBase.h"
 
+class C_Player;
+
 class C_GameScene :public C_SceneBase
 {
 public:
@@ -12,4 +14,7 @@ public:
 	void Draw()override;
 
 private:
+
+	C_Player* m_player;
+
 };
