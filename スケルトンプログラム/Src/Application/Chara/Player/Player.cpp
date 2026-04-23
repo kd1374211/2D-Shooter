@@ -6,6 +6,8 @@ C_Player::C_Player() :m_weapon(nullptr)
 {
 	m_texData = CHARATEXMGR.GetTexData(E_CharaName::Player);
 	m_pos = { 0,0 };
+
+	m_angle = PLAYERANGLE;
 }
 
 void C_Player::Action()
@@ -33,41 +35,40 @@ void C_Player::Action()
 
 void C_Player::Update()
 {
-	Math::Matrix scale = Math::Matrix::CreateScale(m_texData->m_texScale.x, m_texData->m_texScale.y, 1);
-	Math::Matrix trans = Math::Matrix::CreateTranslation(m_pos.x, m_pos.y, 0);
+	//アニメーション変化
+	UpdateAnimCnt();
 
-	m_mat = scale * trans;
+	//Matrix
+	Math::Matrix trans = Math::Matrix::CreateTranslation(m_pos.x, m_pos.y, 0);
+	Math::Matrix scale = Math::Matrix::CreateScale(TEXSCALE.x, TEXSCALE.y, 1);
+	Math::Matrix rotat = Math::Matrix::CreateRotationZ(m_angle);
+
+	m_mat = rotat * scale * trans;
 }
 
 void C_Player::Draw()
 {
-	Math::Vector2 texSize = m_texData->m_texSize;
+	//マトリックス
+	SHADER.m_spriteShader.SetMatrix(m_mat);
 
 	//本体
 	S_TexData tex = GetData(E_TexType::Base);
+	Math::Vector2 texSize = tex.m_texSize;
 	Math::Rectangle rec = { (long)((int)(tex.m_animCnt * tex.m_texAnimMulti) * texSize.x),0,(long)texSize.x,(long)texSize.y };
 
-	SHADER.m_spriteShader.SetMatrix(m_mat);
-	SHADER.m_spriteShader.DrawTex(tex.m_pTex, m_pos.x, m_pos.y, texSize.x, texSize.y, &rec);
-
-	//エンジン
-	tex = GetData(E_TexType::Engine);
-	rec = { (long)((int)(tex.m_animCnt * tex.m_texAnimMulti) * texSize.x),0,(long)texSize.x,(long)texSize.y };
-
-	SHADER.m_spriteShader.SetMatrix(m_mat);
-	SHADER.m_spriteShader.DrawTex(tex.m_pTex, m_pos.x, m_pos.y, texSize.x, texSize.y, &rec);
+	SHADER.m_spriteShader.DrawTex(tex.m_pTex, 0, 0, texSize.x, texSize.y, &rec);
 
 	//炎
 	tex = GetData(E_TexType::EngineFire);
+	texSize = tex.m_texSize;
 	rec = { (long)((int)(tex.m_animCnt * tex.m_texAnimMulti) * texSize.x),0,(long)texSize.x,(long)texSize.y };
 
-	SHADER.m_spriteShader.SetMatrix(m_mat);
-	SHADER.m_spriteShader.DrawTex(tex.m_pTex, m_pos.x, m_pos.y, texSize.x, texSize.y, &rec);
+	SHADER.m_spriteShader.DrawTex(tex.m_pTex, 0, 0, texSize.x, texSize.y, &rec);
 
 	//無敵
-	tex = GetData(E_TexType::HitImmune);
-	rec = { (long)((int)(tex.m_animCnt * tex.m_texAnimMulti) * texSize.x),0,(long)texSize.x,(long)texSize.y };
+	//tex = GetData(E_TexType::HitImmune);
+	//texSize = tex.m_texSize;
+	//rec = { (long)((int)(tex.m_animCnt * tex.m_texAnimMulti) * texSize.x),0,(long)texSize.x,(long)texSize.y };
 
-	SHADER.m_spriteShader.SetMatrix(m_mat);
-	SHADER.m_spriteShader.DrawTex(tex.m_pTex, m_pos.x, m_pos.y, texSize.x, texSize.y, &rec);
+	//SHADER.m_spriteShader.DrawTex(tex.m_pTex, m_pos.x, m_pos.y, texSize.x * scale.x, texSize.y * scale.y, &rec);
 }

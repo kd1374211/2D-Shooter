@@ -9,12 +9,11 @@ public:
 	C_Player();
 	~C_Player() {};
 
-	void Action();
-	void Update();
-	void Draw();
+	void Action()	override;
+	void Update()	override;
+	void Draw()		override;
 
 private:
 
 	C_WeaponBase* m_weapon;
-
 };

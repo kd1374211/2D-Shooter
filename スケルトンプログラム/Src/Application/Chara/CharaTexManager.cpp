@@ -46,10 +46,8 @@ void C_CharaTexManager::LoadCharaTexData()
 
 			if (fgets(dummy, 250, fp) != nullptr)//1行読み
 			{
-				fscanf_s(fp, "%[^,],%f,%f,%f,%f,%f,%f,",
+				fscanf_s(fp, "%[^,],%f,%f,%f,%f,",
 					name, STRLENG,
-					&m_texData[i].m_texSize.x,
-					&m_texData[i].m_texSize.y,
 					&m_texData[i].m_texScale.x,
 					&m_texData[i].m_texScale.y,
 					&m_texData[i].m_hitSize.x,
@@ -66,11 +64,11 @@ void C_CharaTexManager::LoadCharaTexData()
 					S_TexData value = {};
 
 					int ID;
-					fscanf_s(fp, "%d,%d,%f,", &ID, &value.m_texAnimMax, &value.m_texAnimMulti);
-					value.m_pTex= &m_tex[ID];
+					fscanf_s(fp, "%d,%d,%f,%f,%f,", &ID, &value.m_texAnimMax, &value.m_texAnimMulti, &value.m_texSize.x, &value.m_texSize.y);
+					value.m_pTex = &m_tex[ID];
 					value.m_animCnt = 0;
 
-					m_texData[i].m_texData.emplace(key, value);
+					m_texData[i].m_tex.emplace(key, value);
 				}
 			}
 		}
