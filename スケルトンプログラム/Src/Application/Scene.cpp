@@ -3,6 +3,7 @@
 #include "Scene/SceneManager.h"
 #include "Key/KeyStateManager.h"
 #include "Chara/CharaTexManager.h"
+#include "Weapon/WeaponTexManager.h"
 
 void Scene::Draw2D()
 {
@@ -22,6 +23,7 @@ void Scene::Update()
 void Scene::Init()
 {
 	CHARATEXMGR.LoadData();
+	WPNTEXMGR.LoadTex();
 	SCENEMGR.SetSceneQueue(E_SceneTypeTag::Title);
 }
 

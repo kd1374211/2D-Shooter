@@ -204,6 +204,15 @@
     <ClInclude Include="Src\Application\Chara\CharaTexConst.h">
       <Filter>Src\Application\Chara</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Application\Weapon\Bullet\BulletBase.h">
+      <Filter>Src\Application\Weapon\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\Weapon\WeaponTexManager.h">
+      <Filter>Src\Application\Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\Weapon\WeaponTexConst.h">
+      <Filter>Src\Application\Weapon</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Pch.cpp">
@@ -301,6 +310,12 @@
     </ClCompile>
     <ClCompile Include="Src\Application\Chara\CharaTexManager.cpp">
       <Filter>Src\Application\Chara</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\Weapon\Bullet\BulletBase.cpp">
+      <Filter>Src\Application\Weapon\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\Weapon\WeaponTexManager.cpp">
+      <Filter>Src\Application\Weapon</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
