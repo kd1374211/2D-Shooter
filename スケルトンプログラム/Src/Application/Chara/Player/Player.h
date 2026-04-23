@@ -1,13 +1,14 @@
 #pragma once
 #include "../CharaBase.h"
-#include "../../Weapon/WeaponConst.h"
+
+class C_WeaponBase;
 
 class C_Player : public C_CharaBase
 {
 public:
 
 	C_Player();
-	~C_Player() {};
+	~C_Player();
 
 	void Action()	override;
 	void Update()	override;

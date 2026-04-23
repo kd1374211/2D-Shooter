@@ -1,6 +1,7 @@
 #include "Player.h"
 #include "../../Key/KeyStateManager.h"
 #include "../CharaTexManager.h"
+#include "../../Weapon/WeaponConst.h"
 
 C_Player::C_Player() :m_weapon(nullptr)
 {
@@ -8,6 +9,17 @@ C_Player::C_Player() :m_weapon(nullptr)
 	m_pos = { 0,0 };
 
 	m_angle = PLAYERANGLE;
+
+	m_weapon = new C_BigSpaceGun();
+}
+
+C_Player::~C_Player()
+{
+	if (m_weapon)
+	{
+		delete m_weapon;
+		m_weapon = nullptr;
+	}
 }
 
 void C_Player::Action()
@@ -44,10 +56,15 @@ void C_Player::Update()
 	Math::Matrix rotat = Math::Matrix::CreateRotationZ(m_angle);
 
 	m_mat = rotat * scale * trans;
+
+	m_weapon->Update(m_pos);
 }
 
 void C_Player::Draw()
 {
+	//武器
+	m_weapon->Draw();
+
 	//マトリックス
 	SHADER.m_spriteShader.SetMatrix(m_mat);
 

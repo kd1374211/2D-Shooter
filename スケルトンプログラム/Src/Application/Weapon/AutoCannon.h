@@ -8,7 +8,7 @@ public:
 	C_AutoCannon();
 	~C_AutoCannon() {};
 
-	void Update()override;
+	void Update(Math::Vector2 a_playerPos)override;
 	void Draw()override;
 
 private:

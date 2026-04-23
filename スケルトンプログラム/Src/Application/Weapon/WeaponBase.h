@@ -5,11 +5,13 @@ class C_WeaponBase
 {
 public: 
 
-	C_WeaponBase() :m_nameTag(E_WeaponName::WeaponMax), m_texData(nullptr), m_mat(Math::Matrix::Identity), m_pos(Math::Vector2::Zero) {};
+	C_WeaponBase() :m_nameTag(E_WeaponName::WeaponMax), m_texData(nullptr), m_mat(Math::Matrix::Identity) {};
 	~C_WeaponBase() {};
 
-	virtual void Update();
+	virtual void Update(Math::Vector2 a_playerPos);
 	virtual void Draw();
+
+	void UpdateAnimCnt();
 
 protected:
 
@@ -17,6 +19,9 @@ protected:
 	S_WeaponTex* m_texData;
 
 	Math::Matrix m_mat;
-	Math::Vector2 m_pos;
+	
+	int m_animCnt;
 
 };
+
+#define WEAPON m_texData->m_weapon
