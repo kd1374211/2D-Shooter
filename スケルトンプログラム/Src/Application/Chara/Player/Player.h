@@ -14,7 +14,10 @@ public:
 	void Update()	override;
 	void Draw()		override;
 
+	void UpdateEngineAnim();
+
 private:
 
 	C_WeaponBase* m_weapon;
+	S_EngineTex* m_engineTex;
 };

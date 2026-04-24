@@ -48,3 +48,10 @@ struct S_WeaponTex
 	S_TexData m_bullet;
 	Math::Vector2 m_texScale;
 };
+
+struct S_EngineTex
+{
+	S_TexData m_engine;
+	S_TexData m_fire;
+	Math::Vector2 m_texScale;
+};

@@ -8,8 +8,11 @@ public:
 	C_BigSpaceGun();
 	~C_BigSpaceGun() {};
 
+	void Action(Math::Vector2 a_playerPos)override;
 	void Update(Math::Vector2 a_playerPos)override;
 	void Draw()override;
+
+	void Shot(Math::Vector2 a_pos)override;
 
 private:
 };

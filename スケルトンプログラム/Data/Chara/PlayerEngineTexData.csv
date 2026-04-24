@@ -1,0 +1,3 @@
+名前,画像スケールX,画像スケールY,本体画像パス,画像サイズX,画像サイズY,AnimMax,AnimMulti,炎,,,,
+AutoCannon,1.5,1.5,Texture/Chara/Player/Engine/Player-AC-Engine.png,48,48,1,1,Texture/Chara/Player/Engine/Player-AC-EngineFire.png,48,48,30,0.1
+BigSpaceGun,1.5,1.5,Texture/Chara/Player/Engine/Player-BSG-Engine.png,48,48,1,1,Texture/Chara/Player/Engine/Player-BSG-EngineFire.png,48,48,40,0.1

@@ -12,6 +12,7 @@ public:
 
 	S_BaseCharaTexData* GetBaseTexData(E_CharaName a_name) { return(&m_texData[a_name]); }
 	S_WeaponTex* GetWeaponTexData(E_WeaponName a_name) { return(&m_weaponTexData[a_name]); }
+	S_EngineTex* GetEngineTexData(E_WeaponName a_name) { return(&m_engineTexData[a_name]); }
 
 private:
 
@@ -22,6 +23,7 @@ private:
 
 	S_BaseCharaTexData m_texData[E_CharaName::Max];
 	S_WeaponTex m_weaponTexData[E_WeaponName::WeaponMax];
+	S_EngineTex m_engineTexData[E_WeaponName::WeaponMax];
 
 public:
 

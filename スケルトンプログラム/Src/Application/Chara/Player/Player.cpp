@@ -3,14 +3,23 @@
 #include "../CharaTexManager.h"
 #include "Weapon/WeaponConst.h"
 
-C_Player::C_Player(E_WeaponName a_name) :m_weapon(nullptr)
+C_Player::C_Player(E_WeaponName a_name) :m_weapon(nullptr), m_engineTex(nullptr)
 {
 	m_texData = CHARATEXMGR.GetBaseTexData(E_CharaName::Player);
+	m_engineTex = CHARATEXMGR.GetEngineTexData(a_name);
 	m_pos = { 0,0 };
 
 	m_angle = PLAYERANGLE;
 
-	m_weapon = new C_AutoCannon();
+	switch (a_name)
+	{
+	case E_WeaponName::AutoCannon:
+		m_weapon = new C_AutoCannon();
+		break;
+	case E_WeaponName::BigSpaceGun:
+		m_weapon = new C_BigSpaceGun();
+		break;
+	}
 }
 
 C_Player::~C_Player()
@@ -43,12 +52,14 @@ void C_Player::Action()
 	}
 
 	//攻撃
+	m_weapon->Action(m_pos);
 }
 
 void C_Player::Update()
 {
 	//アニメーション変化
 	UpdateAnimCnt();
+	UpdateEngineAnim();
 
 	//Matrix
 	Math::Matrix trans = Math::Matrix::CreateTranslation(m_pos.x, m_pos.y, 0);
@@ -68,10 +79,24 @@ void C_Player::Draw()
 	//マトリックス
 	SHADER.m_spriteShader.SetMatrix(m_mat);
 
-	//本体
-	S_TexData* tex = GetData(E_CharaBaseTexType::Base);
+	//エンジン
+	S_TexData* tex = &m_engineTex->m_engine;
 	Math::Vector2 texSize = tex->m_texSize;
 	Math::Rectangle rec = { (long)((int)(tex->m_animCnt * tex->m_texAnimMulti) * texSize.x),0,(long)texSize.x,(long)texSize.y };
+
+	SHADER.m_spriteShader.DrawTex(&tex->m_tex, 0, 0, texSize.x, texSize.y, &rec);
+
+	//炎
+	tex = &m_engineTex->m_fire;
+	texSize = tex->m_texSize;
+	rec = { (long)((int)(tex->m_animCnt * tex->m_texAnimMulti) * texSize.x),0,(long)texSize.x,(long)texSize.y };
+
+	SHADER.m_spriteShader.DrawTex(&tex->m_tex, 0, 0, texSize.x, texSize.y, &rec);
+
+	//本体
+	tex = GetData(E_CharaBaseTexType::Base);
+	texSize = tex->m_texSize;
+	rec = { (long)((int)(tex->m_animCnt * tex->m_texAnimMulti) * texSize.x),0,(long)texSize.x,(long)texSize.y };
 
 	SHADER.m_spriteShader.DrawTex(&tex->m_tex, 0, 0, texSize.x, texSize.y, &rec);
 
@@ -81,4 +106,19 @@ void C_Player::Draw()
 	//rec = { (long)((int)(tex.m_animCnt * tex.m_texAnimMulti) * texSize.x),0,(long)texSize.x,(long)texSize.y };
 
 	//SHADER.m_spriteShader.DrawTex(tex.m_pTex, m_pos.x, m_pos.y, texSize.x * scale.x, texSize.y * scale.y, &rec);
+}
+
+void C_Player::UpdateEngineAnim()
+{
+	S_TexData* data = &m_engineTex->m_fire;
+
+	if (data->m_texAnimMax != 1)
+	{
+		data->m_animCnt++;
+
+		if (data->m_animCnt >= data->m_texAnimMax)
+		{
+			data->m_animCnt -= data->m_texAnimMax;
+		}
+	}
 }

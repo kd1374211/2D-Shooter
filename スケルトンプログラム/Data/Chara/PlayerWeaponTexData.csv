@@ -1,3 +1,3 @@
-名前,画像スケールX,画像スケールY,本体画像パス,本体画像サイズX,本体画像サイズY,AnimMax,AnimMulti,略,,,,
-AutoCannon,1.5,1.5,Texture/Chara/Player/Weapon/Auto-Cannon.png,48,48,14,0.5,Texture/Chara/Player/Bullet/AC-Bullet.png,32,32,16,0.25
-BigSpaceGun,1.5,1.5,Texture/Chara/Player/Weapon/Big-Space-Gun.png,48,48,24,0.5,Texture/Chara/Player/Bullet/BSG-Bullet.png,32,32,40,0.25
+名前,画像スケールX,画像スケールY,本体画像パス,本体画像サイズX,本体画像サイズY,AnimMax,AnimMulti,弾,,,,
+AutoCannon,1.5,1.5,Texture/Chara/Player/Weapon/Auto-Cannon.png,48,48,14,0.5,Texture/Chara/Player/Bullets/AC-Bullet.png,32,32,16,0.25
+BigSpaceGun,1.5,1.5,Texture/Chara/Player/Weapon/Big-Space-Gun.png,48,48,24,0.5,Texture/Chara/Player/Bullets/BSG-Bullet.png,32,32,40,0.25
