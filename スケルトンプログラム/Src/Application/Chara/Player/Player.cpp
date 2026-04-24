@@ -2,6 +2,7 @@
 #include "../../Key/KeyStateManager.h"
 #include "../CharaTexManager.h"
 #include "Weapon/WeaponConst.h"
+#include "../../Const/ScreenConst.h"
 
 C_Player::C_Player(E_WeaponName a_name) :m_weapon(nullptr), m_engineTex(nullptr)
 {
@@ -51,6 +52,13 @@ void C_Player::Action()
 		m_pos.x += 5;
 	}
 
+	//画面端
+	if (m_pos.x > POSMAX.x)m_pos.x = POSMAX.x;
+	else if (m_pos.x < POSMIN.x)m_pos.x = POSMIN.x;
+
+	if (m_pos.y > POSMAX.y)m_pos.y = POSMAX.y;
+	else if (m_pos.y < POSMIN.y)m_pos.y = POSMIN.y;
+
 	//攻撃
 	m_weapon->Action(m_pos);
 }
@@ -94,7 +102,7 @@ void C_Player::Draw()
 	SHADER.m_spriteShader.DrawTex(&tex->m_tex, 0, 0, texSize.x, texSize.y, &rec);
 
 	//本体
-	tex = GetData(E_CharaBaseTexType::Base);
+	tex = GetTexData(E_CharaBaseTexType::Base);
 	texSize = tex->m_texSize;
 	rec = { (long)((int)(tex->m_animCnt * tex->m_texAnimMulti) * texSize.x),0,(long)texSize.x,(long)texSize.y };
 

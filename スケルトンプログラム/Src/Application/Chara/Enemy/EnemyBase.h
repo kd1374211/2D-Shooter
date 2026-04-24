@@ -5,11 +5,15 @@ class C_EnemyBase :public C_CharaBase
 {
 public:
 
-	C_EnemyBase() {};
+	C_EnemyBase();
 	~C_EnemyBase() {};
 
-	void Update();
-	void Draw();
+	virtual void Action()override;
+	virtual void Update()override;
+	virtual void Draw()override;
 
-private:
+protected:
+
+	int m_health;
+
 };

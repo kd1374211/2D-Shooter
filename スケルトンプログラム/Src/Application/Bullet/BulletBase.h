@@ -1,5 +1,5 @@
 #pragma once
-#include "../../../CharaTexConst.h"
+#include "../Chara/CharaTexConst.h"
 
 class C_BulletBase
 {

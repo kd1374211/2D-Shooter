@@ -1,11 +1,7 @@
 #include "AC_Bullet.h"
-#include "../AutoCannon.h"
 
-C_AutoCannon_Bullet::C_AutoCannon_Bullet(Math::Vector2 a_pos, C_AutoCannon* a_owner)
+C_AutoCannon_Bullet::C_AutoCannon_Bullet(Math::Vector2 a_pos)
 {
-	m_pos = a_pos;
-	m_tex = a_owner->GetBulletTex();
-	m_texScale = a_owner->GetTexScale();
 }
 
 void C_AutoCannon_Bullet::Action()

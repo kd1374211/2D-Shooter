@@ -1,13 +1,4 @@
 #include "WeaponBase.h"
-#include "Bullet/BulletBase.h"
-
-C_WeaponBase::~C_WeaponBase()
-{
-	while (!m_bullet.empty())
-	{
-		delete &m_bullet.begin();
-	}
-}
 
 void C_WeaponBase::Action(Math::Vector2 a_playerPos)
 {

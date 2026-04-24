@@ -61,7 +61,16 @@
     <Filter Include="Src\Application\Chara\Player\Weapon">
       <UniqueIdentifier>{be0e1fff-b81a-4208-9366-f02b716873d6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Src\Application\Chara\Player\Weapon\Bullet">
+    <Filter Include="Src\Application\Background">
+      <UniqueIdentifier>{370bb781-f872-4f4e-aa64-448e02cd836f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\Const">
+      <UniqueIdentifier>{7c586419-f744-47b9-8e57-272875e22877}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\Chara\Enemy\Fighter">
+      <UniqueIdentifier>{5f8e8b0d-6e09-4e13-9e54-529d5a09b785}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\Bullet">
       <UniqueIdentifier>{a01518b7-8092-40a0-8dd0-f245d1e33114}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -204,14 +213,26 @@
     <ClInclude Include="Src\Application\Chara\Player\Weapon\WeaponConst.h">
       <Filter>Src\Application\Chara\Player\Weapon</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\Chara\Player\Weapon\Bullet\AC_Bullet.h">
-      <Filter>Src\Application\Chara\Player\Weapon\Bullet</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\Application\Chara\Player\Weapon\Bullet\BulletBase.h">
-      <Filter>Src\Application\Chara\Player\Weapon\Bullet</Filter>
-    </ClInclude>
     <ClInclude Include="Src\Application\Scene\SelectScene.h">
       <Filter>Src\Application\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\Background\Background.h">
+      <Filter>Src\Application\Background</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\Const\ScreenConst.h">
+      <Filter>Src\Application\Const</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\Chara\Enemy\Fighter\Fighter.h">
+      <Filter>Src\Application\Chara\Enemy\Fighter</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\Bullet\AC_Bullet.h">
+      <Filter>Src\Application\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\Bullet\BulletBase.h">
+      <Filter>Src\Application\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\Bullet\BulletManager.h">
+      <Filter>Src\Application\Bullet</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -311,14 +332,23 @@
     <ClCompile Include="Src\Application\Chara\Player\Weapon\WeaponBase.cpp">
       <Filter>Src\Application\Chara\Player\Weapon</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Application\Chara\Player\Weapon\Bullet\AC_Bullet.cpp">
-      <Filter>Src\Application\Chara\Player\Weapon\Bullet</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\Application\Chara\Player\Weapon\Bullet\BulletBase.cpp">
-      <Filter>Src\Application\Chara\Player\Weapon\Bullet</Filter>
-    </ClCompile>
     <ClCompile Include="Src\Application\Scene\SelectScene.cpp">
       <Filter>Src\Application\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\Background\Background.cpp">
+      <Filter>Src\Application\Background</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\Chara\Enemy\Fighter\Fighter.cpp">
+      <Filter>Src\Application\Chara\Enemy\Fighter</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\Bullet\AC_Bullet.cpp">
+      <Filter>Src\Application\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\Bullet\BulletBase.cpp">
+      <Filter>Src\Application\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\Bullet\BulletManager.cpp">
+      <Filter>Src\Application\Bullet</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
