@@ -1,16 +1,16 @@
 #include "Player.h"
 #include "../../Key/KeyStateManager.h"
 #include "../CharaTexManager.h"
-#include "../../Weapon/WeaponConst.h"
+#include "Weapon/WeaponConst.h"
 
-C_Player::C_Player() :m_weapon(nullptr)
+C_Player::C_Player(E_WeaponName a_name) :m_weapon(nullptr)
 {
-	m_texData = CHARATEXMGR.GetTexData(E_CharaName::Player);
+	m_texData = CHARATEXMGR.GetBaseTexData(E_CharaName::Player);
 	m_pos = { 0,0 };
 
 	m_angle = PLAYERANGLE;
 
-	m_weapon = new C_BigSpaceGun();
+	m_weapon = new C_AutoCannon();
 }
 
 C_Player::~C_Player()
@@ -69,18 +69,11 @@ void C_Player::Draw()
 	SHADER.m_spriteShader.SetMatrix(m_mat);
 
 	//本体
-	S_TexData tex = GetData(E_TexType::Base);
-	Math::Vector2 texSize = tex.m_texSize;
-	Math::Rectangle rec = { (long)((int)(tex.m_animCnt * tex.m_texAnimMulti) * texSize.x),0,(long)texSize.x,(long)texSize.y };
+	S_TexData* tex = GetData(E_CharaBaseTexType::Base);
+	Math::Vector2 texSize = tex->m_texSize;
+	Math::Rectangle rec = { (long)((int)(tex->m_animCnt * tex->m_texAnimMulti) * texSize.x),0,(long)texSize.x,(long)texSize.y };
 
-	SHADER.m_spriteShader.DrawTex(tex.m_pTex, 0, 0, texSize.x, texSize.y, &rec);
-
-	//炎
-	tex = GetData(E_TexType::EngineFire);
-	texSize = tex.m_texSize;
-	rec = { (long)((int)(tex.m_animCnt * tex.m_texAnimMulti) * texSize.x),0,(long)texSize.x,(long)texSize.y };
-
-	SHADER.m_spriteShader.DrawTex(tex.m_pTex, 0, 0, texSize.x, texSize.y, &rec);
+	SHADER.m_spriteShader.DrawTex(&tex->m_tex, 0, 0, texSize.x, texSize.y, &rec);
 
 	//無敵
 	//tex = GetData(E_TexType::HitImmune);

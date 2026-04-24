@@ -1,42 +1,16 @@
 #include "CharaTexManager.h"
 
-void C_CharaTexManager::LoadData()
+void C_CharaTexManager::LoadTexData()
 {
-	LoadTexPathData();
-	LoadCharaTexData();
+	LoadBaseTex();
+	LoadPlayerWeaponTex();
 }
 
-void C_CharaTexManager::LoadTexPathData()
+void C_CharaTexManager::LoadBaseTex()
 {
 	FILE* fp = nullptr;
 
-	if (fopen_s(&fp, "Data/CharaTexPathData.csv", "r") == 0)
-	{
-		char dummy[100] = {};
-
-		for (int i = 0; i < CHARATEXNUM; i++)
-		{
-			if (fgets(dummy, 100, fp) != nullptr)//1行読み
-			{
-				char path[STRLENG] = {};
-				int yomi;
-
-				fscanf_s(fp, "%d,%s", &yomi, path, STRLENG);
-				m_tex[i].Load(path);
-
-				m_texPathData.emplace(yomi, &m_tex[i]);
-			}
-		}
-
-		fclose(fp);
-	}
-}
-
-void C_CharaTexManager::LoadCharaTexData()
-{
-	FILE* fp = nullptr;
-
-	if (fopen_s(&fp, "Data/CharaTexData.csv", "r") == 0)
+	if (fopen_s(&fp, "Data/Chara/CharaTexData.csv", "r") == 0)
 	{
 		char dummy[250] = {};
 
@@ -54,21 +28,18 @@ void C_CharaTexManager::LoadCharaTexData()
 					&m_texData[i].m_hitSize.y
 				);
 
-				while (1)
+				for (int j = 0;j < E_CharaBaseTexType::TexTypeMax;j++)
 				{
-					int type;
-					fscanf_s(fp, "%d,", &type);
-					if (type == E_TexType::TexEnd)break;
+					char texPath[STRLENG] = {};
+					S_TexData* data = &m_texData[i].m_texDatas[j];
 
-					E_TexType key = (E_TexType)type;
-					S_TexData value = {};
+					fscanf_s(fp, "%[^,],%d,%f,%f,%f,", texPath, STRLENG,
+						&data->m_texAnimMax,
+						&data->m_texAnimMulti,
+						&data->m_texSize.x,
+						&data->m_texSize.y);
 
-					int ID;
-					fscanf_s(fp, "%d,%d,%f,%f,%f,", &ID, &value.m_texAnimMax, &value.m_texAnimMulti, &value.m_texSize.x, &value.m_texSize.y);
-					value.m_pTex = &m_tex[ID];
-					value.m_animCnt = 0;
-
-					m_texData[i].m_tex.emplace(key, value);
+					data->m_tex.Load(texPath);
 				}
 			}
 		}
@@ -77,10 +48,67 @@ void C_CharaTexManager::LoadCharaTexData()
 	}
 }
 
+void C_CharaTexManager::LoadPlayerWeaponTex()
+{
+	FILE* fp = nullptr;
+
+	if (fopen_s(&fp, "Data/Chara/PlayerWeaponTexData.csv", "r") == 0)
+	{
+		char dummy[300] = {};
+
+		for (int i = 0; i < E_WeaponName::WeaponMax; i++)
+		{
+			if (fgets(dummy, 300, fp) != nullptr)//1行読み
+			{
+				char name[STRLENG] = {};
+				char path_W[STRLENG] = {};
+				char path_B[STRLENG] = {};
+				S_WeaponTex* data = &m_weaponTexData[i];
+
+				fscanf_s(fp, "%[^,],%f,%f,", name, STRLENG,
+					&data->m_texScale.x,
+					&data->m_texScale.y);
+
+				fscanf_s(fp, "%[^,],%f,%f,%d,%f,", path_W, STRLENG,
+					&data->m_weapon.m_texSize.x,
+					&data->m_weapon.m_texSize.y,
+					&data->m_weapon.m_texAnimMax,
+					&data->m_weapon.m_texAnimMulti);
+
+				fscanf_s(fp, "%[^,],%f,%f,%d,%f,", path_B, STRLENG,
+					&data->m_bullet.m_texSize.x,
+					&data->m_bullet.m_texSize.y,
+					&data->m_bullet.m_texAnimMax,
+					&data->m_bullet.m_texAnimMulti);
+
+				data->m_weapon.m_tex.Load(path_W);
+				data->m_bullet.m_tex.Load(path_B);
+			}
+		}
+
+		fclose(fp);
+	}
+}
+
+void C_CharaTexManager::LoadPlayerEngineTex()
+{
+}
+
 void C_CharaTexManager::ReleaseTex()
 {
-	for (int i = 0; i < CHARATEXNUM; i++)
+	//本体
+	for (int i = 0;i < E_CharaName::Max;i++)
 	{
-		m_tex[i].Release();
+		for (int j = 0;j < E_CharaBaseTexType::TexTypeMax;j++)
+		{
+			m_texData[i].m_texDatas[j].m_tex.Release();
+		}
+	}
+
+	//武器
+	for (int i = 0;i < E_WeaponName::WeaponMax;i++)
+	{
+		m_weaponTexData->m_weapon.m_tex.Release();
+		m_weaponTexData->m_bullet.m_tex.Release();
 	}
 }

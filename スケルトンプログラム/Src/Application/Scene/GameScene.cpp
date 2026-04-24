@@ -4,7 +4,7 @@
 C_GameScene::C_GameScene()
 {
 	SetSceneTag(E_SceneTypeTag::Game);
-	m_player = new C_Player();
+	m_player = new C_Player(E_WeaponName::AutoCannon);
 }
 
 void C_GameScene::Update()

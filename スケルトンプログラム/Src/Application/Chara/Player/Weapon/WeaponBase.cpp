@@ -12,5 +12,5 @@ void C_WeaponBase::UpdateAnimCnt()
 {
 	m_animCnt++;
 
-	if (m_animCnt >= WEAPON.m_animCntMax)m_animCnt -= WEAPON.m_animCntMax;
+	if (m_animCnt >= WEAPON.m_texAnimMax)m_animCnt -= WEAPON.m_texAnimMax;
 }

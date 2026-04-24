@@ -14,10 +14,9 @@ void C_CharaBase::Draw()
 
 void C_CharaBase::UpdateAnimCnt()
 {
-	auto itr = m_texData->m_tex.begin();
-	for (int i = 0;i < m_texData->m_tex.size();i++)
+	for (int i = 0;i < E_CharaBaseTexType::TexTypeMax;i++)
 	{
-		S_TexData* data = &itr->second;
+		S_TexData* data = &m_texData->m_texDatas[i];
 
 		if (data->m_texAnimMax != 1)
 		{
@@ -28,14 +27,5 @@ void C_CharaBase::UpdateAnimCnt()
 				data->m_animCnt -= data->m_texAnimMax;
 			}
 		}
-
-		itr++;
 	}
-}
-
-S_TexData C_CharaBase::GetData(E_TexType a_type)
-{
-	S_TexData ans = m_texData->m_tex.find(a_type)->second;
-
-	return(ans);
 }

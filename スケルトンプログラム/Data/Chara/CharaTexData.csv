@@ -1,0 +1,2 @@
+キャラ名,画像スケールX,画像スケールY,当たり判定X,当たり判定Y,本体画像パス,AnimMax,AnimMulti,画像サイズX,画像サイズY,被弾時,,,,
+Player,1.5,1.5,60,60,Texture/Chara/Player/Player-Base.png,1,1,48,48,Texture/Chara/Player/Player-Invincible.png,50,0.2,64,64

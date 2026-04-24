@@ -1,31 +1,31 @@
-#include "AutoCannon.h"
-#include "WeaponTexManager.h"
+#include "BigSpaceGun.h"
+#include "../../CharaTexManager.h"
 
-C_AutoCannon::C_AutoCannon()
+C_BigSpaceGun::C_BigSpaceGun()
 {
-	m_nameTag = E_WeaponName::AutoCannon;
-	m_texData = WPNTEXMGR.GetWeaponTexData(m_nameTag);
+	m_nameTag = E_WeaponName::BigSpaceGun;
+	m_texData = CHARATEXMGR.GetWeaponTexData(m_nameTag);
 }
 
-void C_AutoCannon::Update(Math::Vector2 a_playerPos)
+void C_BigSpaceGun::Update(Math::Vector2 a_playerPos)
 {
 	UpdateAnimCnt();
 
 	Math::Matrix trans = Math::Matrix::CreateTranslation(a_playerPos.x, a_playerPos.y, 0);
 	Math::Matrix scale = Math::Matrix::CreateScale(m_texData->m_texScale.x, m_texData->m_texScale.y, 1);
-	Math::Matrix rotat = Math::Matrix::CreateRotationZ(TEXANGLE);
+	Math::Matrix rotat = Math::Matrix::CreateRotationZ(PLAYERANGLE);
 
 	m_mat = rotat * scale * trans;
 }
 
-void C_AutoCannon::Draw()
+void C_BigSpaceGun::Draw()
 {
 	//マトリックス
 	SHADER.m_spriteShader.SetMatrix(m_mat);
 
 	//本体
 	Math::Vector2 texSize = WEAPON.m_texSize;
-	Math::Rectangle rec = { (long)((int)(1 * WEAPON.m_animCntMulti) * texSize.x),0,(long)texSize.x,(long)texSize.y };
+	Math::Rectangle rec = { (long)((int)(1 * WEAPON.m_texAnimMulti) * texSize.x),0,(long)texSize.x,(long)texSize.y };
 
 	SHADER.m_spriteShader.DrawTex(&WEAPON.m_tex, 0, 0, texSize.x, texSize.y, &rec);
 }

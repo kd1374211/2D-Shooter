@@ -1,11 +1,11 @@
 #pragma once
-#include "WeaponTexConst.h"
+#include "../../CharaTexConst.h"
 
 class C_WeaponBase
 {
 public: 
 
-	C_WeaponBase() :m_nameTag(E_WeaponName::WeaponMax), m_texData(nullptr), m_mat(Math::Matrix::Identity) {};
+	C_WeaponBase() :m_nameTag(E_WeaponName::WeaponMax), m_texData(nullptr), m_mat(Math::Matrix::Identity), m_animCnt(0) {};
 	~C_WeaponBase() {};
 
 	virtual void Update(Math::Vector2 a_playerPos);

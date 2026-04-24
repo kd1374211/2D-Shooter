@@ -17,11 +17,11 @@ public:
 	//アニメーション
 	void UpdateAnimCnt();
 
-	S_TexData GetData(E_TexType a_type);
+	S_TexData* GetData(E_CharaBaseTexType a_type) { return(&m_texData->m_texDatas[a_type]); }
 
 protected:
 
-	S_CharaTexData* m_texData;
+	S_BaseCharaTexData* m_texData;
 
 	Math::Vector2 m_pos;
 	Math::Matrix m_mat;

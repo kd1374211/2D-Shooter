@@ -58,10 +58,10 @@
     <Filter Include="Src\Application\Key">
       <UniqueIdentifier>{6f5614b6-31ff-48e6-ac37-a3434d1f2107}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Src\Application\Weapon">
+    <Filter Include="Src\Application\Chara\Player\Weapon">
       <UniqueIdentifier>{be0e1fff-b81a-4208-9366-f02b716873d6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Src\Application\Weapon\Bullet">
+    <Filter Include="Src\Application\Chara\Player\Weapon\Bullet">
       <UniqueIdentifier>{a01518b7-8092-40a0-8dd0-f245d1e33114}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -186,32 +186,29 @@
     <ClInclude Include="Src\Application\Key\KeyStateManager.h">
       <Filter>Src\Application\Key</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\Weapon\WeaponBase.h">
-      <Filter>Src\Application\Weapon</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\Application\Weapon\AutoCannon.h">
-      <Filter>Src\Application\Weapon</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\Application\Weapon\WeaponConst.h">
-      <Filter>Src\Application\Weapon</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\Application\Weapon\BigSpaceGun.h">
-      <Filter>Src\Application\Weapon</Filter>
-    </ClInclude>
     <ClInclude Include="Src\Application\Chara\CharaTexManager.h">
       <Filter>Src\Application\Chara</Filter>
     </ClInclude>
     <ClInclude Include="Src\Application\Chara\CharaTexConst.h">
       <Filter>Src\Application\Chara</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\Weapon\Bullet\BulletBase.h">
-      <Filter>Src\Application\Weapon\Bullet</Filter>
+    <ClInclude Include="Src\Application\Chara\Player\Weapon\AutoCannon.h">
+      <Filter>Src\Application\Chara\Player\Weapon</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\Weapon\WeaponTexManager.h">
-      <Filter>Src\Application\Weapon</Filter>
+    <ClInclude Include="Src\Application\Chara\Player\Weapon\BigSpaceGun.h">
+      <Filter>Src\Application\Chara\Player\Weapon</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\Weapon\WeaponTexConst.h">
-      <Filter>Src\Application\Weapon</Filter>
+    <ClInclude Include="Src\Application\Chara\Player\Weapon\WeaponBase.h">
+      <Filter>Src\Application\Chara\Player\Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\Chara\Player\Weapon\WeaponConst.h">
+      <Filter>Src\Application\Chara\Player\Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\Chara\Player\Weapon\Bullet\AC_Bullet.h">
+      <Filter>Src\Application\Chara\Player\Weapon\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\Chara\Player\Weapon\Bullet\BulletBase.h">
+      <Filter>Src\Application\Chara\Player\Weapon\Bullet</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -299,23 +296,23 @@
     <ClCompile Include="Src\Application\Key\KeyStateManager.cpp">
       <Filter>Src\Application\Key</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Application\Weapon\WeaponBase.cpp">
-      <Filter>Src\Application\Weapon</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\Application\Weapon\AutoCannon.cpp">
-      <Filter>Src\Application\Weapon</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\Application\Weapon\BigSpaceGun.cpp">
-      <Filter>Src\Application\Weapon</Filter>
-    </ClCompile>
     <ClCompile Include="Src\Application\Chara\CharaTexManager.cpp">
       <Filter>Src\Application\Chara</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Application\Weapon\Bullet\BulletBase.cpp">
-      <Filter>Src\Application\Weapon\Bullet</Filter>
+    <ClCompile Include="Src\Application\Chara\Player\Weapon\AutoCannon.cpp">
+      <Filter>Src\Application\Chara\Player\Weapon</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Application\Weapon\WeaponTexManager.cpp">
-      <Filter>Src\Application\Weapon</Filter>
+    <ClCompile Include="Src\Application\Chara\Player\Weapon\BigSpaceGun.cpp">
+      <Filter>Src\Application\Chara\Player\Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\Chara\Player\Weapon\WeaponBase.cpp">
+      <Filter>Src\Application\Chara\Player\Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\Chara\Player\Weapon\Bullet\AC_Bullet.cpp">
+      <Filter>Src\Application\Chara\Player\Weapon\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\Chara\Player\Weapon\Bullet\BulletBase.cpp">
+      <Filter>Src\Application\Chara\Player\Weapon\Bullet</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -5,12 +5,13 @@ class C_CharaTexManager
 {
 public:
 
-	void LoadData();
+	void LoadTexData();
+	void LoadBaseTex();
+	void LoadPlayerWeaponTex();
+	void LoadPlayerEngineTex();
 
-	void LoadTexPathData();
-	void LoadCharaTexData();
-
-	S_CharaTexData* GetTexData(E_CharaName a_name) { return(&m_texData[a_name]); }
+	S_BaseCharaTexData* GetBaseTexData(E_CharaName a_name) { return(&m_texData[a_name]); }
+	S_WeaponTex* GetWeaponTexData(E_WeaponName a_name) { return(&m_weaponTexData[a_name]); }
 
 private:
 
@@ -19,9 +20,8 @@ private:
 
 	void ReleaseTex();
 
-	std::map<int, KdTexture*> m_texPathData;
-	KdTexture m_tex[CHARATEXNUM];
-	S_CharaTexData m_texData[E_CharaName::Max];
+	S_BaseCharaTexData m_texData[E_CharaName::Max];
+	S_WeaponTex m_weaponTexData[E_WeaponName::WeaponMax];
 
 public:
 

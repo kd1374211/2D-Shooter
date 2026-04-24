@@ -1,7 +1,6 @@
 #pragma once
 
 static const int STRLENG = 100;
-static const int CHARATEXNUM = 3;
 
 const float PLAYERANGLE = -M_PI_2;
 const float ENEMYANGLE = M_PI_2;
@@ -12,28 +11,40 @@ enum E_CharaName
 	Max
 };
 
-enum E_TexType
+enum E_CharaBaseTexType
 {
 	Base,
-	EngineFire,
-	HitImmune,
-	Dead,
-	TexTypeMax,
-	TexEnd = 999
+	OnHit,
+	TexTypeMax
 };
 
 struct S_TexData
 {
-	KdTexture* m_pTex;
+	KdTexture m_tex;
 	int m_animCnt;
 	int m_texAnimMax;
 	float m_texAnimMulti;
 	Math::Vector2 m_texSize;
 };
 
-struct S_CharaTexData
+struct S_BaseCharaTexData
 {
-	std::map<E_TexType, S_TexData> m_tex;
+	S_TexData m_texDatas[E_CharaBaseTexType::TexTypeMax];
 	Math::Vector2 m_texScale;
 	Math::Vector2 m_hitSize;
+};
+
+//武器
+enum E_WeaponName
+{
+	AutoCannon,
+	BigSpaceGun,
+	WeaponMax
+};
+
+struct S_WeaponTex
+{
+	S_TexData m_weapon;
+	S_TexData m_bullet;
+	Math::Vector2 m_texScale;
 };
