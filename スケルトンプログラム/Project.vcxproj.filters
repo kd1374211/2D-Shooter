@@ -210,6 +210,9 @@
     <ClInclude Include="Src\Application\Chara\Player\Weapon\Bullet\BulletBase.h">
       <Filter>Src\Application\Chara\Player\Weapon\Bullet</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Application\Scene\SelectScene.h">
+      <Filter>Src\Application\Scene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Pch.cpp">
@@ -313,6 +316,9 @@
     </ClCompile>
     <ClCompile Include="Src\Application\Chara\Player\Weapon\Bullet\BulletBase.cpp">
       <Filter>Src\Application\Chara\Player\Weapon\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\Scene\SelectScene.cpp">
+      <Filter>Src\Application\Scene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -1,10 +1,11 @@
 #include "GameScene.h"
 #include "../Chara/Player/Player.h"
+#include "SceneManager.h"
 
 C_GameScene::C_GameScene()
 {
 	SetSceneTag(E_SceneTypeTag::Game);
-	m_player = new C_Player(E_WeaponName::AutoCannon);
+	m_player = new C_Player(SCENEMGR.GetSelectedWeapon());
 }
 
 void C_GameScene::Update()

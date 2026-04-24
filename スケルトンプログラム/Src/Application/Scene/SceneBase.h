@@ -3,6 +3,7 @@
 enum class E_SceneTypeTag
 {
 	Title,
+	Select,
 	Game,
 	Max,
 	None = -1

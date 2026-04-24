@@ -9,6 +9,9 @@ void C_SceneManager::Update()
 		case E_SceneTypeTag::Title:
 			SetScene(new C_TitleScene());
 			break;
+		case E_SceneTypeTag::Select:
+			SetScene(new C_SelectScene());
+			break;
 		case E_SceneTypeTag::Game:
 			SetScene(new C_GameScene());
 			break;

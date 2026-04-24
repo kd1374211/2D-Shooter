@@ -11,7 +11,7 @@ void C_TitleScene::Update()
 {
 	if (KEYMGR.GetKeyState(E_KeyChecks::Enter) == E_KeyState::Released)
 	{
-		SCENEMGR.SetSceneQueue(E_SceneTypeTag::Game);
+		SCENEMGR.SetSceneQueue(E_SceneTypeTag::Select);
 	}
 }
 
