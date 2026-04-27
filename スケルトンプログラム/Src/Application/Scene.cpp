@@ -3,6 +3,7 @@
 #include "Scene/SceneManager.h"
 #include "Key/KeyStateManager.h"
 #include "Chara/CharaTexManager.h"
+#include "Bullet/BulletManager.h"
 
 void Scene::Draw2D()
 {
@@ -29,7 +30,7 @@ void Scene::Init()
 }
 
 void Scene::Release()
-{	
+{
 }
 
 void Scene::ImGuiUpdate()

@@ -1,9 +1,5 @@
 #include "CharaBase.h"
 
-void C_CharaBase::Action()
-{
-}
-
 void C_CharaBase::Update()
 {
 }

@@ -6,7 +6,7 @@ class C_SelectScene :public C_SceneBase
 public:
 
 	C_SelectScene();
-	~C_SelectScene(){}
+	~C_SelectScene()override{}
 
 	void Update()override;
 	void Draw()override;

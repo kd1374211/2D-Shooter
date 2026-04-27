@@ -162,7 +162,9 @@
     <ClInclude Include="Src\Application\Background\Background.h" />
     <ClInclude Include="Src\Application\Bullet\AC_Bullet.h" />
     <ClInclude Include="Src\Application\Bullet\BulletBase.h" />
+    <ClInclude Include="Src\Application\Bullet\BulletConst.h" />
     <ClInclude Include="Src\Application\Bullet\BulletManager.h" />
+    <ClInclude Include="Src\Application\Bullet\BulletTexConst.h" />
     <ClInclude Include="Src\Application\Chara\CharaBase.h" />
     <ClInclude Include="Src\Application\Chara\CharaTexConst.h" />
     <ClInclude Include="Src\Application\Chara\CharaTexManager.h" />
@@ -174,6 +176,7 @@
     <ClInclude Include="Src\Application\Chara\Player\Weapon\WeaponBase.h" />
     <ClInclude Include="Src\Application\Chara\Player\Weapon\WeaponConst.h" />
     <ClInclude Include="Src\Application\Const\ScreenConst.h" />
+    <ClInclude Include="Src\Application\Const\TextureConst.h" />
     <ClInclude Include="Src\Application\Key\KeyStateManager.h" />
     <ClInclude Include="Src\Application\Scene.h" />
     <ClInclude Include="Src\Application\main.h" />

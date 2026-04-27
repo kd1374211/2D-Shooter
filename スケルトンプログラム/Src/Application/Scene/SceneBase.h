@@ -14,7 +14,7 @@ class C_SceneBase
 public:
 
 	C_SceneBase() :m_tag(E_SceneTypeTag::Max) {};
-	~C_SceneBase() {};
+	virtual ~C_SceneBase() {};
 
 	virtual void Update() = 0;
 	virtual void Draw() = 0;

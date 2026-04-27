@@ -1,0 +1,4 @@
+名前,画像パス,画像サイズX,Y,画像スケールX,Y,AnimCntMax,AnimCntMulti
+AutoCannon,Texture/Bullet/AC-Bullet.png,32,32,1.5,1.5,16,0.25
+BigSpaceGun,Texture/Bullet/BSG-Bullet.png,32,32,1.5,1.5,40,0.25
+Fighter,Texture/Bullet/Fighter-Bullet.png,16,16,1.5,1.5,1,1

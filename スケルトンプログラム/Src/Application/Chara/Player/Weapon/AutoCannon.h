@@ -8,7 +8,6 @@ public:
 	C_AutoCannon(S_TexData* a_texData,Math::Vector2 a_texScale);
 	~C_AutoCannon() {};
 
-	void Action(Math::Vector2 a_playerPos)override;
 	void Update(Math::Vector2 a_playerPos)override;
 	void Draw()override;
 

@@ -1,6 +1,7 @@
 #include "AutoCannon.h"
 #include "../../CharaTexManager.h"
 #include "../../../Key/KeyStateManager.h"
+#include "../../../Bullet/BulletManager.h"
 
 C_AutoCannon::C_AutoCannon(S_TexData* a_texData, Math::Vector2 a_texScale) :m_bIsShot(false)
 {
@@ -10,7 +11,7 @@ C_AutoCannon::C_AutoCannon(S_TexData* a_texData, Math::Vector2 a_texScale) :m_bI
 	m_scale = a_texScale;
 }
 
-void C_AutoCannon::Action(Math::Vector2 a_playerPos)
+void C_AutoCannon::Update(Math::Vector2 a_playerPos)
 {
 	if (KEYMGR.GetIsPressed(E_KeyChecks::Space))
 	{
@@ -20,7 +21,7 @@ void C_AutoCannon::Action(Math::Vector2 a_playerPos)
 		}
 	}
 
-	if(m_bIsShot)UpdateAnimCnt();
+	if (m_bIsShot)UpdateAnimCnt();
 
 	if (m_texData->m_animCnt == 0)m_bIsShot = false;
 	else if (m_texData->m_animCnt == SHOTBULLET_L)
@@ -31,10 +32,7 @@ void C_AutoCannon::Action(Math::Vector2 a_playerPos)
 	{
 		Shot({ a_playerPos.x + POSOFSX_BULLET,a_playerPos.y - POSOFSY_BULLET });
 	}
-}
 
-void C_AutoCannon::Update(Math::Vector2 a_playerPos)
-{
 	Math::Matrix trans = Math::Matrix::CreateTranslation(a_playerPos.x, a_playerPos.y, 0);
 	Math::Matrix scale = Math::Matrix::CreateScale(m_scale.x, m_scale.y, 1);
 	Math::Matrix rotat = Math::Matrix::CreateRotationZ(PLAYERANGLE);
@@ -56,4 +54,5 @@ void C_AutoCannon::Draw()
 
 void C_AutoCannon::Shot(Math::Vector2 a_pos)
 {
+	BULLETMGR.SpawnBullet(a_pos, E_BulletType::B_AutoCannon);
 }

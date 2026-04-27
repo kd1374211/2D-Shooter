@@ -32,7 +32,7 @@ C_Player::~C_Player()
 	}
 }
 
-void C_Player::Action()
+void C_Player::Update()
 {
 	//移動
 	if (KEYMGR.GetIsPressed(E_KeyChecks::Up))
@@ -65,10 +65,7 @@ void C_Player::Action()
 	//アニメーション変化
 	UpdateAnimCnt();
 	UpdateEngineAnim();
-}
 
-void C_Player::Update()
-{
 	//Matrix
 	Math::Matrix trans = Math::Matrix::CreateTranslation(m_pos.x, m_pos.y, 0);
 	Math::Matrix scale = Math::Matrix::CreateScale(TEXSCALE.x, TEXSCALE.y, 1);

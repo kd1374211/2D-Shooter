@@ -9,7 +9,7 @@ class C_GameScene :public C_SceneBase
 public:
 
 	C_GameScene();
-	~C_GameScene();
+	~C_GameScene()override;
 
 	void Update()override;
 	void Draw()override;

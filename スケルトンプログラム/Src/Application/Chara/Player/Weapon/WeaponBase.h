@@ -1,12 +1,13 @@
 #pragma once
 #include "../../CharaTexConst.h"
+#include "../../../Const/TextureConst.h"
 
 class C_WeaponBase
 {
 public: 
 
 	C_WeaponBase() :m_nameTag(E_WeaponName::WeaponMax), m_texData(nullptr), m_scale(Math::Vector2::Zero), m_mat(Math::Matrix::Identity) {};
-	~C_WeaponBase() {};
+	virtual ~C_WeaponBase() {};
 
 	virtual void Action(Math::Vector2 a_playerPos);
 	virtual void Update(Math::Vector2 a_playerPos);

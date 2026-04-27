@@ -1,5 +1,6 @@
 #pragma once
 #include "CharaTexConst.h"
+#include "../Const/TextureConst.h"
 
 #define TEXSCALE m_texData->m_texScale
 #define POSMAX  (SCREENSIZEHALF - GetHitRadius())
@@ -12,7 +13,6 @@ public:
 	C_CharaBase() :m_texData(nullptr), m_angle(0), m_pos(Math::Vector2::Zero) {};
 	virtual ~C_CharaBase() {};
 
-	virtual void Action();
 	virtual void Update();
 	virtual void Draw();
 

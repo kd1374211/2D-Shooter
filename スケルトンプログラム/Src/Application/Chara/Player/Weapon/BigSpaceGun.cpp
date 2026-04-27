@@ -9,10 +9,6 @@ C_BigSpaceGun::C_BigSpaceGun(S_TexData* a_texData, Math::Vector2 a_texScale)
 	m_scale = a_texScale;
 }
 
-void C_BigSpaceGun::Action(Math::Vector2 a_playerPos)
-{
-}
-
 void C_BigSpaceGun::Update(Math::Vector2 a_playerPos)
 {
 	UpdateAnimCnt();

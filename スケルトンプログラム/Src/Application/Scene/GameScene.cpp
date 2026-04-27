@@ -1,6 +1,7 @@
 #include "GameScene.h"
 #include "../Chara/Player/Player.h"
 #include "SceneManager.h"
+#include "../Bullet/BulletManager.h"
 
 C_GameScene::C_GameScene() :m_player(nullptr), m_back(nullptr)
 {
@@ -22,12 +23,14 @@ C_GameScene::~C_GameScene()
 		delete m_back;
 		m_back = nullptr;
 	}
+
+	BULLETMGR.ClearBullet();
 }
 
 void C_GameScene::Update()
 {
-	m_player->Action();
 	m_player->Update();
+	BULLETMGR.Update();
 
 	m_back->Update();
 }
@@ -36,4 +39,6 @@ void C_GameScene::Draw()
 {
 	m_back->Draw();
 	m_player->Draw();
+
+	BULLETMGR.Draw();
 }

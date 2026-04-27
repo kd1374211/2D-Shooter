@@ -8,9 +8,8 @@ class C_Player : public C_CharaBase
 public:
 
 	C_Player(E_WeaponName a_name);
-	~C_Player();
+	~C_Player()override;
 
-	void Action()	override;
 	void Update()	override;
 	void Draw()		override;
 

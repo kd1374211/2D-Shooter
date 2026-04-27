@@ -6,7 +6,7 @@ class C_TitleScene :public C_SceneBase
 public:
 
 	C_TitleScene();
-	~C_TitleScene() {};
+	~C_TitleScene()override {};
 
 	void Update()override;
 	void Draw()override;

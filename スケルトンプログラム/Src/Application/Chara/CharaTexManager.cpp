@@ -1,4 +1,5 @@
 #include "CharaTexManager.h"
+#include "../Const/TextureConst.h"
 
 void C_CharaTexManager::LoadTexData()
 {

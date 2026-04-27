@@ -6,9 +6,8 @@ class C_Fighter :public C_EnemyBase
 public:
 
 	C_Fighter();
-	~C_Fighter(){}
+	~C_Fighter()override{}
 
-	void Action()override;
 	void Update()override;
 	void Draw()override;
 

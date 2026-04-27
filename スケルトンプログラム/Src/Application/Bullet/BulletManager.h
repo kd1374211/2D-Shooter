@@ -1,28 +1,35 @@
 #pragma once
+#include "BulletTexConst.h"
 
 class C_BulletBase;
-
-enum class E_BulletTeam
-{
-	Player,
-	Enemy
-};
 
 class C_BulletManager
 {
 public:
 
-	void SpawnBullet(Math::Vector2 a_pos, E_BulletTeam a_team);
+	void SpawnBullet(Math::Vector2 a_pos, E_BulletType a_type);
+	void ClearBullet();
+
+	void Update();
+	void Draw();
+
+	void CheckBulletDelete();
+
+	S_BulletTexData* GetTexData(E_BulletType a_bullet) { return(&m_bulletBaseTexData[a_bullet]); };
 
 private:
 
 	void Init();
 	void Release();
 
+	void LoadData();
+
 	C_BulletManager() { Init(); }
 	~C_BulletManager() { Release(); }
 
 	std::vector<C_BulletBase*> m_bullets;
+
+	S_BulletTexData m_bulletBaseTexData[E_BulletType::BulletMax];
 
 public:
 
