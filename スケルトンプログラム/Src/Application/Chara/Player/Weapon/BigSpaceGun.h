@@ -5,7 +5,7 @@ class C_BigSpaceGun : public C_WeaponBase
 {
 public:
 
-	C_BigSpaceGun();
+	C_BigSpaceGun(S_TexData* a_texData, Math::Vector2 a_texScale);
 	~C_BigSpaceGun() {};
 
 	void Action(Math::Vector2 a_playerPos)override;

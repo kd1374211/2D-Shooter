@@ -2,10 +2,12 @@
 #include "../../CharaTexManager.h"
 #include "../../../Key/KeyStateManager.h"
 
-C_AutoCannon::C_AutoCannon() :m_bIsShot(false)
+C_AutoCannon::C_AutoCannon(S_TexData* a_texData, Math::Vector2 a_texScale) :m_bIsShot(false)
 {
 	m_nameTag = E_WeaponName::AutoCannon;
-	m_texData = CHARATEXMGR.GetWeaponTexData(m_nameTag);
+
+	m_texData = a_texData;
+	m_scale = a_texScale;
 }
 
 void C_AutoCannon::Action(Math::Vector2 a_playerPos)
@@ -20,12 +22,12 @@ void C_AutoCannon::Action(Math::Vector2 a_playerPos)
 
 	if(m_bIsShot)UpdateAnimCnt();
 
-	if (WEAPON.m_animCnt == 0)m_bIsShot = false;
-	else if (WEAPON.m_animCnt == SHOTBULLET_L)
+	if (m_texData->m_animCnt == 0)m_bIsShot = false;
+	else if (m_texData->m_animCnt == SHOTBULLET_L)
 	{
-		Shot({ a_playerPos.x+POSOFSX_BULLET,a_playerPos.y + POSOFSY_BULLET });
+		Shot({ a_playerPos.x + POSOFSX_BULLET,a_playerPos.y + POSOFSY_BULLET });
 	}
-	else if (WEAPON.m_animCnt == SHOTBULLET_R)
+	else if (m_texData->m_animCnt == SHOTBULLET_R)
 	{
 		Shot({ a_playerPos.x + POSOFSX_BULLET,a_playerPos.y - POSOFSY_BULLET });
 	}
@@ -34,7 +36,7 @@ void C_AutoCannon::Action(Math::Vector2 a_playerPos)
 void C_AutoCannon::Update(Math::Vector2 a_playerPos)
 {
 	Math::Matrix trans = Math::Matrix::CreateTranslation(a_playerPos.x, a_playerPos.y, 0);
-	Math::Matrix scale = Math::Matrix::CreateScale(m_texData->m_texScale.x, m_texData->m_texScale.y, 1);
+	Math::Matrix scale = Math::Matrix::CreateScale(m_scale.x, m_scale.y, 1);
 	Math::Matrix rotat = Math::Matrix::CreateRotationZ(PLAYERANGLE);
 
 	m_mat = rotat * scale * trans;
@@ -46,10 +48,10 @@ void C_AutoCannon::Draw()
 	SHADER.m_spriteShader.SetMatrix(m_mat);
 
 	//本体
-	Math::Vector2 texSize = WEAPON.m_texSize;
-	Math::Rectangle rec = { (long)((int)(WEAPON.m_animCnt * WEAPON.m_texAnimMulti) * texSize.x),0,(long)texSize.x,(long)texSize.y };
+	Math::Vector2 texSize = m_texData->m_texSize;
+	Math::Rectangle rec = { (long)((int)(m_texData->m_animCnt * m_texData->m_texAnimMulti) * texSize.x),0,(long)texSize.x,(long)texSize.y };
 
-	SHADER.m_spriteShader.DrawTex(&WEAPON.m_tex, 0, 0, texSize.x, texSize.y, &rec);
+	SHADER.m_spriteShader.DrawTex(m_texData->m_tex, 0, 0, texSize.x, texSize.y, &rec);
 }
 
 void C_AutoCannon::Shot(Math::Vector2 a_pos)

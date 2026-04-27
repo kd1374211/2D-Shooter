@@ -5,6 +5,8 @@ static const int STRLENG = 100;
 const float PLAYERANGLE = -M_PI_2;
 const float ENEMYANGLE = M_PI_2;
 
+static const int CHARABASETEXNUM = 8;
+
 enum E_CharaName
 {
 	Player,
@@ -14,13 +16,25 @@ enum E_CharaName
 enum E_CharaBaseTexType
 {
 	Base,
+	Engine,
+	EngineEffect,
+	Weapon,
 	OnHit,
-	TexTypeMax
+	TexTypeMax,
+	TexEnd = 999
+};
+
+enum E_SelectWeaponTexType
+{
+	Select_Weapon,
+	Select_Engine,
+	Select_Fire,
+	Select_Max
 };
 
 struct S_TexData
 {
-	KdTexture m_tex;
+	KdTexture* m_tex;
 	int m_animCnt;
 	int m_texAnimMax;
 	float m_texAnimMulti;
@@ -29,7 +43,7 @@ struct S_TexData
 
 struct S_BaseCharaTexData
 {
-	S_TexData m_texDatas[E_CharaBaseTexType::TexTypeMax];
+	std::map<int, S_TexData> m_texDatas;
 	Math::Vector2 m_texScale;
 	Math::Vector2 m_hitSize;
 };
@@ -42,16 +56,8 @@ enum E_WeaponName
 	WeaponMax
 };
 
-struct S_WeaponTex
+struct S_PlayerSelectTex
 {
-	S_TexData m_weapon;
-	S_TexData m_bullet;
-	Math::Vector2 m_texScale;
-};
-
-struct S_EngineTex
-{
-	S_TexData m_engine;
-	S_TexData m_fire;
+	S_TexData m_texDatas[E_SelectWeaponTexType::Select_Max];
 	Math::Vector2 m_texScale;
 };

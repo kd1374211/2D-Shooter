@@ -19,6 +19,8 @@ public:
 private:
 
 	C_WeaponBase* m_weapon;
-	S_EngineTex* m_engineTex;
+	S_PlayerSelectTex* m_selectTexData;
 
 };
+
+#define SELECT m_selectTexData

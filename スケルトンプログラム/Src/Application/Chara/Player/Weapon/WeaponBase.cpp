@@ -18,7 +18,7 @@ void C_WeaponBase::Shot(Math::Vector2 a_pos)
 
 void C_WeaponBase::UpdateAnimCnt()
 {
-	WEAPON.m_animCnt++;
+	m_texData->m_animCnt++;
 
-	if (WEAPON.m_animCnt >= WEAPON.m_texAnimMax)WEAPON.m_animCnt -= WEAPON.m_texAnimMax;
+	if (m_texData->m_animCnt >= m_texData->m_texAnimMax)m_texData->m_animCnt -= m_texData->m_texAnimMax;
 }

@@ -14,9 +14,10 @@ void C_CharaBase::Draw()
 
 void C_CharaBase::UpdateAnimCnt()
 {
-	for (int i = 0;i < E_CharaBaseTexType::TexTypeMax;i++)
+
+	for (auto &itr : m_texData->m_texDatas)
 	{
-		S_TexData* data = &m_texData->m_texDatas[i];
+		S_TexData* data = &itr.second;
 
 		if (data->m_texAnimMax != 1)
 		{

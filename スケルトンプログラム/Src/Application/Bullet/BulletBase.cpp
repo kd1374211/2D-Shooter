@@ -14,7 +14,5 @@ void C_BulletBase::Draw()
 
 void C_BulletBase::UpdateAnimCnt()
 {
-	m_tex->m_animCnt++;
-
-	if (m_tex->m_animCnt >= m_tex->m_texAnimMax)m_tex->m_animCnt -= m_tex->m_texAnimMax;
+	
 }

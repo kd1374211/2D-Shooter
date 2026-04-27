@@ -5,7 +5,7 @@ class C_WeaponBase
 {
 public: 
 
-	C_WeaponBase() :m_nameTag(E_WeaponName::WeaponMax), m_texData(nullptr), m_mat(Math::Matrix::Identity) {};
+	C_WeaponBase() :m_nameTag(E_WeaponName::WeaponMax), m_texData(nullptr), m_scale(Math::Vector2::Zero), m_mat(Math::Matrix::Identity) {};
 	~C_WeaponBase() {};
 
 	virtual void Action(Math::Vector2 a_playerPos);
@@ -16,15 +16,11 @@ public:
 
 	void UpdateAnimCnt();
 
-	Math::Vector2 GetTexScale() { return(m_texData->m_texScale); }
-	S_TexData* GetBulletTex() { return(&m_texData->m_bullet); }
-
 protected:
 
 	E_WeaponName m_nameTag;
-	S_WeaponTex* m_texData;
+	S_TexData* m_texData;
+	Math::Vector2 m_scale;
 
 	Math::Matrix m_mat;
 };
-
-#define WEAPON m_texData->m_weapon
