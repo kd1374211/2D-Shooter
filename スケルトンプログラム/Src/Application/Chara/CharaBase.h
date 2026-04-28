@@ -11,8 +11,10 @@ class C_CharaBase
 {
 public:
 
-	C_CharaBase() :m_texData(nullptr), m_angle(0), m_pos(Math::Vector2::Zero), m_move(Math::Vector2::Zero) {};
+	C_CharaBase() :m_texData(nullptr), m_angle(0), m_pos(Math::Vector2::Zero), m_move(Math::Vector2::Zero), m_moveSpeed(0) {}
 	virtual ~C_CharaBase() {};
+
+	void CalcMove();
 
 	virtual void Update();
 	virtual void Draw();
@@ -30,6 +32,8 @@ protected:
 
 	Math::Vector2 m_pos;
 	Math::Vector2 m_move;
+	float m_moveSpeed;
+
 	Math::Matrix m_mat;
 	float m_angle;
 };

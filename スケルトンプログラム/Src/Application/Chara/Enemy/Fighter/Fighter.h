@@ -12,4 +12,14 @@ public:
 	void Draw()override;
 
 private:
+
+	const float MOVESPEED = 4.0f;
+
+	static const int ATTACKSTART = 60;
+	static const int ATTACKSPAN = 60;
+
+	static const int SHOTF = 6;
+	const float SHOTANGLE_L = -30;
+	const float SHOTANGLE_R = 30;
+
 };

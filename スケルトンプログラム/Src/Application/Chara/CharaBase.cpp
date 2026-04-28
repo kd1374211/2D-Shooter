@@ -8,6 +8,12 @@ void C_CharaBase::Draw()
 {
 }
 
+void C_CharaBase::CalcMove()
+{
+	m_move.Normalize();
+	m_pos += m_move * m_moveSpeed;
+}
+
 void C_CharaBase::UpdateAnimCnt()
 {
 

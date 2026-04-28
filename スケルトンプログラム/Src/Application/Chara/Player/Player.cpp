@@ -10,6 +10,7 @@ C_Player::C_Player(E_WeaponName a_name) :m_weapon(nullptr)
 	m_pos = { 0,0 };
 
 	m_angle = PLAYERANGLE;
+	m_moveSpeed = MOVESPEED;
 
 	switch (a_name)
 	{
@@ -51,9 +52,8 @@ void C_Player::Update()
 	{
 		m_move.x += 1;
 	}
-	m_move.Normalize();
-
-	m_pos += m_move * MOVESPEED;
+	
+	CalcMove();
 
 	//画面端
 	if (m_pos.x > POSMAX.x)m_pos.x = POSMAX.x;
