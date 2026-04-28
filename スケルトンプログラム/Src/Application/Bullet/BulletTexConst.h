@@ -4,7 +4,7 @@ enum E_BulletType
 {
 	B_AutoCannon,
 	B_BigSpaceGun,
-	B_EnemyGun1,
+	B_FighterGun,
 	BulletMax
 };
 

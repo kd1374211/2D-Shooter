@@ -160,11 +160,12 @@
     <ClInclude Include="..\Library\tinygltf\stb_image_write.h" />
     <ClInclude Include="..\Library\tinygltf\tiny_gltf.h" />
     <ClInclude Include="Src\Application\Background\Background.h" />
-    <ClInclude Include="Src\Application\Bullet\AC_Bullet.h" />
     <ClInclude Include="Src\Application\Bullet\BulletBase.h" />
     <ClInclude Include="Src\Application\Bullet\BulletConst.h" />
     <ClInclude Include="Src\Application\Bullet\BulletManager.h" />
     <ClInclude Include="Src\Application\Bullet\BulletTexConst.h" />
+    <ClInclude Include="Src\Application\Bullet\EnemyBullet\FighterBullet.h" />
+    <ClInclude Include="Src\Application\Bullet\PlayerBullet\AC_Bullet.h" />
     <ClInclude Include="Src\Application\Chara\CharaBase.h" />
     <ClInclude Include="Src\Application\Chara\CharaTexConst.h" />
     <ClInclude Include="Src\Application\Chara\CharaTexManager.h" />
@@ -212,9 +213,10 @@
     <ClCompile Include="..\Library\imgui\imgui_impl_win32.cpp" />
     <ClCompile Include="..\Library\imgui\imgui_widgets.cpp" />
     <ClCompile Include="Src\Application\Background\Background.cpp" />
-    <ClCompile Include="Src\Application\Bullet\AC_Bullet.cpp" />
     <ClCompile Include="Src\Application\Bullet\BulletBase.cpp" />
     <ClCompile Include="Src\Application\Bullet\BulletManager.cpp" />
+    <ClCompile Include="Src\Application\Bullet\EnemyBullet\FighterBullet.cpp" />
+    <ClCompile Include="Src\Application\Bullet\PlayerBullet\AC_Bullet.cpp" />
     <ClCompile Include="Src\Application\Chara\CharaBase.cpp" />
     <ClCompile Include="Src\Application\Chara\CharaTexManager.cpp" />
     <ClCompile Include="Src\Application\Chara\Enemy\EnemyBase.cpp" />

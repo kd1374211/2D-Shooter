@@ -54,5 +54,5 @@ void C_AutoCannon::Draw()
 
 void C_AutoCannon::Shot(Math::Vector2 a_pos)
 {
-	BULLETMGR.SpawnBullet(a_pos, E_BulletType::B_AutoCannon);
+	BULLETMGR.SpawnBullet(a_pos, SHOTSPEED_BULLET, 0, E_BulletType::B_AutoCannon);
 }

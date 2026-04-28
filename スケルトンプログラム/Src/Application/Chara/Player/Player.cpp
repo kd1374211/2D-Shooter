@@ -33,23 +33,27 @@ C_Player::~C_Player()
 
 void C_Player::Update()
 {
+	m_move = Math::Vector2::Zero;
 	//移動
 	if (KEYMGR.GetIsPressed(E_KeyChecks::Up))
 	{
-		m_pos.y += 5;
+		m_move.y += 1;
 	}
 	if (KEYMGR.GetIsPressed(E_KeyChecks::Left))
 	{
-		m_pos.x -= 5;
+		m_move.x -= 1;
 	}
 	if (KEYMGR.GetIsPressed(E_KeyChecks::Down))
 	{
-		m_pos.y -= 5;
+		m_move.y -= 1;
 	}
 	if (KEYMGR.GetIsPressed(E_KeyChecks::Right))
 	{
-		m_pos.x += 5;
+		m_move.x += 1;
 	}
+	m_move.Normalize();
+
+	m_pos += m_move * MOVESPEED;
 
 	//画面端
 	if (m_pos.x > POSMAX.x)m_pos.x = POSMAX.x;

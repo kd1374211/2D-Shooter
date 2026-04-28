@@ -17,6 +17,8 @@ public:
 
 private:
 
+	const float MOVESPEED = 5.0f;
+
 	C_WeaponBase* m_weapon;
 	S_PlayerSelectTex* m_selectTexData;
 

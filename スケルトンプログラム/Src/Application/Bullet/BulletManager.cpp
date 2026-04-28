@@ -2,12 +2,15 @@
 #include "BulletConst.h"
 #include "../Const/TextureConst.h"
 
-void C_BulletManager::SpawnBullet(Math::Vector2 a_pos, E_BulletType a_type)
+void C_BulletManager::SpawnBullet(Math::Vector2 a_pos, float a_speed, float a_shotAngle, E_BulletType a_type)
 {
 	switch (a_type)
 	{
 	case E_BulletType::B_AutoCannon:
-		m_bullets.push_back(new C_AutoCannon_Bullet(a_pos));
+		m_bullets.push_back(new C_AutoCannon_Bullet(a_pos, a_speed, a_shotAngle));
+		break;
+	case E_BulletType::B_FighterGun:
+		m_bullets.push_back(new C_FighterBullet(a_pos, a_speed, a_shotAngle));
 		break;
 	default:
 		break;

@@ -7,7 +7,7 @@ class C_BulletManager
 {
 public:
 
-	void SpawnBullet(Math::Vector2 a_pos, E_BulletType a_type);
+	void SpawnBullet(Math::Vector2 a_pos, float a_speed, float a_shotAngle, E_BulletType a_type);
 	void ClearBullet();
 
 	void Update();

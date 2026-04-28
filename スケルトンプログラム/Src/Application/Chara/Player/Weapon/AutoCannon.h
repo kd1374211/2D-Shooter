@@ -21,6 +21,8 @@ private:
 	const float POSOFSX_BULLET = 10;
 	const float POSOFSY_BULLET = 13;
 
+	const float SHOTSPEED_BULLET = 15;
+
 	bool m_bIsShot;
 
 };
