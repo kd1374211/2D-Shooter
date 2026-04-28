@@ -2,7 +2,6 @@
 #include "../../Key/KeyStateManager.h"
 #include "../CharaTexManager.h"
 #include "Weapon/WeaponConst.h"
-#include "../../Const/ScreenConst.h"
 
 C_Player::C_Player(E_WeaponName a_name) :m_weapon(nullptr)
 {

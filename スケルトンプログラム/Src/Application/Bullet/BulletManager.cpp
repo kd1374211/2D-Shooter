@@ -16,10 +16,13 @@ void C_BulletManager::SpawnBullet(Math::Vector2 a_pos, E_BulletType a_type)
 
 void C_BulletManager::ClearBullet()
 {
-	while (!m_bullets.empty())
+	if (m_bullets.empty())return;
+
+	for (const auto& bullet : m_bullets)
 	{
-		delete& m_bullets.begin();
+		delete bullet;
 	}
+	m_bullets.clear();
 }
 
 void C_BulletManager::Update()

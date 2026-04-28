@@ -2,6 +2,8 @@
 #include "../Chara/Player/Player.h"
 #include "SceneManager.h"
 #include "../Bullet/BulletManager.h"
+#include "../Chara/Enemy/EnemyManager.h"
+#include "../Key/KeyStateManager.h"
 
 C_GameScene::C_GameScene() :m_player(nullptr), m_back(nullptr)
 {
@@ -25,11 +27,18 @@ C_GameScene::~C_GameScene()
 	}
 
 	BULLETMGR.ClearBullet();
+	ENEMYMGR.ClearEnemy();
 }
 
 void C_GameScene::Update()
 {
+	if (KEYMGR.GetKeyState(E_KeyChecks::Enter) == E_KeyState::Pressed)
+	{
+		ENEMYMGR.SpawnEnemy({ 640,0 }, E_CharaName::Fighter);
+	}
+
 	m_player->Update();
+	ENEMYMGR.Update();
 	BULLETMGR.Update();
 
 	m_back->Update();
@@ -38,6 +47,7 @@ void C_GameScene::Update()
 void C_GameScene::Draw()
 {
 	m_back->Draw();
+	ENEMYMGR.Draw();
 	m_player->Draw();
 
 	BULLETMGR.Draw();

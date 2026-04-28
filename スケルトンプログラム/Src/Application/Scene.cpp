@@ -4,6 +4,7 @@
 #include "Key/KeyStateManager.h"
 #include "Chara/CharaTexManager.h"
 #include "Bullet/BulletManager.h"
+#include "Chara/Enemy/EnemyManager.h"
 
 void Scene::Draw2D()
 {
@@ -31,6 +32,8 @@ void Scene::Init()
 
 void Scene::Release()
 {
+	BULLETMGR.ClearBullet();
+	ENEMYMGR.ClearEnemy();
 }
 
 void Scene::ImGuiUpdate()

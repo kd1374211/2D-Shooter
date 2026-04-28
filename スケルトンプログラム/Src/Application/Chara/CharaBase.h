@@ -1,6 +1,7 @@
 #pragma once
 #include "CharaTexConst.h"
 #include "../Const/TextureConst.h"
+#include "../Const/ScreenConst.h"
 
 #define TEXSCALE m_texData->m_texScale
 #define POSMAX  (SCREENSIZEHALF - GetHitRadius())

@@ -1,19 +1,19 @@
 #pragma once
 
-static const int CHARABASETEXNUM = 8;
+static const int CHARABASETEXNUM = 12;
 
 enum E_CharaName
 {
 	Player,
+	Fighter,
 	Max
 };
 
 enum E_CharaBaseTexType
 {
 	Base,
-	Engine,
+	Attack,
 	EngineEffect,
-	Weapon,
 	OnHit,
 	TexTypeMax,
 	TexEnd = 999
