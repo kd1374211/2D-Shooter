@@ -16,12 +16,13 @@ C_FighterBullet::C_FighterBullet(Math::Vector2 a_pos, float a_speed, float a_sho
 void C_FighterBullet::Update()
 {
 	m_pos += m_speed * m_shotSpeed;
+	m_texAngle += 0.3f;
 
 	UpdateAnimCnt();
 
 	Math::Matrix trans = Math::Matrix::CreateTranslation(m_pos.x, m_pos.y, 0);
 	Math::Matrix scale = Math::Matrix::CreateScale(m_texData->m_texScale.x, m_texData->m_texScale.y, 1);
-	Math::Matrix rotat = Math::Matrix::CreateRotationZ(m_texAngle);
+	Math::Matrix rotat = Math::Matrix::CreateRotationZ(DirectX::XMConvertToRadians(m_texAngle));
 
 	m_mat = rotat * scale * trans;
 }

@@ -6,7 +6,7 @@ class C_WeaponBase
 {
 public: 
 
-	C_WeaponBase() :m_nameTag(E_WeaponName::WeaponMax), m_texData(nullptr), m_scale(Math::Vector2::Zero), m_mat(Math::Matrix::Identity) {};
+	C_WeaponBase() :m_nameTag(E_WeaponName::WeaponMax), m_texData(nullptr), m_scale(Math::Vector2::Zero), m_mat(Math::Matrix::Identity), m_angle(0) {};
 	virtual ~C_WeaponBase() {};
 
 	virtual void Action(Math::Vector2 a_playerPos);
@@ -23,5 +23,6 @@ protected:
 	S_TexData* m_texData;
 	Math::Vector2 m_scale;
 
+	float m_angle;
 	Math::Matrix m_mat;
 };

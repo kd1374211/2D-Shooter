@@ -34,7 +34,7 @@ void C_GameScene::Update()
 {
 	if (KEYMGR.GetKeyState(E_KeyChecks::Enter) == E_KeyState::Pressed)
 	{
-		ENEMYMGR.SpawnEnemy({ 640,0 }, E_CharaName::Fighter);
+		ENEMYMGR.SpawnEnemy({ 640.0f,(float)(rand() % 500 - 250)}, E_CharaName::Fighter);
 	}
 
 	m_player->Update();

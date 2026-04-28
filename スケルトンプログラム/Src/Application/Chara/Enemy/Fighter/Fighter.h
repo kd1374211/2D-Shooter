@@ -15,11 +15,15 @@ private:
 
 	const float MOVESPEED = 4.0f;
 
-	static const int ATTACKSTART = 60;
-	static const int ATTACKSPAN = 60;
+	static const int ATTACKSTART = 80;
+	static const int ATTACKSPAN = 80;
 
 	static const int SHOTF = 6;
-	const float SHOTANGLE_L = -30;
-	const float SHOTANGLE_R = 30;
+	const float SHOTANGLE_BASE = -30;
+	const float SHOTANGLE_DIST = 30;
+	static const int SHOTCNT = 3;
+	static const int ATKENDF = 12;
+
+	const float BULLETSPEED = -6.0f;
 
 };

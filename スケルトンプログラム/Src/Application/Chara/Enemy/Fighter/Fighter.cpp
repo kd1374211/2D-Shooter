@@ -26,13 +26,23 @@ void C_Fighter::Update()
 	//攻撃
 	if (m_nowAction == E_EnemyAction::Attack)
 	{
-
+		if (m_countF % ATTACKSPAN == SHOTF)
+		{
+			for (int i = 0;i < SHOTCNT;i++)
+			{
+				BULLETMGR.SpawnBullet(m_pos, BULLETSPEED, SHOTANGLE_BASE + i * SHOTANGLE_DIST, E_BulletType::B_FighterGun);
+			}
+		}
+		else if (m_countF % ATTACKSPAN == ATKENDF)
+		{
+			ChangeAction(E_EnemyAction::Idle);
+		}
 	}
 
 	//Matrix
 	Math::Matrix trans = Math::Matrix::CreateTranslation(m_pos.x, m_pos.y, 0);
 	Math::Matrix scale = Math::Matrix::CreateScale(TEXSCALE.x, TEXSCALE.y, 1);
-	Math::Matrix rotat = Math::Matrix::CreateRotationZ(m_angle);
+	Math::Matrix rotat = Math::Matrix::CreateRotationZ(DirectX::XMConvertToRadians(m_angle));
 
 	m_mat = rotat * scale * trans;
 }
