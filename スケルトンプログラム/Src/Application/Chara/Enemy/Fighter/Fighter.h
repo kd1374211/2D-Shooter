@@ -19,8 +19,8 @@ private:
 	static const int ATTACKSPAN = 80;
 
 	static const int SHOTF = 6;
-	const float SHOTANGLE_BASE = -30;
-	const float SHOTANGLE_DIST = 30;
+	const float SHOTANGLE_BASE = -15;
+	const float SHOTANGLE_DIST = 15;
 	static const int SHOTCNT = 3;
 	static const int ATKENDF = 12;
 

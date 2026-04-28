@@ -33,6 +33,8 @@ void C_EnemyManager::Update()
 			itr->Update();
 		}
 	}
+
+	CheckIsEnd();
 }
 
 void C_EnemyManager::Draw()
@@ -42,6 +44,25 @@ void C_EnemyManager::Draw()
 		for (auto& itr : m_enemy)
 		{
 			itr->Draw();
+		}
+	}
+}
+
+void C_EnemyManager::CheckIsEnd()
+{
+	if (!m_enemy.empty())
+	{
+		for (auto itr = m_enemy.begin();itr != m_enemy.end();)
+		{
+			if (!(*itr)->GetIsEnd())
+			{
+				itr++;
+			}
+			else
+			{
+				delete* itr;
+				itr = m_enemy.erase(itr);
+			}
 		}
 	}
 }

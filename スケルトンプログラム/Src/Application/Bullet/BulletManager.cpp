@@ -37,6 +37,8 @@ void C_BulletManager::Update()
 			itr->Update();
 		}
 	}
+
+	CheckBulletDelete();
 }
 
 void C_BulletManager::Draw()

@@ -20,6 +20,10 @@ void C_Fighter::Update()
 
 	CalcMove();
 
+	//画面端
+	if (fabs(m_pos.x) > SCREENOUT.x)m_isEnd = true;
+	else if (fabs(m_pos.y) > SCREENOUT.y)m_isEnd = true;
+
 	//アニメーション変化
 	UpdateAnimCnt();
 

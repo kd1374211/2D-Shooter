@@ -1,6 +1,6 @@
 #include "EnemyBase.h"
 
-C_EnemyBase::C_EnemyBase() :m_health(0), m_nowAction(E_EnemyAction::Idle), m_countF(0), m_mainAnimCnt(0)
+C_EnemyBase::C_EnemyBase() :m_health(0), m_isEnd(false), m_nowAction(E_EnemyAction::Idle), m_countF(0), m_mainAnimCnt(0)
 {
 	m_angle = ENEMYANGLE;
 }
