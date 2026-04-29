@@ -10,7 +10,7 @@ C_FighterBullet::C_FighterBullet(Math::Vector2 a_pos, float a_speed, float a_sho
 
 	m_team = E_BulletTeam::Enemy;
 	m_texData = BULLETMGR.GetTexData(E_BulletType::B_FighterGun);
-	m_texAngle = m_shotAngle;
+	m_texAngle = m_shotAngle + ENEMYANGLE;
 }
 
 void C_FighterBullet::Update()

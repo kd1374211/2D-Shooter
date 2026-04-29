@@ -96,6 +96,9 @@ void Scene::ImGuiUpdate()
 
 			ImGui::Text("%s Key : %s\n", key, keyState);
 		}
+
+		ImGui::Text("Enemy : %d", ENEMYMGR.GetEnemy().size());
+		ImGui::Text("Bullet : %d", BULLETMGR.GetBullets().size());
 	}
 	ImGui::End();
 }

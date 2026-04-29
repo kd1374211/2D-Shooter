@@ -14,6 +14,9 @@ public:
 	void Draw();
 	void CheckIsEnd();
 
+	//ゲッター
+	std::vector<C_EnemyBase*>& GetEnemy() { return(m_enemy); }
+
 private:
 
 	C_EnemyManager() {};

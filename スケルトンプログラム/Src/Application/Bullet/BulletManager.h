@@ -15,7 +15,9 @@ public:
 
 	void CheckBulletDelete();
 
-	S_BulletTexData* GetTexData(E_BulletType a_bullet) { return(&m_bulletBaseTexData[a_bullet]); };
+	//ゲッター
+	S_BulletTexData* GetTexData(E_BulletType a_bullet) { return(&m_bulletBaseTexData[a_bullet]); }
+	std::vector<C_BulletBase*> &GetBullets() { return(m_bullets); }
 
 private:
 
