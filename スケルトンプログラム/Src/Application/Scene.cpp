@@ -3,7 +3,7 @@
 #include "Scene/SceneManager.h"
 #include "Key/KeyStateManager.h"
 #include "Bullet/BulletManager.h"
-#include "Chara/Enemy/EnemyManager.h"
+#include "Chara/CharaManager.h"
 
 void Scene::Draw2D()
 {
@@ -31,7 +31,7 @@ void Scene::Init()
 void Scene::Release()
 {
 	BULLETMGR.ClearBullet();
-	ENEMYMGR.ClearEnemy();
+	CHARAMGR.ClearEnemy();
 }
 
 void Scene::ImGuiUpdate()
@@ -95,7 +95,7 @@ void Scene::ImGuiUpdate()
 			ImGui::Text("%s Key : %s\n", key, keyState);
 		}
 
-		ImGui::Text("Enemy : %d", ENEMYMGR.GetEnemy().size());
+		ImGui::Text("Enemy : %d", CHARAMGR.GetEnemy().size());
 		ImGui::Text("Bullet : %d", BULLETMGR.GetBullets().size());
 	}
 	ImGui::End();
