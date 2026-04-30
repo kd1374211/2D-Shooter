@@ -2,29 +2,21 @@
 #include "SceneManager.h"
 
 #include "../Const/ScreenConst.h"
-
-#include "../Chara/Player/Player.h"
 #include "../Bullet/BulletManager.h"
 #include "../Chara/CharaManager.h"
 #include "../Key/KeyStateManager.h"
 
-C_GameScene::C_GameScene() :m_player(nullptr), m_back(nullptr)
+C_GameScene::C_GameScene() :m_back(nullptr)
 {
 	SetSceneTag(E_SceneTypeTag::Game);
 	m_back = new C_Background();
-	m_player = new C_Player(SCENEMGR.GetSelectedWeapon());
+	CHARAMGR.SpawnPlayer(SCENEMGR.GetSelectedWeapon());
 
 	m_topBarTex.Load("Texture/Scene/Game/IngameTopBar.png");
 }
 
 C_GameScene::~C_GameScene()
 {
-	if (m_player)
-	{
-		delete m_player;
-		m_player = nullptr;
-	}
-
 	if (m_back)
 	{
 		delete m_back;
@@ -32,7 +24,7 @@ C_GameScene::~C_GameScene()
 	}
 
 	BULLETMGR.ClearBullet();
-	CHARAMGR.ClearEnemy();
+	CHARAMGR.ClearChara();
 
 	m_topBarTex.Release();
 }
@@ -44,7 +36,6 @@ void C_GameScene::Update()
 		CHARAMGR.SpawnEnemy({ 640.0f,(float)(rand() % 500 - 250)}, E_CharaName::Fighter);
 	}
 
-	m_player->Update();
 	CHARAMGR.Update();
 	BULLETMGR.Update();
 
@@ -55,8 +46,7 @@ void C_GameScene::Draw()
 {
 	m_back->Draw();
 	CHARAMGR.Draw();
-	m_player->Draw();
-
+	
 	BULLETMGR.Draw();
 
 	//バー

@@ -1,9 +1,12 @@
 #include "CharaManager.h"
 #include "../Const/TextureConst.h"
 #include "Enemy/EnemyConst.h"
+#include "Player/Player.h"
 
 void C_CharaManager::Update()
 {
+	if (m_player)m_player->Update();
+
 	if (!m_enemy.empty())
 	{
 		for (auto& itr : m_enemy)
@@ -24,6 +27,8 @@ void C_CharaManager::Draw()
 			itr->Draw();
 		}
 	}
+
+	if (m_player)m_player->Draw();
 }
 
 void C_CharaManager::CheckIsEnd()
@@ -42,6 +47,29 @@ void C_CharaManager::CheckIsEnd()
 				itr = m_enemy.erase(itr);
 			}
 		}
+	}
+}
+
+void C_CharaManager::ClearChara()
+{
+	DeletePlayer();
+	ClearEnemy();
+}
+
+void C_CharaManager::SpawnPlayer(E_WeaponName a_weapon)
+{
+	if (!m_player)
+	{
+		m_player = new C_Player(a_weapon);
+	}
+}
+
+void C_CharaManager::DeletePlayer()
+{
+	if (m_player)
+	{
+		delete m_player;
+		m_player = nullptr;
 	}
 }
 

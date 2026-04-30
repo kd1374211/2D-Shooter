@@ -31,7 +31,7 @@ void Scene::Init()
 void Scene::Release()
 {
 	BULLETMGR.ClearBullet();
-	CHARAMGR.ClearEnemy();
+	CHARAMGR.ClearChara();
 }
 
 void Scene::ImGuiUpdate()
