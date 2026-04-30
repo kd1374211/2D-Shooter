@@ -101,6 +101,7 @@ void C_CharaManager::Init()
 	LoadBaseTex();
 	SetBaseTexData();
 	LoadPlayerSelectWeaponTex();
+	LoadCharaStatData();
 }
 
 void C_CharaManager::LoadBaseTex()
@@ -143,11 +144,10 @@ void C_CharaManager::SetBaseTexData()
 
 			if (fgets(dummy, 250, fp) != nullptr)//1行読み
 			{
-				fscanf_s(fp, "%[^,],%f,%f,%f,",
+				fscanf_s(fp, "%[^,],%f,%f,",
 					name, STRLENG,
 					&m_texData[i].m_texScale.x,
-					&m_texData[i].m_texScale.y,
-					&m_texData[i].m_hitRadius
+					&m_texData[i].m_texScale.y
 				);
 
 				while (1)
@@ -214,6 +214,32 @@ void C_CharaManager::LoadPlayerSelectWeaponTex()
 					data->m_tex = &m_tex[pathID];
 					data->m_animCnt = 0;
 				}
+			}
+		}
+
+		fclose(fp);
+	}
+}
+
+void C_CharaManager::LoadCharaStatData()
+{
+	FILE* fp = nullptr;
+
+	if (fopen_s(&fp, "Data/Chara/CharaStatData.csv", "r") == 0)
+	{
+		char dummy[250] = {};
+
+		for (int i = 0;i < E_CharaName::Max;i++)
+		{
+			char name[STRLENG] = {};
+
+			if (fgets(dummy, 250, fp) != nullptr)//1行読み
+			{
+				fscanf_s(fp, "%[^,],%f,%d,",
+					name, STRLENG,
+					&m_statData[i].m_hitRadius,
+					&m_statData[i].m_health
+				);
 			}
 		}
 

@@ -46,7 +46,6 @@ struct S_BaseCharaTexData
 {
 	std::map<int, S_TexData> m_texDatas;
 	Math::Vector2 m_texScale;
-	float m_hitRadius;
 };
 
 //選択武器
@@ -62,4 +61,10 @@ struct S_PlayerSelectTex
 {
 	S_TexData m_texDatas[E_SelectWeaponTexType::Select_Max];
 	Math::Vector2 m_texScale;
+};
+
+struct S_CharaStatData
+{
+	float m_hitRadius;
+	int m_health;
 };
