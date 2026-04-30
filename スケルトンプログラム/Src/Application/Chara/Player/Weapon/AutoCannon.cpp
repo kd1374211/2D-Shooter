@@ -7,8 +7,8 @@ C_AutoCannon::C_AutoCannon(S_TexData* a_texData, Math::Vector2 a_texScale) :m_bI
 	m_nameTag = E_WeaponName::AutoCannon;
 
 	m_texData = a_texData;
-	m_scale = a_texScale;
-	m_angle = PLAYERANGLE;
+	m_texScale = a_texScale;
+	m_texAngle = PLAYERANGLE;
 }
 
 void C_AutoCannon::Update(Math::Vector2 a_playerPos)
@@ -34,8 +34,8 @@ void C_AutoCannon::Update(Math::Vector2 a_playerPos)
 	}
 
 	Math::Matrix trans = Math::Matrix::CreateTranslation(a_playerPos.x, a_playerPos.y, 0);
-	Math::Matrix scale = Math::Matrix::CreateScale(m_scale.x, m_scale.y, 1);
-	Math::Matrix rotat = Math::Matrix::CreateRotationZ(DirectX::XMConvertToRadians(m_angle));
+	Math::Matrix scale = Math::Matrix::CreateScale(m_texScale.x, m_texScale.y, 1);
+	Math::Matrix rotat = Math::Matrix::CreateRotationZ(DirectX::XMConvertToRadians(m_texAngle));
 
 	m_mat = rotat * scale * trans;
 }

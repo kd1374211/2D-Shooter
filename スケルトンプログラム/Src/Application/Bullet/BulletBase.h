@@ -20,13 +20,18 @@ public:
 
 protected:
 
+	//敵かプレイヤーか
 	E_BulletTeam m_team;
 
+	//画像関連
 	S_BulletTexData* m_texData;
 	int m_animCnt;
 	float m_texAngle;
 
+	//座標
 	Math::Vector2 m_pos;
+
+	//移動関連
 	Math::Vector2 m_speed;
 	float m_shotSpeed;
 	float m_shotAngle;

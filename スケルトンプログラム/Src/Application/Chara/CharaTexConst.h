@@ -1,7 +1,9 @@
 #pragma once
 
+//画像数
 static const int CHARABASETEXNUM = 12;
 
+//キャラ名
 enum E_CharaName
 {
 	Player,
@@ -9,6 +11,7 @@ enum E_CharaName
 	Max
 };
 
+//画像種まとめ
 enum E_CharaBaseTexType
 {
 	Base,
@@ -19,6 +22,7 @@ enum E_CharaBaseTexType
 	TexEnd = 999
 };
 
+//選択武器で変わる画像
 enum E_SelectWeaponTexType
 {
 	Select_Weapon,
@@ -27,6 +31,7 @@ enum E_SelectWeaponTexType
 	Select_Max
 };
 
+//↓のsecond部分
 struct S_TexData
 {
 	KdTexture* m_tex;
@@ -36,6 +41,7 @@ struct S_TexData
 	Math::Vector2 m_texSize;
 };
 
+//本体画像
 struct S_BaseCharaTexData
 {
 	std::map<int, S_TexData> m_texDatas;
@@ -43,7 +49,7 @@ struct S_BaseCharaTexData
 	Math::Vector2 m_hitSize;
 };
 
-//武器
+//選択武器
 enum E_WeaponName
 {
 	AutoCannon,
@@ -51,6 +57,7 @@ enum E_WeaponName
 	WeaponMax
 };
 
+//選択武器の画像
 struct S_PlayerSelectTex
 {
 	S_TexData m_texDatas[E_SelectWeaponTexType::Select_Max];

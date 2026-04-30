@@ -3,13 +3,13 @@
 #include "../CharaManager.h"
 #include "Weapon/WeaponConst.h"
 
-C_Player::C_Player(E_WeaponName a_name) :m_weapon(nullptr)
+C_Player::C_Player(E_WeaponName a_name) :m_weapon(nullptr), m_isInvincible(false)
 {
 	m_texData = CHARAMGR.GetBaseTexData(E_CharaName::Player);
 	m_selectTexData = CHARAMGR.GetSelectTexData(a_name);
 	m_pos = { 0,0 };
 
-	m_angle = PLAYERANGLE;
+	m_texAngle = PLAYERANGLE;
 	m_moveSpeed = MOVESPEED;
 
 	switch (a_name)
@@ -72,7 +72,7 @@ void C_Player::Update()
 	//Matrix
 	Math::Matrix trans = Math::Matrix::CreateTranslation(m_pos.x, m_pos.y, 0);
 	Math::Matrix scale = Math::Matrix::CreateScale(TEXSCALE.x, TEXSCALE.y, 1);
-	Math::Matrix rotat = Math::Matrix::CreateRotationZ(DirectX::XMConvertToRadians(m_angle));
+	Math::Matrix rotat = Math::Matrix::CreateRotationZ(DirectX::XMConvertToRadians(m_texAngle));
 
 	m_mat = rotat * scale * trans;
 
@@ -114,6 +114,10 @@ void C_Player::Draw()
 	//rec = { (long)((int)(tex.m_animCnt * tex.m_texAnimMulti) * texSize.x),0,(long)texSize.x,(long)texSize.y };
 
 	//SHADER.m_spriteShader.DrawTex(tex.m_pTex, m_pos.x, m_pos.y, texSize.x * scale.x, texSize.y * scale.y, &rec);
+}
+
+void C_Player::GetHit()
+{
 }
 
 void C_Player::UpdateEngineAnim()

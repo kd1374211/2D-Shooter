@@ -1,5 +1,6 @@
 #pragma once
 
+//弾丸種
 enum E_BulletType
 {
 	B_AutoCannon,
@@ -8,6 +9,7 @@ enum E_BulletType
 	BulletMax
 };
 
+//どっちの弾か
 enum class E_BulletTeam
 {
 	Player,
@@ -15,6 +17,8 @@ enum class E_BulletTeam
 	None
 };
 
+
+//画像
 struct S_BulletTexData
 {
 	KdTexture m_tex;

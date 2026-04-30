@@ -7,12 +7,14 @@ class C_BulletManager
 {
 public:
 
+	//弾召喚・削除
 	void SpawnBullet(Math::Vector2 a_pos, float a_speed, float a_shotAngle, E_BulletType a_type);
 	void ClearBullet();
 
 	void Update();
 	void Draw();
 
+	//画面外チェック
 	void CheckBulletDelete();
 
 	//ゲッター
@@ -29,8 +31,10 @@ private:
 	C_BulletManager() { Init(); }
 	~C_BulletManager() { Release(); }
 
+	//弾コンテナ
 	std::vector<C_BulletBase*> m_bullets;
 
+	//画像
 	S_BulletTexData m_bulletBaseTexData[E_BulletType::BulletMax];
 
 public:

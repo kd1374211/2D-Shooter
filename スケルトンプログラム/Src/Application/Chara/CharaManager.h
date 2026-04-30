@@ -47,7 +47,7 @@ private:
 	void LoadPlayerSelectWeaponTex();
 	void Release();
 
-	//テクスチャ
+	//画像
 	KdTexture m_tex[CHARABASETEXNUM];
 	S_BaseCharaTexData m_texData[E_CharaName::Max];
 	S_PlayerSelectTex m_selectTexData[E_WeaponName::WeaponMax];
@@ -55,7 +55,7 @@ private:
 	//プレイヤー
 	C_Player* m_player = nullptr;
 
-	//敵
+	//敵コンテナ
 	std::vector<C_EnemyBase*> m_enemy = {};
 
 public:

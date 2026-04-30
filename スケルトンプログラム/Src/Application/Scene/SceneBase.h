@@ -1,5 +1,6 @@
 #pragma once
 
+//シーン種
 enum class E_SceneTypeTag
 {
 	Title,
@@ -18,10 +19,14 @@ public:
 
 	virtual void Update() = 0;
 	virtual void Draw() = 0;
+
+	//セッター
 	void SetSceneTag(E_SceneTypeTag a_tag)
 	{
 		m_tag = a_tag;
 	}
+
+	//ゲッター
 	E_SceneTypeTag GetSceneTag()const
 	{
 		return(m_tag);
@@ -29,6 +34,7 @@ public:
 
 private:
 
+	//シーン種
 	E_SceneTypeTag m_tag;
 
 };

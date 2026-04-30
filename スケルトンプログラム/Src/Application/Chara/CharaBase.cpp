@@ -8,6 +8,10 @@ void C_CharaBase::Draw()
 {
 }
 
+void C_CharaBase::GetHit()
+{
+}
+
 void C_CharaBase::CalcMove()
 {
 	m_move.Normalize();

@@ -13,14 +13,25 @@ public:
 	void Update()	override;
 	void Draw()		override;
 
+	//被弾
+	void GetHit()override;
+
+	//アニメーション
 	void UpdateEngineAnim();
 
 private:
 
+	//移動速度
 	const float MOVESPEED = 5.0f;
 
-	C_WeaponBase* m_weapon;
+	//武器とエンジンの画像
 	S_PlayerSelectTex* m_selectTexData;
+
+	//選択武器
+	C_WeaponBase* m_weapon;
+
+	//無敵フラグ
+	bool m_isInvincible;
 
 };
 

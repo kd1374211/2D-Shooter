@@ -11,6 +11,7 @@ public:
 	void Update(Math::Vector2 a_playerPos)override;
 	void Draw()override;
 
+	//発射
 	void Shot(Math::Vector2 a_pos)override;
 
 private:

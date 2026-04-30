@@ -2,7 +2,7 @@
 
 C_EnemyBase::C_EnemyBase() :m_health(0), m_isEnd(false), m_nowAction(E_EnemyAction::Idle), m_countF(0), m_mainAnimCnt(0)
 {
-	m_angle = ENEMYANGLE;
+	m_texAngle = ENEMYANGLE;
 }
 
 void C_EnemyBase::Update()
@@ -40,6 +40,10 @@ void C_EnemyBase::DrawMainShip()
 	SHADER.m_spriteShader.DrawTex(tex->m_tex, 0, 0, texSize.x, texSize.y, &rec);
 }
 
+void C_EnemyBase::GetHit()
+{
+}
+
 void C_EnemyBase::ChangeAction(E_EnemyAction a_action)
 {
 	m_nowAction = a_action;
@@ -56,4 +60,9 @@ void C_EnemyBase::ChangeAction(E_EnemyAction a_action)
 		GetTexData(E_CharaBaseTexType::OnHit)->m_animCnt = 0;
 		break;
 	}
+}
+
+bool C_EnemyBase::GetIsDead() const
+{
+	return(m_nowAction == E_EnemyAction::Dead ? true : false);
 }

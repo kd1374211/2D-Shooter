@@ -1,6 +1,8 @@
 #pragma once
 
 //操作キーメモ 矢印 エンター スペース
+
+//使うキーをここに追加
 enum class E_KeyChecks
 {
 	Up,
@@ -12,6 +14,7 @@ enum class E_KeyChecks
 	Max
 };
 
+//名前とVK対応
 const std::map<E_KeyChecks, int> M_KeyTags
 {
 	{E_KeyChecks::Up,VK_UP},
@@ -22,6 +25,7 @@ const std::map<E_KeyChecks, int> M_KeyTags
 	{E_KeyChecks::Space,VK_SPACE},
 };
 
+//キー状況
 enum class E_KeyState
 {
 	Pressed,
@@ -30,6 +34,7 @@ enum class E_KeyState
 	None
 };
 
+//1つまえ/このフレームでキーが押されているか
 struct S_KeyCheckState
 {
 	bool m_bIsPressedCurrent;
@@ -41,11 +46,14 @@ class C_KeyStateManager
 public:
 
 	void UpdateKeyState();
-	E_KeyState GetKeyState(E_KeyChecks a_key);
-	bool GetIsPressed(E_KeyChecks a_key);
+
+	//ゲッター
+	E_KeyState GetKeyState(E_KeyChecks a_key);//キー状況
+	bool GetIsPressed(E_KeyChecks a_key);//このフレームで押されたか
 
 private:
 
+	//キーとキー管理
 	std::map<E_KeyChecks, S_KeyCheckState> m_keyCheckState;
 
 	C_KeyStateManager();

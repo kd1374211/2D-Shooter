@@ -13,5 +13,6 @@ public:
 
 private:
 
+	//選択武器種
 	int m_weaponSelectIndex;
 };
