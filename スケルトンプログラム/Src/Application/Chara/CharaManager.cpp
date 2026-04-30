@@ -143,12 +143,11 @@ void C_CharaManager::SetBaseTexData()
 
 			if (fgets(dummy, 250, fp) != nullptr)//1行読み
 			{
-				fscanf_s(fp, "%[^,],%f,%f,%f,%f,",
+				fscanf_s(fp, "%[^,],%f,%f,%f,",
 					name, STRLENG,
 					&m_texData[i].m_texScale.x,
 					&m_texData[i].m_texScale.y,
-					&m_texData[i].m_hitSize.x,
-					&m_texData[i].m_hitSize.y
+					&m_texData[i].m_hitRadius
 				);
 
 				while (1)

@@ -5,6 +5,7 @@
 #include "../Bullet/BulletManager.h"
 #include "../Chara/CharaManager.h"
 #include "../Key/KeyStateManager.h"
+#include "../Hit/HitCheck.h"
 
 C_GameScene::C_GameScene() :m_back(nullptr)
 {
@@ -38,6 +39,10 @@ void C_GameScene::Update()
 
 	CHARAMGR.Update();
 	BULLETMGR.Update();
+
+	HITCHECK.Check();
+
+	BULLETMGR.CheckBulletDelete();
 
 	m_back->Update();
 }

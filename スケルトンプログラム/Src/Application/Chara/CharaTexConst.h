@@ -46,7 +46,7 @@ struct S_BaseCharaTexData
 {
 	std::map<int, S_TexData> m_texDatas;
 	Math::Vector2 m_texScale;
-	Math::Vector2 m_hitSize;
+	float m_hitRadius;
 };
 
 //選択武器

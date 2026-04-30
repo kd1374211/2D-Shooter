@@ -4,8 +4,6 @@
 #include "../Const/ScreenConst.h"
 
 #define TEXSCALE m_texData->m_texScale
-#define POSMAX  (MOVEMAX - GetHitRadius())
-#define POSMIN  (MOVEMIN + GetHitRadius())
 
 class C_CharaBase
 {
@@ -28,7 +26,7 @@ public:
 
 	//ゲッター
 	Math::Vector2 GetPos()const { return(m_pos); }
-	Math::Vector2 GetHitRadius()const { return(m_texData->m_hitSize / 2.0f); }
+	float GetHitRadius()const { return(m_texData->m_hitRadius); }
 	S_TexData* GetTexData(E_CharaBaseTexType a_type)const { return(&m_texData->m_texDatas[a_type]); }
 
 protected:

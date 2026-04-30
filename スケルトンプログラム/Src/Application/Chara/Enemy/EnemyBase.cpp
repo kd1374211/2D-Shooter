@@ -1,6 +1,6 @@
 #include "EnemyBase.h"
 
-C_EnemyBase::C_EnemyBase() :m_health(0), m_isEnd(false), m_nowAction(E_EnemyAction::Idle), m_countF(0), m_mainAnimCnt(0)
+C_EnemyBase::C_EnemyBase() :m_health(0), m_isEnd(false), m_nowAction(E_EnemyAction::Idle), m_countF(0), m_mainAnimCnt(0), m_texAlpha(1.0f)
 {
 	m_texAngle = ENEMYANGLE;
 }
@@ -36,12 +36,24 @@ void C_EnemyBase::DrawMainShip()
 	//本体
 	Math::Vector2 texSize = tex->m_texSize;
 	Math::Rectangle rec = { (long)((int)(tex->m_animCnt * tex->m_texAnimMulti) * texSize.x),0,(long)texSize.x,(long)texSize.y };
+	Math::Color color = { 1,1,1,m_texAlpha };
 
-	SHADER.m_spriteShader.DrawTex(tex->m_tex, 0, 0, texSize.x, texSize.y, &rec);
+	SHADER.m_spriteShader.DrawTex(tex->m_tex, 0, 0, texSize.x, texSize.y, &rec, &color);
+}
+
+void C_EnemyBase::UpdateTexAlpha()
+{
+	if (m_texAlpha < 1.0f)
+	{
+		m_texAlpha += ALPHACHANGE;
+	}
+
+	if (m_texAlpha >= 1.0f)m_texAlpha = 1.0f;
 }
 
 void C_EnemyBase::GetHit()
 {
+	m_texAlpha = HITALPHA;
 }
 
 void C_EnemyBase::ChangeAction(E_EnemyAction a_action)

@@ -255,7 +255,7 @@
     <ClInclude Include="Src\Application\Bullet\EnemyBullet\FighterBullet.h">
       <Filter>Src\Application\Bullet\EnemyBullet</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\Hit\Hit.h">
+    <ClInclude Include="Src\Application\Hit\HitCheck.h">
       <Filter>Src\Application\Hit</Filter>
     </ClInclude>
     <ClInclude Include="Src\Application\Chara\CharaManager.h">
@@ -377,7 +377,7 @@
     <ClCompile Include="Src\Application\Bullet\EnemyBullet\FighterBullet.cpp">
       <Filter>Src\Application\Bullet\EnemyBullet</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Application\Hit\Hit.cpp">
+    <ClCompile Include="Src\Application\Hit\HitCheck.cpp">
       <Filter>Src\Application\Hit</Filter>
     </ClCompile>
     <ClCompile Include="Src\Application\Chara\CharaManager.cpp">

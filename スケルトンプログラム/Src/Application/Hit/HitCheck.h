@@ -2,16 +2,16 @@
 
 class C_SceneBase;
 
-class C_Hit
+class C_HitCheck
 {
 public:
 
-	C_Hit() {}
-	~C_Hit(){}
-
-	void HitCheck();
+	void Check();
 
 private:
+
+	C_HitCheck() {}
+	~C_HitCheck() {}
 
 	//プレイヤー・敵
 	void PlayerEnemyHit();
@@ -22,4 +22,14 @@ private:
 	//敵・プレイヤーの弾
 	void EnemyBulletHit();
 
+public:
+
+	static C_HitCheck& GetInstance()
+	{
+		static C_HitCheck instance;
+		return instance;
+	}
+
 };
+
+#define HITCHECK C_HitCheck::GetInstance()

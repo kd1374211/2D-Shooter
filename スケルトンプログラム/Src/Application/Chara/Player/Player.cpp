@@ -109,15 +109,19 @@ void C_Player::Draw()
 	SHADER.m_spriteShader.DrawTex(tex->m_tex, 0, 0, texSize.x, texSize.y, &rec);
 
 	//無敵
-	//tex = GetData(E_TexType::HitImmune);
-	//texSize = tex.m_texSize;
-	//rec = { (long)((int)(tex.m_animCnt * tex.m_texAnimMulti) * texSize.x),0,(long)texSize.x,(long)texSize.y };
+	if (m_isInvincible)
+	{
+		tex = GetTexData(E_CharaBaseTexType::OnHit);
+		texSize = tex->m_texSize;
+		rec = { (long)((int)(tex->m_animCnt * tex->m_texAnimMulti) * texSize.x),0,(long)texSize.x,(long)texSize.y };
 
-	//SHADER.m_spriteShader.DrawTex(tex.m_pTex, m_pos.x, m_pos.y, texSize.x * scale.x, texSize.y * scale.y, &rec);
+		SHADER.m_spriteShader.DrawTex(tex->m_tex, 0, 0, texSize.x, texSize.y, &rec);
+	}
 }
 
 void C_Player::GetHit()
 {
+	m_isInvincible = true;
 }
 
 void C_Player::UpdateEngineAnim()

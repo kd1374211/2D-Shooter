@@ -15,6 +15,8 @@ public:
 	void Draw();
 
 	//画面外チェック
+	void CheckIsInScreen();
+
 	void CheckBulletDelete();
 
 	//ゲッター

@@ -1,6 +1,9 @@
 #pragma once
 #include "../CharaBase.h"
 
+#define POSMAX  (MOVEMAX - (Math::Vector2)GetHitRadius())
+#define POSMIN  (MOVEMIN + (Math::Vector2)GetHitRadius())
+
 class C_WeaponBase;
 
 class C_Player : public C_CharaBase
@@ -18,6 +21,9 @@ public:
 
 	//アニメーション
 	void UpdateEngineAnim();
+
+	//ゲッター
+	bool GetIsInvincible()const { return(m_isInvincible); }
 
 private:
 

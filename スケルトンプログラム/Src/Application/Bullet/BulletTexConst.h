@@ -26,4 +26,5 @@ struct S_BulletTexData
 	float m_texAnimMulti;
 	Math::Vector2 m_texSize;
 	Math::Vector2 m_texScale;
+	float m_hitRadius;
 };

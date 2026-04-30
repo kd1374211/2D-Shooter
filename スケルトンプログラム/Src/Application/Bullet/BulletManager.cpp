@@ -38,7 +38,7 @@ void C_BulletManager::Update()
 		}
 	}
 
-	CheckBulletDelete();
+	CheckIsInScreen();
 }
 
 void C_BulletManager::Draw()
@@ -52,20 +52,31 @@ void C_BulletManager::Draw()
 	}
 }
 
+void C_BulletManager::CheckIsInScreen()
+{
+	if (!m_bullets.empty())
+	{
+		for (auto& itr : m_bullets)
+		{
+			itr->SetIsEnd(!itr->GetIsInScreen());
+		}
+	}
+}
+
 void C_BulletManager::CheckBulletDelete()
 {
 	if (!m_bullets.empty())
 	{
 		for (auto itr = m_bullets.begin();itr != m_bullets.end();)
 		{
-			if ((*itr)->GetIsInScreen())
-			{
-				itr++;
-			}
-			else
+			if ((*itr)->GetIsEnd())
 			{
 				delete* itr;
 				itr = m_bullets.erase(itr);
+			}
+			else
+			{
+				itr++;
 			}
 		}
 	}
@@ -101,13 +112,14 @@ void C_BulletManager::LoadData()
 			{
 				S_BulletTexData* data = &m_bulletBaseTexData[i];
 
-				fscanf_s(fp, "%[^,],%[^,],%f,%f,%f,%f,%d,%f,",
+				fscanf_s(fp, "%[^,],%[^,],%f,%f,%f,%f,%f,%d,%f,",
 					name, STRLENG,
 					texPath, STRLENG,
 					&data->m_texSize.x,
 					&data->m_texSize.y,
 					&data->m_texScale.x,
 					&data->m_texScale.y,
+					&data->m_hitRadius,
 					&data->m_texAnimMax,
 					&data->m_texAnimMulti);
 

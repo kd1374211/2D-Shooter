@@ -21,11 +21,20 @@ void C_Fighter::Update()
 	CalcMove();
 
 	//画面端
-	if (fabs(m_pos.x) > SCREENOUT.x)m_isEnd = true;
-	else if (fabs(m_pos.y) > SCREENOUT.y)m_isEnd = true;
+	if (m_pos.x > MOVEOUTMAX.x || m_pos.x < MOVEOUTMIN.x)
+	{
+		m_isEnd = true;
+	}
+	else if (m_pos.y > MOVEOUTMAX.x || m_pos.y < MOVEOUTMIN.x)
+	{
+		m_isEnd = true;
+	}
 
 	//アニメーション変化
 	UpdateAnimCnt();
+
+	//点滅チェック
+	UpdateTexAlpha();
 
 	//攻撃
 	if (m_nowAction == E_EnemyAction::Attack)
@@ -60,8 +69,9 @@ void C_Fighter::Draw()
 	S_TexData* tex = GetTexData(E_CharaBaseTexType::EngineEffect);
 	Math::Vector2 texSize = tex->m_texSize;
 	Math::Rectangle rec = { (long)((int)(tex->m_animCnt * tex->m_texAnimMulti) * texSize.x),0,(long)texSize.x,(long)texSize.y };
+	Math::Color color = { 1,1,1,m_texAlpha };
 
-	SHADER.m_spriteShader.DrawTex(tex->m_tex, 0, 0, texSize.x, texSize.y, &rec);
+	SHADER.m_spriteShader.DrawTex(tex->m_tex, 0, 0, texSize.x, texSize.y, &rec, &color);
 
 	DrawMainShip();
 }

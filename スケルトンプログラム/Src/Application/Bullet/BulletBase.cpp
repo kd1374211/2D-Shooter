@@ -21,8 +21,8 @@ void C_BulletBase::UpdateAnimCnt()
 
 bool C_BulletBase::GetIsInScreen()
 {
-	if (fabs(m_pos.x) > SCREENSIZEHALF.x - (m_texData->m_texSize.x / 2.0f))return(false);
-	else if (fabs(m_pos.y) > SCREENSIZEHALF.y - (m_texData->m_texSize.y / 2.0f))return(false);
+	if (m_pos.x > MOVEOUTMAX.x || m_pos.x < MOVEOUTMIN.x)return(false);
+	else if (m_pos.y > MOVEOUTMAX.y || m_pos.y < MOVEOUTMIN.y)return(false);
 
 	return(true);
 }

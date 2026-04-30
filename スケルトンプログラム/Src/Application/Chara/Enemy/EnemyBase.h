@@ -1,7 +1,8 @@
 #pragma once
 #include "../CharaBase.h"
 
-#define SCREENOUT  (SCREENSIZEHALF + GetHitRadius())
+#define MOVEOUTMAX (MOVEMAX + (Math::Vector2)GetHitRadius())
+#define MOVEOUTMIN (MOVEMIN - (Math::Vector2)GetHitRadius())
 
 class C_EnemyBase :public C_CharaBase
 {
@@ -22,6 +23,9 @@ public:
 	virtual void Draw()override;
 	void DrawMainShip();
 
+	//点滅
+	void UpdateTexAlpha();
+
 	//被弾
 	virtual void GetHit()override;
 
@@ -36,6 +40,12 @@ protected:
 
 	//アニメーション（本体用）
 	int m_mainAnimCnt;
+
+	//被弾時点滅用
+	const float HITALPHA = 0.2f;
+	const float ALPHACHANGE = 0.2f;
+
+	float m_texAlpha;
 
 	//体力
 	int m_health;

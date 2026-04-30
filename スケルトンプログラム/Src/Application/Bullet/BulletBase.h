@@ -2,21 +2,31 @@
 #include "BulletTexConst.h"
 #include "../Const/TextureConst.h"
 
+#define MOVEOUTMAX (MOVEMAX + (Math::Vector2)GetHitRadius())
+#define MOVEOUTMIN (MOVEMIN - (Math::Vector2)GetHitRadius())
+
 class C_BulletBase
 {
 public:
 
-	C_BulletBase() : m_pos(Math::Vector2::Zero), m_mat(Math::Matrix::Identity), m_team(E_BulletTeam::None), m_texData(nullptr), m_animCnt(0), m_texAngle(0), m_shotAngle(0), m_shotSpeed(0), m_speed(Math::Vector2::Zero) {}
+	C_BulletBase() : m_pos(Math::Vector2::Zero), m_mat(Math::Matrix::Identity), m_team(E_BulletTeam::None), m_texData(nullptr), m_animCnt(0), m_texAngle(0), m_shotAngle(0), m_shotSpeed(0), m_speed(Math::Vector2::Zero), m_isEnd(false) {}
 	virtual ~C_BulletBase(){}
 
 	virtual void Update();
 	virtual void Draw();
 
+	//アニメーション
 	void UpdateAnimCnt();
 
-	Math::Vector2 GetPos()const { return(m_pos); }
+	//セッター
+	void SetIsEnd(bool a_isEnd) { m_isEnd = a_isEnd; }
 
-	bool GetIsInScreen();
+	//ゲッター
+	Math::Vector2 GetPos()const { return(m_pos); }
+	float GetHitRadius()const { return(m_texData->m_hitRadius); }
+	bool GetIsInScreen();//画面内か
+	bool GetIsEnd()const { return(m_isEnd); }
+	E_BulletTeam GetBulletTeam()const { return(m_team); }
 
 protected:
 
@@ -35,6 +45,9 @@ protected:
 	Math::Vector2 m_speed;
 	float m_shotSpeed;
 	float m_shotAngle;
+
+	//終了フラグ
+	bool m_isEnd;
 
 	Math::Matrix m_mat;
 };
