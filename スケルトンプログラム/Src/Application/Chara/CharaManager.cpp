@@ -1,14 +1,14 @@
-#include "CharaTexManager.h"
+#include "CharaManager.h"
 #include "../Const/TextureConst.h"
 
-void C_CharaTexManager::LoadTexData()
+void C_CharaManager::Init()
 {
 	LoadBaseTex();
 	SetBaseTexData();
 	LoadPlayerSelectWeaponTex();
 }
 
-void C_CharaTexManager::LoadBaseTex()
+void C_CharaManager::LoadBaseTex()
 {
 	FILE* fp = nullptr;
 
@@ -23,8 +23,8 @@ void C_CharaTexManager::LoadBaseTex()
 				int ID;
 				char path[STRLENG] = {};
 
-				fscanf_s(fp, "%d,%[^,],",	&ID,
-											path, STRLENG);
+				fscanf_s(fp, "%d,%[^,],", &ID,
+					path, STRLENG);
 
 				m_tex[i].Load(path);
 			}
@@ -34,7 +34,7 @@ void C_CharaTexManager::LoadBaseTex()
 	}
 }
 
-void C_CharaTexManager::SetBaseTexData()
+void C_CharaManager::SetBaseTexData()
 {
 	FILE* fp = nullptr;
 
@@ -76,7 +76,7 @@ void C_CharaTexManager::SetBaseTexData()
 					data.m_tex = &m_tex[pathID];
 					data.m_animCnt = 0;
 
-					m_texData[i].m_texDatas.emplace(texType,data);
+					m_texData[i].m_texDatas.emplace(texType, data);
 				}
 			}
 		}
@@ -85,7 +85,7 @@ void C_CharaTexManager::SetBaseTexData()
 	}
 }
 
-void C_CharaTexManager::LoadPlayerSelectWeaponTex()
+void C_CharaManager::LoadPlayerSelectWeaponTex()
 {
 	FILE* fp = nullptr;
 
@@ -103,7 +103,7 @@ void C_CharaTexManager::LoadPlayerSelectWeaponTex()
 					name, STRLENG,
 					&m_selectTexData[i].m_texScale.x,
 					&m_selectTexData[i].m_texScale.y
-					);
+				);
 
 				for (int j = 0;j < E_SelectWeaponTexType::Select_Max;j++)
 				{
@@ -111,11 +111,11 @@ void C_CharaTexManager::LoadPlayerSelectWeaponTex()
 					int pathID;
 
 					fscanf_s(fp, "%d,%f,%f,%d,%f,",
-								&pathID,
-								&data->m_texSize.x,
-								&data->m_texSize.y,
-								&data->m_texAnimMax,
-								&data->m_texAnimMulti);
+						&pathID,
+						&data->m_texSize.x,
+						&data->m_texSize.y,
+						&data->m_texAnimMax,
+						&data->m_texAnimMulti);
 
 					data->m_tex = &m_tex[pathID];
 					data->m_animCnt = 0;
@@ -127,7 +127,7 @@ void C_CharaTexManager::LoadPlayerSelectWeaponTex()
 	}
 }
 
-void C_CharaTexManager::ReleaseTex()
+void C_CharaManager::Release()
 {
 	for (int i = 0;i < CHARABASETEXNUM;i++)
 	{

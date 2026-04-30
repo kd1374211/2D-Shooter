@@ -4,8 +4,8 @@
 #include "../Const/ScreenConst.h"
 
 #define TEXSCALE m_texData->m_texScale
-#define POSMAX  (SCREENSIZEHALF - GetHitRadius())
-#define POSMIN  -(SCREENSIZEHALF - GetHitRadius())
+#define POSMAX  (MOVEMAX - GetHitRadius())
+#define POSMIN  (MOVEMIN + GetHitRadius())
 
 class C_CharaBase
 {

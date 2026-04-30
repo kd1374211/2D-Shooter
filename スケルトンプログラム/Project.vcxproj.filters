@@ -79,6 +79,9 @@
     <Filter Include="Src\Application\Bullet\EnemyBullet">
       <UniqueIdentifier>{2e43c1a4-aaee-4393-9a9a-e31dfd02dc2d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Application\Hit">
+      <UniqueIdentifier>{262ef015-d04f-48cb-bbd4-6525bf150ea5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Pch.h">
@@ -201,9 +204,6 @@
     <ClInclude Include="Src\Application\Key\KeyStateManager.h">
       <Filter>Src\Application\Key</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\Chara\CharaTexManager.h">
-      <Filter>Src\Application\Chara</Filter>
-    </ClInclude>
     <ClInclude Include="Src\Application\Chara\Player\Weapon\AutoCannon.h">
       <Filter>Src\Application\Chara\Player\Weapon</Filter>
     </ClInclude>
@@ -257,6 +257,12 @@
     </ClInclude>
     <ClInclude Include="Src\Application\Bullet\EnemyBullet\FighterBullet.h">
       <Filter>Src\Application\Bullet\EnemyBullet</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\Hit\Hit.h">
+      <Filter>Src\Application\Hit</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\Chara\CharaManager.h">
+      <Filter>Src\Application\Chara</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -344,9 +350,6 @@
     <ClCompile Include="Src\Application\Key\KeyStateManager.cpp">
       <Filter>Src\Application\Key</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Application\Chara\CharaTexManager.cpp">
-      <Filter>Src\Application\Chara</Filter>
-    </ClCompile>
     <ClCompile Include="Src\Application\Chara\Player\Weapon\AutoCannon.cpp">
       <Filter>Src\Application\Chara\Player\Weapon</Filter>
     </ClCompile>
@@ -379,6 +382,12 @@
     </ClCompile>
     <ClCompile Include="Src\Application\Bullet\EnemyBullet\FighterBullet.cpp">
       <Filter>Src\Application\Bullet\EnemyBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\Hit\Hit.cpp">
+      <Filter>Src\Application\Hit</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\Chara\CharaManager.cpp">
+      <Filter>Src\Application\Chara</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

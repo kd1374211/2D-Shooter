@@ -8,8 +8,8 @@ C_TitleScene::C_TitleScene() :m_alpha(1.0f), m_alphaChangeMulti(-1)
 	SetSceneTag(E_SceneTypeTag::Title);
 
 	m_back = new C_Background();
-	m_titleTex.Load("Texture/Scene/TitleScreen.png");
-	m_startButtonTex.Load("Texture/Scene/PressEnter.png");
+	m_titleTex.Load("Texture/Scene/Title/TitleScreen.png");
+	m_startButtonTex.Load("Texture/Scene/Title/PressEnter.png");
 }
 
 C_TitleScene::~C_TitleScene()

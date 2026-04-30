@@ -1,5 +1,4 @@
 #include "BigSpaceGun.h"
-#include "../../CharaTexManager.h"
 
 C_BigSpaceGun::C_BigSpaceGun(S_TexData* a_texData, Math::Vector2 a_texScale)
 {

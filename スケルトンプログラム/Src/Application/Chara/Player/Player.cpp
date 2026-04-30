@@ -1,12 +1,12 @@
 #include "Player.h"
 #include "../../Key/KeyStateManager.h"
-#include "../CharaTexManager.h"
+#include "../CharaManager.h"
 #include "Weapon/WeaponConst.h"
 
 C_Player::C_Player(E_WeaponName a_name) :m_weapon(nullptr)
 {
-	m_texData = CHARATEXMGR.GetBaseTexData(E_CharaName::Player);
-	m_selectTexData = CHARATEXMGR.GetSelectTexData(a_name);
+	m_texData = CHARAMGR.GetBaseTexData(E_CharaName::Player);
+	m_selectTexData = CHARAMGR.GetSelectTexData(a_name);
 	m_pos = { 0,0 };
 
 	m_angle = PLAYERANGLE;

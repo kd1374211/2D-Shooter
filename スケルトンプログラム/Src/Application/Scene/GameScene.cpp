@@ -1,6 +1,9 @@
 #include "GameScene.h"
-#include "../Chara/Player/Player.h"
 #include "SceneManager.h"
+
+#include "../Const/ScreenConst.h"
+
+#include "../Chara/Player/Player.h"
 #include "../Bullet/BulletManager.h"
 #include "../Chara/Enemy/EnemyManager.h"
 #include "../Key/KeyStateManager.h"
@@ -10,6 +13,8 @@ C_GameScene::C_GameScene() :m_player(nullptr), m_back(nullptr)
 	SetSceneTag(E_SceneTypeTag::Game);
 	m_back = new C_Background();
 	m_player = new C_Player(SCENEMGR.GetSelectedWeapon());
+
+	m_topBarTex.Load("Texture/Scene/Game/IngameTopBar.png");
 }
 
 C_GameScene::~C_GameScene()
@@ -28,6 +33,8 @@ C_GameScene::~C_GameScene()
 
 	BULLETMGR.ClearBullet();
 	ENEMYMGR.ClearEnemy();
+
+	m_topBarTex.Release();
 }
 
 void C_GameScene::Update()
@@ -51,4 +58,10 @@ void C_GameScene::Draw()
 	m_player->Draw();
 
 	BULLETMGR.Draw();
+
+	//バー
+	SHADER.m_spriteShader.SetMatrix(Math::Matrix::Identity);
+
+	Math::Rectangle rec = { 0,0,(long)m_topBarTex.GetInfo().Width,(long)m_topBarTex.GetInfo().Height };
+	SHADER.m_spriteShader.DrawTex(&m_topBarTex, 0, SCREENSIZEHALF.y - m_topBarTex.GetInfo().Height / 2.0f, &rec);
 }

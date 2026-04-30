@@ -2,7 +2,6 @@
 #include "Scene.h"
 #include "Scene/SceneManager.h"
 #include "Key/KeyStateManager.h"
-#include "Chara/CharaTexManager.h"
 #include "Bullet/BulletManager.h"
 #include "Chara/Enemy/EnemyManager.h"
 
@@ -26,7 +25,6 @@ void Scene::Update()
 
 void Scene::Init()
 {
-	CHARATEXMGR.LoadTexData();
 	SCENEMGR.SetSceneQueue(E_SceneTypeTag::Title);
 }
 

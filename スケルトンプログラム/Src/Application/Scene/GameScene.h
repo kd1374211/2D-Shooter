@@ -19,4 +19,6 @@ private:
 	C_Background* m_back;
 	C_Player* m_player;
 
+	KdTexture m_topBarTex;
+
 };

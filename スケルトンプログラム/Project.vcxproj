@@ -167,8 +167,8 @@
     <ClInclude Include="Src\Application\Bullet\EnemyBullet\FighterBullet.h" />
     <ClInclude Include="Src\Application\Bullet\PlayerBullet\AC_Bullet.h" />
     <ClInclude Include="Src\Application\Chara\CharaBase.h" />
+    <ClInclude Include="Src\Application\Chara\CharaManager.h" />
     <ClInclude Include="Src\Application\Chara\CharaTexConst.h" />
-    <ClInclude Include="Src\Application\Chara\CharaTexManager.h" />
     <ClInclude Include="Src\Application\Chara\Enemy\EnemyBase.h" />
     <ClInclude Include="Src\Application\Chara\Enemy\EnemyConst.h" />
     <ClInclude Include="Src\Application\Chara\Enemy\EnemyManager.h" />
@@ -180,6 +180,7 @@
     <ClInclude Include="Src\Application\Chara\Player\Weapon\WeaponConst.h" />
     <ClInclude Include="Src\Application\Const\ScreenConst.h" />
     <ClInclude Include="Src\Application\Const\TextureConst.h" />
+    <ClInclude Include="Src\Application\Hit\Hit.h" />
     <ClInclude Include="Src\Application\Key\KeyStateManager.h" />
     <ClInclude Include="Src\Application\Scene.h" />
     <ClInclude Include="Src\Application\main.h" />
@@ -218,7 +219,7 @@
     <ClCompile Include="Src\Application\Bullet\EnemyBullet\FighterBullet.cpp" />
     <ClCompile Include="Src\Application\Bullet\PlayerBullet\AC_Bullet.cpp" />
     <ClCompile Include="Src\Application\Chara\CharaBase.cpp" />
-    <ClCompile Include="Src\Application\Chara\CharaTexManager.cpp" />
+    <ClCompile Include="Src\Application\Chara\CharaManager.cpp" />
     <ClCompile Include="Src\Application\Chara\Enemy\EnemyBase.cpp" />
     <ClCompile Include="Src\Application\Chara\Enemy\EnemyManager.cpp" />
     <ClCompile Include="Src\Application\Chara\Enemy\Fighter\Fighter.cpp" />
@@ -226,6 +227,7 @@
     <ClCompile Include="Src\Application\Chara\Player\Weapon\AutoCannon.cpp" />
     <ClCompile Include="Src\Application\Chara\Player\Weapon\BigSpaceGun.cpp" />
     <ClCompile Include="Src\Application\Chara\Player\Weapon\WeaponBase.cpp" />
+    <ClCompile Include="Src\Application\Hit\Hit.cpp" />
     <ClCompile Include="Src\Application\Key\KeyStateManager.cpp" />
     <ClCompile Include="Src\Application\Scene.cpp" />
     <ClCompile Include="Src\Application\main.cpp" />

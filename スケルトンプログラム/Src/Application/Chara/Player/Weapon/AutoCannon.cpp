@@ -1,5 +1,4 @@
 #include "AutoCannon.h"
-#include "../../CharaTexManager.h"
 #include "../../../Key/KeyStateManager.h"
 #include "../../../Bullet/BulletManager.h"
 
