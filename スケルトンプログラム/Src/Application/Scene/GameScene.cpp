@@ -6,6 +6,7 @@
 #include "../Chara/CharaManager.h"
 #include "../Key/KeyStateManager.h"
 #include "../Hit/HitCheck.h"
+#include "../Time/TimeManager.h"
 
 #include "../Chara/Enemy/EnemyConst.h"
 
@@ -14,6 +15,7 @@ C_GameScene::C_GameScene() :m_back(nullptr)
 	SetSceneTag(E_SceneTypeTag::Game);
 	m_back = new C_Background();
 	CHARAMGR.SpawnPlayer(SCENEMGR.GetSelectedWeapon());
+	TIMEMGR.SetTime(60);
 
 	m_topBarTex.Load("Texture/Scene/Game/IngameTopBar.png");
 }
@@ -55,6 +57,7 @@ void C_GameScene::Update()
 	CHARAMGR.CheckEnemyDelete();
 	BULLETMGR.CheckBulletDelete();
 
+	TIMEMGR.Update();
 	m_back->Update();
 }
 
@@ -65,9 +68,13 @@ void C_GameScene::Draw()
 	
 	BULLETMGR.Draw();
 
-	//バー
+	//リセット
 	SHADER.m_spriteShader.SetMatrix(Math::Matrix::Identity);
 
+	//バー
 	Math::Rectangle rec = { 0,0,(long)m_topBarTex.GetInfo().Width,(long)m_topBarTex.GetInfo().Height };
 	SHADER.m_spriteShader.DrawTex(&m_topBarTex, 0, SCREENSIZEHALF.y - m_topBarTex.GetInfo().Height / 2.0f, &rec);
+
+	//タイム
+
 }
