@@ -14,8 +14,6 @@ void C_CharaManager::Update()
 			itr->Update();
 		}
 	}
-
-	CheckIsEnd();
 }
 
 void C_CharaManager::Draw()
@@ -31,7 +29,7 @@ void C_CharaManager::Draw()
 	if (m_player)m_player->Draw();
 }
 
-void C_CharaManager::CheckIsEnd()
+void C_CharaManager::CheckEnemyDelete()
 {
 	if (!m_enemy.empty())
 	{

@@ -7,6 +7,8 @@
 #include "../Key/KeyStateManager.h"
 #include "../Hit/HitCheck.h"
 
+#include "../Chara/Enemy/EnemyConst.h"
+
 C_GameScene::C_GameScene() :m_back(nullptr)
 {
 	SetSceneTag(E_SceneTypeTag::Game);
@@ -37,11 +39,20 @@ void C_GameScene::Update()
 		CHARAMGR.SpawnEnemy({ 640.0f,(float)(rand() % 500 - 250)}, E_CharaName::Fighter);
 	}
 
+	if (GetAsyncKeyState('1') & 0x8000)
+	{
+		for (auto itr : CHARAMGR.GetEnemy())
+		{
+			itr->GetHit(1);
+		}
+	}
+
 	CHARAMGR.Update();
 	BULLETMGR.Update();
 
 	HITCHECK.Check();
 
+	CHARAMGR.CheckEnemyDelete();
 	BULLETMGR.CheckBulletDelete();
 
 	m_back->Update();

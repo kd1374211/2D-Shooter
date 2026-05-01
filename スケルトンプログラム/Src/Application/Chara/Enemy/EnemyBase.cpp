@@ -1,6 +1,6 @@
 #include "EnemyBase.h"
 
-C_EnemyBase::C_EnemyBase() :m_health(0), m_isEnd(false), m_nowAction(E_EnemyAction::Idle), m_countF(0), m_mainAnimCnt(0), m_texAlpha(1.0f)
+C_EnemyBase::C_EnemyBase() :m_health(0), m_isEnd(false), m_nowAction(E_EnemyAction::Idle), m_countF(0), m_texAlpha(1.0f)
 {
 	m_texAngle = ENEMYANGLE;
 }
@@ -51,9 +51,18 @@ void C_EnemyBase::UpdateTexAlpha()
 	if (m_texAlpha >= 1.0f)m_texAlpha = 1.0f;
 }
 
-void C_EnemyBase::GetHit()
+void C_EnemyBase::GetHit(int a_damage)
 {
-	m_texAlpha = HITALPHA;
+	m_statData.m_health -= a_damage;
+	if (m_statData.m_health > 0)
+	{
+		m_texAlpha = HITALPHA;
+	}
+	else
+	{
+		m_texAlpha = 1.0f;
+		ChangeAction(E_EnemyAction::Dead);
+	}
 }
 
 void C_EnemyBase::ChangeAction(E_EnemyAction a_action)
@@ -74,7 +83,58 @@ void C_EnemyBase::ChangeAction(E_EnemyAction a_action)
 	}
 }
 
-bool C_EnemyBase::GetIsDead() const
+void C_EnemyBase::UpdateAnimCnt()
+{
+	//炎
+	S_TexData* data = GetTexData(E_CharaBaseTexType::EngineEffect);
+	data->m_animCnt++;
+
+	if (data->m_animCnt >= data->m_texAnimMax)
+	{
+		data->m_animCnt -= data->m_texAnimMax;
+	}
+
+	//本体
+	switch (m_nowAction)
+	{
+	case E_EnemyAction::Idle:
+		data = GetTexData(E_CharaBaseTexType::Base);
+		break;
+	case E_EnemyAction::Attack:
+		data = GetTexData(E_CharaBaseTexType::Attack);
+		break;
+	case E_EnemyAction::Dead:
+		data = GetTexData(E_CharaBaseTexType::OnHit);
+		break;
+	}
+
+	data->m_animCnt++;
+
+	if (data->m_animCnt >= data->m_texAnimMax)
+	{
+		data->m_animCnt -= data->m_texAnimMax;
+	}
+}
+
+void C_EnemyBase::CheckActionEnd()
+{
+	if (m_nowAction == E_EnemyAction::Attack)
+	{
+		if (GetTexData(E_CharaBaseTexType::Attack)->m_animCnt == 0)
+		{
+			ChangeAction(E_EnemyAction::Idle);
+		}
+	}
+	else if (m_nowAction == E_EnemyAction::Dead)
+	{
+		if (GetTexData(E_CharaBaseTexType::OnHit)->m_animCnt == 0)
+		{
+			m_isEnd = true;
+		}
+	}
+}
+
+bool C_EnemyBase::CheckIsDead() const
 {
 	return(m_nowAction == E_EnemyAction::Dead ? true : false);
 }

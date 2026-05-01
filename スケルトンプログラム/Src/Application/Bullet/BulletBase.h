@@ -23,6 +23,7 @@ public:
 
 	//ゲッター
 	Math::Vector2 GetPos()const { return(m_pos); }
+	int GetDamage()const { return(m_statData->m_damage); }
 	float GetHitRadius()const { return(m_statData->m_hitRadius); }
 	bool GetIsInScreen();//画面内か
 	bool GetIsEnd()const { return(m_isEnd); }

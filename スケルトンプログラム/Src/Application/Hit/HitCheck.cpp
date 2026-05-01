@@ -29,7 +29,7 @@ void C_HitCheck::PlayerEnemyHit()
 	for (auto itr : enemy)
 	{
 		//死んでる敵はスキップ
-		if (itr->GetIsDead())continue;
+		if (itr->CheckIsDead())continue;
 
 		//敵位置・当たり半径
 		Math::Vector2 EnemyPos = itr->GetPos();
@@ -104,6 +104,9 @@ void C_HitCheck::EnemyBulletHit()
 	std::vector<C_EnemyBase*> enemy = CHARAMGR.GetEnemy();
 	for (auto itr_e : enemy)
 	{
+		//死んでいたら飛ばす
+		if (itr_e->CheckIsDead())continue;
+
 		//敵位置・当たり半径
 		Math::Vector2 EnemyPos = itr_e->GetPos();
 		float EnemyHitRadius = itr_e->GetHitRadius();
@@ -125,7 +128,7 @@ void C_HitCheck::EnemyBulletHit()
 			//距離チェック
 			if (sqrt(Dist.x * Dist.x + Dist.y * Dist.y) < EnemyHitRadius + BulletHitRadius)
 			{
-				itr_e->GetHit();
+				itr_e->GetHit(itr_b->GetDamage());
 				itr_b->SetIsEnd(true);
 			}
 		}

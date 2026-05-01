@@ -14,11 +14,11 @@ public:
 private:
 
 	//移動速度
-	const float MOVESPEED = 4.0f;
+	const float MOVESPEED = 3.0f;
 
 	//攻撃開始/間隔
-	static const int ATTACKSTART = 80;
-	static const int ATTACKSPAN = 80;
+	static const int ATTACKSTART = 100;
+	static const int ATTACKSPAN = 120;
 
 	//攻撃アニメーションから弾が出るまで
 	static const int SHOTF = 6;
@@ -34,6 +34,6 @@ private:
 	static const int ATKENDF = 12;
 
 	//弾速度
-	const float BULLETSPEED = -6.0f;
+	const float BULLETSPEED = -7.0f;
 
 };

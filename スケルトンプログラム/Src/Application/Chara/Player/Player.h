@@ -31,7 +31,7 @@ private:
 	const float MOVESPEED = 5.0f;
 
 	//武器とエンジンの画像
-	S_PlayerSelectTex* m_selectTexData;
+	S_PlayerSelectTex m_selectTexData;
 
 	//選択武器
 	C_WeaponBase* m_weapon;

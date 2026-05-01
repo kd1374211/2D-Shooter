@@ -27,19 +27,21 @@ public:
 	void UpdateTexAlpha();
 
 	//被弾
-	virtual void GetHit()override;
+	virtual void GetHit(int a_damage);
 
 	//行動
 	void ChangeAction(E_EnemyAction a_action);
 
+	//アニメーション
+	void UpdateAnimCnt()override;
+	void CheckActionEnd();
+
+	bool CheckIsDead()const;//死亡チェック
+
 	//ゲッター
-	bool GetIsDead()const;//死亡チェック
 	bool GetIsEnd()const { return(m_isEnd); }
 
 protected:
-
-	//アニメーション（本体用）
-	int m_mainAnimCnt;
 
 	//被弾時点滅用
 	const float HITALPHA = 0.2f;

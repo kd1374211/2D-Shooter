@@ -3,13 +3,13 @@
 #include "../Const/TextureConst.h"
 #include "../Const/ScreenConst.h"
 
-#define TEXSCALE m_texData->m_texScale
+#define TEXSCALE m_texData.m_texScale
 
 class C_CharaBase
 {
 public:
 
-	C_CharaBase() :m_texData(nullptr), m_statData(nullptr), m_texAngle(0), m_pos(Math::Vector2::Zero), m_move(Math::Vector2::Zero), m_moveSpeed(0) {}
+	C_CharaBase() :m_texData(S_BaseCharaTexData{}), m_statData(S_CharaStatData{}), m_texAngle(0), m_pos(Math::Vector2::Zero), m_move(Math::Vector2::Zero), m_moveSpeed(0) {}
 	virtual ~C_CharaBase() {};
 
 	//移動
@@ -22,18 +22,18 @@ public:
 	virtual void GetHit();
 
 	//アニメーション
-	void UpdateAnimCnt();
+	virtual void UpdateAnimCnt();
 
 	//ゲッター
 	Math::Vector2 GetPos()const { return(m_pos); }
-	float GetHitRadius()const { return(m_statData->m_hitRadius); }
-	S_TexData* GetTexData(E_CharaBaseTexType a_type)const { return(&m_texData->m_texDatas[a_type]); }
+	float GetHitRadius()const { return(m_statData.m_hitRadius); }
+	S_TexData* GetTexData(E_CharaBaseTexType a_type) { return(&m_texData.m_texDatas.find(a_type)->second); }
 
 protected:
 
 	//画像
-	S_BaseCharaTexData* m_texData;
-	S_CharaStatData* m_statData;
+	S_BaseCharaTexData m_texData;
+	S_CharaStatData m_statData;
 	float m_texAngle;
 
 	//座標

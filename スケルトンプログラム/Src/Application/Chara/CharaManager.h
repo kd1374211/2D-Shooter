@@ -11,7 +11,9 @@ public:
 	//基本処理
 	void Update();
 	void Draw();
-	void CheckIsEnd();
+
+	//消去確認
+	void CheckEnemyDelete();
 
 	//まとめ処理
 	void ClearChara();
@@ -26,11 +28,11 @@ public:
 
 	//ゲッター
 	//画像
-	S_BaseCharaTexData* GetBaseTexData(E_CharaName a_name) { return(&m_texData[a_name]); }
-	S_PlayerSelectTex* GetSelectTexData(E_WeaponName a_name) { return(&m_selectTexData[a_name]); }
+	S_BaseCharaTexData GetBaseTexData(E_CharaName a_name) { return(m_texData[a_name]); }
+	S_PlayerSelectTex GetSelectTexData(E_WeaponName a_name)const { return(m_selectTexData[a_name]); }
 
 	//ステータス
-	S_CharaStatData* GetStatData(E_CharaName a_name) { return(&m_statData[a_name]); }
+	S_CharaStatData GetStatData(E_CharaName a_name)const { return(m_statData[a_name]); }
 
 	//プレイヤー
 	C_Player* GetPlayer() { return(m_player); }

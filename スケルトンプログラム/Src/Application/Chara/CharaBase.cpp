@@ -20,8 +20,7 @@ void C_CharaBase::CalcMove()
 
 void C_CharaBase::UpdateAnimCnt()
 {
-
-	for (auto &itr : m_texData->m_texDatas)
+	for (auto &itr : m_texData.m_texDatas)
 	{
 		S_TexData* data = &itr.second;
 
