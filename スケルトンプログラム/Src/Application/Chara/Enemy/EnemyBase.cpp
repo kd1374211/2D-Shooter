@@ -1,5 +1,8 @@
 #include "EnemyBase.h"
 
+//仮
+#include "../../Time/TimeManager.h"
+
 C_EnemyBase::C_EnemyBase() :m_health(0), m_isEnd(false), m_nowAction(E_EnemyAction::Idle), m_countF(0), m_texAlpha(1.0f)
 {
 	m_texAngle = ENEMYANGLE;
@@ -62,6 +65,7 @@ void C_EnemyBase::GetHit(int a_damage)
 	{
 		m_texAlpha = 1.0f;
 		ChangeAction(E_EnemyAction::Dead);
+		TIMEMGR.AddTime(30);
 	}
 }
 

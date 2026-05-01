@@ -4,7 +4,7 @@ class C_Number
 {
 public:
 
-	void DrawNumber(Math::Vector2 a_pos, int a_number, float a_scale);
+	void DrawNumber(Math::Vector2 a_pos, int a_number, int a_minDigit, float a_scale);
 
 private:
 

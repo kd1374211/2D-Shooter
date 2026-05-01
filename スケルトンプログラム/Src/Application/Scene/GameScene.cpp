@@ -7,6 +7,7 @@
 #include "../Key/KeyStateManager.h"
 #include "../Hit/HitCheck.h"
 #include "../Time/TimeManager.h"
+#include "../Score/ScoreManager.h"
 #include "../Number/Number.h"
 
 #include "../Chara/Enemy/EnemyConst.h"
@@ -17,6 +18,7 @@ C_GameScene::C_GameScene() :m_back(nullptr)
 	m_back = new C_Background();
 	CHARAMGR.SpawnPlayer(SCENEMGR.GetSelectedWeapon());
 	TIMEMGR.SetTime(60);
+	SCOREMGR.ResetScore();
 
 	m_topBarTex.Load("Texture/Scene/Game/IngameTopBar.png");
 	m_topBarBackTex.Load("Texture/Scene/Game/IngameTopBar_Back.png");
@@ -50,6 +52,16 @@ void C_GameScene::Update()
 		{
 			itr->GetHit(1);
 		}
+	}
+
+	if (GetAsyncKeyState('2') & 0x8000)
+	{
+		SCOREMGR.AddScore(1);
+	}
+
+	if (GetAsyncKeyState('3') & 0x8000)
+	{
+		SCOREMGR.AddScore(100);
 	}
 
 	CHARAMGR.Update();
@@ -88,5 +100,8 @@ void C_GameScene::Draw()
 
 	//秒
 	int sec = timeF / 60;
-	NUMBER.DrawNumber({ -27,285 }, sec, 1.0f);
+	NUMBER.DrawNumber({ -27,285 }, sec, 0, 1.0f);
+
+	//得点
+	NUMBER.DrawNumber({ 470,300 }, SCOREMGR.GetScore(), 4, 2.0f);
 }

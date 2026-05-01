@@ -88,6 +88,9 @@
     <Filter Include="Src\Application\Number">
       <UniqueIdentifier>{037abf08-599f-4cc6-a3b1-4c87b39906d9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Application\Score">
+      <UniqueIdentifier>{19416bbf-dc3e-45a0-99fb-a4014b72ed52}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Pch.h">
@@ -276,6 +279,9 @@
     <ClInclude Include="Src\Application\Number\Number.h">
       <Filter>Src\Application\Number</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Application\Score\ScoreManager.h">
+      <Filter>Src\Application\Score</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Pch.cpp">
@@ -406,6 +412,9 @@
     </ClCompile>
     <ClCompile Include="Src\Application\Number\Number.cpp">
       <Filter>Src\Application\Number</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\Score\ScoreManager.cpp">
+      <Filter>Src\Application\Score</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -1,6 +1,6 @@
 #include "Number.h"
 
-void C_Number::DrawNumber(Math::Vector2 a_pos, int a_number, float a_scale)
+void C_Number::DrawNumber(Math::Vector2 a_pos, int a_number, int a_minDigit, float a_scale)
 {
 	//一応リセット
 	SHADER.m_spriteShader.SetMatrix(Math::Matrix::Identity);
@@ -16,6 +16,11 @@ void C_Number::DrawNumber(Math::Vector2 a_pos, int a_number, float a_scale)
 		baseNum /= 10;
 	}
 	digits.push_back(baseNum);
+
+	while (digits.size() < a_minDigit)
+	{
+		digits.push_back(0);
+	}
 
 	float LeftPosX = a_pos.x - (NumberSize.x / 2.0f  * (digits.size() - 1));
 
