@@ -19,5 +19,6 @@ private:
 	
 	//上のバー（仮）
 	KdTexture m_topBarTex;
+	KdTexture m_topBarBackTex;
 
 };

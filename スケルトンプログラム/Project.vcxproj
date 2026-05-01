@@ -182,6 +182,7 @@
     <ClInclude Include="Src\Application\Const\TextureConst.h" />
     <ClInclude Include="Src\Application\Hit\HitCheck.h" />
     <ClInclude Include="Src\Application\Key\KeyStateManager.h" />
+    <ClInclude Include="Src\Application\Number\Number.h" />
     <ClInclude Include="Src\Application\Scene.h" />
     <ClInclude Include="Src\Application\main.h" />
     <ClInclude Include="Src\Application\Scene\GameScene.h" />
@@ -190,6 +191,7 @@
     <ClInclude Include="Src\Application\Scene\SceneManager.h" />
     <ClInclude Include="Src\Application\Scene\SelectScene.h" />
     <ClInclude Include="Src\Application\Scene\TitleScene.h" />
+    <ClInclude Include="Src\Application\Time\TimeManager.h" />
     <ClInclude Include="Src\System\Audio\KdAudio.h" />
     <ClInclude Include="src\System\Direct3D\KdDirect3D.h" />
     <ClInclude Include="Src\System\Direct3D\KdDirect3DHelper.h" />
@@ -229,12 +231,14 @@
     <ClCompile Include="Src\Application\Chara\Player\Weapon\WeaponBase.cpp" />
     <ClCompile Include="Src\Application\Hit\HitCheck.cpp" />
     <ClCompile Include="Src\Application\Key\KeyStateManager.cpp" />
+    <ClCompile Include="Src\Application\Number\Number.cpp" />
     <ClCompile Include="Src\Application\Scene.cpp" />
     <ClCompile Include="Src\Application\main.cpp" />
     <ClCompile Include="Src\Application\Scene\GameScene.cpp" />
     <ClCompile Include="Src\Application\Scene\SceneManager.cpp" />
     <ClCompile Include="Src\Application\Scene\SelectScene.cpp" />
     <ClCompile Include="Src\Application\Scene\TitleScene.cpp" />
+    <ClCompile Include="Src\Application\Time\TimeManager.cpp" />
     <ClCompile Include="Src\System\Audio\KdAudio.cpp" />
     <ClCompile Include="src\System\Direct3D\KdDirect3D.cpp" />
     <ClCompile Include="Src\System\Direct3D\KdDirect3DHelper.cpp" />

@@ -4,6 +4,7 @@
 #include "Key/KeyStateManager.h"
 #include "Bullet/BulletManager.h"
 #include "Chara/CharaManager.h"
+#include "Chara/Player/Player.h"
 
 void Scene::Draw2D()
 {

@@ -82,6 +82,12 @@
     <Filter Include="Src\Application\Hit">
       <UniqueIdentifier>{262ef015-d04f-48cb-bbd4-6525bf150ea5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Application\Time">
+      <UniqueIdentifier>{75126ae8-7a6f-4243-85bd-92943415833f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\Number">
+      <UniqueIdentifier>{037abf08-599f-4cc6-a3b1-4c87b39906d9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Pch.h">
@@ -264,6 +270,12 @@
     <ClInclude Include="Src\Application\Bullet\PlayerBullet\BSG_Bullet.h">
       <Filter>Src\Application\Bullet\PlayerBullet</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Application\Time\TimeManager.h">
+      <Filter>Src\Application\Time</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\Number\Number.h">
+      <Filter>Src\Application\Number</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Pch.cpp">
@@ -388,6 +400,12 @@
     </ClCompile>
     <ClCompile Include="Src\Application\Bullet\PlayerBullet\BSG_Bullet.cpp">
       <Filter>Src\Application\Bullet\PlayerBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\Time\TimeManager.cpp">
+      <Filter>Src\Application\Time</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\Number\Number.cpp">
+      <Filter>Src\Application\Number</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

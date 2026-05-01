@@ -8,7 +8,7 @@ public:
 
 private:
 
-	const Math::Vector2 NUMBERSIZE = { 32.0f,64.0f };
+	const Math::Vector2 BASENUMBERSIZE = { 40.0f,64.0f };
 
 	C_Number(){ Init(); }
 	~C_Number(){ Release(); }

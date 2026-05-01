@@ -7,6 +7,7 @@
 #include "../Key/KeyStateManager.h"
 #include "../Hit/HitCheck.h"
 #include "../Time/TimeManager.h"
+#include "../Number/Number.h"
 
 #include "../Chara/Enemy/EnemyConst.h"
 
@@ -18,6 +19,7 @@ C_GameScene::C_GameScene() :m_back(nullptr)
 	TIMEMGR.SetTime(60);
 
 	m_topBarTex.Load("Texture/Scene/Game/IngameTopBar.png");
+	m_topBarBackTex.Load("Texture/Scene/Game/IngameTopBar_Back.png");
 }
 
 C_GameScene::~C_GameScene()
@@ -32,6 +34,7 @@ C_GameScene::~C_GameScene()
 	CHARAMGR.ClearChara();
 
 	m_topBarTex.Release();
+	m_topBarBackTex.Release();
 }
 
 void C_GameScene::Update()
@@ -76,5 +79,14 @@ void C_GameScene::Draw()
 	SHADER.m_spriteShader.DrawTex(&m_topBarTex, 0, SCREENSIZEHALF.y - m_topBarTex.GetInfo().Height / 2.0f, &rec);
 
 	//タイム
+	int timeF = TIMEMGR.GetTime();
+	
+	//フレーム
+	int flame = timeF % 60;
+	rec = { 0,0,(long)m_topBarBackTex.GetInfo().Width,(long)(m_topBarBackTex.GetInfo().Height * flame / 60.0f) };
+	SHADER.m_spriteShader.DrawTex(&m_topBarBackTex, -27.0f, 253.0f + rec.height / 2.0f, &rec);
 
+	//秒
+	int sec = timeF / 60;
+	NUMBER.DrawNumber({ -27,285 }, sec, 1.0f);
 }
