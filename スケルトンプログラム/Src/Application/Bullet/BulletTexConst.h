@@ -24,9 +24,10 @@ struct S_BulletTexData
 	int m_texAnimMax;
 	float m_texAnimMulti;
 	Math::Vector2 m_texSize;
-	Math::Vector2 m_texScale;
+	Math::Vector3 m_texScale;
 };
 
+//ステータス
 struct S_BulletStatData
 {
 	float m_hitRadius;

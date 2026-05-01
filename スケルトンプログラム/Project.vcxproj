@@ -166,6 +166,7 @@
     <ClInclude Include="Src\Application\Bullet\BulletTexConst.h" />
     <ClInclude Include="Src\Application\Bullet\EnemyBullet\FighterBullet.h" />
     <ClInclude Include="Src\Application\Bullet\PlayerBullet\AC_Bullet.h" />
+    <ClInclude Include="Src\Application\Bullet\PlayerBullet\BSG_Bullet.h" />
     <ClInclude Include="Src\Application\Chara\CharaBase.h" />
     <ClInclude Include="Src\Application\Chara\CharaManager.h" />
     <ClInclude Include="Src\Application\Chara\CharaTexConst.h" />
@@ -217,6 +218,7 @@
     <ClCompile Include="Src\Application\Bullet\BulletManager.cpp" />
     <ClCompile Include="Src\Application\Bullet\EnemyBullet\FighterBullet.cpp" />
     <ClCompile Include="Src\Application\Bullet\PlayerBullet\AC_Bullet.cpp" />
+    <ClCompile Include="Src\Application\Bullet\PlayerBullet\BSG_Bullet.cpp" />
     <ClCompile Include="Src\Application\Chara\CharaBase.cpp" />
     <ClCompile Include="Src\Application\Chara\CharaManager.cpp" />
     <ClCompile Include="Src\Application\Chara\Enemy\EnemyBase.cpp" />

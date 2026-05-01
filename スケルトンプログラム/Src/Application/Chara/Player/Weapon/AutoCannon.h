@@ -5,7 +5,7 @@ class C_AutoCannon :public C_WeaponBase
 {
 public:
 
-	C_AutoCannon(S_TexData* a_texData,Math::Vector2 a_texScale);
+	C_AutoCannon(S_TexData* a_texData,Math::Vector3 a_texScale);
 	~C_AutoCannon() {};
 
 	void Update(Math::Vector2 a_playerPos)override;
@@ -26,8 +26,5 @@ private:
 
 	//弾速度
 	const float SHOTSPEED_BULLET = 15;
-
-	//発射フラグ
-	bool m_bIsShot;
 
 };

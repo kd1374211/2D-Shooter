@@ -261,6 +261,9 @@
     <ClInclude Include="Src\Application\Chara\CharaManager.h">
       <Filter>Src\Application\Chara</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Application\Bullet\PlayerBullet\BSG_Bullet.h">
+      <Filter>Src\Application\Bullet\PlayerBullet</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Pch.cpp">
@@ -382,6 +385,9 @@
     </ClCompile>
     <ClCompile Include="Src\Application\Chara\CharaManager.cpp">
       <Filter>Src\Application\Chara</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\Bullet\PlayerBullet\BSG_Bullet.cpp">
+      <Filter>Src\Application\Bullet\PlayerBullet</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

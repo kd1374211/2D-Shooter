@@ -198,6 +198,7 @@ void C_CharaManager::LoadPlayerSelectWeaponTex()
 					&m_selectTexData[i].m_texScale.x,
 					&m_selectTexData[i].m_texScale.y
 				);
+				m_selectTexData[i].m_texScale.z = 1.0f;
 
 				for (int j = 0;j < E_SelectWeaponTexType::Select_Max;j++)
 				{

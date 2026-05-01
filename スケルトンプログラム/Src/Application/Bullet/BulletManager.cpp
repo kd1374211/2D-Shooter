@@ -9,6 +9,9 @@ void C_BulletManager::SpawnBullet(Math::Vector2 a_pos, float a_speed, float a_sh
 	case E_BulletType::B_AutoCannon:
 		m_bullets.push_back(new C_AutoCannon_Bullet(a_pos, a_speed, a_shotAngle));
 		break;
+	case E_BulletType::B_BigSpaceGun:
+		m_bullets.push_back(new C_BigSpaceGun_Bullet(a_pos, a_speed, a_shotAngle));
+		break;
 	case E_BulletType::B_FighterGun:
 		m_bullets.push_back(new C_FighterBullet(a_pos, a_speed, a_shotAngle));
 		break;
@@ -127,6 +130,7 @@ void C_BulletManager::LoadTexData()
 					&data->m_texScale.y,
 					&data->m_texAnimMax,
 					&data->m_texAnimMulti);
+				data->m_texScale.z = 1.0f;
 
 				data->m_tex.Load(texPath);
 			}

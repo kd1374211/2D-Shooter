@@ -8,9 +8,6 @@ public:
 	C_FighterBullet(Math::Vector2 a_pos, float a_speed, float a_shotAngle);
 	~C_FighterBullet()override {}
 
-	void Update()override;
-	void Draw()override;
-
 private:
 
 };

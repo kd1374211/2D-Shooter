@@ -45,7 +45,7 @@ struct S_TexData
 struct S_BaseCharaTexData
 {
 	std::map<int, S_TexData> m_texDatas;
-	Math::Vector2 m_texScale;
+	Math::Vector3 m_texScale;
 };
 
 //選択武器
@@ -60,7 +60,7 @@ enum E_WeaponName
 struct S_PlayerSelectTex
 {
 	S_TexData m_texDatas[E_SelectWeaponTexType::Select_Max];
-	Math::Vector2 m_texScale;
+	Math::Vector3 m_texScale;
 };
 
 struct S_CharaStatData

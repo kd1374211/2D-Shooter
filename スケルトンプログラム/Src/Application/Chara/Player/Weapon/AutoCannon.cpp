@@ -2,10 +2,8 @@
 #include "../../../Key/KeyStateManager.h"
 #include "../../../Bullet/BulletManager.h"
 
-C_AutoCannon::C_AutoCannon(S_TexData* a_texData, Math::Vector2 a_texScale) :m_bIsShot(false)
+C_AutoCannon::C_AutoCannon(S_TexData* a_texData, Math::Vector3 a_texScale)
 {
-	m_nameTag = E_WeaponName::AutoCannon;
-
 	m_texData = a_texData;
 	m_texScale = a_texScale;
 	m_texAngle = PLAYERANGLE;

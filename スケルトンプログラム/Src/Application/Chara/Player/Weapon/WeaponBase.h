@@ -6,7 +6,7 @@ class C_WeaponBase
 {
 public: 
 
-	C_WeaponBase() :m_nameTag(E_WeaponName::WeaponMax), m_texData(nullptr), m_texScale(Math::Vector2::Zero), m_mat(Math::Matrix::Identity), m_texAngle(0) {};
+	C_WeaponBase() : m_texData(nullptr), m_texScale(Math::Vector2::Zero), m_mat(Math::Matrix::Identity), m_texAngle(0), m_bIsShot(false) {};
 	virtual ~C_WeaponBase() {};
 
 	virtual void Action(Math::Vector2 a_playerPos);
@@ -21,13 +21,13 @@ public:
 
 protected:
 
-	//選択武器種
-	E_WeaponName m_nameTag;
-
 	//画像関連
 	S_TexData* m_texData;
-	Math::Vector2 m_texScale;
+	Math::Vector3 m_texScale;
 	float m_texAngle;
 
 	Math::Matrix m_mat;
+
+	//発射フラグ
+	bool m_bIsShot;
 };
