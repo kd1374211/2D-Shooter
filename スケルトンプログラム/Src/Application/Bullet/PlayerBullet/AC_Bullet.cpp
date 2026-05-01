@@ -10,6 +10,7 @@ C_AutoCannon_Bullet::C_AutoCannon_Bullet(Math::Vector2 a_pos, float a_speed, flo
 
 	m_team = E_BulletTeam::Player;
 	m_texData = BULLETMGR.GetTexData(E_BulletType::B_AutoCannon);
+	m_statData = BULLETMGR.GetStatData(E_BulletType::B_AutoCannon);
 	m_texAngle = PLAYERANGLE;
 }
 

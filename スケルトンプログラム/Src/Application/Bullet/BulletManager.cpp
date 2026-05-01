@@ -97,6 +97,12 @@ void C_BulletManager::Release()
 
 void C_BulletManager::LoadData()
 {
+	LoadTexData();
+	LoadStatData();
+}
+
+void C_BulletManager::LoadTexData()
+{
 	FILE* fp = nullptr;
 
 	if (fopen_s(&fp, "Data/Bullet/BulletTexData.csv", "r") == 0)
@@ -112,18 +118,44 @@ void C_BulletManager::LoadData()
 			{
 				S_BulletTexData* data = &m_bulletBaseTexData[i];
 
-				fscanf_s(fp, "%[^,],%[^,],%f,%f,%f,%f,%f,%d,%f,",
+				fscanf_s(fp, "%[^,],%[^,],%f,%f,%f,%f,%d,%f,",
 					name, STRLENG,
 					texPath, STRLENG,
 					&data->m_texSize.x,
 					&data->m_texSize.y,
 					&data->m_texScale.x,
 					&data->m_texScale.y,
-					&data->m_hitRadius,
 					&data->m_texAnimMax,
 					&data->m_texAnimMulti);
 
 				data->m_tex.Load(texPath);
+			}
+		}
+
+		fclose(fp);
+	}
+}
+
+void C_BulletManager::LoadStatData()
+{
+	FILE* fp = nullptr;
+
+	if (fopen_s(&fp, "Data/Bullet/BulletStatData.csv", "r") == 0)
+	{
+		char dummy[250] = {};
+
+		for (int i = 0;i < E_BulletType::BulletMax;i++)
+		{
+			char name[STRLENG] = {};
+
+			if (fgets(dummy, 250, fp) != nullptr)//1行読み
+			{
+				S_BulletStatData* data = &m_bulletStatData[i];
+
+				fscanf_s(fp, "%[^,],%f,%d",
+					name, STRLENG,
+					&data->m_hitRadius,
+					&data->m_damage);
 			}
 		}
 

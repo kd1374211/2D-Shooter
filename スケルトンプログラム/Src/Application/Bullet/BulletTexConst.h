@@ -17,7 +17,6 @@ enum class E_BulletTeam
 	None
 };
 
-
 //画像
 struct S_BulletTexData
 {
@@ -26,5 +25,10 @@ struct S_BulletTexData
 	float m_texAnimMulti;
 	Math::Vector2 m_texSize;
 	Math::Vector2 m_texScale;
+};
+
+struct S_BulletStatData
+{
 	float m_hitRadius;
+	int m_damage;
 };
