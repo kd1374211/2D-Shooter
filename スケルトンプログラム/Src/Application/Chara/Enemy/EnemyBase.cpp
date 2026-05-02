@@ -65,7 +65,7 @@ void C_EnemyBase::GetHit(int a_damage)
 	{
 		m_texAlpha = 1.0f;
 		ChangeAction(E_EnemyAction::Dead);
-		TIMEMGR.AddTime(30);
+		TIMEMGR.AddTime(m_statData.m_timeAddOnKill);
 	}
 }
 

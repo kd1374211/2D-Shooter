@@ -85,11 +85,11 @@
     <Filter Include="Src\Application\Time">
       <UniqueIdentifier>{75126ae8-7a6f-4243-85bd-92943415833f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Src\Application\Number">
-      <UniqueIdentifier>{037abf08-599f-4cc6-a3b1-4c87b39906d9}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Src\Application\Score">
       <UniqueIdentifier>{19416bbf-dc3e-45a0-99fb-a4014b72ed52}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\Fonts">
+      <UniqueIdentifier>{037abf08-599f-4cc6-a3b1-4c87b39906d9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -276,11 +276,14 @@
     <ClInclude Include="Src\Application\Time\TimeManager.h">
       <Filter>Src\Application\Time</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\Number\Number.h">
-      <Filter>Src\Application\Number</Filter>
-    </ClInclude>
     <ClInclude Include="Src\Application\Score\ScoreManager.h">
       <Filter>Src\Application\Score</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\Fonts\FontManager.h">
+      <Filter>Src\Application\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\Scene\SceneTexConst.h">
+      <Filter>Src\Application\Scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -410,11 +413,11 @@
     <ClCompile Include="Src\Application\Time\TimeManager.cpp">
       <Filter>Src\Application\Time</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Application\Number\Number.cpp">
-      <Filter>Src\Application\Number</Filter>
-    </ClCompile>
     <ClCompile Include="Src\Application\Score\ScoreManager.cpp">
       <Filter>Src\Application\Score</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\Fonts\FontManager.cpp">
+      <Filter>Src\Application\Fonts</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

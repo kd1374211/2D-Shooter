@@ -27,11 +27,8 @@ public:
 
 private:
 
-	//移動速度
-	const float MOVESPEED = 5.0f;
-
 	//武器とエンジンの画像
-	S_PlayerSelectTex m_selectTexData;
+	S_PlayerSelectWeaponData m_selectTexData;
 
 	//選択武器
 	C_WeaponBase* m_weapon;

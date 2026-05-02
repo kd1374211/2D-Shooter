@@ -57,14 +57,17 @@ enum E_WeaponName
 };
 
 //選択武器の画像
-struct S_PlayerSelectTex
+struct S_PlayerSelectWeaponData
 {
 	S_TexData m_texDatas[E_SelectWeaponTexType::Select_Max];
 	Math::Vector3 m_texScale;
+	float m_moveSpeed;
 };
 
 struct S_CharaStatData
 {
 	float m_hitRadius;
 	int m_health;
+	float m_moveSpeed;
+	int m_timeAddOnKill;
 };

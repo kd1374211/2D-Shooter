@@ -3,13 +3,11 @@
 #include "SceneManager.h"
 #include "../Background/Background.h"
 
-C_TitleScene::C_TitleScene() :m_alpha(1.0f), m_alphaChangeMulti(-1)
+C_TitleScene::C_TitleScene() :m_startButtonAlpha(1.0f), m_alphaChangeMulti(-1)
 {
 	SetSceneTag(E_SceneTypeTag::Title);
 
 	m_back = new C_Background();
-	m_titleTex.Load("Texture/Scene/Title/TitleScreen.png");
-	m_startButtonTex.Load("Texture/Scene/Title/PressEnter.png");
 }
 
 C_TitleScene::~C_TitleScene()
@@ -19,16 +17,14 @@ C_TitleScene::~C_TitleScene()
 		delete m_back;
 		m_back = nullptr;
 	}
-	m_titleTex.Release();
-	m_startButtonTex.Release();
 }
 
 void C_TitleScene::Update()
 {
 	m_back->Update();
 
-	m_alpha += ALPHACHANGE * m_alphaChangeMulti;
-	if (m_alpha < ALPHAMIN || m_alpha > ALPHAMAX)
+	m_startButtonAlpha += ALPHACHANGE * m_alphaChangeMulti;
+	if (m_startButtonAlpha < ALPHAMIN || m_startButtonAlpha > ALPHAMAX)
 	{
 		m_alphaChangeMulti *= -1;
 	}
@@ -45,15 +41,13 @@ void C_TitleScene::Draw()
 	m_back->Draw();
 
 	//タイトル
-	long width = m_titleTex.GetInfo().Width;
-	long height = m_titleTex.GetInfo().Height;
-	Math::Rectangle rec = { 0,0,width,height };
-	SHADER.m_spriteShader.DrawTex(&m_titleTex, 0, 0, width, height, &rec);
+	S_SceneTexData* title = SCENEMGR.GetSceneTexData(E_GameTextures::Title);
+	Math::Rectangle rec = { 0,0,(long)title->m_texSize.x,(long)title->m_texSize.y };
+	SHADER.m_spriteShader.DrawTex(&title->m_tex, title->m_texPos.x, title->m_texPos.y, title->m_texSize.x, title->m_texSize.y, &rec);
 
 	//スタート
-	width = m_startButtonTex.GetInfo().Width;
-	height = m_startButtonTex.GetInfo().Height;
-	rec = { 0,0,width,height };
-	Math::Color color = { 1,1,1,m_alpha };
-	SHADER.m_spriteShader.DrawTex(&m_startButtonTex, 0, 0, width, height, &rec, &color);
+	S_SceneTexData* start = SCENEMGR.GetSceneTexData(E_GameTextures::StartButton);
+	rec = { 0,0,(long)start->m_texSize.x,(long)start->m_texSize.y };
+	Math::Color color = { 1,1,1,m_startButtonAlpha };
+	SHADER.m_spriteShader.DrawTex(&start->m_tex, start->m_texPos.x, start->m_texPos.y, start->m_texSize.x, start->m_texSize.y, &rec, &color);
 }

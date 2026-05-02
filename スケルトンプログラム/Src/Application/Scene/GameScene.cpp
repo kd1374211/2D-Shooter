@@ -8,7 +8,7 @@
 #include "../Hit/HitCheck.h"
 #include "../Time/TimeManager.h"
 #include "../Score/ScoreManager.h"
-#include "../Number/Number.h"
+#include "../Fonts/FontManager.h"
 
 #include "../Chara/Enemy/EnemyConst.h"
 
@@ -19,9 +19,6 @@ C_GameScene::C_GameScene() :m_back(nullptr)
 	CHARAMGR.SpawnPlayer(SCENEMGR.GetSelectedWeapon());
 	TIMEMGR.SetTime(60);
 	SCOREMGR.ResetScore();
-
-	m_topBarTex.Load("Texture/Scene/Game/IngameTopBar.png");
-	m_topBarBackTex.Load("Texture/Scene/Game/IngameTopBar_Back.png");
 }
 
 C_GameScene::~C_GameScene()
@@ -34,9 +31,6 @@ C_GameScene::~C_GameScene()
 
 	BULLETMGR.ClearBullet();
 	CHARAMGR.ClearChara();
-
-	m_topBarTex.Release();
-	m_topBarBackTex.Release();
 }
 
 void C_GameScene::Update()
@@ -87,21 +81,23 @@ void C_GameScene::Draw()
 	SHADER.m_spriteShader.SetMatrix(Math::Matrix::Identity);
 
 	//バー
-	Math::Rectangle rec = { 0,0,(long)m_topBarTex.GetInfo().Width,(long)m_topBarTex.GetInfo().Height };
-	SHADER.m_spriteShader.DrawTex(&m_topBarTex, 0, SCREENSIZEHALF.y - m_topBarTex.GetInfo().Height / 2.0f, &rec);
+	S_SceneTexData* topBar = SCENEMGR.GetSceneTexData(E_GameTextures::IngameTopBar);
+	Math::Rectangle rec = { 0,0,(long)topBar->m_texSize.x,(long)topBar->m_texSize.y };
+	SHADER.m_spriteShader.DrawTex(&topBar->m_tex, topBar->m_texPos.x, topBar->m_texPos.y, topBar->m_texSize.x, topBar->m_texSize.y, &rec);
 
 	//タイム
 	int timeF = TIMEMGR.GetTime();
 	
 	//フレーム
 	int flame = timeF % 60;
-	rec = { 0,0,(long)m_topBarBackTex.GetInfo().Width,(long)(m_topBarBackTex.GetInfo().Height * flame / 60.0f) };
-	SHADER.m_spriteShader.DrawTex(&m_topBarBackTex, -27.0f, 253.0f + rec.height / 2.0f, &rec);
-
+	S_SceneTexData* barBack = SCENEMGR.GetSceneTexData(E_GameTextures::TopBarBack);
+	rec = { 0,(long)(barBack->m_texSize.y * (flame / 60.0f)),(long)barBack->m_texSize.x,(long)(barBack->m_texSize.y) };
+	SHADER.m_spriteShader.DrawTex(&barBack->m_tex, barBack->m_texPos.x, barBack->m_texPos.y, barBack->m_texSize.x, rec.height, &rec);
+	
 	//秒
 	int sec = timeF / 60;
-	NUMBER.DrawNumber({ -27,285 }, sec, 0, 1.0f);
+	FONTMGR.DrawNumber({ -27,285 }, sec, 0, 2.0f);
 
 	//得点
-	NUMBER.DrawNumber({ 470,300 }, SCOREMGR.GetScore(), 4, 2.0f);
+	FONTMGR.DrawNumber({ 470,300 }, SCOREMGR.GetScore(), 5, 3.5f);
 }

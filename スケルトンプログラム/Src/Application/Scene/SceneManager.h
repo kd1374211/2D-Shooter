@@ -1,5 +1,6 @@
 #pragma once
 #include "SceneConst.h"
+#include "SceneTexConst.h"
 #include "../Chara/CharaTexConst.h"
 
 class C_SceneManager
@@ -17,6 +18,7 @@ public:
 
 	//ゲッター
 	E_WeaponName GetSelectedWeapon()const { return(m_selectedWeapon); }
+	S_SceneTexData* GetSceneTexData(E_GameTextures a_tex) { return(&m_sceneTex[(int)a_tex]); }
 
 private:
 
@@ -29,8 +31,14 @@ private:
 	//予約シーン種
 	E_SceneTypeTag m_sceneQueue;
 
-	C_SceneManager() :m_pCurrentScene(nullptr), m_sceneQueue(E_SceneTypeTag::None), m_selectedWeapon(E_WeaponName::AutoCannon) {};
+	C_SceneManager() :m_pCurrentScene(nullptr), m_sceneQueue(E_SceneTypeTag::None), m_selectedWeapon(E_WeaponName::AutoCannon) { LoadTex(); }
 	~C_SceneManager();
+
+	//画像管理
+	S_SceneTexData m_sceneTex[(int)E_GameTextures::Max];
+
+	void LoadTex();
+	void ReleaseTex();
 
 public:
 

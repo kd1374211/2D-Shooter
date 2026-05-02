@@ -1,0 +1,6 @@
+名前,画像Path,表示位置X,表示位置Y,画像サイズX,画像サイズY
+Title,Texture/Scene/Title/TitleScreen.png,0,0,1280,720
+StartButton,Texture/Scene/Title/PressEnter.png,0,0,1280,720
+StatBar,Texture/Scene/Select/WeaponStatBar.png,0,-180,1280,360
+IngameTopBar,Texture/Scene/Game/IngameTopBar.png,0,300,1280,120
+TopBarBack,Texture/Scene/Game/IngameTopBar_Back.png,-27,280,175,75

@@ -27,4 +27,8 @@ void C_SelectScene::Update()
 
 void C_SelectScene::Draw()
 {
+	//ステータスバー
+	S_SceneTexData* statBar = SCENEMGR.GetSceneTexData(E_GameTextures::StatBar);
+	Math::Rectangle rec = { 0,0,(long)statBar->m_texSize.x,(long)statBar->m_texSize.y };
+	SHADER.m_spriteShader.DrawTex(&statBar->m_tex, statBar->m_texPos.x, statBar->m_texPos.y, statBar->m_texSize.x, statBar->m_texSize.y, &rec);
 }

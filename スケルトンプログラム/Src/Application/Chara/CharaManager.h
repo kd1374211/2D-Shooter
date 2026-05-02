@@ -29,7 +29,7 @@ public:
 	//ゲッター
 	//画像
 	S_BaseCharaTexData GetBaseTexData(E_CharaName a_name) { return(m_texData[a_name]); }
-	S_PlayerSelectTex GetSelectTexData(E_WeaponName a_name)const { return(m_selectTexData[a_name]); }
+	S_PlayerSelectWeaponData GetSelectWeaponData(E_WeaponName a_name)const { return(m_selectWeaponData[a_name]); }
 
 	//ステータス
 	S_CharaStatData GetStatData(E_CharaName a_name)const { return(m_statData[a_name]); }
@@ -57,7 +57,7 @@ private:
 	KdTexture m_tex[CHARABASETEXNUM];
 	S_BaseCharaTexData m_texData[E_CharaName::Max];
 	S_CharaStatData m_statData[E_CharaName::Max];
-	S_PlayerSelectTex m_selectTexData[E_WeaponName::WeaponMax];
+	S_PlayerSelectWeaponData m_selectWeaponData[E_WeaponName::WeaponMax];
 
 	//プレイヤー
 	C_Player* m_player = nullptr;

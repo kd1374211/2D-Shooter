@@ -16,9 +16,5 @@ private:
 
 	//背景
 	C_Background* m_back;
-	
-	//上のバー（仮）
-	KdTexture m_topBarTex;
-	KdTexture m_topBarBackTex;
 
 };

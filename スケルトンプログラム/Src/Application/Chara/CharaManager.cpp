@@ -181,7 +181,7 @@ void C_CharaManager::LoadPlayerSelectWeaponTex()
 {
 	FILE* fp = nullptr;
 
-	if (fopen_s(&fp, "Data/Chara/SelectWeaponTexData.csv", "r") == 0)
+	if (fopen_s(&fp, "Data/Chara/SelectWeaponData.csv", "r") == 0)
 	{
 		char dummy[250] = {};
 
@@ -191,16 +191,17 @@ void C_CharaManager::LoadPlayerSelectWeaponTex()
 
 			if (fgets(dummy, 250, fp) != nullptr)//1行読み
 			{
-				fscanf_s(fp, "%[^,],%f,%f,",
+				fscanf_s(fp, "%[^,],%f,%f,%f,",
 					name, STRLENG,
-					&m_selectTexData[i].m_texScale.x,
-					&m_selectTexData[i].m_texScale.y
+					&m_selectWeaponData[i].m_moveSpeed,
+					&m_selectWeaponData[i].m_texScale.x,
+					&m_selectWeaponData[i].m_texScale.y
 				);
-				m_selectTexData[i].m_texScale.z = 1.0f;
+				m_selectWeaponData[i].m_texScale.z = 1.0f;
 
 				for (int j = 0;j < E_SelectWeaponTexType::Select_Max;j++)
 				{
-					S_TexData* data = &m_selectTexData[i].m_texDatas[j];
+					S_TexData* data = &m_selectWeaponData[i].m_texDatas[j];
 					int pathID;
 
 					fscanf_s(fp, "%d,%f,%f,%d,%f,",
@@ -234,10 +235,12 @@ void C_CharaManager::LoadCharaStatData()
 
 			if (fgets(dummy, 250, fp) != nullptr)//1行読み
 			{
-				fscanf_s(fp, "%[^,],%f,%d,",
+				fscanf_s(fp, "%[^,],%f,%d,%f,%d,",
 					name, STRLENG,
 					&m_statData[i].m_hitRadius,
-					&m_statData[i].m_health
+					&m_statData[i].m_health,
+					&m_statData[i].m_moveSpeed,
+					&m_statData[i].m_timeAddOnKill
 				);
 			}
 		}

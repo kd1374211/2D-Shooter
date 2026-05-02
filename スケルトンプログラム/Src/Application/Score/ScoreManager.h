@@ -12,7 +12,7 @@ public:
 
 private:
 
-	static const int MAXSCORE = 9999;
+	static const int MAXSCORE = 99999;
 	static const int MINSCORE = 0;
 
 	//得点

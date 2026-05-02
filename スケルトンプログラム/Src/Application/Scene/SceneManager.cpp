@@ -1,4 +1,5 @@
 #include "SceneManager.h"
+#include "../Const/TextureConst.h"
 
 void C_SceneManager::Update()
 {
@@ -44,5 +45,48 @@ C_SceneManager::~C_SceneManager()
 	{
 		delete m_pCurrentScene;
 		m_pCurrentScene = nullptr;
+	}
+
+	ReleaseTex();
+}
+
+void C_SceneManager::LoadTex()
+{
+	FILE* fp = nullptr;
+
+	if (fopen_s(&fp, "Data/Scene/SceneTexData.csv", "r") == 0)
+	{
+		char dummy[250] = {};
+
+		for (int i = 0;i < (int)E_GameTextures::Max;i++)
+		{
+			char name[STRLENG] = {};
+
+			if (fgets(dummy, 250, fp) != nullptr)//1行読み
+			{
+				char path[STRLENG] = {};
+
+				fscanf_s(fp, "%[^,],%[^,],%f,%f,%f,%f,",
+					name, STRLENG,
+					path,STRLENG,
+					&m_sceneTex[i].m_texPos.x,
+					&m_sceneTex[i].m_texPos.y,
+					&m_sceneTex[i].m_texSize.x,
+					&m_sceneTex[i].m_texSize.y
+				);
+
+				m_sceneTex[i].m_tex.Load(path);
+			}
+		}
+
+		fclose(fp);
+	}
+}
+
+void C_SceneManager::ReleaseTex()
+{
+	for (int i = 0;i < (int)E_GameTextures::Max;i++)
+	{
+		m_sceneTex[i].m_tex.Release();
 	}
 }

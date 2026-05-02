@@ -24,9 +24,7 @@ private:
 	C_Background* m_back = nullptr;
 
 	//タイトル画像関連
-	KdTexture m_titleTex;
-	KdTexture m_startButtonTex;
-	float m_alpha;
+	float m_startButtonAlpha;
 	int m_alphaChangeMulti;
 
 };

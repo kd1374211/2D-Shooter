@@ -13,9 +13,6 @@ public:
 
 private:
 
-	//移動速度
-	const float MOVESPEED = 3.0f;
-
 	//攻撃開始/間隔
 	static const int ATTACKSTART = 100;
 	static const int ATTACKSPAN = 120;

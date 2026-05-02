@@ -7,11 +7,11 @@ C_Player::C_Player(E_WeaponName a_name) :m_weapon(nullptr), m_isInvincible(false
 {
 	m_texData = CHARAMGR.GetBaseTexData(E_CharaName::Player);
 	m_statData = CHARAMGR.GetStatData(E_CharaName::Player);
-	m_selectTexData = CHARAMGR.GetSelectTexData(a_name);
+	m_selectTexData = CHARAMGR.GetSelectWeaponData(a_name);
 	m_pos = { 0,0 };
 
 	m_texAngle = PLAYERANGLE;
-	m_moveSpeed = MOVESPEED;
+	m_moveSpeed = m_selectTexData.m_moveSpeed;
 
 	switch (a_name)
 	{
