@@ -1,5 +1,5 @@
 #pragma once
-#include "SceneTexConst.h"
+#include "SceneManagerConst.h"
 
 //シーン種
 enum class E_SceneTypeTag

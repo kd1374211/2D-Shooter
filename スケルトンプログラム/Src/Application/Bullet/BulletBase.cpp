@@ -22,6 +22,9 @@ void C_BulletBase::Draw()
 	Math::Rectangle rec = { (long)((int)(m_animCnt * m_texData->m_texAnimMulti) * texSize.x),0,(long)texSize.x,(long)texSize.y };
 
 	SHADER.m_spriteShader.DrawTex(&m_texData->m_tex, 0, 0, texSize.x, texSize.y, &rec);
+
+	//リセット
+	SHADER.m_spriteShader.SetMatrix(Math::Matrix::Identity);
 }
 
 void C_BulletBase::UpdateAnimCnt()

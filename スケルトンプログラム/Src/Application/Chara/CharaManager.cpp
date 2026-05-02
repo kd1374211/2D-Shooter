@@ -58,7 +58,16 @@ void C_CharaManager::SpawnPlayer(E_WeaponName a_weapon)
 {
 	if (!m_player)
 	{
-		m_player = new C_Player(a_weapon);
+		m_player = new C_Player(a_weapon, false);
+	}
+}
+
+void C_CharaManager::SpawnBotPlayer(E_WeaponName a_weapon)
+{
+	if (!m_player)
+	{
+		m_player = new C_Player(a_weapon, true);
+		m_player->SetPos({ -580,100 });
 	}
 }
 
@@ -235,12 +244,13 @@ void C_CharaManager::LoadCharaStatData()
 
 			if (fgets(dummy, 250, fp) != nullptr)//1行読み
 			{
-				fscanf_s(fp, "%[^,],%f,%d,%f,%d,",
+				fscanf_s(fp, "%[^,],%f,%d,%f,%d,%d,",
 					name, STRLENG,
 					&m_statData[i].m_hitRadius,
 					&m_statData[i].m_health,
 					&m_statData[i].m_moveSpeed,
-					&m_statData[i].m_timeAddOnKill
+					&m_statData[i].m_timeAddOnKill,
+					&m_statData[i].m_scoreOnKill
 				);
 			}
 		}

@@ -70,4 +70,5 @@ struct S_CharaStatData
 	int m_health;
 	float m_moveSpeed;
 	int m_timeAddOnKill;
+	int m_scoreOnKill;
 };

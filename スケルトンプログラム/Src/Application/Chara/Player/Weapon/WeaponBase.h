@@ -1,5 +1,5 @@
 #pragma once
-#include "../../CharaTexConst.h"
+#include "../../CharaManagerConst.h"
 #include "../../../Const/TextureConst.h"
 
 class C_WeaponBase
@@ -9,8 +9,7 @@ public:
 	C_WeaponBase() : m_texData(nullptr), m_texScale(Math::Vector2::Zero), m_mat(Math::Matrix::Identity), m_texAngle(0), m_bIsShot(false) {};
 	virtual ~C_WeaponBase() {};
 
-	virtual void Action(Math::Vector2 a_playerPos);
-	virtual void Update(Math::Vector2 a_playerPos);
+	virtual void Update(Math::Vector2 a_playerPos, bool a_isAuto);
 	virtual void Draw();
 
 	//発射

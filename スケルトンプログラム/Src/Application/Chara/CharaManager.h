@@ -1,5 +1,5 @@
 #pragma once
-#include "CharaTexConst.h"
+#include "CharaManagerConst.h"
 
 class C_EnemyBase;
 class C_Player;
@@ -20,6 +20,7 @@ public:
 
 	//プレイヤー
 	void SpawnPlayer(E_WeaponName a_weapon);
+	void SpawnBotPlayer(E_WeaponName a_weapon);
 	void DeletePlayer();
 
 	//敵

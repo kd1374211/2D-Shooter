@@ -1,5 +1,5 @@
 #pragma once
-#include "CharaTexConst.h"
+#include "CharaManagerConst.h"
 #include "../Const/TextureConst.h"
 #include "../Const/ScreenConst.h"
 
@@ -23,6 +23,9 @@ public:
 
 	//アニメーション
 	virtual void UpdateAnimCnt();
+
+	//セッター
+	void SetPos(Math::Vector2 a_pos) { m_pos = a_pos; }
 
 	//ゲッター
 	Math::Vector2 GetPos()const { return(m_pos); }

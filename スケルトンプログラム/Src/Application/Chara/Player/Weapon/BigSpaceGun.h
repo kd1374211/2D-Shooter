@@ -8,7 +8,7 @@ public:
 	C_BigSpaceGun(S_TexData* a_texData, Math::Vector3 a_texScale);
 	~C_BigSpaceGun() {};
 
-	void Update(Math::Vector2 a_playerPos)override;
+	void Update(Math::Vector2 a_playerPos, bool a_isAuto)override;
 	void Draw()override;
 
 	//発射

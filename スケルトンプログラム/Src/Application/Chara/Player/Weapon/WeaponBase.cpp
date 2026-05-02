@@ -1,10 +1,6 @@
 #include "WeaponBase.h"
 
-void C_WeaponBase::Action(Math::Vector2 a_playerPos)
-{
-}
-
-void C_WeaponBase::Update(Math::Vector2 a_playerPos)
+void C_WeaponBase::Update(Math::Vector2 a_playerPos, bool a_isAuto)
 {
 }
 

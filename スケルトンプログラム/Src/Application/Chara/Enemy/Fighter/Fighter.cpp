@@ -80,4 +80,7 @@ void C_Fighter::Draw()
 	}
 
 	DrawMainShip();
+
+	//リセット
+	SHADER.m_spriteShader.SetMatrix(Math::Matrix::Identity);
 }

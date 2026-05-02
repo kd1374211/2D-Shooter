@@ -10,7 +10,7 @@ class C_Player : public C_CharaBase
 {
 public:
 
-	C_Player(E_WeaponName a_name);
+	C_Player(E_WeaponName a_name, bool a_isBot);
 	~C_Player()override;
 
 	void Update()	override;
@@ -34,8 +34,16 @@ private:
 	C_WeaponBase* m_weapon;
 
 	//無敵フラグ
-	bool m_isInvincible;
+	static const int INVINCIBLETIME = 120;
 
+	bool m_isInvincible;
+	int m_invincibleF;
+
+	static const int TURNF = 30;
+
+	//操作可能か
+	bool m_isBot;
+	int m_countF;
 };
 
 #define SELECT m_selectTexData

@@ -163,13 +163,13 @@
     <ClInclude Include="Src\Application\Bullet\BulletBase.h" />
     <ClInclude Include="Src\Application\Bullet\BulletConst.h" />
     <ClInclude Include="Src\Application\Bullet\BulletManager.h" />
-    <ClInclude Include="Src\Application\Bullet\BulletTexConst.h" />
+    <ClInclude Include="Src\Application\Bullet\BulletManagerConst.h" />
     <ClInclude Include="Src\Application\Bullet\EnemyBullet\FighterBullet.h" />
     <ClInclude Include="Src\Application\Bullet\PlayerBullet\AC_Bullet.h" />
     <ClInclude Include="Src\Application\Bullet\PlayerBullet\BSG_Bullet.h" />
     <ClInclude Include="Src\Application\Chara\CharaBase.h" />
     <ClInclude Include="Src\Application\Chara\CharaManager.h" />
-    <ClInclude Include="Src\Application\Chara\CharaTexConst.h" />
+    <ClInclude Include="Src\Application\Chara\CharaManagerConst.h" />
     <ClInclude Include="Src\Application\Chara\Enemy\EnemyBase.h" />
     <ClInclude Include="Src\Application\Chara\Enemy\EnemyConst.h" />
     <ClInclude Include="Src\Application\Chara\Enemy\Fighter\Fighter.h" />
@@ -189,7 +189,7 @@
     <ClInclude Include="Src\Application\Scene\SceneBase.h" />
     <ClInclude Include="Src\Application\Scene\SceneConst.h" />
     <ClInclude Include="Src\Application\Scene\SceneManager.h" />
-    <ClInclude Include="Src\Application\Scene\SceneTexConst.h" />
+    <ClInclude Include="Src\Application\Scene\SceneManagerConst.h" />
     <ClInclude Include="Src\Application\Scene\SelectScene.h" />
     <ClInclude Include="Src\Application\Scene\TitleScene.h" />
     <ClInclude Include="Src\Application\Score\ScoreManager.h" />

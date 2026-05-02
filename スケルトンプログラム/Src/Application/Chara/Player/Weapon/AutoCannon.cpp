@@ -9,9 +9,9 @@ C_AutoCannon::C_AutoCannon(S_TexData* a_texData, Math::Vector3 a_texScale)
 	m_texAngle = PLAYERANGLE;
 }
 
-void C_AutoCannon::Update(Math::Vector2 a_playerPos)
+void C_AutoCannon::Update(Math::Vector2 a_playerPos, bool a_isAuto)
 {
-	if (KEYMGR.GetIsPressed(E_KeyChecks::Space))
+	if (KEYMGR.GetIsPressed(E_KeyChecks::Space) || a_isAuto)
 	{
 		if (!m_bIsShot)
 		{
@@ -48,6 +48,9 @@ void C_AutoCannon::Draw()
 	Math::Rectangle rec = { (long)((int)(m_texData->m_animCnt * m_texData->m_texAnimMulti) * texSize.x),0,(long)texSize.x,(long)texSize.y };
 
 	SHADER.m_spriteShader.DrawTex(m_texData->m_tex, 0, 0, texSize.x, texSize.y, &rec);
+
+	//リセット
+	SHADER.m_spriteShader.SetMatrix(Math::Matrix::Identity);
 }
 
 void C_AutoCannon::Shot(Math::Vector2 a_pos)

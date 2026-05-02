@@ -243,13 +243,13 @@
     <ClInclude Include="Src\Application\Bullet\BulletManager.h">
       <Filter>Src\Application\Bullet</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\Bullet\BulletTexConst.h">
+    <ClInclude Include="Src\Application\Bullet\BulletManagerConst.h">
       <Filter>Src\Application\Bullet</Filter>
     </ClInclude>
     <ClInclude Include="Src\Application\Bullet\BulletConst.h">
       <Filter>Src\Application\Bullet</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\Chara\CharaTexConst.h">
+    <ClInclude Include="Src\Application\Chara\CharaManagerConst.h">
       <Filter>Src\Application\Chara</Filter>
     </ClInclude>
     <ClInclude Include="Src\Application\Const\TextureConst.h">
@@ -282,7 +282,7 @@
     <ClInclude Include="Src\Application\Fonts\FontManager.h">
       <Filter>Src\Application\Fonts</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\Scene\SceneTexConst.h">
+    <ClInclude Include="Src\Application\Scene\SceneManagerConst.h">
       <Filter>Src\Application\Scene</Filter>
     </ClInclude>
   </ItemGroup>

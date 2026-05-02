@@ -2,8 +2,9 @@
 #include "../../Key/KeyStateManager.h"
 #include "../CharaManager.h"
 #include "Weapon/WeaponConst.h"
+#include "../../Time/TimeManager.h"
 
-C_Player::C_Player(E_WeaponName a_name) :m_weapon(nullptr), m_isInvincible(false)
+C_Player::C_Player(E_WeaponName a_name, bool a_isBot) :m_weapon(nullptr), m_isInvincible(false), m_isBot(false), m_countF(0), m_invincibleF(0)
 {
 	m_texData = CHARAMGR.GetBaseTexData(E_CharaName::Player);
 	m_statData = CHARAMGR.GetStatData(E_CharaName::Player);
@@ -22,6 +23,9 @@ C_Player::C_Player(E_WeaponName a_name) :m_weapon(nullptr), m_isInvincible(false
 		m_weapon = new C_BigSpaceGun(&SELECT.m_texDatas[E_SelectWeaponTexType::Select_Weapon], SELECT.m_texScale);
 		break;
 	}
+
+	//ボット確認
+	m_isBot = a_isBot;
 }
 
 C_Player::~C_Player()
@@ -36,35 +40,61 @@ C_Player::~C_Player()
 void C_Player::Update()
 {
 	m_move = Math::Vector2::Zero;
-	//移動
-	if (KEYMGR.GetIsPressed(E_KeyChecks::Up))
-	{
-		m_move.y += 1;
-	}
-	if (KEYMGR.GetIsPressed(E_KeyChecks::Left))
-	{
-		m_move.x -= 1;
-	}
-	if (KEYMGR.GetIsPressed(E_KeyChecks::Down))
-	{
-		m_move.y -= 1;
-	}
-	if (KEYMGR.GetIsPressed(E_KeyChecks::Right))
-	{
-		m_move.x += 1;
-	}
-	
-	CalcMove();
 
-	//画面端
-	if (m_pos.x > POSMAX.x)m_pos.x = POSMAX.x;
-	else if (m_pos.x < POSMIN.x)m_pos.x = POSMIN.x;
+	if (!m_isBot)
+	{
+		//移動
+		if (KEYMGR.GetIsPressed(E_KeyChecks::Up))
+		{
+			m_move.y += 1;
+		}
+		if (KEYMGR.GetIsPressed(E_KeyChecks::Left))
+		{
+			m_move.x -= 1;
+		}
+		if (KEYMGR.GetIsPressed(E_KeyChecks::Down))
+		{
+			m_move.y -= 1;
+		}
+		if (KEYMGR.GetIsPressed(E_KeyChecks::Right))
+		{
+			m_move.x += 1;
+		}
 
-	if (m_pos.y > POSMAX.y)m_pos.y = POSMAX.y;
-	else if (m_pos.y < POSMIN.y)m_pos.y = POSMIN.y;
+		CalcMove();
 
-	//攻撃
-	m_weapon->Action(m_pos);
+		//画面端
+		if (m_pos.x > POSMAX.x)m_pos.x = POSMAX.x;
+		else if (m_pos.x < POSMIN.x)m_pos.x = POSMIN.x;
+
+		if (m_pos.y > POSMAX.y)m_pos.y = POSMAX.y;
+		else if (m_pos.y < POSMIN.y)m_pos.y = POSMIN.y;
+	}
+	else
+	{
+		m_countF++;
+
+		if (m_countF / TURNF % 2 == 0)
+		{
+			m_move.y += 1;
+		}
+		else
+		{
+			m_move.y -= 1;
+		}
+
+		CalcMove();
+	}
+
+	if (m_isInvincible)
+	{
+		m_invincibleF--;
+
+		if (m_invincibleF <= 0)
+		{
+			m_isInvincible = false;
+		}
+	}
 
 	//アニメーション変化
 	UpdateAnimCnt();
@@ -77,7 +107,8 @@ void C_Player::Update()
 
 	m_mat = rotat * scale * trans;
 
-	m_weapon->Update(m_pos);
+	//武器
+	m_weapon->Update(m_pos, m_isBot);
 }
 
 void C_Player::Draw()
@@ -118,11 +149,19 @@ void C_Player::Draw()
 
 		SHADER.m_spriteShader.DrawTex(tex->m_tex, 0, 0, texSize.x, texSize.y, &rec);
 	}
+
+	//リセット
+	SHADER.m_spriteShader.SetMatrix(Math::Matrix::Identity);
 }
 
 void C_Player::GetHit()
 {
-	m_isInvincible = true;
+	if (!m_isInvincible)
+	{
+		m_isInvincible = true;
+		TIMEMGR.SubTime(600);
+		m_invincibleF = INVINCIBLETIME;
+	}
 }
 
 void C_Player::UpdateEngineAnim()

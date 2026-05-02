@@ -1,5 +1,5 @@
 #pragma once
-#include "BulletTexConst.h"
+#include "BulletManagerConst.h"
 
 class C_BulletBase;
 

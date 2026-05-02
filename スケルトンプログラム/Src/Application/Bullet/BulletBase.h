@@ -1,5 +1,5 @@
 #pragma once
-#include "BulletTexConst.h"
+#include "BulletManagerConst.h"
 #include "../Const/TextureConst.h"
 
 #define MOVEOUTMAX (MOVEMAX + (Math::Vector2)GetHitRadius())
@@ -9,7 +9,7 @@ class C_BulletBase
 {
 public:
 
-	C_BulletBase() : m_pos(Math::Vector2::Zero), m_mat(Math::Matrix::Identity), m_team(E_BulletTeam::None), m_texData(nullptr), m_animCnt(0), m_texAngle(0), m_shotAngle(0), m_shotSpeed(0), m_speed(Math::Vector2::Zero), m_isEnd(false) {}
+	C_BulletBase() : m_pos(Math::Vector2::Zero), m_mat(Math::Matrix::Identity), m_team(E_BulletTeam::None), m_texData(nullptr), m_statData(nullptr), m_animCnt(0), m_texAngle(0), m_shotAngle(0), m_shotSpeed(0), m_speed(Math::Vector2::Zero), m_isEnd(false) {}
 	virtual ~C_BulletBase(){}
 
 	virtual void Update();
