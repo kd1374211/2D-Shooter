@@ -4,7 +4,7 @@
 #include "Weapon/WeaponConst.h"
 #include "../../Time/TimeManager.h"
 
-C_Player::C_Player(E_WeaponName a_name, bool a_isBot) :m_weapon(nullptr), m_isInvincible(false), m_isBot(false), m_countF(0), m_invincibleF(0)
+C_Player::C_Player(E_WeaponName a_name, bool a_isBot) :m_weapon(nullptr), m_isInvincible(false), m_isBot(false), m_countF(10), m_invincibleF(0)
 {
 	m_texData = CHARAMGR.GetBaseTexData(E_CharaName::Player);
 	m_statData = CHARAMGR.GetStatData(E_CharaName::Player);

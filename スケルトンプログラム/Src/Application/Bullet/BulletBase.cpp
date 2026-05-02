@@ -39,8 +39,8 @@ void C_BulletBase::UpdateAnimCnt()
 
 bool C_BulletBase::GetIsInScreen()
 {
-	if (m_pos.x > MOVEOUTMAX.x || m_pos.x < MOVEOUTMIN.x)return(false);
-	else if (m_pos.y > MOVEOUTMAX.y || m_pos.y < MOVEOUTMIN.y)return(false);
+	if (m_pos.x > SCREENSIZEHALF.x || m_pos.x < -SCREENSIZEHALF.x)return(false);
+	else if (m_pos.y > SCREENSIZEHALF.y || m_pos.y < -SCREENSIZEHALF.y)return(false);
 
 	return(true);
 }

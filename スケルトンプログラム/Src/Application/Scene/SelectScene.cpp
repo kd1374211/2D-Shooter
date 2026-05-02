@@ -32,17 +32,23 @@ void C_SelectScene::Update()
 {
 	if (KEYMGR.GetKeyState(E_KeyChecks::Right) == E_KeyState::Pressed)
 	{
-		if (m_weaponSelectIndex < E_WeaponName::BigSpaceGun)m_weaponSelectIndex++;
-		CHARAMGR.DeletePlayer();
-		BULLETMGR.ClearBullet();
-		CHARAMGR.SpawnBotPlayer((E_WeaponName)m_weaponSelectIndex);
+		if (m_weaponSelectIndex < E_WeaponName::BigSpaceGun)
+		{
+			m_weaponSelectIndex++;
+			CHARAMGR.DeletePlayer();
+			BULLETMGR.ClearBullet();
+			CHARAMGR.SpawnBotPlayer((E_WeaponName)m_weaponSelectIndex);
+		}
 	}
 	else if (KEYMGR.GetKeyState(E_KeyChecks::Left) == E_KeyState::Pressed)
 	{
-		if (m_weaponSelectIndex > E_WeaponName::AutoCannon)m_weaponSelectIndex--;
-		CHARAMGR.DeletePlayer();
-		BULLETMGR.ClearBullet();
-		CHARAMGR.SpawnBotPlayer((E_WeaponName)m_weaponSelectIndex);
+		if (m_weaponSelectIndex > E_WeaponName::AutoCannon)
+		{
+			m_weaponSelectIndex--;
+			CHARAMGR.DeletePlayer();
+			BULLETMGR.ClearBullet();
+			CHARAMGR.SpawnBotPlayer((E_WeaponName)m_weaponSelectIndex);
+		}
 	}
 	else if (KEYMGR.GetKeyState(E_KeyChecks::Enter) == E_KeyState::Pressed)
 	{

@@ -67,7 +67,7 @@ void C_CharaManager::SpawnBotPlayer(E_WeaponName a_weapon)
 	if (!m_player)
 	{
 		m_player = new C_Player(a_weapon, true);
-		m_player->SetPos({ -580,100 });
+		m_player->SetPos(BOTPLAYERPOS);
 	}
 }
 

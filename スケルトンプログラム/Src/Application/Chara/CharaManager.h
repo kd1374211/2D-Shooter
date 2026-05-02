@@ -61,6 +61,8 @@ private:
 	S_PlayerSelectWeaponData m_selectWeaponData[E_WeaponName::WeaponMax];
 
 	//プレイヤー
+	const Math::Vector2 BOTPLAYERPOS = { -580.0f,180.0f };
+
 	C_Player* m_player = nullptr;
 
 	//敵コンテナ
