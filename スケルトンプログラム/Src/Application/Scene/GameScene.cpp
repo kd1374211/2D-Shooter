@@ -37,6 +37,16 @@ void C_GameScene::Update()
 {
 	if (!SCENEMGR.GetIsStop())
 	{
+		if (GetAsyncKeyState('4') & 0x8000)
+		{
+			TIMEMGR.SubTime(TIMEMGR.GetTime());
+		}
+
+		if (TIMEMGR.GetTime() <= 0)
+		{
+			SCENEMGR.SpawnTransition(E_SceneTypeTag::Result);
+		}
+
 		if (KEYMGR.GetKeyState(E_KeyChecks::Enter) == E_KeyState::Pressed)
 		{
 			CHARAMGR.SpawnEnemy({ 640.0f,(float)(rand() % 500 - 250) }, E_CharaName::Fighter);

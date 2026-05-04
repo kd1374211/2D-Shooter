@@ -42,6 +42,6 @@ void C_Transition::Draw()
 	}
 	else
 	{
-		SHADER.m_spriteShader.DrawTex(&Transition->m_tex, 0, 0, Transition->m_texDrawSize.x, Transition->m_texDrawSize.y, &rec);
+		SHADER.m_spriteShader.DrawTex(&Transition->m_tex, Transition->m_texPos.x, Transition->m_texPos.y, Transition->m_texDrawSize.x, Transition->m_texDrawSize.y, &rec);
 	}
 }

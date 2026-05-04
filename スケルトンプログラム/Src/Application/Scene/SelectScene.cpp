@@ -82,6 +82,20 @@ void C_SelectScene::Draw()
 	Math::Rectangle rec = { 0,0,(long)statWindow->m_texSize.x,(long)statWindow->m_texSize.y };
 	SHADER.m_spriteShader.DrawTex(&statWindow->m_tex, statWindow->m_texPos.x, statWindow->m_texPos.y, statWindow->m_texDrawSize.x, statWindow->m_texDrawSize.y, &rec);
 
+	//武器のステータスとバー画像データを持ってくる
+	S_SelectWeaponStat stat = SCENEMGR.GetSelectedWeaponStat((E_WeaponName)m_weaponSelectIndex);
+	S_SceneTexData* statBar = SCENEMGR.GetSceneTexData(E_GameTextures::StatBar);
+
+	//各ステータス
+	rec = { (long)((WEAPONSTAT_MAX - stat.m_damage) * statBar->m_texSize.x),0,(long)statBar->m_texSize.x,(long)statBar->m_texSize.y };
+	SHADER.m_spriteShader.DrawTex(&statBar->m_tex, statBar->m_texPos.x, statBar->m_texPos.y, statBar->m_texDrawSize.x, statBar->m_texDrawSize.y, &rec);
+	
+	rec = { (long)((WEAPONSTAT_MAX - stat.m_rate) * statBar->m_texSize.x),0,(long)statBar->m_texSize.x,(long)statBar->m_texSize.y };
+	SHADER.m_spriteShader.DrawTex(&statBar->m_tex, statBar->m_texPos.x + STATDRAWOFS_X, statBar->m_texPos.y, statBar->m_texDrawSize.x, statBar->m_texDrawSize.y, &rec);
+
+	rec = { (long)((WEAPONSTAT_MAX - stat.m_speed) * statBar->m_texSize.x),0,(long)statBar->m_texSize.x,(long)statBar->m_texSize.y };
+	SHADER.m_spriteShader.DrawTex(&statBar->m_tex, statBar->m_texPos.x + 2 * STATDRAWOFS_X, statBar->m_texPos.y, statBar->m_texDrawSize.x, statBar->m_texDrawSize.y, &rec);
+
 	std::string name = {};
 
 	//選択武器名
@@ -97,22 +111,16 @@ void C_SelectScene::Draw()
 		name = "ERROR";
 		break;
 	}
-	FONTMGR.DrawWord({ 0,-50 }, name, 3.0f, Math::Color(1, 1, 1, 1));
 
-	//武器のステータスとバー画像データを持ってくる
-	S_SelectWeaponStat stat = SCENEMGR.GetSelectedWeaponStat((E_WeaponName)m_weaponSelectIndex);
-	S_SceneTexData* statBar = SCENEMGR.GetSceneTexData(E_GameTextures::StatBar);
-
-	//各ステータス
-	FONTMGR.DrawWord({ -250,-140 }, "DAMAGE", 2.0f, Math::Color(1, 1, 1, 1));
-	rec = { (long)((WEAPONSTAT_MAX - stat.m_damage) * statBar->m_texSize.x),0,(long)statBar->m_texSize.x,(long)statBar->m_texSize.y };
-	SHADER.m_spriteShader.DrawTex(&statBar->m_tex, statBar->m_texPos.x, statBar->m_texPos.y, statBar->m_texDrawSize.x, statBar->m_texDrawSize.y, &rec);
-	
-	FONTMGR.DrawWord({ 0,-140 }, "RATE", 2.0f, Math::Color(1, 1, 1, 1));
-	rec = { (long)((WEAPONSTAT_MAX - stat.m_rate) * statBar->m_texSize.x),0,(long)statBar->m_texSize.x,(long)statBar->m_texSize.y };
-	SHADER.m_spriteShader.DrawTex(&statBar->m_tex, statBar->m_texPos.x + STATDRAWOFS_X, statBar->m_texPos.y, statBar->m_texDrawSize.x, statBar->m_texDrawSize.y, &rec);
-
-	FONTMGR.DrawWord({ 250,-140 }, "SPEED", 2.0f, Math::Color(1, 1, 1, 1));
-	rec = { (long)((WEAPONSTAT_MAX - stat.m_speed) * statBar->m_texSize.x),0,(long)statBar->m_texSize.x,(long)statBar->m_texSize.y };
-	SHADER.m_spriteShader.DrawTex(&statBar->m_tex, statBar->m_texPos.x + 2 * STATDRAWOFS_X, statBar->m_texPos.y, statBar->m_texDrawSize.x, statBar->m_texDrawSize.y, &rec);
+	for (auto& itr : SCENEMGR.GetSceneTextsData(E_SceneTypeTag::Select))
+	{
+		if (itr.m_textTag == E_VariableTextsID::SelectWeapon)
+		{
+			FONTMGR.DrawWord(itr.m_pos, name, itr.m_scale, itr.m_color);
+		}
+		else
+		{
+			FONTMGR.DrawWord(itr.m_pos, itr.m_str, itr.m_scale, itr.m_color);
+		}
+	}
 }

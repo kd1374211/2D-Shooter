@@ -57,6 +57,8 @@ void C_SceneManager::SetScene(E_SceneTypeTag a_tag)
 	case E_SceneTypeTag::Game:
 		m_pCurrentScene = new C_GameScene();
 		break;
+	case E_SceneTypeTag::Result:
+		m_pCurrentScene = new C_ResultScene();
 	default:
 		break;
 	}
@@ -81,11 +83,12 @@ C_SceneManager::~C_SceneManager()
 
 void C_SceneManager::Init()
 {
-	LoadData();
+	LoadSelectWeaponData();
+	LoadFontsData();
 	LoadTex();
 }
 
-void C_SceneManager::LoadData()
+void C_SceneManager::LoadSelectWeaponData()
 {
 	FILE* fp = nullptr;
 
@@ -108,6 +111,41 @@ void C_SceneManager::LoadData()
 					&m_weaponStatData[i].m_speed
 				);
 			}
+		}
+
+		fclose(fp);
+	}
+}
+
+void C_SceneManager::LoadFontsData()
+{
+	FILE* fp = nullptr;
+
+	if (fopen_s(&fp, "Data/Scene/SceneFontsData.csv", "r") == 0)
+	{
+		char dummy[250] = {};
+
+		while (fgets(dummy, 250, fp) != nullptr)//1行読み
+		{
+			int sceneType;
+
+			S_TextsData data;
+			float R, G, B, A;
+			
+			fscanf_s(fp, "%d,%d,%[^,],%f,%f,%f,%f,%f,%f,%f,", 
+				&sceneType,
+				&data.m_textTag,
+				data.m_str,STRLENG,
+				&data.m_pos.x,
+				&data.m_pos.y,
+				&data.m_scale,
+				&R,
+				&G,
+				&B,
+				&A);
+
+			data.m_color = { R,G,B,A };
+			m_sceneTexts[sceneType].push_back(data);
 		}
 
 		fclose(fp);

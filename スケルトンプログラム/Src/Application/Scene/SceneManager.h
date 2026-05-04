@@ -24,6 +24,7 @@ public:
 	E_WeaponName GetSelectedWeapon()const { return(m_selectedWeapon); }
 	S_SelectWeaponStat GetSelectedWeaponStat(E_WeaponName a_weapon)const { return(m_weaponStatData[a_weapon]); }
 	S_SceneTexData* GetSceneTexData(E_GameTextures a_tex) { return(&m_sceneTex[(int)a_tex]); }
+	std::vector<S_TextsData> GetSceneTextsData(E_SceneTypeTag a_scene) { return(m_sceneTexts[(int)a_scene]); }
 
 private:
 
@@ -46,11 +47,15 @@ private:
 	//画像管理
 	S_SceneTexData m_sceneTex[(int)E_GameTextures::Max];
 
+	//フォント管理用
+	std::vector<S_TextsData> m_sceneTexts[(int)E_SceneTypeTag::Max];
+
 	//操作可能フラグ
 	bool m_isStop;
 
 	void Init();
-	void LoadData();
+	void LoadSelectWeaponData();
+	void LoadFontsData();
 	void LoadTex();
 	void Release();
 
