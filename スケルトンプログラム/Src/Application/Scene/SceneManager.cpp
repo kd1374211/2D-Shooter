@@ -10,6 +10,18 @@ void C_SceneManager::Update()
 		m_sceneQueue = E_SceneTypeTag::None;
 	}
 
+	if (m_pTransition != nullptr)
+	{
+		m_pTransition->Update();
+
+		if (m_pTransition->GetIsEnd())
+		{
+			delete m_pTransition;
+			m_pTransition = nullptr;
+			m_isStop = false;
+		}
+	}
+
 	if (m_pCurrentScene == nullptr)return;
 
 	m_pCurrentScene->Update();
@@ -17,7 +29,17 @@ void C_SceneManager::Update()
 
 void C_SceneManager::Draw()
 {
-	m_pCurrentScene->Draw();
+	if (m_pCurrentScene != nullptr)m_pCurrentScene->Draw();
+	if (m_pTransition != nullptr)m_pTransition->Draw();
+}
+
+void C_SceneManager::SpawnTransition(E_SceneTypeTag a_nextScene)
+{
+	if (m_pTransition == nullptr)
+	{
+		m_pTransition = new C_Transition(a_nextScene);
+		m_isStop = true;
+	}
 }
 
 void C_SceneManager::SetScene(E_SceneTypeTag a_tag)
@@ -46,6 +68,12 @@ C_SceneManager::~C_SceneManager()
 	{
 		delete m_pCurrentScene;
 		m_pCurrentScene = nullptr;
+	}
+
+	if (m_pTransition != nullptr)
+	{
+		delete m_pTransition;
+		m_pTransition = nullptr;
 	}
 
 	Release();

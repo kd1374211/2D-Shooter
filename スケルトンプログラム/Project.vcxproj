@@ -193,6 +193,7 @@
     <ClInclude Include="Src\Application\Scene\SceneManagerConst.h" />
     <ClInclude Include="Src\Application\Scene\SelectScene.h" />
     <ClInclude Include="Src\Application\Scene\TitleScene.h" />
+    <ClInclude Include="Src\Application\Scene\Transition.h" />
     <ClInclude Include="Src\Application\Score\ScoreManager.h" />
     <ClInclude Include="Src\Application\Time\TimeManager.h" />
     <ClInclude Include="Src\System\Audio\KdAudio.h" />
@@ -242,6 +243,7 @@
     <ClCompile Include="Src\Application\Scene\SceneManager.cpp" />
     <ClCompile Include="Src\Application\Scene\SelectScene.cpp" />
     <ClCompile Include="Src\Application\Scene\TitleScene.cpp" />
+    <ClCompile Include="Src\Application\Scene\Transition.cpp" />
     <ClCompile Include="Src\Application\Score\ScoreManager.cpp" />
     <ClCompile Include="Src\Application\Time\TimeManager.cpp" />
     <ClCompile Include="Src\System\Audio\KdAudio.cpp" />

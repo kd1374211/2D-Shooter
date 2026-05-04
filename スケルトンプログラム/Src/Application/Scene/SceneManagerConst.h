@@ -8,6 +8,7 @@ enum class E_GameTextures
 	StatBar,
 	IngameTopBar,
 	TopBarBack,
+	Transition,
 	Max
 };
 

@@ -288,6 +288,9 @@
     <ClInclude Include="Src\Application\Scene\ResultScene.h">
       <Filter>Src\Application\Scene</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Application\Scene\Transition.h">
+      <Filter>Src\Application\Scene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Pch.cpp">
@@ -423,6 +426,9 @@
       <Filter>Src\Application\Fonts</Filter>
     </ClCompile>
     <ClCompile Include="Src\Application\Scene\ResultScene.cpp">
+      <Filter>Src\Application\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\Scene\Transition.cpp">
       <Filter>Src\Application\Scene</Filter>
     </ClCompile>
   </ItemGroup>

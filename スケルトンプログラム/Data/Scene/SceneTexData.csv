@@ -5,3 +5,4 @@ StatWindow,Texture/Scene/Select/WeaponStatWindow.png,0,-180,1280,360,1
 StatBar,Texture/Scene/Select/WeaponStatBar.png,-250,-200,48,6,4
 IngameTopBar,Texture/Scene/Game/IngameTopBar.png,0,300,1280,120,1
 TopBarBack,Texture/Scene/Game/IngameTopBar_Back.png,-27,280,175,75,1
+Transition,Texture/Scene/Transition/blackBack.png,0,0,128,72,10

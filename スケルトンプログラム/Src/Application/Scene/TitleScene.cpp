@@ -29,9 +29,12 @@ void C_TitleScene::Update()
 		m_alphaChangeMulti *= -1;
 	}
 
-	if (KEYMGR.GetKeyState(E_KeyChecks::Enter) == E_KeyState::Released)
+	if (!SCENEMGR.GetIsStop())
 	{
-		SCENEMGR.SetSceneQueue(E_SceneTypeTag::Select);
+		if (KEYMGR.GetKeyState(E_KeyChecks::Enter) == E_KeyState::Released)
+		{
+			SCENEMGR.SpawnTransition(E_SceneTypeTag::Select);
+		}
 	}
 }
 

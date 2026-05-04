@@ -14,6 +14,8 @@ public:
 
 private:
 
+	const Math::Vector2 PLAYERSPAWNPOS = { -550,-60.0f };
+
 	//背景
 	C_Background* m_back;
 

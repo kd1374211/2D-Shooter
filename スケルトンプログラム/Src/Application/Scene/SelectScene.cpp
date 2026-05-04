@@ -13,7 +13,7 @@ C_SelectScene::C_SelectScene() :m_weaponSelectIndex(E_WeaponName::AutoCannon)
 	SetSceneTag(E_SceneTypeTag::Select);
 	m_back = new C_Background();
 
-	CHARAMGR.SpawnBotPlayer((E_WeaponName)m_weaponSelectIndex);
+	CHARAMGR.SpawnBotPlayer((E_WeaponName)m_weaponSelectIndex, BOTPLAYERPOS);
 }
 
 C_SelectScene::~C_SelectScene()
@@ -30,30 +30,33 @@ C_SelectScene::~C_SelectScene()
 
 void C_SelectScene::Update()
 {
-	if (KEYMGR.GetKeyState(E_KeyChecks::Right) == E_KeyState::Pressed)
+	if (!SCENEMGR.GetIsStop())
 	{
-		if (m_weaponSelectIndex < E_WeaponName::BigSpaceGun)
+		if (KEYMGR.GetKeyState(E_KeyChecks::Right) == E_KeyState::Pressed)
 		{
-			m_weaponSelectIndex++;
-			CHARAMGR.DeletePlayer();
-			BULLETMGR.ClearBullet();
-			CHARAMGR.SpawnBotPlayer((E_WeaponName)m_weaponSelectIndex);
+			if (m_weaponSelectIndex < E_WeaponName::BigSpaceGun)
+			{
+				m_weaponSelectIndex++;
+				CHARAMGR.DeletePlayer();
+				BULLETMGR.ClearBullet();
+				CHARAMGR.SpawnBotPlayer((E_WeaponName)m_weaponSelectIndex, BOTPLAYERPOS);
+			}
 		}
-	}
-	else if (KEYMGR.GetKeyState(E_KeyChecks::Left) == E_KeyState::Pressed)
-	{
-		if (m_weaponSelectIndex > E_WeaponName::AutoCannon)
+		else if (KEYMGR.GetKeyState(E_KeyChecks::Left) == E_KeyState::Pressed)
 		{
-			m_weaponSelectIndex--;
-			CHARAMGR.DeletePlayer();
-			BULLETMGR.ClearBullet();
-			CHARAMGR.SpawnBotPlayer((E_WeaponName)m_weaponSelectIndex);
+			if (m_weaponSelectIndex > E_WeaponName::AutoCannon)
+			{
+				m_weaponSelectIndex--;
+				CHARAMGR.DeletePlayer();
+				BULLETMGR.ClearBullet();
+				CHARAMGR.SpawnBotPlayer((E_WeaponName)m_weaponSelectIndex, BOTPLAYERPOS);
+			}
 		}
-	}
-	else if (KEYMGR.GetKeyState(E_KeyChecks::Enter) == E_KeyState::Pressed)
-	{
-		SCENEMGR.SetSceneQueue(E_SceneTypeTag::Game);
-		SCENEMGR.SetSelectedWeapon((E_WeaponName)m_weaponSelectIndex);
+		else if (KEYMGR.GetKeyState(E_KeyChecks::Enter) == E_KeyState::Pressed)
+		{
+			SCENEMGR.SpawnTransition(E_SceneTypeTag::Game);
+			SCENEMGR.SetSelectedWeapon((E_WeaponName)m_weaponSelectIndex);
+		}
 	}
 
 	m_back->Update();
@@ -94,22 +97,22 @@ void C_SelectScene::Draw()
 		name = "ERROR";
 		break;
 	}
-	FONTMGR.DrawWord({ 0,-50 }, name, 3.0f);
+	FONTMGR.DrawWord({ 0,-50 }, name, 3.0f, Math::Color(1, 1, 1, 1));
 
 	//武器のステータスとバー画像データを持ってくる
 	S_SelectWeaponStat stat = SCENEMGR.GetSelectedWeaponStat((E_WeaponName)m_weaponSelectIndex);
 	S_SceneTexData* statBar = SCENEMGR.GetSceneTexData(E_GameTextures::StatBar);
 
 	//各ステータス
-	FONTMGR.DrawWord({ -250,-120 }, "DAMAGE", 2.0f);
+	FONTMGR.DrawWord({ -250,-140 }, "DAMAGE", 2.0f, Math::Color(1, 1, 1, 1));
 	rec = { (long)((WEAPONSTAT_MAX - stat.m_damage) * statBar->m_texSize.x),0,(long)statBar->m_texSize.x,(long)statBar->m_texSize.y };
 	SHADER.m_spriteShader.DrawTex(&statBar->m_tex, statBar->m_texPos.x, statBar->m_texPos.y, statBar->m_texDrawSize.x, statBar->m_texDrawSize.y, &rec);
 	
-	FONTMGR.DrawWord({ 0,-120 }, "RATE", 2.0f);
+	FONTMGR.DrawWord({ 0,-140 }, "RATE", 2.0f, Math::Color(1, 1, 1, 1));
 	rec = { (long)((WEAPONSTAT_MAX - stat.m_rate) * statBar->m_texSize.x),0,(long)statBar->m_texSize.x,(long)statBar->m_texSize.y };
 	SHADER.m_spriteShader.DrawTex(&statBar->m_tex, statBar->m_texPos.x + STATDRAWOFS_X, statBar->m_texPos.y, statBar->m_texDrawSize.x, statBar->m_texDrawSize.y, &rec);
 
-	FONTMGR.DrawWord({ 250,-120 }, "SPEED", 2.0f);
+	FONTMGR.DrawWord({ 250,-140 }, "SPEED", 2.0f, Math::Color(1, 1, 1, 1));
 	rec = { (long)((WEAPONSTAT_MAX - stat.m_speed) * statBar->m_texSize.x),0,(long)statBar->m_texSize.x,(long)statBar->m_texSize.y };
 	SHADER.m_spriteShader.DrawTex(&statBar->m_tex, statBar->m_texPos.x + 2 * STATDRAWOFS_X, statBar->m_texPos.y, statBar->m_texDrawSize.x, statBar->m_texDrawSize.y, &rec);
 }

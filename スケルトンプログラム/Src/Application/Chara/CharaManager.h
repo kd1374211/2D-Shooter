@@ -19,8 +19,8 @@ public:
 	void ClearChara();
 
 	//プレイヤー
-	void SpawnPlayer(E_WeaponName a_weapon);
-	void SpawnBotPlayer(E_WeaponName a_weapon);
+	void SpawnPlayer(E_WeaponName a_weapon, Math::Vector2 a_pos);
+	void SpawnBotPlayer(E_WeaponName a_weapon, Math::Vector2 a_pos);
 	void DeletePlayer();
 
 	//敵
@@ -59,9 +59,6 @@ private:
 	S_BaseCharaTexData m_texData[E_CharaName::Max];
 	S_CharaStatData m_statData[E_CharaName::Max];
 	S_PlayerSelectWeaponData m_selectWeaponData[E_WeaponName::WeaponMax];
-
-	//プレイヤー
-	const Math::Vector2 BOTPLAYERPOS = { -580.0f,180.0f };
 
 	C_Player* m_player = nullptr;
 

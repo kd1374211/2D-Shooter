@@ -1,6 +1,6 @@
 #include "FontManager.h"
 
-void C_FontManager::DrawWord(Math::Vector2 a_pos, std::string a_word, float a_scale)
+void C_FontManager::DrawWord(Math::Vector2 a_pos, std::string a_word, float a_scale, Math::Color a_color)
 {
 	//一応リセット
 	SHADER.m_spriteShader.SetMatrix(Math::Matrix::Identity);
@@ -14,11 +14,11 @@ void C_FontManager::DrawWord(Math::Vector2 a_pos, std::string a_word, float a_sc
 		char ch = *(a_word.begin() + i);
 		Math::Rectangle rec = FindTextRec(ch);
 
-		SHADER.m_spriteShader.DrawTex(&m_fontTex, LeftPosX + TextSize.x * i, a_pos.y, TextSize.x, TextSize.y, &rec);
+		SHADER.m_spriteShader.DrawTex(&m_fontTex, LeftPosX + TextSize.x * i, a_pos.y, TextSize.x, TextSize.y, &rec, &a_color);
 	}
 }
 
-void C_FontManager::DrawNumber(Math::Vector2 a_pos, int a_number, int a_minDigit, float a_scale)
+void C_FontManager::DrawNumber(Math::Vector2 a_pos, int a_number, int a_minDigit, float a_scale, Math::Color a_color)
 {
 	//一応リセット
 	SHADER.m_spriteShader.SetMatrix(Math::Matrix::Identity);
@@ -52,7 +52,7 @@ void C_FontManager::DrawNumber(Math::Vector2 a_pos, int a_number, int a_minDigit
 
 		Math::Rectangle rec = FindTextRec('0' + number);
 
-		SHADER.m_spriteShader.DrawTex(&m_fontTex, LeftPosX + NumberSize.x * i, a_pos.y, NumberSize.x, NumberSize.y, &rec);
+		SHADER.m_spriteShader.DrawTex(&m_fontTex, LeftPosX + NumberSize.x * i, a_pos.y, NumberSize.x, NumberSize.y, &rec, &a_color);
 	}
 }
 

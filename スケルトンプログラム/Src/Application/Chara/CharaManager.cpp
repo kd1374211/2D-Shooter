@@ -54,20 +54,21 @@ void C_CharaManager::ClearChara()
 	ClearEnemy();
 }
 
-void C_CharaManager::SpawnPlayer(E_WeaponName a_weapon)
+void C_CharaManager::SpawnPlayer(E_WeaponName a_weapon, Math::Vector2 a_pos)
 {
 	if (!m_player)
 	{
 		m_player = new C_Player(a_weapon, false);
+		m_player->SetPos(a_pos);
 	}
 }
 
-void C_CharaManager::SpawnBotPlayer(E_WeaponName a_weapon)
+void C_CharaManager::SpawnBotPlayer(E_WeaponName a_weapon, Math::Vector2 a_pos)
 {
 	if (!m_player)
 	{
 		m_player = new C_Player(a_weapon, true);
-		m_player->SetPos(BOTPLAYERPOS);
+		m_player->SetPos(a_pos);
 	}
 }
 

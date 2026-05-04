@@ -4,8 +4,8 @@ class C_FontManager
 {
 public:
 
-	void DrawWord(Math::Vector2 a_pos, std::string a_word, float a_scale);
-	void DrawNumber(Math::Vector2 a_pos, int a_number, int a_minDigit, float a_scale);
+	void DrawWord(Math::Vector2 a_pos, std::string a_word, float a_scale, Math::Color a_color);
+	void DrawNumber(Math::Vector2 a_pos, int a_number, int a_minDigit, float a_scale, Math::Color a_color);
 
 private:
 

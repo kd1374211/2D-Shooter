@@ -16,7 +16,7 @@ C_GameScene::C_GameScene() :m_back(nullptr)
 {
 	SetSceneTag(E_SceneTypeTag::Game);
 	m_back = new C_Background();
-	CHARAMGR.SpawnPlayer(SCENEMGR.GetSelectedWeapon());
+	CHARAMGR.SpawnPlayer(SCENEMGR.GetSelectedWeapon(), PLAYERSPAWNPOS);
 	TIMEMGR.SetTime(60);
 	SCOREMGR.ResetScore();
 }
@@ -35,29 +35,33 @@ C_GameScene::~C_GameScene()
 
 void C_GameScene::Update()
 {
-	if (KEYMGR.GetKeyState(E_KeyChecks::Enter) == E_KeyState::Pressed)
+	if (!SCENEMGR.GetIsStop())
 	{
-		CHARAMGR.SpawnEnemy({ 640.0f,(float)(rand() % 500 - 250)}, E_CharaName::Fighter);
-	}
-
-	if (GetAsyncKeyState('1') & 0x8000)
-	{
-		for (auto itr : CHARAMGR.GetEnemy())
+		if (KEYMGR.GetKeyState(E_KeyChecks::Enter) == E_KeyState::Pressed)
 		{
-			itr->GetHit(1);
+			CHARAMGR.SpawnEnemy({ 640.0f,(float)(rand() % 500 - 250) }, E_CharaName::Fighter);
+		}
+
+		if (GetAsyncKeyState('1') & 0x8000)
+		{
+			for (auto itr : CHARAMGR.GetEnemy())
+			{
+				itr->GetHit(1);
+			}
+		}
+
+		if (GetAsyncKeyState('2') & 0x8000)
+		{
+			SCOREMGR.AddScore(1);
+		}
+
+		if (GetAsyncKeyState('3') & 0x8000)
+		{
+			SCOREMGR.AddScore(100);
 		}
 	}
 
-	if (GetAsyncKeyState('2') & 0x8000)
-	{
-		SCOREMGR.AddScore(1);
-	}
-
-	if (GetAsyncKeyState('3') & 0x8000)
-	{
-		SCOREMGR.AddScore(100);
-	}
-
+	//停止状態で動ける要素後で考える
 	CHARAMGR.Update();
 	BULLETMGR.Update();
 
@@ -96,8 +100,8 @@ void C_GameScene::Draw()
 	
 	//秒
 	int sec = timeF / 60;
-	FONTMGR.DrawNumber({ -27,285 }, sec, 0, 2.0f);
+	FONTMGR.DrawNumber({ -27,285 }, sec, 0, 2.0f, Math::Color(1, 1, 1, 1));
 
 	//得点
-	FONTMGR.DrawNumber({ 470,300 }, SCOREMGR.GetScore(), 5, 3.5f);
+	FONTMGR.DrawNumber({ 470,300 }, SCOREMGR.GetScore(), 5, 3.5f, Math::Color(1, 1, 1, 1));
 }
