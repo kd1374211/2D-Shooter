@@ -6,14 +6,17 @@ public:
 
 	void DrawWord(Math::Vector2 a_pos, std::string a_word, float a_scale, Math::Color a_color);
 	void DrawNumber(Math::Vector2 a_pos, int a_number, int a_minDigit, float a_scale, Math::Color a_color);
+	
+	//時間表記用テキストに変換
+	std::string ConvertToTime(int a_min, int a_sec, int a_frame);
 
 private:
 
 	const Math::Vector2 BASETEXTSIZE = { 18.0f,28.0f };
 
 	static const int TEXTNUM_ONELINE = 13;
-	static const int TEXTNUM = 63;
-	const char TEXTID[TEXTNUM] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+	static const int TEXTNUM = 65;
+	const char TEXTID[TEXTNUM] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789:.";
 	
 	C_FontManager(){ Init(); }
 	~C_FontManager(){ Release(); }

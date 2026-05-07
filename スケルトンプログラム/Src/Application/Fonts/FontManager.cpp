@@ -56,6 +56,23 @@ void C_FontManager::DrawNumber(Math::Vector2 a_pos, int a_number, int a_minDigit
 	}
 }
 
+std::string C_FontManager::ConvertToTime(int a_min, int a_sec, int a_frame)
+{
+	int micS = (int)(a_frame / 60.0f * 100.0f);
+
+	std::string ans = "";
+	ans += ('0' + a_min / 10);
+	ans += ('0' + a_min % 10);
+	ans += ":";
+	ans += ('0' + a_sec / 10);
+	ans += ('0' + a_sec % 10);
+	ans += ".";
+	ans += ('0' + micS / 10);
+	ans += ('0' + micS % 10);
+
+	return(ans);
+}
+
 void C_FontManager::Init()
 {
 	m_fontTex.Load("Texture/Fonts/Fonts.png");	

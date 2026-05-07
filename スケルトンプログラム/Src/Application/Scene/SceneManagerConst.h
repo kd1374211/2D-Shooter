@@ -32,7 +32,9 @@ enum class E_ButtonState
 enum class E_VariableTextsID
 {
 	None,
-	SelectWeapon
+	Select_SelectWeapon,
+	Result_Rank,
+	Result_ButtonTexts
 };
 
 struct S_SceneTexData

@@ -1,9 +1,18 @@
 #include "TimeManager.h"
 
+void C_TimeManager::Reset()
+{
+	m_surviveTimeF = 0;
+	m_timeF = 0;
+}
+
 void C_TimeManager::Update()
 {
 	m_timeF--;
 	if (m_timeF < MINTIME)m_timeF = MINTIME;
+
+	m_surviveTimeF++;
+	if (m_surviveTimeF > MAXSURVIVETIME)m_surviveTimeF = MAXSURVIVETIME;
 }
 
 void C_TimeManager::AddTime(int a_addF)

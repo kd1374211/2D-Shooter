@@ -17,6 +17,7 @@ C_GameScene::C_GameScene() :m_back(nullptr)
 	SetSceneTag(E_SceneTypeTag::Game);
 	m_back = new C_Background();
 	CHARAMGR.SpawnPlayer(SCENEMGR.GetSelectedWeapon(), PLAYERSPAWNPOS);
+	TIMEMGR.Reset();
 	TIMEMGR.SetTime(60);
 	SCOREMGR.ResetScore();
 }

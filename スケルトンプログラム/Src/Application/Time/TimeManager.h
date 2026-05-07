@@ -4,6 +4,7 @@ class C_TimeManager
 {
 public:
 
+	void Reset();
 	void Update();
 	
 	//時間シリーズ
@@ -12,16 +13,21 @@ public:
 	void SubTime(int a_subF);
 
 	int GetTime()const { return(m_timeF); }
+	int GetSurviveTime()const { return(m_surviveTimeF); }
 
 private:
 
+	static const int MAXSURVIVETIME = 359999;
 	static const int MAXTIME = 5999;
 	static const int MINTIME = 0;
+
+	//生存時間
+	int m_surviveTimeF;
 
 	//残り時間（F）
 	int m_timeF;
 
-	C_TimeManager():m_timeF(0) {}
+	C_TimeManager():m_timeF(0),m_surviveTimeF(0) {}
 	~C_TimeManager() {}
 
 public:

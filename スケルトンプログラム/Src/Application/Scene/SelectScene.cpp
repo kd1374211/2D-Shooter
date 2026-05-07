@@ -95,7 +95,7 @@ void C_SelectScene::Draw()
 	}
 	else
 	{
-		tex = SCENEMGR.GetButtonTex(E_ButtonState::Idle);
+		tex = SCENEMGR.GetButtonTex(E_ButtonState::Hover);
 	}
 	rec = { 0,0,(long)BUTTONTEXSIZE.x,(long)BUTTONTEXSIZE.y };
 	SHADER.m_spriteShader.DrawTex(tex, selectButton->m_pos.x, selectButton->m_pos.y, selectButton->m_texDrawSize.x, selectButton->m_texDrawSize.y, &rec);
@@ -148,7 +148,7 @@ void C_SelectScene::Draw()
 
 	for (auto& itr : SCENEMGR.GetSceneTextsData(E_SceneTypeTag::Select))
 	{
-		if (itr.m_textTag == E_VariableTextsID::SelectWeapon)
+		if (itr.m_textTag == E_VariableTextsID::Select_SelectWeapon)
 		{
 			FONTMGR.DrawWord(itr.m_pos, name, itr.m_scale, itr.m_color);
 		}

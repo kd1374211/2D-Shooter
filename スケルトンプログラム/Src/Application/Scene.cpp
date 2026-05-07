@@ -26,6 +26,7 @@ void Scene::Update()
 
 void Scene::Init()
 {
+	srand(timeGetTime());
 	SCENEMGR.SetSceneQueue(E_SceneTypeTag::Title);
 }
 
