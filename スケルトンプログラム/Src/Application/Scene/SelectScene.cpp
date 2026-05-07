@@ -8,7 +8,7 @@
 #include "../Bullet/BulletManager.h"
 #include "../Chara/Player/Player.h"
 
-C_SelectScene::C_SelectScene() :m_weaponSelectIndex(E_WeaponName::AutoCannon)
+C_SelectScene::C_SelectScene() :m_weaponSelectIndex(E_WeaponName::AutoCannon), m_isSelect(false)
 {
 	SetSceneTag(E_SceneTypeTag::Select);
 	m_back = new C_Background();
@@ -56,6 +56,7 @@ void C_SelectScene::Update()
 		{
 			SCENEMGR.SpawnTransition(E_SceneTypeTag::Game);
 			SCENEMGR.SetSelectedWeapon((E_WeaponName)m_weaponSelectIndex);
+			m_isSelect = true;
 		}
 	}
 
@@ -81,6 +82,39 @@ void C_SelectScene::Draw()
 	S_SceneTexData* statWindow = SCENEMGR.GetSceneTexData(E_GameTextures::StatWindow);
 	Math::Rectangle rec = { 0,0,(long)statWindow->m_texSize.x,(long)statWindow->m_texSize.y };
 	SHADER.m_spriteShader.DrawTex(&statWindow->m_tex, statWindow->m_texPos.x, statWindow->m_texPos.y, statWindow->m_texDrawSize.x, statWindow->m_texDrawSize.y, &rec);
+
+	//決定ボタン
+	S_ButtonPosData* selectButton = nullptr;
+	KdTexture* tex = nullptr;
+	selectButton = SCENEMGR.GetButtonData(E_GameButtons::Select_Start);
+
+	//決定後かつ決定ボタンを押しているか
+	if (m_isSelect && KEYMGR.GetIsPressed(E_KeyChecks::Enter))
+	{
+		tex = SCENEMGR.GetButtonTex(E_ButtonState::Active);
+	}
+	else
+	{
+		tex = SCENEMGR.GetButtonTex(E_ButtonState::Idle);
+	}
+	rec = { 0,0,(long)BUTTONTEXSIZE.x,(long)BUTTONTEXSIZE.y };
+	SHADER.m_spriteShader.DrawTex(tex, selectButton->m_pos.x, selectButton->m_pos.y, selectButton->m_texDrawSize.x, selectButton->m_texDrawSize.y, &rec);
+
+	//矢印
+	S_SceneTexData* selectArrow = SCENEMGR.GetSceneTexData(E_GameTextures::SelectArrow);
+	rec = { 0,0,(long)selectArrow->m_texSize.x,(long)selectArrow->m_texSize.y };
+
+	//一番左じゃなければ
+	if (m_weaponSelectIndex != E_WeaponName::AutoCannon)
+	{
+		SHADER.m_spriteShader.DrawTex(&selectArrow->m_tex, -(selectArrow->m_texPos.x), selectArrow->m_texPos.y, -(selectArrow->m_texDrawSize.x), selectArrow->m_texDrawSize.y, &rec);
+	}
+
+	//一番右じゃなければ
+	if (m_weaponSelectIndex != E_WeaponName::BigSpaceGun)
+	{
+		SHADER.m_spriteShader.DrawTex(&selectArrow->m_tex, selectArrow->m_texPos.x, selectArrow->m_texPos.y, selectArrow->m_texDrawSize.x, selectArrow->m_texDrawSize.y, &rec);
+	}
 
 	//武器のステータスとバー画像データを持ってくる
 	S_SelectWeaponStat stat = SCENEMGR.GetSelectedWeaponStat((E_WeaponName)m_weaponSelectIndex);

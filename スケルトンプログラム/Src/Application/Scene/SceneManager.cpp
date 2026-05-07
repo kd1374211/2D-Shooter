@@ -84,7 +84,8 @@ C_SceneManager::~C_SceneManager()
 void C_SceneManager::Init()
 {
 	LoadSelectWeaponData();
-	LoadFontsData();
+	LoadTextsData();
+	LoadButtonData();
 	LoadTex();
 }
 
@@ -117,7 +118,7 @@ void C_SceneManager::LoadSelectWeaponData()
 	}
 }
 
-void C_SceneManager::LoadFontsData()
+void C_SceneManager::LoadTextsData()
 {
 	FILE* fp = nullptr;
 
@@ -132,17 +133,17 @@ void C_SceneManager::LoadFontsData()
 			S_TextsData data;
 			float R, G, B, A;
 			
-			fscanf_s(fp, "%d,%d,%[^,],%f,%f,%f,%f,%f,%f,%f,", 
+			if (fscanf_s(fp, "%d,%d,%[^,],%f,%f,%f,%f,%f,%f,%f,",
 				&sceneType,
 				&data.m_textTag,
-				data.m_str,STRLENG,
+				data.m_str, STRLENG,
 				&data.m_pos.x,
 				&data.m_pos.y,
 				&data.m_scale,
 				&R,
 				&G,
 				&B,
-				&A);
+				&A) == EOF)break;
 
 			data.m_color = { R,G,B,A };
 			m_sceneTexts[sceneType].push_back(data);
@@ -150,6 +151,64 @@ void C_SceneManager::LoadFontsData()
 
 		fclose(fp);
 	}
+}
+
+void C_SceneManager::LoadButtonData()
+{
+	FILE* fp = nullptr;
+
+	if (fopen_s(&fp, "Data/Scene/ButtonTexData.csv", "r") == 0)
+	{
+		char dummy[250] = {};
+
+		for (int i = 0;i < (int)E_ButtonState::Max;i++)
+		{
+			char name[STRLENG] = {};
+
+			if (fgets(dummy, 250, fp) != nullptr)//1行読み
+			{
+				char path[STRLENG] = {};
+				
+				fscanf_s(fp, "%[^,],%[^,],",
+					name, STRLENG,
+					path, STRLENG
+				);
+
+				m_buttonTex[i].Load(path);
+			}
+		}
+
+		fclose(fp);
+	}
+
+	if (fopen_s(&fp, "Data/Scene/ButtonPosData.csv", "r") == 0)
+	{
+		char dummy[250] = {};
+
+		for (int i = 0;i < (int)E_GameButtons::Max;i++)
+		{
+			char name[STRLENG] = {};
+
+			if (fgets(dummy, 250, fp) != nullptr)//1行読み
+			{
+				char path[STRLENG] = {};
+				Math::Vector2 scale;
+
+				fscanf_s(fp, "%[^,],%f,%f,%f,%f,",
+					name, STRLENG,
+					&m_sceneButtons[i].m_pos.x,
+					&m_sceneButtons[i].m_pos.y,
+					&scale.x,
+					&scale.y
+				);
+
+				m_sceneButtons[i].m_texDrawSize = BUTTONTEXSIZE * scale;
+			}
+		}
+
+		fclose(fp);
+	}
+
 }
 
 void C_SceneManager::LoadTex()
@@ -167,16 +226,17 @@ void C_SceneManager::LoadTex()
 			if (fgets(dummy, 250, fp) != nullptr)//1行読み
 			{
 				char path[STRLENG] = {};
-				float scale;
+				Math::Vector2 scale;
 
-				fscanf_s(fp, "%[^,],%[^,],%f,%f,%f,%f,%f,",
+				fscanf_s(fp, "%[^,],%[^,],%f,%f,%f,%f,%f,%f",
 					name, STRLENG,
-					path,STRLENG,
+					path, STRLENG,
 					&m_sceneTex[i].m_texPos.x,
 					&m_sceneTex[i].m_texPos.y,
 					&m_sceneTex[i].m_texSize.x,
 					&m_sceneTex[i].m_texSize.y,
-					&scale
+					&scale.x,
+					&scale.y
 				);
 
 				m_sceneTex[i].m_texDrawSize = m_sceneTex[i].m_texSize * scale;
@@ -193,5 +253,10 @@ void C_SceneManager::Release()
 	for (int i = 0;i < (int)E_GameTextures::Max;i++)
 	{
 		m_sceneTex[i].m_tex.Release();
+	}
+
+	for (int i = 0;i < (int)E_ButtonState::Max;i++)
+	{
+		m_buttonTex[i].Release();
 	}
 }

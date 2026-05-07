@@ -43,6 +43,30 @@ void C_ResultScene::Draw()
 	Math::Rectangle rec = { 0,0,(long)ResultWindow->m_texSize.x,(long)ResultWindow->m_texSize.y };
 	SHADER.m_spriteShader.DrawTex(&ResultWindow->m_tex, ResultWindow->m_texPos.x, ResultWindow->m_texPos.y, ResultWindow->m_texDrawSize.x, ResultWindow->m_texDrawSize.y, &rec);
 
+	//ボタン
+
+	//もう一度プレイ
+	S_ButtonPosData* playAgain = nullptr;
+	
+	//画像
+	KdTexture* tex = nullptr;
+	tex = SCENEMGR.GetButtonTex(E_ButtonState::Active);
+
+	playAgain = SCENEMGR.GetButtonData(E_GameButtons::Result_PlayAgain);
+	rec = { 0,0,(long)BUTTONTEXSIZE.x,(long)BUTTONTEXSIZE.y };
+	SHADER.m_spriteShader.DrawTex(tex, playAgain->m_pos.x, playAgain->m_pos.y, playAgain->m_texDrawSize.x, playAgain->m_texDrawSize.y, &rec);
+
+	//タイトルに戻る
+	S_ButtonPosData* returnTitle = nullptr;
+
+	//画像
+	tex = nullptr;
+	tex = SCENEMGR.GetButtonTex(E_ButtonState::Active);
+
+	returnTitle = SCENEMGR.GetButtonData(E_GameButtons::Result_Title);
+	rec = { 0,0,(long)BUTTONTEXSIZE.x,(long)BUTTONTEXSIZE.y };
+	SHADER.m_spriteShader.DrawTex(tex, returnTitle->m_pos.x, returnTitle->m_pos.y, returnTitle->m_texDrawSize.x, returnTitle->m_texDrawSize.y, &rec);
+
 	//Result文字
 	for (auto& itr : SCENEMGR.GetSceneTextsData(E_SceneTypeTag::Result))
 	{

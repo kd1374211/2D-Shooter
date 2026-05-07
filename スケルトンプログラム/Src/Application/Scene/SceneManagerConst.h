@@ -3,14 +3,29 @@
 
 enum class E_GameTextures
 {
-	Title,
-	StartButton,
 	StatWindow,
 	StatBar,
+	SelectArrow,
 	IngameTopBar,
 	TopBarBack,
 	ResultWindow,
 	Transition,
+	Max
+};
+
+enum class E_GameButtons
+{
+	Select_Start,
+	Result_PlayAgain,
+	Result_Title,
+	Max
+};
+
+enum class E_ButtonState
+{
+	Idle,
+	Hover,
+	Active,
 	Max
 };
 
@@ -25,6 +40,13 @@ struct S_SceneTexData
 	KdTexture m_tex;
 	Math::Vector2 m_texPos;
 	Math::Vector2 m_texSize;
+	Math::Vector2 m_texDrawSize;
+};
+
+const Math::Vector2 BUTTONTEXSIZE = { 114.0f,38.0f };
+struct S_ButtonPosData
+{
+	Math::Vector2 m_pos;
 	Math::Vector2 m_texDrawSize;
 };
 
