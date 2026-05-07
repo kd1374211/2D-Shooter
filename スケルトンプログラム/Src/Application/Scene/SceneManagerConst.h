@@ -6,8 +6,9 @@ enum class E_GameTextures
 	StatWindow,
 	StatBar,
 	SelectArrow,
-	IngameTopBar,
-	TopBarBack,
+	TopBar,
+	ClockIcon,
+	FrameBar,
 	ResultWindow,
 	Transition,
 	Max

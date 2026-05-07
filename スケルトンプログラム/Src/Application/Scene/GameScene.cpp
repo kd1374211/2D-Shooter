@@ -96,22 +96,28 @@ void C_GameScene::Draw()
 	SHADER.m_spriteShader.SetMatrix(Math::Matrix::Identity);
 
 	//バー
-	S_SceneTexData* topBar = SCENEMGR.GetSceneTexData(E_GameTextures::IngameTopBar);
+	S_SceneTexData* topBar = SCENEMGR.GetSceneTexData(E_GameTextures::TopBar);
 	Math::Rectangle rec = { 0,0,(long)topBar->m_texSize.x,(long)topBar->m_texSize.y };
 	SHADER.m_spriteShader.DrawTex(&topBar->m_tex, topBar->m_texPos.x, topBar->m_texPos.y, topBar->m_texDrawSize.x, topBar->m_texDrawSize.y, &rec);
 
-	//タイム
+	//時計
+	S_SceneTexData* clock = SCENEMGR.GetSceneTexData(E_GameTextures::ClockIcon);
+	rec = { 0,0,(long)clock->m_texSize.x,(long)clock->m_texSize.y };
+	SHADER.m_spriteShader.DrawTex(&clock->m_tex, clock->m_texPos.x, clock->m_texPos.y, clock->m_texDrawSize.x, clock->m_texDrawSize.y, &rec);
+
+	//時間取得
 	int timeF = TIMEMGR.GetTime();
-	
-	//フレーム
+
+	//フレームバー
 	int flame = timeF % 60;
-	S_SceneTexData* barBack = SCENEMGR.GetSceneTexData(E_GameTextures::TopBarBack);
-	rec = { 0,(long)(barBack->m_texSize.y * (flame / 60.0f)),(long)barBack->m_texSize.x,(long)(barBack->m_texSize.y) };
-	SHADER.m_spriteShader.DrawTex(&barBack->m_tex, barBack->m_texPos.x, barBack->m_texPos.y, barBack->m_texDrawSize.x, barBack->m_texDrawSize.y, &rec);
+
+	S_SceneTexData* frameBar = SCENEMGR.GetSceneTexData(E_GameTextures::FrameBar);
+	rec = { (long)(flame / 10 * frameBar->m_texSize.x),0,(long)frameBar->m_texSize.x,(long)frameBar->m_texSize.y };
+	SHADER.m_spriteShader.DrawTex(&frameBar->m_tex, frameBar->m_texPos.x, frameBar->m_texPos.y, frameBar->m_texDrawSize.x, frameBar->m_texDrawSize.y, &rec);
 	
 	//秒
 	int sec = timeF / 60;
-	FONTMGR.DrawNumber({ -27,285 }, sec, 0, 2.0f, Math::Color(1, 1, 1, 1));
+	FONTMGR.DrawNumber({ 30,310 }, sec, 2, 3.0f, Math::Color(1, 1, 1, 1));
 
 	//得点
 	FONTMGR.DrawNumber({ 470,300 }, SCOREMGR.GetScore(), 5, 3.5f, Math::Color(1, 1, 1, 1));
