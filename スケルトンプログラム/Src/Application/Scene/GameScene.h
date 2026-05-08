@@ -12,11 +12,15 @@ public:
 	void Update()override;
 	void Draw()override;
 
+	void UpdateTimeColor();
+
 private:
 
 	const Math::Vector2 PLAYERSPAWNPOS = { -550,-60.0f };
 
 	//背景
 	C_Background* m_back;
+
+	Math::Color m_timeColor;
 
 };

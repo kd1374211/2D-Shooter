@@ -12,7 +12,7 @@
 
 #include "../Chara/Enemy/EnemyConst.h"
 
-C_GameScene::C_GameScene() :m_back(nullptr)
+C_GameScene::C_GameScene() :m_back(nullptr), m_timeColor(1, 1, 1, 1)
 {
 	SetSceneTag(E_SceneTypeTag::Game);
 	m_back = new C_Background();
@@ -36,6 +36,10 @@ C_GameScene::~C_GameScene()
 
 void C_GameScene::Update()
 {
+	//先に減速管理
+	TIMEMGR.CheckTimeState();
+	TIMEMGR.Update();
+
 	if (!SCENEMGR.GetIsStop())
 	{
 		if (GetAsyncKeyState('4') & 0x8000)
@@ -68,12 +72,12 @@ void C_GameScene::Update()
 
 		if (GetAsyncKeyState('3') & 0x8000)
 		{
-			SCOREMGR.AddScore(123);
+			SCOREMGR.AddScore(100);
 		}
 
 		if (GetAsyncKeyState('5') & 0x8000)
 		{
-			TIMEMGR.AddTimeCharge(1);
+			TIMEMGR.AddTimeCharge(10);
 		}
 	}
 
@@ -86,9 +90,9 @@ void C_GameScene::Update()
 	CHARAMGR.CheckEnemyDelete();
 	BULLETMGR.CheckBulletDelete();
 
-	TIMEMGR.Update();
 	SCOREMGR.Update();
 	m_back->Update();
+	UpdateTimeColor();
 }
 
 void C_GameScene::Draw()
@@ -149,8 +153,26 @@ void C_GameScene::Draw()
 
 	//秒
 	int sec = timeF / 60;
-	FONTMGR.DrawNumber({ 30,310 }, sec, 2, 3.0f, Math::Color(1, 1, 1, 1));
+	FONTMGR.DrawNumber({ 30,310 }, sec, 2, 3.0f, m_timeColor);
 
 	//得点
 	FONTMGR.DrawNumber({ 490,280 }, SCOREMGR.GetScore(), 5, SCOREMGR.GetIsScoreAdded() ? 3.5f : 3.0f, Math::Color(1, 1, 1, 1));
+}
+
+void C_GameScene::UpdateTimeColor()
+{
+	switch (TIMEMGR.GetTimeChange())
+	{
+	case E_TimeChange::None:
+		if (m_timeColor.x < 1.0f)m_timeColor.x += 0.1f;
+		if (m_timeColor.y < 1.0f)m_timeColor.y += 0.1f;
+		if (m_timeColor.z < 1.0f)m_timeColor.z += 0.1f;
+		break;
+	case E_TimeChange::Add:
+		m_timeColor = { 0,1,0,1 };
+		break;
+	case E_TimeChange::Sub:
+		m_timeColor = { 1,0,0,1 };
+		break;
+	}
 }

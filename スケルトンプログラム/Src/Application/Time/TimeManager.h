@@ -1,17 +1,25 @@
 #pragma once
 
+enum class E_TimeState
+{
+	Normal,
+	Half,
+	Stop
+};
+
+enum class E_TimeChange
+{
+	None,
+	Sub,
+	Add
+};
+
 class C_TimeManager
 {
 public:
 
-	enum class E_TimeState
-	{
-		Normal,
-		Half,
-		Stop
-	};
-
 	void Reset();
+	void CheckTimeState();
 	void Update();
 	void DrawTimeCharge();
 	
@@ -24,10 +32,16 @@ public:
 	void AddTimeCharge(int a_amount);
 	static const int TIMECHARGE_MAX = 300;
 
+	//セッター
+	void SetTimeState(E_TimeState a_state);
+
 	//ゲッター
 	int GetTime()const { return(m_timeF); }
 	int GetSurviveTime()const { return(m_surviveTimeF); }
 	int GetTimeCharge()const { return(m_timeChargeF); }
+	E_TimeState GetTimeState()const { return(m_nowTimeState); }
+	bool GetHalfTime()const { return(m_countF_state % 2 == 0 ? true : false); }
+	E_TimeChange GetTimeChange()const { return(m_timeChange); }
 
 private:
 
@@ -47,6 +61,7 @@ private:
 
 	//時間の流れ
 	E_TimeState m_nowTimeState;
+	int m_countF_state;
 
 	//生存時間
 	static const int MAXSURVIVETIME = 359999;
@@ -58,6 +73,9 @@ private:
 
 	//残り時間（F）
 	int m_timeF;
+
+	//時間増減フラグ
+	E_TimeChange m_timeChange;
 
 	C_TimeManager() :m_timeF(0), m_surviveTimeF(0), m_timeChargeF(0), m_nowTimeState(E_TimeState::Normal) { Load(); }
 	~C_TimeManager() { Release(); }

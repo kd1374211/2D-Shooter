@@ -1,11 +1,15 @@
 #include "BulletBase.h"
 #include "../Const/ScreenConst.h"
+#include "../Time/TimeManager.h"
 
 void C_BulletBase::Update()
 {
-	m_pos += m_speed * m_shotSpeed;
+	if (TIMEMGR.GetTimeState() == E_TimeState::Normal || TIMEMGR.GetTimeState() == E_TimeState::Half && TIMEMGR.GetHalfTime())
+	{
+		m_pos += m_speed * m_shotSpeed;
 
-	UpdateAnimCnt();
+		UpdateAnimCnt();
+	}
 
 	Math::Matrix trans = Math::Matrix::CreateTranslation(m_pos.x, m_pos.y, 0);
 	Math::Matrix scale = Math::Matrix::CreateScale(m_texData->m_texScale);

@@ -8,6 +8,8 @@ public:
 	C_AutoCannon_Bullet(Math::Vector2 a_pos, float a_speed, float a_shotAngle);
 	~C_AutoCannon_Bullet()override {};
 
+	void Update()override;
+
 	void OnHit()override;
 
 };

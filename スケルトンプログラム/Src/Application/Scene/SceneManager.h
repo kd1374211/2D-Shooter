@@ -20,6 +20,7 @@ public:
 	void SetSelectedWeapon(E_WeaponName a_weapon) { m_selectedWeapon = a_weapon; }//選択武器種管理
 
 	//ゲッター
+	C_SceneBase* GetCurrentScene() { return(m_pCurrentScene); }
 	bool GetIsStop()const { return(m_isStop); }
 	E_WeaponName GetSelectedWeapon()const { return(m_selectedWeapon); }
 	S_SelectWeaponStat GetSelectedWeaponStat(E_WeaponName a_weapon)const { return(m_weaponStatData[a_weapon]); }

@@ -1,6 +1,7 @@
 #include "Fighter.h"
 #include "../../CharaManager.h"
 #include "../../../Bullet/BulletManager.h"
+#include "../../../Time/TimeManager.h"
 
 C_Fighter::C_Fighter(Math::Vector2 a_pos)
 {
@@ -15,45 +16,56 @@ void C_Fighter::Update()
 {
 	if (!CheckIsDead())
 	{
-		m_countF++;
-		if (m_countF % ATTACKSPAN == 0)
+		if (TIMEMGR.GetTimeState() == E_TimeState::Normal || TIMEMGR.GetTimeState() == E_TimeState::Half && TIMEMGR.GetHalfTime())
 		{
-			ChangeAction(E_EnemyAction::Attack);
+			m_countF++;
+			if (m_countF % ATTACKSPAN == 0)
+			{
+				ChangeAction(E_EnemyAction::Attack);
+			}
+
+			CalcMove();
+
+			//画面端
+			if (m_pos.x > MOVEOUTMAX.x || m_pos.x < MOVEOUTMIN.x)
+			{
+				m_isEnd = true;
+			}
+			else if (m_pos.y > MOVEOUTMAX.x || m_pos.y < MOVEOUTMIN.x)
+			{
+				m_isEnd = true;
+			}
+
+			//アニメーション変化
+			UpdateAnimCnt();
+
+			//攻撃
+			if (m_nowAction == E_EnemyAction::Attack)
+			{
+				if (m_countF % ATTACKSPAN == SHOTF)
+				{
+					for (int i = 0;i < SHOTCNT;i++)
+					{
+						BULLETMGR.SpawnBullet(m_pos, BULLETSPEED, SHOTANGLE_BASE + i * SHOTANGLE_DIST, E_BulletType::B_FighterGun);
+					}
+				}
+			}
+
+			//攻撃終了・死亡アニメーション終了
+			CheckActionEnd();
 		}
-
-		CalcMove();
 	}
-
-	//画面端
-	if (m_pos.x > MOVEOUTMAX.x || m_pos.x < MOVEOUTMIN.x)
+	else
 	{
-		m_isEnd = true;
-	}
-	else if (m_pos.y > MOVEOUTMAX.x || m_pos.y < MOVEOUTMIN.x)
-	{
-		m_isEnd = true;
-	}
+		//アニメーション変化
+		UpdateAnimCnt();
 
-	//アニメーション変化
-	UpdateAnimCnt();
-
+		//攻撃終了・死亡アニメーション終了
+		CheckActionEnd();
+	}
+	
 	//点滅チェック
 	UpdateTexAlpha();
-
-	//攻撃
-	if (m_nowAction == E_EnemyAction::Attack)
-	{
-		if (m_countF % ATTACKSPAN == SHOTF)
-		{
-			for (int i = 0;i < SHOTCNT;i++)
-			{
-				BULLETMGR.SpawnBullet(m_pos, BULLETSPEED, SHOTANGLE_BASE + i * SHOTANGLE_DIST, E_BulletType::B_FighterGun);
-			}
-		}
-	}
-
-	//攻撃終了・死亡アニメーション終了
-	CheckActionEnd();
 
 	//Matrix
 	Math::Matrix trans = Math::Matrix::CreateTranslation(m_pos.x, m_pos.y, 0);

@@ -63,6 +63,40 @@ void C_Player::Update()
 
 		CalcMove();
 
+		//タイムゲージ
+		if (TIMEMGR.GetTimeState() == E_TimeState::Normal)
+		{
+			//シフトを押したとき
+			if (KEYMGR.GetKeyState(E_KeyChecks::Shift) == E_KeyState::Pressed)
+			{
+				//タイムゲージを見る
+				if (TIMEMGR.GetTimeCharge() > 0)
+				{
+					//満タンなら
+					if (TIMEMGR.GetTimeCharge() == TIMEMGR.TIMECHARGE_MAX)
+					{
+						//停止
+						TIMEMGR.SetTimeState(E_TimeState::Stop);
+					}
+					else
+					{
+						//減速
+						TIMEMGR.SetTimeState(E_TimeState::Half);
+					}
+				}
+			}
+		}
+		else if (TIMEMGR.GetTimeState() == E_TimeState::Half)
+		{
+			//シフトを離したとき
+			if (KEYMGR.GetKeyState(E_KeyChecks::Shift) == E_KeyState::Released)
+			{
+				TIMEMGR.SetTimeState(E_TimeState::Normal);
+			}
+		}
+
+		
+
 		//画面端
 		if (m_pos.x > POSMAX.x)m_pos.x = POSMAX.x;
 		else if (m_pos.x < POSMIN.x)m_pos.x = POSMIN.x;

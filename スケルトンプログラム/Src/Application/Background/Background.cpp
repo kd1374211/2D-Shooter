@@ -1,9 +1,24 @@
 #include "Background.h"
 #include "../Const/ScreenConst.h"
+#include "../Scene/SceneManager.h"
+#include "../Scene/SceneBase.h"
+#include "../Time/TimeManager.h"
 
 void C_Background::Update()
 {
-	m_posX += MOVESPEED;
+	//ゲームシーン時のみ時間の影響を受ける
+	if (SCENEMGR.GetCurrentScene()->GetSceneTag() == E_SceneTypeTag::Game)
+	{
+		if (TIMEMGR.GetTimeState() == E_TimeState::Normal || TIMEMGR.GetTimeState() == E_TimeState::Half && TIMEMGR.GetHalfTime())
+		{
+			m_posX += MOVESPEED;
+		}
+	}
+	else
+	{
+		m_posX += MOVESPEED;
+	}
+
 	if (m_posX > m_texWidth)m_posX -= m_texWidth;
 }
 

@@ -15,8 +15,21 @@ C_AutoCannon_Bullet::C_AutoCannon_Bullet(Math::Vector2 a_pos, float a_speed, flo
 	m_texAngle = PLAYERANGLE;
 }
 
+void C_AutoCannon_Bullet::Update()
+{
+	m_pos += m_speed * m_shotSpeed;
+
+	UpdateAnimCnt();
+
+	Math::Matrix trans = Math::Matrix::CreateTranslation(m_pos.x, m_pos.y, 0);
+	Math::Matrix scale = Math::Matrix::CreateScale(m_texData->m_texScale);
+	Math::Matrix rotat = Math::Matrix::CreateRotationZ(DirectX::XMConvertToRadians(m_texAngle));
+
+	m_mat = rotat * scale * trans;
+}
+
 void C_AutoCannon_Bullet::OnHit()
 {
-	TIMEMGR.AddTimeCharge(m_statData->m_damage);
+	TIMEMGR.AddTimeCharge(m_statData->m_damage * 2);
 	m_isEnd = true;
 }
