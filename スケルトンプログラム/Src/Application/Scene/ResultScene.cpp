@@ -69,7 +69,7 @@ void C_ResultScene::Draw()
 	m_back->Draw();
 
 	//ウィンドウ画像
-	S_SceneTexData* ResultWindow = SCENEMGR.GetSceneTexData(E_GameTextures::ResultWindow);
+	S_SceneTexData* ResultWindow = SCENEMGR.GetSceneTexData(E_GameTextures::Result_Window);
 	Math::Rectangle rec = { 0,0,(long)ResultWindow->m_texSize.x,(long)ResultWindow->m_texSize.y };
 	SHADER.m_spriteShader.DrawTex(&ResultWindow->m_tex, ResultWindow->m_texPos.x, ResultWindow->m_texPos.y, ResultWindow->m_texDrawSize.x, ResultWindow->m_texDrawSize.y, &rec);
 
@@ -184,7 +184,7 @@ void C_ResultScene::Draw()
 
 	if (m_countF >= SCOREF)
 	{
-		int score = SCOREMGR.GetScore();
+		int score = SCOREMGR.GetTargetScore();
 		FONTMGR.DrawNumber({ -80,-30 }, score, 5, 2, { 0.2f,0.9f,0,1 });
 	}
 	else

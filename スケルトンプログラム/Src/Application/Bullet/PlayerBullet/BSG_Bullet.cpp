@@ -1,5 +1,6 @@
 #include "BSG_Bullet.h"
 #include "../BulletManager.h"
+#include "../../Time/TimeManager.h"
 
 C_BigSpaceGun_Bullet::C_BigSpaceGun_Bullet(Math::Vector2 a_pos, float a_speed, float a_shotAngle)
 {
@@ -12,4 +13,10 @@ C_BigSpaceGun_Bullet::C_BigSpaceGun_Bullet(Math::Vector2 a_pos, float a_speed, f
 	m_texData = BULLETMGR.GetTexData(E_BulletType::B_BigSpaceGun);
 	m_statData = BULLETMGR.GetStatData(E_BulletType::B_BigSpaceGun);
 	m_texAngle = PLAYERANGLE;
+}
+
+void C_BigSpaceGun_Bullet::OnHit()
+{
+	TIMEMGR.AddTimeCharge(m_statData->m_damage);
+	m_isEnd = true;
 }

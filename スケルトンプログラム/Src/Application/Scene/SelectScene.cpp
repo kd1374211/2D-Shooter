@@ -79,7 +79,7 @@ void C_SelectScene::Draw()
 	BULLETMGR.Draw();
 
 	//ステータスウィンドウ
-	S_SceneTexData* statWindow = SCENEMGR.GetSceneTexData(E_GameTextures::StatWindow);
+	S_SceneTexData* statWindow = SCENEMGR.GetSceneTexData(E_GameTextures::Select_StatWindow);
 	Math::Rectangle rec = { 0,0,(long)statWindow->m_texSize.x,(long)statWindow->m_texSize.y };
 	SHADER.m_spriteShader.DrawTex(&statWindow->m_tex, statWindow->m_texPos.x, statWindow->m_texPos.y, statWindow->m_texDrawSize.x, statWindow->m_texDrawSize.y, &rec);
 
@@ -101,7 +101,7 @@ void C_SelectScene::Draw()
 	SHADER.m_spriteShader.DrawTex(tex, selectButton->m_pos.x, selectButton->m_pos.y, selectButton->m_texDrawSize.x, selectButton->m_texDrawSize.y, &rec);
 
 	//矢印
-	S_SceneTexData* selectArrow = SCENEMGR.GetSceneTexData(E_GameTextures::SelectArrow);
+	S_SceneTexData* selectArrow = SCENEMGR.GetSceneTexData(E_GameTextures::Select_Arrow);
 	rec = { 0,0,(long)selectArrow->m_texSize.x,(long)selectArrow->m_texSize.y };
 
 	//一番左じゃなければ
@@ -118,7 +118,7 @@ void C_SelectScene::Draw()
 
 	//武器のステータスとバー画像データを持ってくる
 	S_SelectWeaponStat stat = SCENEMGR.GetSelectedWeaponStat((E_WeaponName)m_weaponSelectIndex);
-	S_SceneTexData* statBar = SCENEMGR.GetSceneTexData(E_GameTextures::StatBar);
+	S_SceneTexData* statBar = SCENEMGR.GetSceneTexData(E_GameTextures::Select_StatBar);
 
 	//各ステータス
 	rec = { (long)((WEAPONSTAT_MAX - stat.m_damage) * statBar->m_texSize.x),0,(long)statBar->m_texSize.x,(long)statBar->m_texSize.y };

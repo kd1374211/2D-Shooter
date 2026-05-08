@@ -83,16 +83,16 @@ void C_HitCheck::PlayerBulletHit()
 			//プレイヤー無敵チェック
 			if (player->GetIsInvincible())
 			{
-				//弾End
-				itr->SetIsEnd(true);
+				//弾Hit
+				itr->OnHit();
 			}
 			else
 			{
 				//プレイヤー被弾
 				player->GetHit();
 
-				//弾End
-				itr->SetIsEnd(true);
+				//弾Hit
+				itr->OnHit();
 			}
 		}
 	}
@@ -129,7 +129,7 @@ void C_HitCheck::EnemyBulletHit()
 			if (sqrt(Dist.x * Dist.x + Dist.y * Dist.y) < EnemyHitRadius + BulletHitRadius)
 			{
 				itr_e->GetHit(itr_b->GetDamage());
-				itr_b->SetIsEnd(true);
+				itr_b->OnHit();
 			}
 		}
 	}

@@ -46,6 +46,14 @@ void C_TitleScene::Draw()
 
 	for (auto &itr : SCENEMGR.GetSceneTextsData(E_SceneTypeTag::Title))
 	{
-		FONTMGR.DrawWord(itr.m_pos, itr.m_str, itr.m_scale, itr.m_color);
+		if (itr.m_textTag == E_VariableTextsID::Title_PressEnter)
+		{
+			Math::Color color = { itr.m_color.x,itr.m_color.y,itr.m_color.z,m_startButtonAlpha };
+			FONTMGR.DrawWord(itr.m_pos, itr.m_str, itr.m_scale, color);
+		}
+		else
+		{
+			FONTMGR.DrawWord(itr.m_pos, itr.m_str, itr.m_scale, itr.m_color);
+		}
 	}
 }

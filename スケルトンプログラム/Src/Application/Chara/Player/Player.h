@@ -39,11 +39,10 @@ private:
 	bool m_isInvincible;
 	int m_invincibleF;
 
-	static const int TURNF = 30;
-
 	//操作可能か
 	bool m_isBot;
 	int m_countF;
+	static const int TURNF = 30;
 };
 
 #define SELECT m_selectTexData

@@ -37,6 +37,11 @@ void C_BulletBase::UpdateAnimCnt()
 	}
 }
 
+void C_BulletBase::OnHit()
+{
+	m_isEnd = true;
+}
+
 bool C_BulletBase::GetIsInScreen()
 {
 	if (m_pos.x > SCREENSIZEHALF.x || m_pos.x < -SCREENSIZEHALF.x)return(false);

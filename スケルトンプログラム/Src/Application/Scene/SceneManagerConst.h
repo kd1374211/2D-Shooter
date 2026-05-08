@@ -3,13 +3,13 @@
 
 enum class E_GameTextures
 {
-	StatWindow,
-	StatBar,
-	SelectArrow,
-	TopBar,
-	ClockIcon,
-	FrameBar,
-	ResultWindow,
+	Select_StatWindow,
+	Select_StatBar,
+	Select_Arrow,
+	Game_TopBar,
+	Game_ClockIcon,
+	Game_FrameBar,
+	Result_Window,
 	Transition,
 	Max
 };
@@ -33,7 +33,9 @@ enum class E_ButtonState
 enum class E_VariableTextsID
 {
 	None,
+	Title_PressEnter,
 	Select_SelectWeapon,
+	Game_TimeCharge,
 	Result_Rank,
 	Result_ButtonTexts
 };

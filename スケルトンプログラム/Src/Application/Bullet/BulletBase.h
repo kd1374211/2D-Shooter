@@ -18,6 +18,9 @@ public:
 	//アニメーション
 	void UpdateAnimCnt();
 
+	//当たった時
+	virtual void OnHit();
+
 	//セッター
 	void SetIsEnd(bool a_isEnd) { m_isEnd = a_isEnd; }
 

@@ -4,11 +4,15 @@ class C_ScoreManager
 {
 public:
 
-	void ResetScore() { m_score = 0; }
+	void ResetScore();
 	void AddScore(int a_score);
-	void SubScore(int a_score);
+	
+	void Update();
 
+	//ゲッター
 	int GetScore()const { return(m_score); }
+	int GetTargetScore()const { return(m_targetScore); }
+	bool GetIsScoreAdded()const { return(m_isScoreAdded); }
 
 private:
 
@@ -17,8 +21,15 @@ private:
 
 	//得点
 	int m_score;
+	int m_targetScore;
 
-	C_ScoreManager() :m_score(0) {}
+	//1フレームごとに増える点
+	int m_scoreAdd;
+
+	//このフレームで点が増えたか
+	bool m_isScoreAdded;
+
+	C_ScoreManager() :m_score(0), m_targetScore(0), m_scoreAdd(0), m_isScoreAdded(false) {}
 	~C_ScoreManager() {}
 
 public:
