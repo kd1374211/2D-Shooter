@@ -1,6 +1,7 @@
 #include "EnemyBase.h"
 #include "../../Time/TimeManager.h"
 #include "../../Score/ScoreManager.h"
+#include "../../Level/LevelManager.h"
 
 C_EnemyBase::C_EnemyBase() :m_health(0), m_isEnd(false), m_nowAction(E_EnemyAction::Idle), m_countF(0), m_texAlpha(1.0f)
 {
@@ -64,7 +65,7 @@ void C_EnemyBase::GetHit(int a_damage)
 	{
 		m_texAlpha = 1.0f;
 		ChangeAction(E_EnemyAction::Dead);
-		TIMEMGR.AddTime(m_statData.m_timeAddOnKill);
+		TIMEMGR.AddTime(m_statData.m_timeAddOnKill * LEVELMGR.GetTimeMulti());
 		SCOREMGR.AddScore(m_statData.m_scoreOnKill);
 	}
 }

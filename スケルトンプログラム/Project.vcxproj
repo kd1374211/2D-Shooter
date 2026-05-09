@@ -170,6 +170,7 @@
     <ClInclude Include="Src\Application\Chara\CharaBase.h" />
     <ClInclude Include="Src\Application\Chara\CharaManager.h" />
     <ClInclude Include="Src\Application\Chara\CharaManagerConst.h" />
+    <ClInclude Include="Src\Application\Chara\Enemy\Bomber\Bomber.h" />
     <ClInclude Include="Src\Application\Chara\Enemy\EnemyBase.h" />
     <ClInclude Include="Src\Application\Chara\Enemy\EnemyConst.h" />
     <ClInclude Include="Src\Application\Chara\Enemy\Fighter\Fighter.h" />
@@ -184,6 +185,7 @@
     <ClInclude Include="Src\Application\Fonts\FontManager.h" />
     <ClInclude Include="Src\Application\Hit\HitCheck.h" />
     <ClInclude Include="Src\Application\Key\KeyStateManager.h" />
+    <ClInclude Include="Src\Application\Level\LevelManager.h" />
     <ClInclude Include="Src\Application\Scene.h" />
     <ClInclude Include="Src\Application\main.h" />
     <ClInclude Include="Src\Application\Scene\GameScene.h" />
@@ -228,6 +230,7 @@
     <ClCompile Include="Src\Application\Bullet\PlayerBullet\BSG_Bullet.cpp" />
     <ClCompile Include="Src\Application\Chara\CharaBase.cpp" />
     <ClCompile Include="Src\Application\Chara\CharaManager.cpp" />
+    <ClCompile Include="Src\Application\Chara\Enemy\Bomber\Bomber.cpp" />
     <ClCompile Include="Src\Application\Chara\Enemy\EnemyBase.cpp" />
     <ClCompile Include="Src\Application\Chara\Enemy\Fighter\Fighter.cpp" />
     <ClCompile Include="Src\Application\Chara\Player\Player.cpp" />
@@ -238,6 +241,7 @@
     <ClCompile Include="Src\Application\Fonts\FontManager.cpp" />
     <ClCompile Include="Src\Application\Hit\HitCheck.cpp" />
     <ClCompile Include="Src\Application\Key\KeyStateManager.cpp" />
+    <ClCompile Include="Src\Application\Level\LevelManager.cpp" />
     <ClCompile Include="Src\Application\Scene.cpp" />
     <ClCompile Include="Src\Application\main.cpp" />
     <ClCompile Include="Src\Application\Scene\GameScene.cpp" />

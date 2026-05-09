@@ -1,29 +1,23 @@
-#include "Fighter.h"
+#include "Bomber.h"
 #include "../../CharaManager.h"
-#include "../../../Bullet/BulletManager.h"
 #include "../../../Time/TimeManager.h"
+#include "../../Player/Player.h"
 
-C_Fighter::C_Fighter(Math::Vector2 a_pos)
+C_Bomber::C_Bomber(Math::Vector2 a_pos) :m_moveAngle(0)
 {
 	m_pos = a_pos;
-	m_move = { -1,0 };
-	m_texData = CHARAMGR.GetBaseTexData(E_CharaName::Fighter);
-	m_statData = CHARAMGR.GetStatData(E_CharaName::Fighter);
+	CalcMoveAngle();
+	m_texData = CHARAMGR.GetBaseTexData(E_CharaName::Bomber);
+	m_statData = CHARAMGR.GetStatData(E_CharaName::Bomber);
 	m_moveSpeed = m_statData.m_moveSpeed;
 }
 
-void C_Fighter::Update()
+void C_Bomber::Update()
 {
 	if (!CheckIsDead())
 	{
 		if (TIMEMGR.GetTimeState() == E_TimeState::Normal || TIMEMGR.GetTimeState() == E_TimeState::Half && TIMEMGR.GetHalfTime())
 		{
-			m_countF++;
-			if (m_countF % ATTACKSPAN == 0)
-			{
-				ChangeAction(E_EnemyAction::Attack);
-			}
-
 			CalcMove();
 
 			//画面端
@@ -39,18 +33,6 @@ void C_Fighter::Update()
 			//アニメーション変化
 			UpdateAnimCnt();
 
-			//攻撃
-			if (m_nowAction == E_EnemyAction::Attack)
-			{
-				if (m_countF % ATTACKSPAN == SHOTF)
-				{
-					for (int i = 0;i < SHOTCNT;i++)
-					{
-						BULLETMGR.SpawnBullet(m_pos, BULLETSPEED, SHOTANGLE_BASE + i * SHOTANGLE_DIST, E_BulletType::B_FighterGun);
-					}
-				}
-			}
-
 			//攻撃終了・死亡アニメーション終了
 			CheckActionEnd();
 		}
@@ -63,19 +45,19 @@ void C_Fighter::Update()
 		//攻撃終了・死亡アニメーション終了
 		CheckActionEnd();
 	}
-	
+
 	//点滅チェック
 	UpdateTexAlpha();
 
 	//Matrix
 	Math::Matrix trans = Math::Matrix::CreateTranslation(m_pos.x, m_pos.y, 0);
 	Math::Matrix scale = Math::Matrix::CreateScale(TEXSCALE);
-	Math::Matrix rotat = Math::Matrix::CreateRotationZ(DirectX::XMConvertToRadians(m_texAngle));
+	Math::Matrix rotat = Math::Matrix::CreateRotationZ(DirectX::XMConvertToRadians(m_moveAngle - m_texAngle));
 
 	m_mat = rotat * scale * trans;
 }
 
-void C_Fighter::Draw()
+void C_Bomber::Draw()
 {
 	//マトリックス
 	SHADER.m_spriteShader.SetMatrix(m_mat);
@@ -95,4 +77,12 @@ void C_Fighter::Draw()
 
 	//リセット
 	SHADER.m_spriteShader.SetMatrix(Math::Matrix::Identity);
+}
+
+void C_Bomber::CalcMoveAngle()
+{
+	Math::Vector2 playerPos = CHARAMGR.GetPlayer()->GetPos();
+	m_moveAngle = DirectX::XMConvertToDegrees(atan2(playerPos.y - m_pos.y, playerPos.x - m_pos.x));
+	m_move.x = cosf(DirectX::XMConvertToRadians(m_moveAngle));
+	m_move.y = sinf(DirectX::XMConvertToRadians(m_moveAngle));
 }

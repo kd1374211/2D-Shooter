@@ -94,6 +94,12 @@
     <Filter Include="Src\Application\Combo">
       <UniqueIdentifier>{d458cdcf-788b-404a-8caa-9998350bf9b4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Application\Level">
+      <UniqueIdentifier>{97e972b6-3e11-49f3-889c-c244b08ad3fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\Chara\Enemy\Bomber">
+      <UniqueIdentifier>{ef6705be-4c0e-420e-9c64-037ea519b664}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Pch.h">
@@ -297,6 +303,12 @@
     <ClInclude Include="Src\Application\Combo\ComboManager.h">
       <Filter>Src\Application\Combo</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Application\Level\LevelManager.h">
+      <Filter>Src\Application\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\Chara\Enemy\Bomber\Bomber.h">
+      <Filter>Src\Application\Chara\Enemy\Bomber</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Pch.cpp">
@@ -439,6 +451,12 @@
     </ClCompile>
     <ClCompile Include="Src\Application\Combo\ComboManager.cpp">
       <Filter>Src\Application\Combo</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\Level\LevelManager.cpp">
+      <Filter>Src\Application\Level</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\Chara\Enemy\Bomber\Bomber.cpp">
+      <Filter>Src\Application\Chara\Enemy\Bomber</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

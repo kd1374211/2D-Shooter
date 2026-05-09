@@ -31,7 +31,7 @@ public:
 	Math::Vector2 GetPos()const { return(m_pos); }
 	float GetHitRadius()const { return(m_statData.m_hitRadius); }
 	S_TexData* GetTexData(E_CharaBaseTexType a_type) { return(&m_texData.m_texDatas.find(a_type)->second); }
-
+	
 protected:
 
 	//画像

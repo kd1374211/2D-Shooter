@@ -9,6 +9,7 @@
 #include "../Time/TimeManager.h"
 #include "../Score/ScoreManager.h"
 #include "../Fonts/FontManager.h"
+#include "../Level/LevelManager.h"
 
 #include "../Chara/Enemy/EnemyConst.h"
 
@@ -17,9 +18,11 @@ C_GameScene::C_GameScene() :m_back(nullptr), m_timeColor(1, 1, 1, 1)
 	SetSceneTag(E_SceneTypeTag::Game);
 	m_back = new C_Background();
 	CHARAMGR.SpawnPlayer(SCENEMGR.GetSelectedWeapon(), PLAYERSPAWNPOS);
+	LEVELMGR.Reset();
 	TIMEMGR.Reset();
 	TIMEMGR.SetTime(60);
 	SCOREMGR.ResetScore();
+	CHARAMGR.RestartGame();
 }
 
 C_GameScene::~C_GameScene()
@@ -36,12 +39,18 @@ C_GameScene::~C_GameScene()
 
 void C_GameScene::Update()
 {
-	//先に減速管理
-	TIMEMGR.CheckTimeState();
-	TIMEMGR.Update();
-
 	if (!SCENEMGR.GetIsStop())
 	{
+		//先に減速管理
+		TIMEMGR.CheckTimeState();
+		TIMEMGR.Update();
+
+		//レベル更新
+		LEVELMGR.Update();
+
+		//召喚
+		CHARAMGR.CheckEnemySpawn();
+
 		if (GetAsyncKeyState('4') & 0x8000)
 		{
 			TIMEMGR.SubTime(TIMEMGR.GetTime());
@@ -54,7 +63,7 @@ void C_GameScene::Update()
 
 		if (KEYMGR.GetKeyState(E_KeyChecks::Enter) == E_KeyState::Pressed)
 		{
-			CHARAMGR.SpawnEnemy({ 640.0f,(float)(rand() % 500 - 250) }, E_CharaName::Fighter);
+			CHARAMGR.SpawnEnemy({ 640.0f,(float)(rand() % 500 - 250) }, E_CharaName::Bomber);
 		}
 
 		if (GetAsyncKeyState('1') & 0x8000)
@@ -67,7 +76,7 @@ void C_GameScene::Update()
 
 		if (GetAsyncKeyState('2') & 0x8000)
 		{
-			SCOREMGR.AddScore(1);
+			TIMEMGR.SetTime(60);
 		}
 
 		if (GetAsyncKeyState('3') & 0x8000)
@@ -91,6 +100,7 @@ void C_GameScene::Update()
 	BULLETMGR.CheckBulletDelete();
 
 	SCOREMGR.Update();
+
 	m_back->Update();
 	UpdateTimeColor();
 }

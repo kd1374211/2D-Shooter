@@ -2,6 +2,8 @@
 #include "../Const/TextureConst.h"
 #include "Enemy/EnemyConst.h"
 #include "Player/Player.h"
+#include "../Level/LevelManager.h"
+#include "../Time/TimeManager.h"
 
 void C_CharaManager::Update()
 {
@@ -29,6 +31,45 @@ void C_CharaManager::Draw()
 	if (m_player)m_player->Draw();
 }
 
+void C_CharaManager::CheckEnemySpawn()
+{
+	if (TIMEMGR.GetTimeState() == E_TimeState::Normal || TIMEMGR.GetTimeState() == E_TimeState::Half && TIMEMGR.GetHalfTime())
+	{
+		//フレーム更新
+		m_seedF++;
+
+		//召喚チェック
+		for (auto& itr : m_nowSeedData)
+		{
+			if (m_seedF == itr.m_spawnF)
+			{
+				SpawnEnemy(itr.m_pos, itr.m_name);
+			}
+		}
+	}
+
+	//フレームが最大ならシード再検索
+	if (m_seedF >= FRAMES_ONESEED)
+	{
+		EnemySeedRand();
+		m_seedF = 0;
+	}
+}
+
+void C_CharaManager::EnemySeedRand()
+{
+	int randMax = 0;
+	for (auto &itr : m_seedData)
+	{
+		if (itr.m_minLevel > LEVELMGR.GetLevel())break;
+		randMax++;
+	}
+	if (randMax == 0)return;
+
+	int a = rand() % randMax;
+	m_nowSeedData = m_seedData[a].m_enemy;
+}
+
 void C_CharaManager::CheckEnemyDelete()
 {
 	if (!m_enemy.empty())
@@ -52,6 +93,12 @@ void C_CharaManager::ClearChara()
 {
 	DeletePlayer();
 	ClearEnemy();
+}
+
+void C_CharaManager::RestartGame()
+{
+	m_seedF = 0;
+	EnemySeedRand();
 }
 
 void C_CharaManager::SpawnPlayer(E_WeaponName a_weapon, Math::Vector2 a_pos)
@@ -88,6 +135,9 @@ void C_CharaManager::SpawnEnemy(Math::Vector2 a_pos, E_CharaName a_enemy)
 	case E_CharaName::Fighter:
 		m_enemy.push_back(new C_Fighter(a_pos));
 		break;
+	case E_CharaName::Bomber:
+		m_enemy.push_back(new C_Bomber(a_pos));
+		break;
 	default:
 		break;
 	}
@@ -110,6 +160,7 @@ void C_CharaManager::Init()
 	SetBaseTexData();
 	LoadPlayerSelectWeaponTex();
 	LoadCharaStatData();
+	LoadSpawnData();
 }
 
 void C_CharaManager::LoadBaseTex()
@@ -253,6 +304,51 @@ void C_CharaManager::LoadCharaStatData()
 					&m_statData[i].m_timeAddOnKill,
 					&m_statData[i].m_scoreOnKill
 				);
+			}
+		}
+
+		fclose(fp);
+	}
+}
+
+void C_CharaManager::LoadSpawnData()
+{
+	FILE* fp = nullptr;
+
+	if (fopen_s(&fp, "Data/Spawn/EnemySpawnSeedData.csv", "r") == 0)
+	{
+		char dummy[250] = {};
+
+		for (int i = 0;i < SEEDNUM;i++)
+		{
+			int type;
+			S_EnemySeedData seed;
+
+			if (fgets(dummy, 250, fp) != nullptr)//1行読み
+			{
+				fscanf_s(fp, "%d,%d,",
+					&type,
+					&seed.m_minLevel
+				);
+
+				while (1)
+				{
+					S_EnemySpawnData spawn;
+
+					fscanf_s(fp, "%d,", &spawn.m_name);
+
+					if (spawn.m_name == E_CharaName::End)break;
+
+					fscanf_s(fp, "%d,%f,%f,",
+						&spawn.m_spawnF,
+						&spawn.m_pos.x,
+						&spawn.m_pos.y
+					);
+
+					seed.m_enemy.push_back(spawn);
+				}
+
+				m_seedData.push_back(seed);
 			}
 		}
 

@@ -12,11 +12,18 @@ public:
 	void Update();
 	void Draw();
 
+	//召喚
+	void CheckEnemySpawn();
+	void EnemySeedRand();
+
 	//消去確認
 	void CheckEnemyDelete();
 
 	//まとめ処理
 	void ClearChara();
+
+	//リセット
+	void RestartGame();
 
 	//プレイヤー
 	void SpawnPlayer(E_WeaponName a_weapon, Math::Vector2 a_pos);
@@ -43,7 +50,7 @@ public:
 
 private:
 
-	C_CharaManager() { Init(); };
+	C_CharaManager() :m_seedF(0) { Init(); }
 	~C_CharaManager() { Release(); }
 
 	//コンストラクタ（デストラクタ）で呼ぶ奴ら
@@ -52,6 +59,7 @@ private:
 	void SetBaseTexData();
 	void LoadPlayerSelectWeaponTex();
 	void LoadCharaStatData();
+	void LoadSpawnData();
 	void Release();
 
 	//画像
@@ -64,6 +72,13 @@ private:
 
 	//敵コンテナ
 	std::vector<C_EnemyBase*> m_enemy = {};
+
+	//出現情報
+	static const int FRAMES_ONESEED = 300;
+	std::vector<S_EnemySeedData> m_seedData;
+
+	std::vector<S_EnemySpawnData> m_nowSeedData;
+	int m_seedF;
 
 public:
 
