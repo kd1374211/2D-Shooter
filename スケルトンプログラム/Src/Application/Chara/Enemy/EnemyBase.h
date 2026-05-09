@@ -33,8 +33,8 @@ public:
 	void ChangeAction(E_EnemyAction a_action);
 
 	//アニメーション
-	void UpdateAnimCnt()override;
-	void CheckActionEnd();
+	virtual void UpdateAnimCnt()override;
+	virtual void CheckActionEnd();
 
 	bool CheckIsDead()const;//死亡チェック
 

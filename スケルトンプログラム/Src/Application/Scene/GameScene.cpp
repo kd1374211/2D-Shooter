@@ -63,7 +63,7 @@ void C_GameScene::Update()
 
 		if (KEYMGR.GetKeyState(E_KeyChecks::Enter) == E_KeyState::Pressed)
 		{
-			CHARAMGR.SpawnEnemy({ 640.0f,(float)(rand() % 500 - 250) }, E_CharaName::Bomber);
+			CHARAMGR.SpawnEnemy({ 640.0f,(float)(rand() % 500 - 250) }, E_CharaName::Torpedo);
 		}
 
 		if (GetAsyncKeyState('1') & 0x8000)

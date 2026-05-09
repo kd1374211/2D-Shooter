@@ -21,7 +21,7 @@ private:
 	static const int SHOTF = 6;
 
 	//発射角度
-	const float SHOTANGLE_BASE = -15;
+	const float SHOTANGLE_BASE = 165;
 	const float SHOTANGLE_DIST = 15;
 
 	//発射数
@@ -31,6 +31,6 @@ private:
 	static const int ATKENDF = 12;
 
 	//弾速度
-	const float BULLETSPEED = -7.0f;
+	const float BULLETSPEED = 7.0f;
 
 };

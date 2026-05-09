@@ -6,6 +6,7 @@ enum E_BulletType
 	B_AutoCannon,
 	B_BigSpaceGun,
 	B_FighterGun,
+	B_Torpedo,
 	BulletMax
 };
 
@@ -32,4 +33,5 @@ struct S_BulletStatData
 {
 	float m_hitRadius;
 	int m_damage;
+	std::vector<Math::Vector2> m_hitCheckPos;
 };

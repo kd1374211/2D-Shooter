@@ -15,6 +15,9 @@ void C_BulletManager::SpawnBullet(Math::Vector2 a_pos, float a_speed, float a_sh
 	case E_BulletType::B_FighterGun:
 		m_bullets.push_back(new C_FighterBullet(a_pos, a_speed, a_shotAngle));
 		break;
+	case E_BulletType::B_Torpedo:
+		m_bullets.push_back(new C_TorpedoBullet(a_pos, a_speed, a_shotAngle));
+		break;
 	default:
 		break;
 	}
@@ -156,10 +159,23 @@ void C_BulletManager::LoadStatData()
 			{
 				S_BulletStatData* data = &m_bulletStatData[i];
 
-				fscanf_s(fp, "%[^,],%f,%d",
+				fscanf_s(fp, "%[^,],%f,%d,",
 					name, STRLENG,
 					&data->m_hitRadius,
 					&data->m_damage);
+
+				float X, Y;
+
+				while (1)
+				{
+					fscanf_s(fp, "%f,", &X);
+
+					if (X == 999.0f)break;
+
+					fscanf_s(fp, "%f,", &Y);
+
+					data->m_hitCheckPos.push_back({ X, Y });
+				}
 			}
 		}
 

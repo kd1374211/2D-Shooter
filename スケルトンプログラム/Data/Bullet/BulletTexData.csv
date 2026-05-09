@@ -2,3 +2,4 @@
 AutoCannon,Texture/Bullet/AC-Bullet.png,32,32,1.5,1.5,16,0.25
 BigSpaceGun,Texture/Bullet/BSG-Bullet.png,32,32,1.5,1.5,40,0.25
 Fighter,Texture/Bullet/Fighter-Bullet.png,16,16,1.5,1.5,1,1
+Torpedo,Texture/Bullet/Torpedo-Bullet.png,11,32,1.5,1.5,12,0.25

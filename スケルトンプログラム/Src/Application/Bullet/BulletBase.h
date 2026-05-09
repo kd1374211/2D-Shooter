@@ -26,6 +26,8 @@ public:
 
 	//ゲッター
 	Math::Vector2 GetPos()const { return(m_pos); }
+	std::vector<Math::Vector2> GetHitCheckPos()const { return(m_statData->m_hitCheckPos); }
+	float GetAngle()const { return(m_shotAngle); }
 	int GetDamage()const { return(m_statData->m_damage); }
 	float GetHitRadius()const { return(m_statData->m_hitRadius); }
 	bool GetIsInScreen();//画面内か

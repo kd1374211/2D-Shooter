@@ -100,6 +100,9 @@
     <Filter Include="Src\Application\Chara\Enemy\Bomber">
       <UniqueIdentifier>{ef6705be-4c0e-420e-9c64-037ea519b664}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Application\Chara\Enemy\Torpedo">
+      <UniqueIdentifier>{0f95c9c2-608b-46c7-9e65-7f50bf2c4cfb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Pch.h">
@@ -309,6 +312,12 @@
     <ClInclude Include="Src\Application\Chara\Enemy\Bomber\Bomber.h">
       <Filter>Src\Application\Chara\Enemy\Bomber</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Application\Chara\Enemy\Torpedo\Torpedo.h">
+      <Filter>Src\Application\Chara\Enemy\Torpedo</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\Bullet\EnemyBullet\TorpedoBullet.h">
+      <Filter>Src\Application\Bullet\EnemyBullet</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Pch.cpp">
@@ -457,6 +466,12 @@
     </ClCompile>
     <ClCompile Include="Src\Application\Chara\Enemy\Bomber\Bomber.cpp">
       <Filter>Src\Application\Chara\Enemy\Bomber</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\Chara\Enemy\Torpedo\Torpedo.cpp">
+      <Filter>Src\Application\Chara\Enemy\Torpedo</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\Bullet\EnemyBullet\TorpedoBullet.cpp">
+      <Filter>Src\Application\Bullet\EnemyBullet</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

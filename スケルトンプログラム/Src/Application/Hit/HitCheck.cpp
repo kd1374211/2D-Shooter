@@ -73,26 +73,39 @@ void C_HitCheck::PlayerBulletHit()
 		//弾位置・当たり判定
 		Math::Vector2 BulletPos = itr->GetPos();
 		float BulletHitRadius = itr->GetHitRadius();
+		float Angle = itr->GetAngle();
 
-		//座標差
-		Math::Vector2 Dist = PlayerPos - BulletPos;
-
-		//距離チェック
-		if (sqrt(Dist.x * Dist.x + Dist.y * Dist.y) < PlayerHitRadius + BulletHitRadius)
+		for (auto itr_hit : itr->GetHitCheckPos())
 		{
-			//プレイヤー無敵チェック
-			if (player->GetIsInvincible())
-			{
-				//弾Hit
-				itr->OnHit();
-			}
-			else
-			{
-				//プレイヤー被弾
-				player->GetHit();
+			Math::Vector2 AnglePosX = { cosf(DirectX::XMConvertToRadians(Angle - 90)), sinf(DirectX::XMConvertToRadians(Angle - 90)) };
+			Math::Vector2 AnglePosY = { cosf(DirectX::XMConvertToRadians(Angle)), sinf(DirectX::XMConvertToRadians(Angle)) };
+			Math::Vector2 X = AnglePosX * itr_hit.x;
+			Math::Vector2 Y = AnglePosY * itr_hit.y;
 
-				//弾Hit
-				itr->OnHit();
+			Math::Vector2 CheckPos = BulletPos + X + Y;
+
+			//座標差
+			Math::Vector2 Dist = PlayerPos - CheckPos;
+
+			//距離チェック
+			if (sqrt(Dist.x * Dist.x + Dist.y * Dist.y) < PlayerHitRadius + BulletHitRadius)
+			{
+				//プレイヤー無敵チェック
+				if (player->GetIsInvincible())
+				{
+					//弾Hit
+					itr->OnHit();
+				}
+				else
+				{
+					//プレイヤー被弾
+					player->GetHit();
+
+					//弾Hit
+					itr->OnHit();
+				}
+
+				break;
 			}
 		}
 	}
@@ -121,15 +134,28 @@ void C_HitCheck::EnemyBulletHit()
 			//弾位置・当たり判定
 			Math::Vector2 BulletPos = itr_b->GetPos();
 			float BulletHitRadius = itr_b->GetHitRadius();
+			float Angle = itr_b->GetAngle();
 
-			//座標差
-			Math::Vector2 Dist = EnemyPos - BulletPos;
-
-			//距離チェック
-			if (sqrt(Dist.x * Dist.x + Dist.y * Dist.y) < EnemyHitRadius + BulletHitRadius)
+			for (auto itr_hit : itr_b->GetHitCheckPos())
 			{
-				itr_e->GetHit(itr_b->GetDamage());
-				itr_b->OnHit();
+				Math::Vector2 AnglePosX = { cosf(DirectX::XMConvertToRadians(Angle - 90)), sinf(DirectX::XMConvertToRadians(Angle - 90)) };
+				Math::Vector2 AnglePosY = { cosf(DirectX::XMConvertToRadians(Angle)), sinf(DirectX::XMConvertToRadians(Angle)) };
+				Math::Vector2 X = AnglePosX * itr_hit.x;
+				Math::Vector2 Y = AnglePosY * itr_hit.y;
+
+				Math::Vector2 CheckPos = BulletPos + X + Y;
+
+				//座標差
+				Math::Vector2 Dist = EnemyPos - CheckPos;
+
+				//距離チェック
+				if (sqrt(Dist.x * Dist.x + Dist.y * Dist.y) < EnemyHitRadius + BulletHitRadius)
+				{
+					itr_e->GetHit(itr_b->GetDamage());
+					itr_b->OnHit();
+
+					break;
+				}
 			}
 		}
 	}

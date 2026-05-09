@@ -1,7 +1,7 @@
 #pragma once
 
 //画像数
-static const int CHARABASETEXNUM = 15;
+static const int CHARABASETEXNUM = 19;
 
 //キャラ名
 enum E_CharaName
@@ -9,6 +9,7 @@ enum E_CharaName
 	Player,
 	Fighter,
 	Bomber,
+	Torpedo,
 	Max,
 	End = 999
 };
@@ -76,7 +77,7 @@ struct S_CharaStatData
 };
 
 //シード数
-static const int SEEDNUM = 5;
+static const int SEEDNUM = 6;
 
 //敵出現情報
 struct S_EnemySpawnData
@@ -90,5 +91,6 @@ struct S_EnemySpawnData
 struct S_EnemySeedData
 {
 	int m_minLevel;
+	int m_maxLevel;
 	std::vector<S_EnemySpawnData> m_enemy;
 };

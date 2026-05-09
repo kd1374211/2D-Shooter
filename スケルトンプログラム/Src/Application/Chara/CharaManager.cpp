@@ -59,15 +59,19 @@ void C_CharaManager::CheckEnemySpawn()
 void C_CharaManager::EnemySeedRand()
 {
 	int randMax = 0;
+	std::vector<int> availableSeeds;
+	int nowSeed = -1;
 	for (auto &itr : m_seedData)
 	{
-		if (itr.m_minLevel > LEVELMGR.GetLevel())break;
+		nowSeed++;
+		if (itr.m_minLevel > LEVELMGR.GetLevel() || itr.m_maxLevel < LEVELMGR.GetLevel())continue;
 		randMax++;
+		availableSeeds.push_back(nowSeed);
 	}
 	if (randMax == 0)return;
 
 	int a = rand() % randMax;
-	m_nowSeedData = m_seedData[a].m_enemy;
+	m_nowSeedData = m_seedData[availableSeeds[a]].m_enemy;
 }
 
 void C_CharaManager::CheckEnemyDelete()
@@ -137,6 +141,9 @@ void C_CharaManager::SpawnEnemy(Math::Vector2 a_pos, E_CharaName a_enemy)
 		break;
 	case E_CharaName::Bomber:
 		m_enemy.push_back(new C_Bomber(a_pos));
+		break;
+	case E_CharaName::Torpedo:
+		m_enemy.push_back(new C_Torpedo(a_pos));
 		break;
 	default:
 		break;
@@ -326,9 +333,10 @@ void C_CharaManager::LoadSpawnData()
 
 			if (fgets(dummy, 250, fp) != nullptr)//1行読み
 			{
-				fscanf_s(fp, "%d,%d,",
+				fscanf_s(fp, "%d,%d,%d,",
 					&type,
-					&seed.m_minLevel
+					&seed.m_minLevel,
+					&seed.m_maxLevel
 				);
 
 				while (1)

@@ -23,7 +23,7 @@ void C_BigSpaceGun_Bullet::Update()
 
 	Math::Matrix trans = Math::Matrix::CreateTranslation(m_pos.x, m_pos.y, 0);
 	Math::Matrix scale = Math::Matrix::CreateScale(m_texData->m_texScale);
-	Math::Matrix rotat = Math::Matrix::CreateRotationZ(DirectX::XMConvertToRadians(m_texAngle));
+	Math::Matrix rotat = Math::Matrix::CreateRotationZ(DirectX::XMConvertToRadians(m_shotAngle + m_texAngle));
 
 	m_mat = rotat * scale * trans;
 }
