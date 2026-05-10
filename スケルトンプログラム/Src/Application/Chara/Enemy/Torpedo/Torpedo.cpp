@@ -11,6 +11,7 @@ C_Torpedo::C_Torpedo(Math::Vector2 a_pos) :m_isAttackStart(false), m_isStartBack
 	m_statData = CHARAMGR.GetStatData(E_CharaName::Torpedo);
 	m_nowAction = E_EnemyAction::Attack;
 	m_moveSpeed = m_statData.m_moveSpeed;
+	m_enemyType = E_CharaName::Torpedo;
 }
 
 void C_Torpedo::Update()

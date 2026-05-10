@@ -10,6 +10,7 @@ C_Bomber::C_Bomber(Math::Vector2 a_pos) :m_moveAngle(0)
 	m_texData = CHARAMGR.GetBaseTexData(E_CharaName::Bomber);
 	m_statData = CHARAMGR.GetStatData(E_CharaName::Bomber);
 	m_moveSpeed = m_statData.m_moveSpeed;
+	m_enemyType = E_CharaName::Bomber;
 }
 
 void C_Bomber::Update()

@@ -10,6 +10,7 @@ C_Fighter::C_Fighter(Math::Vector2 a_pos)
 	m_texData = CHARAMGR.GetBaseTexData(E_CharaName::Fighter);
 	m_statData = CHARAMGR.GetStatData(E_CharaName::Fighter);
 	m_moveSpeed = m_statData.m_moveSpeed;
+	m_enemyType = E_CharaName::Fighter;
 }
 
 void C_Fighter::Update()

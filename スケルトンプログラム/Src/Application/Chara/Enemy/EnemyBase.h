@@ -40,6 +40,7 @@ public:
 
 	//ゲッター
 	bool GetIsEnd()const { return(m_isEnd); }
+	E_CharaName GetCharaType()const { return(m_enemyType); }
 
 protected:
 
@@ -59,4 +60,5 @@ protected:
 	E_EnemyAction m_nowAction;
 	int m_countF;
 
+	E_CharaName m_enemyType;
 };
