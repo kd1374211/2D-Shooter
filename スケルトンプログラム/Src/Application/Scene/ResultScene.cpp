@@ -13,13 +13,14 @@ C_ResultScene::C_ResultScene() :m_countF(0), m_nowSelect(E_ResultSelectIndex::Pl
 
 	m_back = new C_Background();
 
-	int frame = TIMEMGR.GetSurviveTime();
-	int score = SCOREMGR.GetScore();
+	//生存時間をスコアに追加
+	SCOREMGR.AddScore(TIMEMGR.GetSurviveTime());
 
-	int rankScore = frame / 150 + score / 150;
+	//ランク決定
+	int score = SCOREMGR.GetTargetScore();
 	for (int i = 0;i < RANKNUM;i++)
 	{
-		if (RANKTARGET[i] <= rankScore)
+		if (RANKTARGET[i] <= score)
 		{
 			m_rank = i;
 			break;

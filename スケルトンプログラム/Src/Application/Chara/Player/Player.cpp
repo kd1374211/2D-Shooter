@@ -193,7 +193,7 @@ void C_Player::GetHit()
 	if (!m_isInvincible)
 	{
 		m_isInvincible = true;
-		TIMEMGR.SubTime(600);
+		TIMEMGR.SubTime(300);
 		m_invincibleF = INVINCIBLETIME;
 	}
 }

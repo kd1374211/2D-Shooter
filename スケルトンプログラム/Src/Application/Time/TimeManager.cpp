@@ -5,6 +5,7 @@ void C_TimeManager::Reset()
 	m_surviveTimeF = 0;
 	m_timeF = 0;
 	m_timeChargeF = 120;
+	m_timeChange = E_TimeChange::None;
 	SetTimeState(E_TimeState::Normal);
 }
 

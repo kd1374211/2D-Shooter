@@ -23,7 +23,7 @@ private:
 
 	static const int RANKNUM = 5;
 	const char* RANKS[RANKNUM] = { "S","A","B","C","D" };
-	const int RANKTARGET[RANKNUM] = { 150,110,70,30,0 };
+	const int RANKTARGET[RANKNUM] = { 20000,16000,12000,6000,0 };
 
 	const Math::Color RESULTCOLOR = Math::Color{ 0.2f,0.9f,0,1 };
 
