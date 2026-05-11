@@ -23,7 +23,9 @@ private:
 
 	static const int RANKNUM = 5;
 	const char* RANKS[RANKNUM] = { "S","A","B","C","D" };
-	const int RANKTARGET[RANKNUM] = { 80,55,35,15,0 };
+	const int RANKTARGET[RANKNUM] = { 150,100,60,30,0 };
+
+	const Math::Color RESULTCOLOR = Math::Color{ 0.2f,0.9f,0,1 };
 
 	C_Background* m_back;
 	

@@ -16,7 +16,7 @@ C_ResultScene::C_ResultScene() :m_countF(0), m_nowSelect(E_ResultSelectIndex::Pl
 	int sec = TIMEMGR.GetSurviveTime() / 60;
 	int score = SCOREMGR.GetScore();
 
-	int rankScore = sec / 5 + score / 250;
+	int rankScore = sec / 3 + score / 150;
 	for (int i = 0;i < RANKNUM;i++)
 	{
 		if (RANKTARGET[i] <= rankScore)
@@ -155,7 +155,7 @@ void C_ResultScene::Draw()
 		{
 			if (m_countF >= RANKF)
 			{
-				FONTMGR.DrawWord(itr.m_pos, RANKS[m_rank], itr.m_scale, itr.m_color);
+				FONTMGR.DrawWord(itr.m_pos, RANKS[m_rank], itr.m_scale, RESULTCOLOR);
 			}
 			else
 			{
@@ -181,7 +181,7 @@ void C_ResultScene::Draw()
 		frames = time % 60;
 
 		std::string text = FONTMGR.ConvertToTime(min, sec, frames);
-		FONTMGR.DrawWord({ -80,100 }, text, 2, { 0.2f,0.9f,0,1 });
+		FONTMGR.DrawWord({ -80,100 }, text, 2, RESULTCOLOR);
 	}
 	else
 	{
@@ -198,7 +198,7 @@ void C_ResultScene::Draw()
 	if (m_countF >= SCOREF)
 	{
 		int score = SCOREMGR.GetTargetScore();
-		FONTMGR.DrawNumber({ -80,-30 }, score, 5, 2, { 0.2f,0.9f,0,1 });
+		FONTMGR.DrawNumber({ -80,-30 }, score, 5, 2, RESULTCOLOR);
 	}
 	else
 	{

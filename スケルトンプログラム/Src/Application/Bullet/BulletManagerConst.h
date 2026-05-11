@@ -33,5 +33,6 @@ struct S_BulletStatData
 {
 	float m_hitRadius;
 	int m_damage;
+	int m_timeChargeOnHit;
 	std::vector<Math::Vector2> m_hitCheckPos;
 };

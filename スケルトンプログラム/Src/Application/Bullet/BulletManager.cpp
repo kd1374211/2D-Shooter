@@ -159,10 +159,11 @@ void C_BulletManager::LoadStatData()
 			{
 				S_BulletStatData* data = &m_bulletStatData[i];
 
-				fscanf_s(fp, "%[^,],%f,%d,",
+				fscanf_s(fp, "%[^,],%f,%d,%d,",
 					name, STRLENG,
 					&data->m_hitRadius,
-					&data->m_damage);
+					&data->m_damage,
+					&data->m_timeChargeOnHit);
 
 				float X, Y;
 

@@ -33,7 +33,7 @@ bool Application::Init(int w, int h)
 	//===================================================================
 	// ウィンドウ作成
 	//===================================================================
-	if (m_window.Create(w, h, "DirectX", "Window") == false) {
+	if (m_window.Create(w, h, "Chrono Bullet", "Window") == false) {
 		MessageBoxA(nullptr, "ウィンドウ作成に失敗", "エラー", MB_OK);
 		return false;
 	}
@@ -102,6 +102,9 @@ bool Application::Init(int w, int h)
 		io.Fonts->AddFontDefault();
 		io.Fonts->AddFontFromFileTTF("c:\\Windows\\Fonts\\msgothic.ttc", 13.0f, &config, glyphRangesJapanese);
 	}
+
+	//マウス
+	ShowCursor(false);
 
 	return true;
 }

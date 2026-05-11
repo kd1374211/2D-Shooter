@@ -30,6 +30,6 @@ void C_BigSpaceGun_Bullet::Update()
 
 void C_BigSpaceGun_Bullet::OnHit()
 {
-	TIMEMGR.AddTimeCharge(m_statData->m_damage * 2);
+	TIMEMGR.AddTimeCharge(m_statData->m_timeChargeOnHit);
 	m_isEnd = true;
 }
