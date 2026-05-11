@@ -13,10 +13,10 @@ C_ResultScene::C_ResultScene() :m_countF(0), m_nowSelect(E_ResultSelectIndex::Pl
 
 	m_back = new C_Background();
 
-	int sec = TIMEMGR.GetSurviveTime() / 60;
+	int frame = TIMEMGR.GetSurviveTime();
 	int score = SCOREMGR.GetScore();
 
-	int rankScore = sec / 3 + score / 150;
+	int rankScore = frame / 150 + score / 150;
 	for (int i = 0;i < RANKNUM;i++)
 	{
 		if (RANKTARGET[i] <= rankScore)
