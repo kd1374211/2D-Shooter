@@ -77,7 +77,7 @@ struct S_CharaStatData
 };
 
 //シード数
-static const int SEEDNUM = 13;
+static const int SEEDNUM = 17;
 
 //敵出現情報
 struct S_EnemySpawnData

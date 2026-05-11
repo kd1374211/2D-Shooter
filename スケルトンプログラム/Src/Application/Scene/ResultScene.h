@@ -23,6 +23,7 @@ private:
 
 	static const int RANKNUM = 5;
 	const char* RANKS[RANKNUM] = { "S","A","B","C","D" };
+	const int RANKTARGET[RANKNUM] = { 80,60,40,20,0 };
 
 	C_Background* m_back;
 	
@@ -40,4 +41,6 @@ private:
 
 	//選択フラグ
 	bool m_isSelect;
+
+	int m_rank;
 };

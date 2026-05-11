@@ -51,7 +51,7 @@ void C_GameScene::Update()
 		//召喚
 		CHARAMGR.CheckEnemySpawn();
 
-		if (GetAsyncKeyState('4') & 0x8000)
+		if (GetAsyncKeyState('0') & 0x8000)
 		{
 			TIMEMGR.SubTime(TIMEMGR.GetTime());
 		}
@@ -68,10 +68,7 @@ void C_GameScene::Update()
 
 		if (GetAsyncKeyState('1') & 0x8000)
 		{
-			for (auto itr : CHARAMGR.GetEnemy())
-			{
-				itr->GetHit(1);
-			}
+			TIMEMGR.AddTime(5);
 		}
 
 		if (GetAsyncKeyState('2') & 0x8000)
@@ -82,6 +79,11 @@ void C_GameScene::Update()
 		if (GetAsyncKeyState('3') & 0x8000)
 		{
 			SCOREMGR.AddScore(100);
+		}
+
+		if (GetAsyncKeyState('4') & 0x8000)
+		{
+			TIMEMGR.AddTimeCharge(-5);
 		}
 
 		if (GetAsyncKeyState('5') & 0x8000)

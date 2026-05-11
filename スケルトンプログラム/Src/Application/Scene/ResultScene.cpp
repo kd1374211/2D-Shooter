@@ -7,11 +7,24 @@
 #include "../Score/ScoreManager.h"
 #include "../Fonts/FontManager.h"
 
-C_ResultScene::C_ResultScene() :m_countF(0), m_nowSelect(E_ResultSelectIndex::PlayAgain), m_isSelect(false)
+C_ResultScene::C_ResultScene() :m_countF(0), m_nowSelect(E_ResultSelectIndex::PlayAgain), m_isSelect(false), m_rank(0)
 {
 	SetSceneTag(E_SceneTypeTag::Result);
 
 	m_back = new C_Background();
+
+	int sec = TIMEMGR.GetSurviveTime() / 60;
+	int score = SCOREMGR.GetScore();
+
+	int rankScore = sec / 10 + score / 200;
+	for (int i = 0;i < RANKNUM;i++)
+	{
+		if (RANKTARGET[i] <= rankScore)
+		{
+			m_rank = i;
+			break;
+		}
+	}
 }
 
 C_ResultScene::~C_ResultScene()
@@ -142,7 +155,7 @@ void C_ResultScene::Draw()
 		{
 			if (m_countF >= RANKF)
 			{
-				FONTMGR.DrawWord(itr.m_pos, "A", itr.m_scale, itr.m_color);
+				FONTMGR.DrawWord(itr.m_pos, RANKS[m_rank], itr.m_scale, itr.m_color);
 			}
 			else
 			{
