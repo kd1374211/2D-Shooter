@@ -78,9 +78,14 @@ void C_SelectScene::Draw()
 	//弾
 	BULLETMGR.Draw();
 
+	//上のバー
+	S_SceneTexData* topBar = SCENEMGR.GetSceneTexData(E_GameTextures::Select_TopBar);
+	Math::Rectangle rec = { 0,0,(long)topBar->m_texSize.x,(long)topBar->m_texSize.y };
+	SHADER.m_spriteShader.DrawTex(&topBar->m_tex, topBar->m_texPos.x, topBar->m_texPos.y, topBar->m_texDrawSize.x, topBar->m_texDrawSize.y, &rec);
+
 	//ステータスウィンドウ
 	S_SceneTexData* statWindow = SCENEMGR.GetSceneTexData(E_GameTextures::Select_StatWindow);
-	Math::Rectangle rec = { 0,0,(long)statWindow->m_texSize.x,(long)statWindow->m_texSize.y };
+	rec = { 0,0,(long)statWindow->m_texSize.x,(long)statWindow->m_texSize.y };
 	SHADER.m_spriteShader.DrawTex(&statWindow->m_tex, statWindow->m_texPos.x, statWindow->m_texPos.y, statWindow->m_texDrawSize.x, statWindow->m_texDrawSize.y, &rec);
 
 	//決定ボタン

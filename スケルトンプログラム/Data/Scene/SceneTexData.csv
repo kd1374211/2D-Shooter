@@ -1,4 +1,5 @@
 名前,画像Path,表示位置X,表示位置Y,描画サイズX,描画サイズY,スケールX,スケールY
+TopBar,Texture/Scene/Select/SelectSceneTopBar.png,0,320,114,38,5,1.5
 StatWindow,Texture/Scene/Select/WeaponStatWindow.png,0,-180,695,377,1.5,0.9
 StatBar,Texture/Scene/Select/WeaponStatBar.png,-250,-200,48,6,4,4
 SelectArrow,Texture/Scene/Select/SelectArrow.png,200,-290,48,45,1.5,1.5

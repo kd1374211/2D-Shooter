@@ -23,7 +23,7 @@ private:
 
 	static const int RANKNUM = 5;
 	const char* RANKS[RANKNUM] = { "S","A","B","C","D" };
-	const int RANKTARGET[RANKNUM] = { 80,60,40,20,0 };
+	const int RANKTARGET[RANKNUM] = { 80,55,35,15,0 };
 
 	C_Background* m_back;
 	

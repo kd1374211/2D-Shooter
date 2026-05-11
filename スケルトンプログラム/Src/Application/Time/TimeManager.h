@@ -23,6 +23,9 @@ public:
 	void Update();
 	void DrawTimeCharge();
 	
+	//生存時間セッター（デバッグ用）
+	void SetSurviveTime(int a_sec) { m_surviveTimeF = a_sec * 60; }
+
 	//時間シリーズ
 	void SetTime(int a_sec) { m_timeF = a_sec * 60; }
 	void AddTime(int a_addF);

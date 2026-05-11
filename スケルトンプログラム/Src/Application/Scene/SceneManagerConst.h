@@ -3,6 +3,7 @@
 
 enum class E_GameTextures
 {
+	Select_TopBar,
 	Select_StatWindow,
 	Select_StatBar,
 	Select_Arrow,

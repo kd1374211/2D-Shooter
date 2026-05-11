@@ -16,7 +16,7 @@ public:
 private:
 
 	//プレイヤー
-	const Math::Vector2 BOTPLAYERPOS = { -580.0f,180.0f };
+	const Math::Vector2 BOTPLAYERPOS = { -580.0f,150.0f };
 
 	//武器の最大ステータス
 	static const int WEAPONSTAT_MAX = 5;

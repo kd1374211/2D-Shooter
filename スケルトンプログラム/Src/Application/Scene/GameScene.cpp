@@ -63,7 +63,7 @@ void C_GameScene::Update()
 
 		if (KEYMGR.GetKeyState(E_KeyChecks::Enter) == E_KeyState::Pressed)
 		{
-			CHARAMGR.SpawnEnemy({ 640.0f,(float)(rand() % 500 - 250) }, E_CharaName::Torpedo);
+			CHARAMGR.SpawnEnemy({ 640.0f,(float)(rand() % 40 - 250) }, E_CharaName::Torpedo);
 		}
 
 		if (GetAsyncKeyState('1') & 0x8000)
@@ -89,6 +89,19 @@ void C_GameScene::Update()
 		if (GetAsyncKeyState('5') & 0x8000)
 		{
 			TIMEMGR.AddTimeCharge(10);
+		}
+
+		if (GetAsyncKeyState('6') & 0x8000)
+		{
+			TIMEMGR.SetSurviveTime(30);
+		}
+		if (GetAsyncKeyState('7') & 0x8000)
+		{
+			TIMEMGR.SetSurviveTime(60);
+		}
+		if (GetAsyncKeyState('8') & 0x8000)
+		{
+			TIMEMGR.SetSurviveTime(90);
 		}
 	}
 
