@@ -22,6 +22,8 @@ private:
 	//敵・プレイヤーの弾
 	void EnemyBulletHit();
 
+	const float TORPEDOHITDIST = 17;
+
 public:
 
 	static C_HitCheck& GetInstance()

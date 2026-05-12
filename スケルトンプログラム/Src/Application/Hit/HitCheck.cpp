@@ -33,14 +33,14 @@ void C_HitCheck::PlayerEnemyHit()
 
 		if (itr->GetCharaType() == E_CharaName::Torpedo)
 		{
-			for (int i = 0;i < 3;i++)
+			for (int i = 0;i < 5;i++)
 			{
 				//敵位置・当たり半径
 				Math::Vector2 EnemyPos = itr->GetPos();
 				float EnemyHitRadius = itr->GetHitRadius();
 
 				//ズラす
-				EnemyPos.y += (EnemyHitRadius * 2 * (i - 1));
+				EnemyPos.y += (TORPEDOHITDIST * (i - 2));
 
 				//座標差
 				Math::Vector2 Dist = PlayerPos - EnemyPos;
@@ -158,7 +158,7 @@ void C_HitCheck::EnemyBulletHit()
 		if (itr_e->GetCharaType() == E_CharaName::Torpedo)
 		{
 			bool m_isHit = false;
-			for (int i = 0;i < 3;i++)
+			for (int i = 0;i < 5;i++)
 			{
 				if (m_isHit)break;
 
@@ -167,7 +167,7 @@ void C_HitCheck::EnemyBulletHit()
 				float EnemyHitRadius = itr_e->GetHitRadius();
 
 				//ズラす
-				EnemyPos.y += (EnemyHitRadius * 2 * (i - 1));
+				EnemyPos.y += (TORPEDOHITDIST * (i - 2));
 
 				//弾用意
 				std::vector<C_BulletBase*> bullet = BULLETMGR.GetBullets();
