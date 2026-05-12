@@ -4,7 +4,7 @@ StatWindow,Texture/Scene/Select/WeaponStatWindow.png,0,-180,695,377,1.5,0.9
 StatBar,Texture/Scene/Select/WeaponStatBar.png,-250,-200,48,6,4,4
 SelectArrow,Texture/Scene/Select/SelectArrow.png,200,-290,48,45,1.5,1.5
 TopBar,Texture/Scene/Game/TopBar.png,0,300,1280,120,1,1
-ClockIcon,Texture/Scene/Game/Clock_Icon.png,-60,310,55,60,1,1
-FrameBar,Texture/Scene/Game/FrameBar.png,0,260,42,5,4,4
+ClockIcon,Texture/Scene/Game/Clock_Icon.png,-60,300,55,60,1,1
+FrameBar,Texture/Scene/Game/FrameBar.png,0,255,42,5,4,4
 ResultWindow,Texture/Scene/Result/ResultWindow.png,0,40,695,399,1.5,1.5
 Transition,Texture/Scene/Transition/blackBack.png,0,0,128,72,10,10

@@ -45,6 +45,11 @@ void C_ResultScene::Update()
 		if (m_countF < ENDF)
 		{
 			m_countF++;
+
+			if (KEYMGR.GetKeyState(E_KeyChecks::Enter) == E_KeyState::Pressed)
+			{
+				m_countF = ENDF;
+			}
 		}
 		else
 		{

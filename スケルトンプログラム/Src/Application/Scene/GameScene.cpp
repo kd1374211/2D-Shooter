@@ -178,7 +178,11 @@ void C_GameScene::Draw()
 
 	//秒
 	int sec = timeF / 60;
-	FONTMGR.DrawNumber({ 30,310 }, sec, 2, 3.0f, m_timeColor);
+	FONTMGR.DrawNumber({ 30,300 }, sec, 2, 3.0f, m_timeColor);
+
+	//レベル
+	int level = LEVELMGR.GetLevel();
+	FONTMGR.DrawNumber({ 60,345 }, level, 1, 1.25f, level > ENEMYMAXLEVEL ? LEVELCOLOR[ENEMYMAXLEVEL - 1] : LEVELCOLOR[level - 1]);
 
 	//得点
 	FONTMGR.DrawNumber({ 490,280 }, SCOREMGR.GetScore(), 5, SCOREMGR.GetIsScoreAdded() ? 3.5f : 3.0f, Math::Color(1, 1, 1, 1));

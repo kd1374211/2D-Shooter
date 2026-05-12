@@ -18,6 +18,12 @@ private:
 
 	const Math::Vector2 PLAYERSPAWNPOS = { -550,-60.0f };
 
+	static const int ENEMYMAXLEVEL = 4;
+	const Math::Color LEVELCOLOR[ENEMYMAXLEVEL] = { Math::Color(1,1,1,1),
+													Math::Color(0.93f,0.7f,0.6f,1),
+													Math::Color(0.86f,0.4f,0.2f,1),
+													Math::Color(0.8f,0.2f,0,1) };
+
 	//背景
 	C_Background* m_back;
 
