@@ -7,7 +7,7 @@
 #include "../Score/ScoreManager.h"
 #include "../Fonts/FontManager.h"
 
-C_ResultScene::C_ResultScene() :m_countF(0), m_nowSelect(E_ResultSelectIndex::PlayAgain), m_isSelect(false), m_rank(0)
+C_ResultScene::C_ResultScene() :m_countF(0), m_nowSelect((int)E_ResultSelectIndex::ReturnTitle), m_isSelect(false), m_rank(0), m_isNewRecord(false)
 {
 	SetSceneTag(E_SceneTypeTag::Result);
 
@@ -29,6 +29,9 @@ C_ResultScene::C_ResultScene() :m_countF(0), m_nowSelect(E_ResultSelectIndex::Pl
 
 	//ランキング更新
 	SCOREMGR.UpdateRankingScore(score, SCENEMGR.GetSelectedWeapon());
+
+	//1位かどうか
+	m_isNewRecord = SCOREMGR.GetIsNewRecord(score, SCENEMGR.GetSelectedWeapon());
 }
 
 C_ResultScene::~C_ResultScene()
@@ -58,23 +61,27 @@ void C_ResultScene::Update()
 		{
 			if (KEYMGR.GetKeyState(E_KeyChecks::Right) == E_KeyState::Pressed)
 			{
-				if (m_nowSelect == E_ResultSelectIndex::PlayAgain)m_nowSelect = E_ResultSelectIndex::ReturnTitle;
+				if ((E_ResultSelectIndex)m_nowSelect != E_ResultSelectIndex::ReturnTitle)m_nowSelect++;
 			}
 
 			if (KEYMGR.GetKeyState(E_KeyChecks::Left) == E_KeyState::Pressed)
 			{
-				if (m_nowSelect == E_ResultSelectIndex::ReturnTitle)m_nowSelect = E_ResultSelectIndex::PlayAgain;
+				if ((E_ResultSelectIndex)m_nowSelect != E_ResultSelectIndex::PlayAgain)m_nowSelect--;
 			}
 
 			if (KEYMGR.GetKeyState(E_KeyChecks::Enter) == E_KeyState::Pressed)
 			{
-				if (m_nowSelect == E_ResultSelectIndex::PlayAgain)
+				switch ((E_ResultSelectIndex)m_nowSelect)
 				{
+				case E_ResultSelectIndex::PlayAgain:
 					SCENEMGR.SpawnTransition(E_SceneTypeTag::Game);
-				}
-				else
-				{
+					break;
+				case E_ResultSelectIndex::Ranking:
+					SCENEMGR.SpawnTransition(E_SceneTypeTag::Ranking);
+					break;
+				case E_ResultSelectIndex::ReturnTitle:
 					SCENEMGR.SpawnTransition(E_SceneTypeTag::Title);
+					break;
 				}
 
 				m_isSelect = true;
@@ -104,7 +111,7 @@ void C_ResultScene::Draw()
 
 		//画像
 		KdTexture* tex = nullptr;
-		if (m_nowSelect == E_ResultSelectIndex::PlayAgain)
+		if ((E_ResultSelectIndex)m_nowSelect == E_ResultSelectIndex::PlayAgain)
 		{
 			if (m_isSelect && KEYMGR.GetIsPressed(E_KeyChecks::Enter))
 			{
@@ -124,11 +131,37 @@ void C_ResultScene::Draw()
 		rec = { 0,0,(long)BUTTONTEXSIZE.x,(long)BUTTONTEXSIZE.y };
 		SHADER.m_spriteShader.DrawTex(tex, playAgain->m_pos.x, playAgain->m_pos.y, playAgain->m_texDrawSize.x, playAgain->m_texDrawSize.y, &rec);
 
+		//ランキング
+		S_ButtonPosData* ranking = nullptr;
+
+		//画像
+		tex = nullptr;
+		if ((E_ResultSelectIndex)m_nowSelect == E_ResultSelectIndex::Ranking)
+		{
+			if (m_isSelect && KEYMGR.GetIsPressed(E_KeyChecks::Enter))
+			{
+				tex = SCENEMGR.GetButtonTex(E_ButtonState::Active);
+			}
+			else
+			{
+				tex = SCENEMGR.GetButtonTex(E_ButtonState::Hover);
+			}
+		}
+		else
+		{
+			tex = SCENEMGR.GetButtonTex(E_ButtonState::Idle);
+		}
+
+		ranking = SCENEMGR.GetButtonData(E_GameButtons::Result_Ranking);
+		rec = { 0,0,(long)BUTTONTEXSIZE.x,(long)BUTTONTEXSIZE.y };
+		SHADER.m_spriteShader.DrawTex(tex, ranking->m_pos.x, ranking->m_pos.y, ranking->m_texDrawSize.x, ranking->m_texDrawSize.y, &rec);
+
 		//タイトルに戻る
 		S_ButtonPosData* returnTitle = nullptr;
 
 		//画像
-		if (m_nowSelect == E_ResultSelectIndex::ReturnTitle)
+		tex = nullptr;
+		if ((E_ResultSelectIndex)m_nowSelect == E_ResultSelectIndex::ReturnTitle)
 		{
 			if (m_isSelect && KEYMGR.GetIsPressed(E_KeyChecks::Enter))
 			{
@@ -170,6 +203,13 @@ void C_ResultScene::Draw()
 			{
 				int randRank = rand() % RANKNUM;
 				FONTMGR.DrawWord(itr.m_pos, itr.m_textPos, RANKS[randRank], itr.m_scale, itr.m_color);
+			}
+		}
+		else if (itr.m_textTag == E_VariableTextsID::Result_NewRecord)
+		{
+			if (m_countF >= SCOREF && m_isNewRecord)
+			{
+				FONTMGR.DrawWord(itr.m_pos, itr.m_textPos, itr.m_str, itr.m_scale, itr.m_color);
 			}
 		}
 		else

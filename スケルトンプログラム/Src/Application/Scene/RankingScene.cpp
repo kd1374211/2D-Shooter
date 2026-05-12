@@ -6,9 +6,10 @@
 #include "../Key/KeyStateManager.h"
 #include "../Background/Background.h"
 
-C_RankingScene::C_RankingScene() :m_nowRanking(E_WeaponName::AutoCannon)
+C_RankingScene::C_RankingScene(E_SceneTypeTag a_scene) :m_nowRanking(E_WeaponName::AutoCannon)
 {
 	m_back = new C_Background();
+	m_backScene = a_scene;
 }
 
 C_RankingScene::~C_RankingScene()
@@ -37,7 +38,7 @@ void C_RankingScene::Update()
 		//戻る
 		if (KEYMGR.GetKeyState(E_KeyChecks::Enter) == E_KeyState::Pressed)
 		{
-			SCENEMGR.SpawnTransition(E_SceneTypeTag::Title);
+			SCENEMGR.SpawnTransition(m_backScene);
 		}
 	}
 
@@ -72,6 +73,23 @@ void C_RankingScene::Draw()
 	{
 		SHADER.m_spriteShader.DrawTex(&selectArrow->m_tex, ARROWPOS.x, ARROWPOS.y, selectArrow->m_texDrawSize.x, selectArrow->m_texDrawSize.y, &rec);
 	}
+
+	//決定ボタン
+	S_ButtonPosData* returnButton = nullptr;
+	KdTexture* tex = nullptr;
+	returnButton = SCENEMGR.GetButtonData(E_GameButtons::Ranking_Return);
+
+	//決定後かつ決定ボタンを押しているか
+	if (KEYMGR.GetIsPressed(E_KeyChecks::Enter))
+	{
+		tex = SCENEMGR.GetButtonTex(E_ButtonState::Active);
+	}
+	else
+	{
+		tex = SCENEMGR.GetButtonTex(E_ButtonState::Hover);
+	}
+	rec = { 0,0,(long)BUTTONTEXSIZE.x,(long)BUTTONTEXSIZE.y };
+	SHADER.m_spriteShader.DrawTex(tex, returnButton->m_pos.x, returnButton->m_pos.y, returnButton->m_texDrawSize.x, returnButton->m_texDrawSize.y, &rec);
 
 	//選択武器名
 	switch (m_nowRanking)

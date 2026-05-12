@@ -32,14 +32,9 @@ void C_TitleScene::Update()
 
 	if (!SCENEMGR.GetIsStop())
 	{
-		if (KEYMGR.GetKeyState(E_KeyChecks::Enter) == E_KeyState::Released)
+		if (KEYMGR.GetKeyState(E_KeyChecks::Enter) == E_KeyState::Pressed)
 		{
 			SCENEMGR.SpawnTransition(E_SceneTypeTag::Select);
-		}
-
-		if (GetAsyncKeyState('R') & 0x8000)
-		{
-			SCENEMGR.SpawnTransition(E_SceneTypeTag::Ranking);
 		}
 	}
 }

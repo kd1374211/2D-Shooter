@@ -44,7 +44,27 @@ void C_SceneManager::SpawnTransition(E_SceneTypeTag a_nextScene)
 
 void C_SceneManager::SetScene(E_SceneTypeTag a_tag)
 {
-	if (m_pCurrentScene != nullptr)delete m_pCurrentScene;
+	E_SceneTypeTag scene = E_SceneTypeTag::None;
+	if (m_pCurrentScene != nullptr)
+	{
+		if (a_tag == E_SceneTypeTag::Ranking)
+		{
+			switch (m_pCurrentScene->GetSceneTag())
+			{
+			case E_SceneTypeTag::Title:
+			case E_SceneTypeTag::Result:
+				scene = E_SceneTypeTag::Title;
+				break;
+			case E_SceneTypeTag::Select:
+				scene = E_SceneTypeTag::Select;
+				break;
+			default:
+				scene = E_SceneTypeTag::Title;
+				break;
+			}
+		}
+		delete m_pCurrentScene;
+	}
 
 	switch (a_tag)
 	{
@@ -61,7 +81,7 @@ void C_SceneManager::SetScene(E_SceneTypeTag a_tag)
 		m_pCurrentScene = new C_ResultScene();
 		break;
 	case E_SceneTypeTag::Ranking:
-		m_pCurrentScene = new C_RankingScene();
+		m_pCurrentScene = new C_RankingScene(scene);
 		break;
 	default:
 		break;
@@ -168,10 +188,9 @@ void C_SceneManager::LoadButtonData()
 
 		for (int i = 0;i < (int)E_ButtonState::Max;i++)
 		{
-			char name[STRLENG] = {};
-
 			if (fgets(dummy, 250, fp) != nullptr)//1行読み
 			{
+				char name[STRLENG] = {};
 				char path[STRLENG] = {};
 				
 				fscanf_s(fp, "%[^,],%[^,],",
@@ -196,7 +215,6 @@ void C_SceneManager::LoadButtonData()
 
 			if (fgets(dummy, 250, fp) != nullptr)//1行読み
 			{
-				char path[STRLENG] = {};
 				Math::Vector2 scale;
 
 				fscanf_s(fp, "%[^,],%f,%f,%f,%f,",

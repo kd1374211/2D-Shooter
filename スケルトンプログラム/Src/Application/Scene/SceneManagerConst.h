@@ -20,7 +20,9 @@ enum class E_GameButtons
 {
 	Select_Start,
 	Result_PlayAgain,
+	Result_Ranking,
 	Result_Title,
+	Ranking_Return,
 	Max
 };
 
@@ -38,6 +40,7 @@ enum class E_VariableTextsID
 	Title_PressEnter,
 	Select_SelectWeapon,
 	Game_TimeCharge,
+	Result_NewRecord,
 	Result_Rank,
 	Result_ButtonTexts,
 	Ranking_SelectWeapon

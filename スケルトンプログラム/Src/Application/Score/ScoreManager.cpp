@@ -42,6 +42,13 @@ void C_ScoreManager::Update()
 	}
 }
 
+bool C_ScoreManager::GetIsNewRecord(int a_score, E_WeaponName a_weapon) const
+{
+	if (m_rankingScore[a_weapon][0] == a_score)return(true);
+
+	return(false);
+}
+
 void C_ScoreManager::LoadRankingScore()
 {
 	FILE* fp = nullptr;

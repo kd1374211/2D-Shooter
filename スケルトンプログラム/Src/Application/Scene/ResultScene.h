@@ -16,6 +16,7 @@ public:
 	enum class E_ResultSelectIndex
 	{
 		PlayAgain,
+		Ranking,
 		ReturnTitle
 	};
 
@@ -39,10 +40,14 @@ private:
 	static const int ENDF = 120;
 
 	//選択ボタン
-	E_ResultSelectIndex m_nowSelect;
+    int m_nowSelect;
 
 	//選択フラグ
 	bool m_isSelect;
 
+	//ランク
 	int m_rank;
+
+	//一位かどうか
+	bool m_isNewRecord;
 };

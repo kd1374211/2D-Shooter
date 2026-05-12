@@ -15,6 +15,7 @@ public:
 	int GetTargetScore()const { return(m_targetScore); }
 	bool GetIsScoreAdded()const { return(m_isScoreAdded); }
 	int GetRankingScore(int a_rank, E_WeaponName a_weapon)const { return(m_rankingScore[a_weapon][a_rank]); }
+	bool GetIsNewRecord(int a_score, E_WeaponName a_weapon)const;
 
 	//ランキング用
 	void LoadRankingScore();

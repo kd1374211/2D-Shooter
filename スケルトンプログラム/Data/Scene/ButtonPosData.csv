@@ -1,4 +1,6 @@
 Ží—Þ,PosX,PosY,ScaleX,ScaleY
 Select_Start,0,-290,2,2
-Result_Again,-220,-170,2,2
-Result_Title,220,-170,2,2
+Result_Again,-300,-170,2,2
+Result_Ranking,0,-170,2,2
+Result_Title,300,-170,2,2
+Ranking_Return,0,-280,2,2
