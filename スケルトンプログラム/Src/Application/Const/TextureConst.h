@@ -6,3 +6,11 @@ static const int STRLENG = 100;
 //画像回転
 const float PLAYERANGLE = 270;
 const float ENEMYANGLE = 90;
+
+//文字の詰め方向
+enum class E_TextDrawPos
+{
+	Left,
+	Center,
+	Right
+};

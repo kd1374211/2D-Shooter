@@ -59,6 +59,10 @@ void C_SceneManager::SetScene(E_SceneTypeTag a_tag)
 		break;
 	case E_SceneTypeTag::Result:
 		m_pCurrentScene = new C_ResultScene();
+		break;
+	case E_SceneTypeTag::Ranking:
+		m_pCurrentScene = new C_RankingScene();
+		break;
 	default:
 		break;
 	}
@@ -133,12 +137,13 @@ void C_SceneManager::LoadTextsData()
 			S_TextsData data;
 			float R, G, B, A;
 			
-			if (fscanf_s(fp, "%d,%d,%[^,],%f,%f,%f,%f,%f,%f,%f,",
+			if (fscanf_s(fp, "%d,%d,%[^,],%f,%f,%d,%f,%f,%f,%f,%f,",
 				&sceneType,
 				&data.m_textTag,
 				data.m_str, STRLENG,
 				&data.m_pos.x,
 				&data.m_pos.y,
+				&data.m_textPos,
 				&data.m_scale,
 				&R,
 				&G,

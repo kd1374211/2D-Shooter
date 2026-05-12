@@ -1,11 +1,12 @@
 #pragma once
+#include "../Const/TextureConst.h"
 
 class C_FontManager
 {
 public:
 
-	void DrawWord(Math::Vector2 a_pos, std::string a_word, float a_scale, Math::Color a_color);
-	void DrawNumber(Math::Vector2 a_pos, int a_number, int a_minDigit, float a_scale, Math::Color a_color);
+	void DrawWord(Math::Vector2 a_pos, E_TextDrawPos a_drawPos, std::string a_word, float a_scale, Math::Color a_color);
+	void DrawNumber(Math::Vector2 a_pos, E_TextDrawPos a_drawPos, int a_number, int a_minDigit, float a_scale, Math::Color a_color);
 	
 	//時間表記用テキストに変換
 	std::string ConvertToTime(int a_min, int a_sec, int a_frame);

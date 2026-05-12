@@ -191,6 +191,7 @@
     <ClInclude Include="Src\Application\Scene.h" />
     <ClInclude Include="Src\Application\main.h" />
     <ClInclude Include="Src\Application\Scene\GameScene.h" />
+    <ClInclude Include="Src\Application\Scene\RankingScene.h" />
     <ClInclude Include="Src\Application\Scene\ResultScene.h" />
     <ClInclude Include="Src\Application\Scene\SceneBase.h" />
     <ClInclude Include="Src\Application\Scene\SceneConst.h" />
@@ -249,6 +250,7 @@
     <ClCompile Include="Src\Application\Scene.cpp" />
     <ClCompile Include="Src\Application\main.cpp" />
     <ClCompile Include="Src\Application\Scene\GameScene.cpp" />
+    <ClCompile Include="Src\Application\Scene\RankingScene.cpp" />
     <ClCompile Include="Src\Application\Scene\ResultScene.cpp" />
     <ClCompile Include="Src\Application\Scene\SceneManager.cpp" />
     <ClCompile Include="Src\Application\Scene\SelectScene.cpp" />

@@ -26,6 +26,9 @@ C_ResultScene::C_ResultScene() :m_countF(0), m_nowSelect(E_ResultSelectIndex::Pl
 			break;
 		}
 	}
+
+	//ランキング更新
+	SCOREMGR.UpdateRankingScore(score, SCENEMGR.GetSelectedWeapon());
 }
 
 C_ResultScene::~C_ResultScene()
@@ -154,24 +157,24 @@ void C_ResultScene::Draw()
 		{
 			if (m_countF >= ENDF)
 			{
-				FONTMGR.DrawWord(itr.m_pos, itr.m_str, itr.m_scale, itr.m_color);
+				FONTMGR.DrawWord(itr.m_pos, itr.m_textPos, itr.m_str, itr.m_scale, itr.m_color);
 			}
 		}
 		else if (itr.m_textTag == E_VariableTextsID::Result_Rank)
 		{
 			if (m_countF >= RANKF)
 			{
-				FONTMGR.DrawWord(itr.m_pos, RANKS[m_rank], itr.m_scale, RESULTCOLOR);
+				FONTMGR.DrawWord(itr.m_pos, itr.m_textPos, RANKS[m_rank], itr.m_scale, RESULTCOLOR);
 			}
 			else
 			{
 				int randRank = rand() % RANKNUM;
-				FONTMGR.DrawWord(itr.m_pos, RANKS[randRank], itr.m_scale, itr.m_color);
+				FONTMGR.DrawWord(itr.m_pos, itr.m_textPos, RANKS[randRank], itr.m_scale, itr.m_color);
 			}
 		}
 		else
 		{
-			FONTMGR.DrawWord(itr.m_pos, itr.m_str, itr.m_scale, itr.m_color);
+			FONTMGR.DrawWord(itr.m_pos, itr.m_textPos, itr.m_str, itr.m_scale, itr.m_color);
 		}
 	}
 
@@ -187,7 +190,7 @@ void C_ResultScene::Draw()
 		frames = time % 60;
 
 		std::string text = FONTMGR.ConvertToTime(min, sec, frames);
-		FONTMGR.DrawWord({ -80,100 }, text, 2, RESULTCOLOR);
+		FONTMGR.DrawWord({ -80,100 }, E_TextDrawPos::Center, text, 2, RESULTCOLOR);
 	}
 	else
 	{
@@ -198,13 +201,13 @@ void C_ResultScene::Draw()
 		frames = rand() % 60;
 
 		std::string text = FONTMGR.ConvertToTime(min, sec, frames);
-		FONTMGR.DrawWord({ -80,100 }, text, 2, { 1,1,1,1 });
+		FONTMGR.DrawWord({ -80,100 }, E_TextDrawPos::Center, text, 2, { 1,1,1,1 });
 	}
 
 	if (m_countF >= SCOREF)
 	{
 		int score = SCOREMGR.GetTargetScore();
-		FONTMGR.DrawNumber({ -80,-30 }, score, 5, 2, RESULTCOLOR);
+		FONTMGR.DrawNumber({ -80,-30 }, E_TextDrawPos::Center, score, 5, 2, RESULTCOLOR);
 	}
 	else
 	{
@@ -215,6 +218,6 @@ void C_ResultScene::Draw()
 			scoreRand *= 10;
 			scoreRand += rand() % 10;
 		}
-		FONTMGR.DrawNumber({ -80,-30 }, scoreRand, 5, 2, { 1,1,1,1 });
+		FONTMGR.DrawNumber({ -80,-30 }, E_TextDrawPos::Center, scoreRand, 5, 2, { 1,1,1,1 });
 	}
 }

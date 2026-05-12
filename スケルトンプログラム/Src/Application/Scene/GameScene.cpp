@@ -163,29 +163,29 @@ void C_GameScene::Draw()
 			{
 				std::string text = itr.m_str;
 				text.append(" MAX");
-				FONTMGR.DrawWord(itr.m_pos, text, itr.m_scale, { 0.8f,0.2f,0.2f,1 });
+				FONTMGR.DrawWord(itr.m_pos, itr.m_textPos, text, itr.m_scale, { 0.8f,0.2f,0.2f,1 });
 			}
 			else
 			{
-				FONTMGR.DrawWord(itr.m_pos, itr.m_str, itr.m_scale, itr.m_color);
+				FONTMGR.DrawWord(itr.m_pos, itr.m_textPos, itr.m_str, itr.m_scale, itr.m_color);
 			}
 		}
 		else
 		{
-			FONTMGR.DrawWord(itr.m_pos, itr.m_str, itr.m_scale, itr.m_color);
+			FONTMGR.DrawWord(itr.m_pos, itr.m_textPos, itr.m_str, itr.m_scale, itr.m_color);
 		}
 	}
 
 	//秒
 	int sec = timeF / 60;
-	FONTMGR.DrawNumber({ 30,300 }, sec, 2, 3.0f, m_timeColor);
+	FONTMGR.DrawNumber({ 30,300 },E_TextDrawPos::Center, sec, 2, 3.0f, m_timeColor);
 
 	//レベル
 	int level = LEVELMGR.GetLevel();
-	FONTMGR.DrawNumber({ 60,345 }, level, 1, 1.25f, level > ENEMYMAXLEVEL ? LEVELCOLOR[ENEMYMAXLEVEL - 1] : LEVELCOLOR[level - 1]);
+	FONTMGR.DrawNumber({ 60,345 }, E_TextDrawPos::Center, level, 1, 1.25f, level > ENEMYMAXLEVEL ? LEVELCOLOR[ENEMYMAXLEVEL - 1] : LEVELCOLOR[level - 1]);
 
 	//得点
-	FONTMGR.DrawNumber({ 490,280 }, SCOREMGR.GetScore(), 5, SCOREMGR.GetIsScoreAdded() ? 3.5f : 3.0f, Math::Color(1, 1, 1, 1));
+	FONTMGR.DrawNumber({ 490,280 }, E_TextDrawPos::Center, SCOREMGR.GetScore(), 5, SCOREMGR.GetIsScoreAdded() ? 3.5f : 3.0f, Math::Color(1, 1, 1, 1));
 }
 
 void C_GameScene::UpdateTimeColor()

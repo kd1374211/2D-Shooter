@@ -8,7 +8,7 @@
 #include "../Bullet/BulletManager.h"
 #include "../Chara/Player/Player.h"
 
-C_SelectScene::C_SelectScene() :m_weaponSelectIndex(E_WeaponName::AutoCannon), m_isSelect(false)
+C_SelectScene::C_SelectScene() :m_weaponSelectIndex(SCENEMGR.GetSelectedWeapon()), m_isSelect(false)
 {
 	SetSceneTag(E_SceneTypeTag::Select);
 	m_back = new C_Background();
@@ -155,11 +155,11 @@ void C_SelectScene::Draw()
 	{
 		if (itr.m_textTag == E_VariableTextsID::Select_SelectWeapon)
 		{
-			FONTMGR.DrawWord(itr.m_pos, name, itr.m_scale, itr.m_color);
+			FONTMGR.DrawWord(itr.m_pos, itr.m_textPos, name, itr.m_scale, itr.m_color);
 		}
 		else
 		{
-			FONTMGR.DrawWord(itr.m_pos, itr.m_str, itr.m_scale, itr.m_color);
+			FONTMGR.DrawWord(itr.m_pos, itr.m_textPos, itr.m_str, itr.m_scale, itr.m_color);
 		}
 	}
 }

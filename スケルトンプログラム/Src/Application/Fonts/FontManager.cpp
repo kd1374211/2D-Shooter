@@ -1,6 +1,6 @@
 #include "FontManager.h"
 
-void C_FontManager::DrawWord(Math::Vector2 a_pos, std::string a_word, float a_scale, Math::Color a_color)
+void C_FontManager::DrawWord(Math::Vector2 a_pos, E_TextDrawPos a_drawPos, std::string a_word, float a_scale, Math::Color a_color)
 {
 	//一応リセット
 	SHADER.m_spriteShader.SetMatrix(Math::Matrix::Identity);
@@ -8,7 +8,21 @@ void C_FontManager::DrawWord(Math::Vector2 a_pos, std::string a_word, float a_sc
 	//文字サイズ
 	const Math::Vector2 TextSize = BASETEXTSIZE * a_scale;
 
-	float LeftPosX = a_pos.x - (TextSize.x / 2.0f * (a_word.size() - 1));
+	//左端の位置決定
+	float LeftPosX = 0.0f;
+	switch (a_drawPos)
+	{
+	case E_TextDrawPos::Left:
+		LeftPosX = a_pos.x + TextSize.x / 2.0f;
+		break;
+	case E_TextDrawPos::Center:
+		LeftPosX = a_pos.x - (TextSize.x / 2.0f * (a_word.size() - 1));
+		break;
+	case E_TextDrawPos::Right:
+		LeftPosX = a_pos.x - (TextSize.x * (a_word.size() - 1)) - TextSize.x / 2.0f;
+		break;
+	}
+
 	for (int i = 0;i < a_word.size();i++)
 	{
 		char ch = *(a_word.begin() + i);
@@ -18,7 +32,7 @@ void C_FontManager::DrawWord(Math::Vector2 a_pos, std::string a_word, float a_sc
 	}
 }
 
-void C_FontManager::DrawNumber(Math::Vector2 a_pos, int a_number, int a_minDigit, float a_scale, Math::Color a_color)
+void C_FontManager::DrawNumber(Math::Vector2 a_pos, E_TextDrawPos a_drawPos, int a_number, int a_minDigit, float a_scale, Math::Color a_color)
 {
 	//一応リセット
 	SHADER.m_spriteShader.SetMatrix(Math::Matrix::Identity);
@@ -43,7 +57,20 @@ void C_FontManager::DrawNumber(Math::Vector2 a_pos, int a_number, int a_minDigit
 		digits.push_back(0);
 	}
 
-	float LeftPosX = a_pos.x - (NumberSize.x / 2.0f  * (digits.size() - 1));
+	//左端の位置決定
+	float LeftPosX = 0.0f;
+	switch (a_drawPos)
+	{
+	case E_TextDrawPos::Left:
+		LeftPosX = a_pos.x + NumberSize.x / 2.0f;
+		break;
+	case E_TextDrawPos::Center:
+		LeftPosX = a_pos.x - (NumberSize.x / 2.0f * (digits.size() - 1));
+		break;
+	case E_TextDrawPos::Right:
+		LeftPosX = a_pos.x - (NumberSize.x * (digits.size() - 1)) - NumberSize.x / 2.0f;
+		break;
+	}
 
 	//桁数回繰り返し（a_posが真ん中になるように）
 	for (int i = 0;i < digits.size();i++)

@@ -318,6 +318,9 @@
     <ClInclude Include="Src\Application\Bullet\EnemyBullet\TorpedoBullet.h">
       <Filter>Src\Application\Bullet\EnemyBullet</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Application\Scene\RankingScene.h">
+      <Filter>Src\Application\Scene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Pch.cpp">
@@ -472,6 +475,9 @@
     </ClCompile>
     <ClCompile Include="Src\Application\Bullet\EnemyBullet\TorpedoBullet.cpp">
       <Filter>Src\Application\Bullet\EnemyBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\Scene\RankingScene.cpp">
+      <Filter>Src\Application\Scene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

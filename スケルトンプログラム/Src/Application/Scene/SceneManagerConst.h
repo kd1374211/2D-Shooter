@@ -11,6 +11,7 @@ enum class E_GameTextures
 	Game_ClockIcon,
 	Game_FrameBar,
 	Result_Window,
+	Ranking_Window,
 	Transition,
 	Max
 };
@@ -38,7 +39,8 @@ enum class E_VariableTextsID
 	Select_SelectWeapon,
 	Game_TimeCharge,
 	Result_Rank,
-	Result_ButtonTexts
+	Result_ButtonTexts,
+	Ranking_SelectWeapon
 };
 
 struct S_SceneTexData
@@ -68,6 +70,7 @@ struct S_TextsData
 	char m_str[STRLENG];
 	E_VariableTextsID m_textTag;
 	Math::Vector2 m_pos;
+	E_TextDrawPos m_textPos;
 	float m_scale;
 	Math::Color m_color;
 };

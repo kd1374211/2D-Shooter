@@ -8,6 +8,7 @@ enum class E_SceneTypeTag
 	Select,
 	Game,
 	Result,
+	Ranking,
 	Transition,
 	Max,
 	None = -1
