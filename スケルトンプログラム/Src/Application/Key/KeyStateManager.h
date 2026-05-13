@@ -12,6 +12,7 @@ enum class E_KeyChecks
 	Enter,
 	Space,
 	Shift,
+	R,
 	Max
 };
 
@@ -25,6 +26,7 @@ const std::map<E_KeyChecks, int> M_KeyTags
 	{E_KeyChecks::Enter,VK_RETURN},
 	{E_KeyChecks::Space,VK_SPACE},
 	{E_KeyChecks::Shift,VK_SHIFT},
+	{E_KeyChecks::R,'R'},
 };
 
 //キー状況

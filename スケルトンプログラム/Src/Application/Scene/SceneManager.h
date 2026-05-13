@@ -57,6 +57,9 @@ private:
 	//フォント管理用
 	std::vector<S_TextsData> m_sceneTexts[(int)E_SceneTypeTag::Max];
 
+	//キーテクスチャ
+	S_KeyTexData m_keyTex[(int)E_KeyTextures::Max];
+
 	//操作可能フラグ
 	bool m_isStop;
 
@@ -64,6 +67,7 @@ private:
 	void LoadSelectWeaponData();
 	void LoadTextsData();
 	void LoadButtonData();
+	void LoadKeyTexData();
 	void LoadTex();
 	void Release();
 

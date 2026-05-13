@@ -76,7 +76,7 @@ void C_RankingScene::Draw()
 	}
 
 	//王冠
-	S_SceneTexData* goldCrown = SCENEMGR.GetSceneTexData(E_GameTextures::GoldCrown);
+	S_SceneTexData* goldCrown = SCENEMGR.GetSceneTexData(E_GameTextures::Ranking_GoldCrown);
 	rec = { 0,0,(long)goldCrown->m_texSize.x,(long)goldCrown->m_texSize.y };
 	SHADER.m_spriteShader.DrawTex(&goldCrown->m_tex, -350.0f, RANKINGPOSY[0], goldCrown->m_texDrawSize.x, goldCrown->m_texDrawSize.y, &rec);
 

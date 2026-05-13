@@ -109,6 +109,7 @@ void C_SceneManager::Init()
 	LoadSelectWeaponData();
 	LoadTextsData();
 	LoadButtonData();
+	LoadKeyTexData();
 	LoadTex();
 }
 
@@ -233,6 +234,40 @@ void C_SceneManager::LoadButtonData()
 
 }
 
+void C_SceneManager::LoadKeyTexData()
+{
+	FILE* fp = nullptr;
+
+	if (fopen_s(&fp, "Data/Key/KeyTexData.csv", "r") == 0)
+	{
+		char dummy[250] = {};
+
+		for (int i = 0;i < (int)E_KeyTextures::Max;i++)
+		{
+			char name[STRLENG] = {};
+
+			if (fgets(dummy, 250, fp) != nullptr)//1行読み
+			{
+				char path[STRLENG] = {};
+				float scale;
+
+				fscanf_s(fp, "%[^,],%[^,],%f,%f,%f,",
+					name, STRLENG,
+					path, STRLENG,
+					&m_keyTex[i].m_texSize.x,
+					&m_keyTex[i].m_texSize.y,
+					&scale
+				);
+
+				m_keyTex[i].m_texDrawSize = m_keyTex[i].m_texSize * scale;
+				m_keyTex[i].m_tex.Load(path);
+			}
+		}
+
+		fclose(fp);
+	}
+}
+
 void C_SceneManager::LoadTex()
 {
 	FILE* fp = nullptr;
@@ -280,5 +315,10 @@ void C_SceneManager::Release()
 	for (int i = 0;i < (int)E_ButtonState::Max;i++)
 	{
 		m_buttonTex[i].Release();
+	}
+
+	for (int i = 0;i < (int)E_KeyTextures::Max;i++)
+	{
+		m_keyTex[i].m_tex.Release();
 	}
 }

@@ -12,8 +12,15 @@ enum class E_GameTextures
 	Game_FrameBar,
 	Result_Window,
 	Ranking_Window,
+	Ranking_GoldCrown,
 	Transition,
-	GoldCrown,
+	Max
+};
+
+enum class E_KeyTextures
+{
+	R,
+	Shift,
 	Max
 };
 
@@ -51,6 +58,13 @@ struct S_SceneTexData
 {
 	KdTexture m_tex;
 	Math::Vector2 m_texPos;
+	Math::Vector2 m_texSize;
+	Math::Vector2 m_texDrawSize;
+};
+
+struct S_KeyTexData
+{
+	KdTexture m_tex;
 	Math::Vector2 m_texSize;
 	Math::Vector2 m_texDrawSize;
 };
