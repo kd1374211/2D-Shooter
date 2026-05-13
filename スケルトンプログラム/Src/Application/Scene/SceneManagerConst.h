@@ -13,6 +13,7 @@ enum class E_GameTextures
 	Result_Window,
 	Ranking_Window,
 	Transition,
+	GoldCrown,
 	Max
 };
 

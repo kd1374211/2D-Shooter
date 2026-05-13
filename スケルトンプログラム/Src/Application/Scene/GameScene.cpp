@@ -118,6 +118,7 @@ void C_GameScene::Update()
 
 	m_back->Update();
 	UpdateTimeColor();
+	UpdateTimeChargeAlpha();
 }
 
 void C_GameScene::Draw()
@@ -159,11 +160,11 @@ void C_GameScene::Draw()
 	{
 		if (itr.m_textTag == E_VariableTextsID::Game_TimeCharge)
 		{
-			if (TIMEMGR.GetTimeCharge() == TIMEMGR.TIMECHARGE_MAX)
+			if (TIMEMGR.GetIsMaxCharge())
 			{
 				std::string text = itr.m_str;
-				text.append(" MAX");
-				FONTMGR.DrawWord(itr.m_pos, itr.m_textPos, text, itr.m_scale, { 0.8f,0.2f,0.2f,1 });
+				text.append(" MAX!");
+				FONTMGR.DrawWord(itr.m_pos, itr.m_textPos, text, itr.m_scale, { 0.8f,0.2f,0.2f,m_textAlpha_timeChargeMax });
 			}
 			else
 			{
@@ -204,4 +205,24 @@ void C_GameScene::UpdateTimeColor()
 		m_timeColor = { 1,0,0,1 };
 		break;
 	}
+}
+
+void C_GameScene::UpdateTimeChargeAlpha()
+{
+	if (!TIMEMGR.GetIsMaxCharge())return;
+
+	//今たまったならalphaリセット
+	if (TIMEMGR.GetIsMaxCharged())ResetTimeChargeAlpha();
+
+	//α更新
+	m_textAlpha_timeChargeMax += ALPHACHANGE_TCM * m_textAlphaChangeMulti;
+
+	//反転チェック
+	if (m_textAlpha_timeChargeMax <= MINALPHA_TCM || m_textAlpha_timeChargeMax >= MAXALPHA_TCM)m_textAlphaChangeMulti *= -1;
+}
+
+void C_GameScene::ResetTimeChargeAlpha()
+{
+	m_textAlphaChangeMulti = -1.0f;
+	m_textAlpha_timeChargeMax = MAXALPHA_TCM;
 }

@@ -13,6 +13,8 @@ public:
 	void Draw()override;
 
 	void UpdateTimeColor();
+	void UpdateTimeChargeAlpha();
+	void ResetTimeChargeAlpha();
 
 private:
 
@@ -29,4 +31,9 @@ private:
 
 	Math::Color m_timeColor;
 
+	const float MINALPHA_TCM = 0.4f;
+	const float MAXALPHA_TCM = 1.0f;
+	const float ALPHACHANGE_TCM = 0.03f;
+	float m_textAlpha_timeChargeMax;
+	float m_textAlphaChangeMulti;
 };

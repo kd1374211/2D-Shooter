@@ -10,6 +10,7 @@ C_RankingScene::C_RankingScene(E_SceneTypeTag a_scene) :m_nowRanking(E_WeaponNam
 {
 	m_back = new C_Background();
 	m_backScene = a_scene;
+	m_nowRanking = SCENEMGR.GetSelectedWeapon();
 }
 
 C_RankingScene::~C_RankingScene()
@@ -73,6 +74,11 @@ void C_RankingScene::Draw()
 	{
 		SHADER.m_spriteShader.DrawTex(&selectArrow->m_tex, ARROWPOS.x, ARROWPOS.y, selectArrow->m_texDrawSize.x, selectArrow->m_texDrawSize.y, &rec);
 	}
+
+	//王冠
+	S_SceneTexData* goldCrown = SCENEMGR.GetSceneTexData(E_GameTextures::GoldCrown);
+	rec = { 0,0,(long)goldCrown->m_texSize.x,(long)goldCrown->m_texSize.y };
+	SHADER.m_spriteShader.DrawTex(&goldCrown->m_tex, -350.0f, RANKINGPOSY[0], goldCrown->m_texDrawSize.x, goldCrown->m_texDrawSize.y, &rec);
 
 	//決定ボタン
 	S_ButtonPosData* returnButton = nullptr;

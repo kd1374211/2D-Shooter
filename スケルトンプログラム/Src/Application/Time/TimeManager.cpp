@@ -7,6 +7,7 @@ void C_TimeManager::Reset()
 	m_timeChargeF = 120;
 	m_timeChange = E_TimeChange::None;
 	SetTimeState(E_TimeState::Normal);
+	m_isMaxCharged = false;
 }
 
 void C_TimeManager::CheckTimeState()
@@ -27,7 +28,11 @@ void C_TimeManager::CheckTimeState()
 
 void C_TimeManager::Update()
 {
+	//フラグリセット
 	m_timeChange = E_TimeChange::None;
+	m_isMaxCharged = false;
+
+	//時間減少
 	if (m_nowTimeState == E_TimeState::Normal || m_nowTimeState == E_TimeState::Half && GetHalfTime())
 	{
 		m_timeF--;
@@ -65,10 +70,18 @@ void C_TimeManager::SubTime(int a_subF)
 
 void C_TimeManager::AddTimeCharge(int a_amount)
 {
+	//既に最大ならリセット
+	if (m_timeChargeF == TIMECHARGE_MAX)return;
+
+	//停止中でもリセット
 	if (m_nowTimeState == E_TimeState::Stop)return;
 
 	m_timeChargeF += a_amount;
-	if (m_timeChargeF > TIMECHARGE_MAX)m_timeChargeF = TIMECHARGE_MAX;
+	if (m_timeChargeF >= TIMECHARGE_MAX)
+	{
+		m_timeChargeF = TIMECHARGE_MAX;
+		m_isMaxCharged = true;
+	}
 }
 
 void C_TimeManager::SetTimeState(E_TimeState a_state)

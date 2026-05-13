@@ -45,6 +45,8 @@ public:
 	E_TimeState GetTimeState()const { return(m_nowTimeState); }
 	bool GetHalfTime()const { return(m_countF_state % 2 == 0 ? true : false); }
 	E_TimeChange GetTimeChange()const { return(m_timeChange); }
+	bool GetIsMaxCharge()const { return(m_timeChargeF == TIMECHARGE_MAX ? true : false); }
+	bool GetIsMaxCharged()const { return(m_isMaxCharged); }
 
 private:
 
@@ -61,6 +63,9 @@ private:
 	const int texTypes[BARSEC_ONE] = { 0,1,1,1,2 };
 
 	KdTexture m_timeChargeTex;
+
+	//チャージ最大フラグ
+	bool m_isMaxCharged;
 
 	//時間の流れ
 	E_TimeState m_nowTimeState;
@@ -80,7 +85,7 @@ private:
 	//時間増減フラグ
 	E_TimeChange m_timeChange;
 
-	C_TimeManager() :m_timeF(0), m_surviveTimeF(0), m_timeChargeF(0), m_nowTimeState(E_TimeState::Normal) { Load(); }
+	C_TimeManager() :m_timeF(0), m_surviveTimeF(0), m_timeChargeF(0), m_nowTimeState(E_TimeState::Normal), m_isMaxCharged(false) { Load(); }
 	~C_TimeManager() { Release(); }
 
 	void Load();

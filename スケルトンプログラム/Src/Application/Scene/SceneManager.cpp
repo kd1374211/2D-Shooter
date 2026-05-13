@@ -51,7 +51,6 @@ void C_SceneManager::SetScene(E_SceneTypeTag a_tag)
 		{
 			switch (m_pCurrentScene->GetSceneTag())
 			{
-			case E_SceneTypeTag::Title:
 			case E_SceneTypeTag::Result:
 				scene = E_SceneTypeTag::Title;
 				break;

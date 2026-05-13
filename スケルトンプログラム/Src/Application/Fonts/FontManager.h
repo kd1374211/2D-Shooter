@@ -16,8 +16,8 @@ private:
 	const Math::Vector2 BASETEXTSIZE = { 18.0f,28.0f };
 
 	static const int TEXTNUM_ONELINE = 13;
-	static const int TEXTNUM = 65;
-	const char TEXTID[TEXTNUM] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789:.";
+	static const int TEXTNUM = 66;
+	const char TEXTID[TEXTNUM] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789:.!";
 	
 	C_FontManager(){ Init(); }
 	~C_FontManager(){ Release(); }

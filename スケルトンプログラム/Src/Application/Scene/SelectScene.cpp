@@ -1,6 +1,7 @@
 #include "SceneConst.h"
 #include "../Chara/Player/Weapon/WeaponConst.h"
 #include "../Key/KeyStateManager.h"
+#include "../Score/ScoreManager.h"
 #include "SceneManager.h"
 #include "../Background/Background.h"
 #include "../Fonts/FontManager.h"
@@ -57,6 +58,11 @@ void C_SelectScene::Update()
 			SCENEMGR.SpawnTransition(E_SceneTypeTag::Game);
 			SCENEMGR.SetSelectedWeapon((E_WeaponName)m_weaponSelectIndex);
 			m_isSelect = true;
+		}
+		else if (GetAsyncKeyState('R') & 0x8000)
+		{
+			SCENEMGR.SpawnTransition(E_SceneTypeTag::Ranking);
+			SCENEMGR.SetSelectedWeapon((E_WeaponName)m_weaponSelectIndex);
 		}
 	}
 
@@ -121,6 +127,15 @@ void C_SelectScene::Draw()
 		SHADER.m_spriteShader.DrawTex(&selectArrow->m_tex, selectArrow->m_texPos.x, selectArrow->m_texPos.y, selectArrow->m_texDrawSize.x, selectArrow->m_texDrawSize.y, &rec);
 	}
 
+	//王冠
+	//S_SceneTexData* goldCrown = SCENEMGR.GetSceneTexData(E_GameTextures::GoldCrown);
+	//rec = { 0,0,(long)goldCrown->m_texSize.x,(long)goldCrown->m_texSize.y };
+	//SHADER.m_spriteShader.DrawTex(&goldCrown->m_tex, 200, -280, goldCrown->m_texDrawSize.x, goldCrown->m_texDrawSize.y, &rec);
+
+	//ベストスコア
+	int bestScore = SCOREMGR.GetRankingScore(0, (E_WeaponName)m_weaponSelectIndex);
+	FONTMGR.DrawNumber(Math::Vector2(370, -300), E_TextDrawPos::Center, bestScore, 5, 2.5f, Math::Color(0.8f, 0.8f, 0, 1));
+	
 	//武器のステータスとバー画像データを持ってくる
 	S_SelectWeaponStat stat = SCENEMGR.GetSelectedWeaponStat((E_WeaponName)m_weaponSelectIndex);
 	S_SceneTexData* statBar = SCENEMGR.GetSceneTexData(E_GameTextures::Select_StatBar);

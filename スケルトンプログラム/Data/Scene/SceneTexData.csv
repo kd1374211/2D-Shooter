@@ -9,3 +9,4 @@ FrameBar,Texture/Scene/Game/FrameBar.png,0,255,42,5,4,4
 ResultWindow,Texture/Scene/Result/ResultWindow.png,0,40,695,399,1.5,1.5
 RankingWindow,Texture/Scene/Ranking/RankingWindow.png,0,0,405,847,2.5,0.8
 Transition,Texture/Scene/Transition/blackBack.png,0,0,128,72,10,10
+GoldCrown,Texture/GoldCrown.png,0,0,64,64,1.5,1.5
