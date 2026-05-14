@@ -10,6 +10,8 @@ enum class E_GameTextures
 	Game_TopBar,
 	Game_ClockIcon,
 	Game_FrameBar,
+	Game_SlowAura,
+	Game_StopAura,
 	Result_Window,
 	Ranking_Window,
 	Ranking_GoldCrown,

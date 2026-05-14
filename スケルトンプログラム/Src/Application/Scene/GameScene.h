@@ -1,6 +1,7 @@
 #pragma once
 #include "SceneBase.h"
 #include "../Background/Background.h"
+#include "../Time/TimeManager.h"
 
 class C_GameScene :public C_SceneBase
 {
@@ -18,6 +19,9 @@ public:
 
 	void UpdateLevelUpAlpha();
 	void ResetLevelUpAlpha();
+
+	void UpdateTimeAura();
+	float GetAuraScale();
 
 private:
 
@@ -57,4 +61,11 @@ private:
 	static const int LEVELUPTEXTF = 60;
 	bool m_isLevelUpText;
 	int m_countF_levelUp;
+
+	//減速・停止オーラ
+	const float AURASCALEMULTI = 0.25f;
+	static const int AURASCALEMAXF = 10;
+
+	E_TimeState m_currentState;
+	int m_countF_timeState;
 };

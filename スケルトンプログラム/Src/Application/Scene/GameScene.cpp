@@ -6,7 +6,6 @@
 #include "../Chara/CharaManager.h"
 #include "../Key/KeyStateManager.h"
 #include "../Hit/HitCheck.h"
-#include "../Time/TimeManager.h"
 #include "../Score/ScoreManager.h"
 #include "../Fonts/FontManager.h"
 #include "../Level/LevelManager.h"
@@ -14,7 +13,7 @@
 #include "../Chara/Enemy/EnemyConst.h"
 #include "../Chara/Player/Player.h"
 
-C_GameScene::C_GameScene() :m_back(nullptr), m_timeColor(1, 1, 1, 1), m_alphaChangeMulti_timeChargeMax(1.0f), m_textAlpha_timeChargeMax(1.0f), m_textAlpha_levelUp(MAXALPHA_LU), m_alphaChangeMulti_levelUp(-1.0f), m_isLevelUpText(false), m_countF_levelUp(0)
+C_GameScene::C_GameScene() :m_back(nullptr), m_timeColor(1, 1, 1, 1), m_alphaChangeMulti_timeChargeMax(1.0f), m_textAlpha_timeChargeMax(1.0f), m_textAlpha_levelUp(MAXALPHA_LU), m_alphaChangeMulti_levelUp(-1.0f), m_isLevelUpText(false), m_countF_levelUp(0), m_currentState(E_TimeState::Normal), m_countF_timeState(0)
 {
 	SetSceneTag(E_SceneTypeTag::Game);
 	m_back = new C_Background();
@@ -122,6 +121,7 @@ void C_GameScene::Update()
 	UpdateTimeChargeAlpha();
 
 	UpdateLevelUpAlpha();
+	UpdateTimeAura();
 }
 
 void C_GameScene::Draw()
@@ -130,6 +130,28 @@ void C_GameScene::Draw()
 	m_back->Draw();
 	CHARAMGR.Draw();
 	
+	//減速オーラ
+	if (m_countF_timeState > 0)
+	{
+		if (m_currentState == E_TimeState::Half)
+		{
+			S_SceneTexData* slowAura = SCENEMGR.GetSceneTexData(E_GameTextures::Game_SlowAura);
+			Math::Rectangle rec = { 0,0,(long)slowAura->m_texSize.x,(long)slowAura->m_texSize.y };
+			Math::Vector2 DrawSize = slowAura->m_texSize * GetAuraScale();
+			Math::Color color = { 1,1,1,0.1f };
+			SHADER.m_spriteShader.DrawTex(&slowAura->m_tex, slowAura->m_texPos.x, slowAura->m_texPos.y, DrawSize.x, DrawSize.y, &rec, &color);
+		}
+		else if (m_currentState == E_TimeState::Stop)
+		{
+			S_SceneTexData* stopAura = SCENEMGR.GetSceneTexData(E_GameTextures::Game_StopAura);
+			Math::Rectangle rec = { 0,0,(long)stopAura->m_texSize.x,(long)stopAura->m_texSize.y };
+			Math::Vector2 DrawSize = stopAura->m_texSize * GetAuraScale();
+			Math::Color color = { 1,1,1,0.2f };
+			SHADER.m_spriteShader.DrawTex(&stopAura->m_tex, stopAura->m_texPos.x, stopAura->m_texPos.y, DrawSize.x, DrawSize.y, &rec, &color);
+		}
+	}
+	
+
 	BULLETMGR.Draw();
 
 	//リセット
@@ -287,4 +309,34 @@ void C_GameScene::ResetLevelUpAlpha()
 	m_alphaChangeMulti_levelUp = -1.0f;
 	m_isLevelUpText = true;
 	m_countF_levelUp = LEVELUPTEXTF;
+}
+
+void C_GameScene::UpdateTimeAura()
+{
+	if (TIMEMGR.GetTimeState() != E_TimeState::Normal)
+	{
+		if (m_currentState != TIMEMGR.GetTimeState())
+		{
+			m_currentState = TIMEMGR.GetTimeState();
+			m_countF_timeState = 0;
+		}
+	}
+
+	//通常時ならサイズ減少
+	if (TIMEMGR.GetTimeState() == E_TimeState::Normal)
+	{
+		//サイズ減少
+		if (m_countF_timeState > 0)m_countF_timeState--;
+	}
+	else
+	{
+		//サイズ増加
+		if (m_countF_timeState < AURASCALEMAXF)m_countF_timeState++;
+	}
+	
+}
+
+float C_GameScene::GetAuraScale()
+{
+	return m_countF_timeState * m_countF_timeState * AURASCALEMULTI;
 }

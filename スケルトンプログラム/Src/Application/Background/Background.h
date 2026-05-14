@@ -13,7 +13,7 @@ public:
 private:
 	
 	//背景移動速度
-	const float MOVESPEED = 6.0f;
+	const float MOVESPEED = 0.75f;
 
 	void Init();
 	void Release();
@@ -26,5 +26,6 @@ private:
 
 	//画像
 	KdTexture m_bgTex;
+	KdTexture m_bgTex2;
 
 };

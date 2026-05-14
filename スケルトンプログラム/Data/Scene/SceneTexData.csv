@@ -6,9 +6,9 @@ SelectArrow,Texture/Scene/Select/SelectArrow.png,180,-290,48,45,1.5,1.5
 TopBar,Texture/Scene/Game/TopBar.png,0,300,1280,120,1,1
 ClockIcon,Texture/Scene/Game/Clock_Icon.png,-60,300,55,60,1,1
 FrameBar,Texture/Scene/Game/FrameBar.png,0,255,42,5,4,4
+SlowAura,Texture/Scene/Game/SlowdownAura.png,0,0,64,64,1,1
+StopAura,Texture/Scene/Game/StopAura.png,0,0,64,64,1,1
 ResultWindow,Texture/Scene/Result/ResultWindow.png,0,40,695,399,1.5,1.5
 RankingWindow,Texture/Scene/Ranking/RankingWindow.png,0,0,405,847,2.5,0.8
 GoldCrown,Texture/Scene/Ranking/GoldCrown.png,0,0,64,64,1.5,1.5
 Transition,Texture/Scene/Transition/blackBack.png,0,0,128,72,10,10
-,,,,,,,
-Key_R,Texture/Scene/Select/R_Key.png,270,-305,13,12,3,3
