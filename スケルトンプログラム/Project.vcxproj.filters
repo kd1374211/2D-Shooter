@@ -91,9 +91,6 @@
     <Filter Include="Src\Application\Fonts">
       <UniqueIdentifier>{037abf08-599f-4cc6-a3b1-4c87b39906d9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Src\Application\Combo">
-      <UniqueIdentifier>{d458cdcf-788b-404a-8caa-9998350bf9b4}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Src\Application\Level">
       <UniqueIdentifier>{97e972b6-3e11-49f3-889c-c244b08ad3fd}</UniqueIdentifier>
     </Filter>
@@ -303,9 +300,6 @@
     <ClInclude Include="Src\Application\Scene\Transition.h">
       <Filter>Src\Application\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\Combo\ComboManager.h">
-      <Filter>Src\Application\Combo</Filter>
-    </ClInclude>
     <ClInclude Include="Src\Application\Level\LevelManager.h">
       <Filter>Src\Application\Level</Filter>
     </ClInclude>
@@ -460,9 +454,6 @@
     </ClCompile>
     <ClCompile Include="Src\Application\Scene\Transition.cpp">
       <Filter>Src\Application\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\Application\Combo\ComboManager.cpp">
-      <Filter>Src\Application\Combo</Filter>
     </ClCompile>
     <ClCompile Include="Src\Application\Level\LevelManager.cpp">
       <Filter>Src\Application\Level</Filter>
