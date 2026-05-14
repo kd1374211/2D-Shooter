@@ -127,8 +127,14 @@ void C_SelectScene::Draw()
 		SHADER.m_spriteShader.DrawTex(&selectArrow->m_tex, selectArrow->m_texPos.x, selectArrow->m_texPos.y, selectArrow->m_texDrawSize.x, selectArrow->m_texDrawSize.y, &rec);
 	}
 
-	//Rキー
-	
+	//キー色々
+	for (auto &itr : SCENEMGR.GetKeyPosData(E_SceneTypeTag::Select))
+	{
+		S_KeyTexData* data = SCENEMGR.GetKeyTexData(itr.m_key);
+
+		Math::Rectangle rec = { 0,0,(long)data->m_texSize.x ,(long)data->m_texSize.y };
+		SHADER.m_spriteShader.DrawTex(&data->m_tex, itr.m_pos.x, itr.m_pos.y, data->m_texDrawSize.x, data->m_texDrawSize.y, &rec);
+	}
 
 	//武器のステータスとバー画像データを持ってくる
 	S_SelectWeaponStat stat = SCENEMGR.GetSelectedWeaponStat((E_WeaponName)m_weaponSelectIndex);

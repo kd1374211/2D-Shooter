@@ -38,12 +38,12 @@ private:
 	int m_targetScore;
 
 	//1フレームごとに増える点
-	int m_scoreAdd;
+	static const int SCOREADD = 10;
 
 	//このフレームで点が増えたか
 	bool m_isScoreAdded;
 
-	C_ScoreManager() :m_score(0), m_targetScore(0), m_scoreAdd(0), m_isScoreAdded(false), m_rankingScore() { LoadRankingScore(); }
+	C_ScoreManager() :m_score(0), m_targetScore(0), m_isScoreAdded(false), m_rankingScore() { LoadRankingScore(); }
 	~C_ScoreManager() {}
 
 public:

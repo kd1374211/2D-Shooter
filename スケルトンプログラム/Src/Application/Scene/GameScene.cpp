@@ -12,8 +12,9 @@
 #include "../Level/LevelManager.h"
 
 #include "../Chara/Enemy/EnemyConst.h"
+#include "../Chara/Player/Player.h"
 
-C_GameScene::C_GameScene() :m_back(nullptr), m_timeColor(1, 1, 1, 1)
+C_GameScene::C_GameScene() :m_back(nullptr), m_timeColor(1, 1, 1, 1), m_alphaChangeMulti_timeChargeMax(1.0f), m_textAlpha_timeChargeMax(1.0f), m_textAlpha_levelUp(MAXALPHA_LU), m_alphaChangeMulti_levelUp(-1.0f), m_isLevelUpText(false), m_countF_levelUp(0)
 {
 	SetSceneTag(E_SceneTypeTag::Game);
 	m_back = new C_Background();
@@ -119,6 +120,8 @@ void C_GameScene::Update()
 	m_back->Update();
 	UpdateTimeColor();
 	UpdateTimeChargeAlpha();
+
+	UpdateLevelUpAlpha();
 }
 
 void C_GameScene::Draw()
@@ -131,6 +134,17 @@ void C_GameScene::Draw()
 
 	//リセット
 	SHADER.m_spriteShader.SetMatrix(Math::Matrix::Identity);
+
+	//キー色々
+	for (auto& itr : SCENEMGR.GetKeyPosData(E_SceneTypeTag::Game))
+	{
+		S_KeyTexData* data = SCENEMGR.GetKeyTexData(itr.m_key);
+
+		Math::Vector2 playerPos = CHARAMGR.GetPlayer()->GetPos();
+		Math::Color color = playerPos.y > GUIDEALPHACHANGE_Y ? Math::Color(1, 1, 1, TRANSPARENTGUIDEALPHA) : Math::Color(1, 1, 1, DEFAULTGUIDEALPHA);
+		Math::Rectangle rec = { 0,0,(long)data->m_texSize.x ,(long)data->m_texSize.y };
+		SHADER.m_spriteShader.DrawTex(&data->m_tex, itr.m_pos.x, itr.m_pos.y, data->m_texDrawSize.x, data->m_texDrawSize.y, &rec, &color);
+	}
 
 	//バー
 	S_SceneTexData* topBar = SCENEMGR.GetSceneTexData(E_GameTextures::Game_TopBar);
@@ -169,6 +183,27 @@ void C_GameScene::Draw()
 			else
 			{
 				FONTMGR.DrawWord(itr.m_pos, itr.m_textPos, itr.m_str, itr.m_scale, itr.m_color);
+			}
+		}
+		else if (itr.m_textTag == E_VariableTextsID::Game_Guide)
+		{
+			Math::Vector2 playerPos = CHARAMGR.GetPlayer()->GetPos();
+			if (playerPos.y > GUIDEALPHACHANGE_Y)
+			{
+				FONTMGR.DrawWord(itr.m_pos, itr.m_textPos, itr.m_str, itr.m_scale, Math::Color(1, 1, 1, TRANSPARENTGUIDEALPHA));
+			}
+			else
+			{
+				FONTMGR.DrawWord(itr.m_pos, itr.m_textPos, itr.m_str, itr.m_scale, itr.m_color);
+			}
+		}
+		else if (itr.m_textTag == E_VariableTextsID::Game_LevelUp)
+		{
+			if (m_isLevelUpText)
+			{
+				Math::Color baseColor = itr.m_color;
+				Math::Color color = { baseColor.x,baseColor.y,baseColor.z,m_textAlpha_levelUp };
+				FONTMGR.DrawWord(itr.m_pos, itr.m_textPos, itr.m_str, itr.m_scale, color);
 			}
 		}
 		else
@@ -215,14 +250,41 @@ void C_GameScene::UpdateTimeChargeAlpha()
 	if (TIMEMGR.GetIsMaxCharged())ResetTimeChargeAlpha();
 
 	//α更新
-	m_textAlpha_timeChargeMax += ALPHACHANGE_TCM * m_textAlphaChangeMulti;
+	m_textAlpha_timeChargeMax += ALPHACHANGE_TCM * m_alphaChangeMulti_timeChargeMax;
 
 	//反転チェック
-	if (m_textAlpha_timeChargeMax <= MINALPHA_TCM || m_textAlpha_timeChargeMax >= MAXALPHA_TCM)m_textAlphaChangeMulti *= -1;
+	if (m_textAlpha_timeChargeMax <= MINALPHA_TCM || m_textAlpha_timeChargeMax >= MAXALPHA_TCM)m_alphaChangeMulti_timeChargeMax *= -1;
 }
 
 void C_GameScene::ResetTimeChargeAlpha()
 {
-	m_textAlphaChangeMulti = -1.0f;
+	m_alphaChangeMulti_timeChargeMax = -1.0f;
 	m_textAlpha_timeChargeMax = MAXALPHA_TCM;
+}
+
+void C_GameScene::UpdateLevelUpAlpha()
+{
+	//このフレームで上がったならalphaリセット
+	if (LEVELMGR.GetIsLevelUp())ResetLevelUpAlpha();
+
+	//文字出さないならリターン
+	if (!m_isLevelUpText)return;
+
+	//α更新
+	m_textAlpha_levelUp += m_alphaChangeMulti_levelUp * ALPHACHANGE_LU;
+
+	//反転チェック
+	if (m_textAlpha_levelUp <= MINALPHA_LU || m_textAlpha_levelUp >= MAXALPHA_LU)m_alphaChangeMulti_levelUp *= -1;
+
+	//フレーム更新
+	m_countF_levelUp--;
+	if (m_countF_levelUp <= 0)m_isLevelUpText = false;
+}
+
+void C_GameScene::ResetLevelUpAlpha()
+{
+	m_textAlpha_levelUp = MAXALPHA_LU;
+	m_alphaChangeMulti_levelUp = -1.0f;
+	m_isLevelUpText = true;
+	m_countF_levelUp = LEVELUPTEXTF;
 }

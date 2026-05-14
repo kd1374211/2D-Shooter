@@ -109,7 +109,7 @@ void C_SceneManager::Init()
 	LoadSelectWeaponData();
 	LoadTextsData();
 	LoadButtonData();
-	LoadKeyTexData();
+	LoadKeyData();
 	LoadTex();
 }
 
@@ -234,7 +234,7 @@ void C_SceneManager::LoadButtonData()
 
 }
 
-void C_SceneManager::LoadKeyTexData()
+void C_SceneManager::LoadKeyData()
 {
 	FILE* fp = nullptr;
 
@@ -244,10 +244,9 @@ void C_SceneManager::LoadKeyTexData()
 
 		for (int i = 0;i < (int)E_KeyTextures::Max;i++)
 		{
-			char name[STRLENG] = {};
-
 			if (fgets(dummy, 250, fp) != nullptr)//1行読み
 			{
+				char name[STRLENG] = {};
 				char path[STRLENG] = {};
 				float scale;
 
@@ -262,6 +261,30 @@ void C_SceneManager::LoadKeyTexData()
 				m_keyTex[i].m_texDrawSize = m_keyTex[i].m_texSize * scale;
 				m_keyTex[i].m_tex.Load(path);
 			}
+		}
+
+		fclose(fp);
+	}
+
+	fp = nullptr;
+
+	if (fopen_s(&fp, "Data/Key/KeyPosData.csv", "r") == 0)
+	{
+		char dummy[250] = {};
+
+		while (fgets(dummy, 250, fp) != nullptr)//1行読み
+		{
+			int sceneType;
+
+			S_KeyPosData data;
+
+			if (fscanf_s(fp, "%d,%f,%f,%d,",
+				&sceneType,
+				&data.m_pos.x,
+				&data.m_pos.y,
+				&data.m_key) == EOF)break;
+
+			m_keyTexPos[sceneType].push_back(data);
 		}
 
 		fclose(fp);

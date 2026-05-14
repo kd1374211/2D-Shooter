@@ -16,6 +16,9 @@ public:
 	void UpdateTimeChargeAlpha();
 	void ResetTimeChargeAlpha();
 
+	void UpdateLevelUpAlpha();
+	void ResetLevelUpAlpha();
+
 private:
 
 	const Math::Vector2 PLAYERSPAWNPOS = { -550,-60.0f };
@@ -35,5 +38,23 @@ private:
 	const float MAXALPHA_TCM = 1.0f;
 	const float ALPHACHANGE_TCM = 0.03f;
 	float m_textAlpha_timeChargeMax;
-	float m_textAlphaChangeMulti;
+	float m_alphaChangeMulti_timeChargeMax;
+
+	//ガイド消し
+	const float DEFAULTGUIDEALPHA = 0.8f;
+	const float TRANSPARENTGUIDEALPHA = 0.2f;
+
+	const float GUIDEALPHACHANGE_Y = 170.0f;
+
+	//レベルアップ
+	const float MINALPHA_LU = 0.2f;
+	const float MAXALPHA_LU = 0.8f;
+	const float ALPHACHANGE_LU = 0.03f;
+
+	float m_textAlpha_levelUp;
+	float m_alphaChangeMulti_levelUp;
+
+	static const int LEVELUPTEXTF = 60;
+	bool m_isLevelUpText;
+	int m_countF_levelUp;
 };

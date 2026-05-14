@@ -28,6 +28,8 @@ public:
 	std::vector<S_TextsData> GetSceneTextsData(E_SceneTypeTag a_scene) { return(m_sceneTexts[(int)a_scene]); }
 	KdTexture* GetButtonTex(E_ButtonState a_state) { return(&m_buttonTex[(int)a_state]); }
 	S_ButtonPosData* GetButtonData(E_GameButtons a_button) { return(&m_sceneButtons[(int)a_button]); }
+	S_KeyTexData* GetKeyTexData(E_KeyTextures a_key) { return(&m_keyTex[(int)a_key]); }
+	std::vector<S_KeyPosData> GetKeyPosData(E_SceneTypeTag a_scene) { return(m_keyTexPos[(int)a_scene]); }
 
 private:
 
@@ -60,6 +62,9 @@ private:
 	//キーテクスチャ
 	S_KeyTexData m_keyTex[(int)E_KeyTextures::Max];
 
+	//キー表示位置と種類
+	std::vector<S_KeyPosData> m_keyTexPos[(int)E_SceneTypeTag::Max];
+
 	//操作可能フラグ
 	bool m_isStop;
 
@@ -67,7 +72,7 @@ private:
 	void LoadSelectWeaponData();
 	void LoadTextsData();
 	void LoadButtonData();
-	void LoadKeyTexData();
+	void LoadKeyData();
 	void LoadTex();
 	void Release();
 

@@ -20,6 +20,8 @@ enum class E_GameTextures
 enum class E_KeyTextures
 {
 	R,
+	Arrows,
+	Space,
 	Shift,
 	Max
 };
@@ -48,6 +50,8 @@ enum class E_VariableTextsID
 	Title_PressEnter,
 	Select_SelectWeapon,
 	Game_TimeCharge,
+	Game_Guide,
+	Game_LevelUp,
 	Result_NewRecord,
 	Result_Rank,
 	Result_ButtonTexts,
@@ -67,6 +71,11 @@ struct S_KeyTexData
 	KdTexture m_tex;
 	Math::Vector2 m_texSize;
 	Math::Vector2 m_texDrawSize;
+};
+struct S_KeyPosData
+{
+	Math::Vector2 m_pos;
+	E_KeyTextures m_key;
 };
 
 const Math::Vector2 BUTTONTEXSIZE = { 114.0f,38.0f };
