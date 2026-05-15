@@ -1,6 +1,7 @@
 #include "AutoCannon.h"
 #include "../../../Key/KeyStateManager.h"
 #include "../../../Bullet/BulletManager.h"
+#include "../../../Sound/SoundManager.h"
 
 C_AutoCannon::C_AutoCannon(S_TexData* a_texData, Math::Vector3 a_texScale)
 {
@@ -15,6 +16,7 @@ void C_AutoCannon::Update(Math::Vector2 a_playerPos, bool a_isAuto)
 	{
 		if (!m_bIsShot)
 		{
+			SOUNDMGR.PlaySE(SE::AC_Shot);
 			m_bIsShot = true;
 		}
 	}

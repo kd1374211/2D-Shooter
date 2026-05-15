@@ -3,6 +3,8 @@
 
 enum class E_GameTextures
 {
+	Title_Title,
+	Title_PressEnter,
 	Select_TopBar,
 	Select_StatWindow,
 	Select_StatBar,

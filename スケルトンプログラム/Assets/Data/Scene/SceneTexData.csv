@@ -1,4 +1,6 @@
 名前,画像Path,表示位置X,表示位置Y,描画サイズX,描画サイズY,スケールX,スケールY
+Title,Assets/Texture/Scene/Title/Title.png,0,80,686,266,1.5,1.5
+PressEnter,Assets/Texture/Scene/Title/PressEnter.png,0,-240,260,69,1.5,1.5
 TopBar,Assets/Texture/Scene/Select/SelectSceneTopBar.png,0,320,114,38,5,1.5
 StatWindow,Assets/Texture/Scene/Select/WeaponStatWindow.png,0,-180,695,377,1.5,0.9
 StatBar,Assets/Texture/Scene/Select/WeaponStatBar.png,-250,-200,48,6,4,4

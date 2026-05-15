@@ -100,6 +100,9 @@
     <Filter Include="Src\Application\Chara\Enemy\Torpedo">
       <UniqueIdentifier>{0f95c9c2-608b-46c7-9e65-7f50bf2c4cfb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Application\Sound">
+      <UniqueIdentifier>{d444bd23-167e-4f09-9152-310c981197da}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Pch.h">
@@ -315,6 +318,12 @@
     <ClInclude Include="Src\Application\Scene\RankingScene.h">
       <Filter>Src\Application\Scene</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Application\Sound\SoundManager.h">
+      <Filter>Src\Application\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\Sound\SoundManagerConst.h">
+      <Filter>Src\Application\Sound</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Pch.cpp">
@@ -469,6 +478,9 @@
     </ClCompile>
     <ClCompile Include="Src\Application\Scene\RankingScene.cpp">
       <Filter>Src\Application\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\Sound\SoundManager.cpp">
+      <Filter>Src\Application\Sound</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
