@@ -49,8 +49,9 @@ void C_GameScene::Update()
 		LEVELMGR.Update();
 
 		//召喚
-		CHARAMGR.CheckEnemySpawn();
+		if (isEnemySpawn)CHARAMGR.CheckEnemySpawn();
 
+		//debug
 		if (GetAsyncKeyState('0') & 0x8000)
 		{
 			TIMEMGR.SubTime(TIMEMGR.GetTime());
@@ -61,14 +62,10 @@ void C_GameScene::Update()
 			SCENEMGR.SpawnTransition(E_SceneTypeTag::Result);
 		}
 
-		if (KEYMGR.GetKeyState(E_KeyChecks::Enter) == E_KeyState::Pressed)
-		{
-			CHARAMGR.SpawnEnemy({ 640.0f,(float)(rand() % 40 - 250) }, E_CharaName::Torpedo);
-		}
-
+		//Debug Keys
 		if (GetAsyncKeyState('1') & 0x8000)
 		{
-			TIMEMGR.AddTime(5);
+			TIMEMGR.AddTime(20);
 		}
 
 		if (GetAsyncKeyState('2') & 0x8000)
@@ -83,7 +80,7 @@ void C_GameScene::Update()
 
 		if (GetAsyncKeyState('4') & 0x8000)
 		{
-			TIMEMGR.AddTimeCharge(-5);
+			TIMEMGR.SetTimeCharge(120);
 		}
 
 		if (GetAsyncKeyState('5') & 0x8000)
@@ -102,6 +99,60 @@ void C_GameScene::Update()
 		if (GetAsyncKeyState('8') & 0x8000)
 		{
 			TIMEMGR.SetSurviveTime(90);
+		}
+		if (GetAsyncKeyState('9') & 0x8000)
+		{
+			TIMEMGR.AddSurviveTime(1);
+		}
+
+		if (GetAsyncKeyState('A') & 0x8000)
+		{
+			if (!isPressedAS)
+			{
+				isEnemySpawn = false;
+			}
+			isPressedAS = true;
+		}
+		else if (GetAsyncKeyState('S') & 0x8000)
+		{
+			if (!isPressedAS)
+			{
+				isEnemySpawn = true;
+			}
+			isPressedAS = true;
+		}
+		else
+		{
+			isPressedAS = false;
+		}
+
+		if (GetAsyncKeyState('Q') & 0x8000)
+		{
+			if (!isPressedQWE)
+			{
+				CHARAMGR.SpawnEnemy({ 658.0f,40 }, E_CharaName::Fighter);
+			}
+			isPressedQWE = true;
+		}
+		else if (GetAsyncKeyState('W') & 0x8000)
+		{
+			if (!isPressedQWE)
+			{
+				CHARAMGR.SpawnEnemy({ 661.0f,-60 }, E_CharaName::Bomber);
+			}
+			isPressedQWE = true;
+		}
+		else if (GetAsyncKeyState('E') & 0x8000)
+		{
+			if (!isPressedQWE)
+			{
+				CHARAMGR.SpawnEnemy({ 652.0f,-160 }, E_CharaName::Torpedo);
+			}
+			isPressedQWE = true;
+		}
+		else
+		{
+			isPressedQWE = false;
 		}
 	}
 

@@ -41,7 +41,7 @@ void C_ScoreManager::LoadRankingScore()
 {
 	FILE* fp = nullptr;
 
-	if (fopen_s(&fp, "Data/Score/ScoreSave.txt", "r") == 0)
+	if (fopen_s(&fp, "Assets/Data/Score/ScoreSave.txt", "r") == 0)
 	{
 		for (int i = 0;i < E_WeaponName::WeaponMax;i++)
 		{
@@ -64,7 +64,7 @@ void C_ScoreManager::SaveRankingScore()
 {
 	FILE* fp = nullptr;
 
-	if (fopen_s(&fp, "Data/Score/ScoreSave.txt", "w") == 0)
+	if (fopen_s(&fp, "Assets/Data/Score/ScoreSave.txt", "w") == 0)
 	{
 		for (int i = 0;i < E_WeaponName::WeaponMax;i++)
 		{

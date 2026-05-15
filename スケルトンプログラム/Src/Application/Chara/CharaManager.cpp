@@ -174,7 +174,7 @@ void C_CharaManager::LoadBaseTex()
 {
 	FILE* fp = nullptr;
 
-	if (fopen_s(&fp, "Data/Chara/CharaTexPathData.csv", "r") == 0)
+	if (fopen_s(&fp, "Assets/Data/Chara/CharaTexPathData.csv", "r") == 0)
 	{
 		char dummy[250] = {};
 
@@ -200,7 +200,7 @@ void C_CharaManager::SetBaseTexData()
 {
 	FILE* fp = nullptr;
 
-	if (fopen_s(&fp, "Data/Chara/CharaTexData.csv", "r") == 0)
+	if (fopen_s(&fp, "Assets/Data/Chara/CharaTexData.csv", "r") == 0)
 	{
 		char dummy[250] = {};
 
@@ -249,7 +249,7 @@ void C_CharaManager::LoadPlayerSelectWeaponTex()
 {
 	FILE* fp = nullptr;
 
-	if (fopen_s(&fp, "Data/Chara/SelectWeaponData.csv", "r") == 0)
+	if (fopen_s(&fp, "Assets/Data/Chara/SelectWeaponData.csv", "r") == 0)
 	{
 		char dummy[250] = {};
 
@@ -293,7 +293,7 @@ void C_CharaManager::LoadCharaStatData()
 {
 	FILE* fp = nullptr;
 
-	if (fopen_s(&fp, "Data/Chara/CharaStatData.csv", "r") == 0)
+	if (fopen_s(&fp, "Assets/Data/Chara/CharaStatData.csv", "r") == 0)
 	{
 		char dummy[250] = {};
 
@@ -322,7 +322,7 @@ void C_CharaManager::LoadSpawnData()
 {
 	FILE* fp = nullptr;
 
-	if (fopen_s(&fp, "Data/Spawn/EnemySpawnSeedData.csv", "r") == 0)
+	if (fopen_s(&fp, "Assets/Data/Spawn/EnemySpawnSeedData.csv", "r") == 0)
 	{
 		char dummy[250] = {};
 

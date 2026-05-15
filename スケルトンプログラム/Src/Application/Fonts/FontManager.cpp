@@ -102,7 +102,7 @@ std::string C_FontManager::ConvertToTime(int a_min, int a_sec, int a_frame)
 
 void C_FontManager::Init()
 {
-	m_fontTex.Load("Texture/Fonts/Fonts.png");	
+	m_fontTex.Load("Assets/Texture/Fonts/Fonts.png");	
 }
 
 void C_FontManager::Release()

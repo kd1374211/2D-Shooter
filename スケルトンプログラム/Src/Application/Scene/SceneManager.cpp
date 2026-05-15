@@ -117,7 +117,7 @@ void C_SceneManager::LoadSelectWeaponData()
 {
 	FILE* fp = nullptr;
 
-	if (fopen_s(&fp, "Data/Scene/SelectSceneWeaponStatData.csv", "r") == 0)
+	if (fopen_s(&fp, "Assets/Data/Scene/SelectSceneWeaponStatData.csv", "r") == 0)
 	{
 		char dummy[250] = {};
 
@@ -146,7 +146,7 @@ void C_SceneManager::LoadTextsData()
 {
 	FILE* fp = nullptr;
 
-	if (fopen_s(&fp, "Data/Scene/SceneFontsData.csv", "r") == 0)
+	if (fopen_s(&fp, "Assets/Data/Scene/SceneFontsData.csv", "r") == 0)
 	{
 		char dummy[250] = {};
 
@@ -182,7 +182,7 @@ void C_SceneManager::LoadButtonData()
 {
 	FILE* fp = nullptr;
 
-	if (fopen_s(&fp, "Data/Scene/ButtonTexData.csv", "r") == 0)
+	if (fopen_s(&fp, "Assets/Data/Scene/ButtonTexData.csv", "r") == 0)
 	{
 		char dummy[250] = {};
 
@@ -205,7 +205,7 @@ void C_SceneManager::LoadButtonData()
 		fclose(fp);
 	}
 
-	if (fopen_s(&fp, "Data/Scene/ButtonPosData.csv", "r") == 0)
+	if (fopen_s(&fp, "Assets/Data/Scene/ButtonPosData.csv", "r") == 0)
 	{
 		char dummy[250] = {};
 
@@ -238,7 +238,7 @@ void C_SceneManager::LoadKeyData()
 {
 	FILE* fp = nullptr;
 
-	if (fopen_s(&fp, "Data/Key/KeyTexData.csv", "r") == 0)
+	if (fopen_s(&fp, "Assets/Data/Key/KeyTexData.csv", "r") == 0)
 	{
 		char dummy[250] = {};
 
@@ -268,7 +268,7 @@ void C_SceneManager::LoadKeyData()
 
 	fp = nullptr;
 
-	if (fopen_s(&fp, "Data/Key/KeyPosData.csv", "r") == 0)
+	if (fopen_s(&fp, "Assets/Data/Key/KeyPosData.csv", "r") == 0)
 	{
 		char dummy[250] = {};
 
@@ -295,7 +295,7 @@ void C_SceneManager::LoadTex()
 {
 	FILE* fp = nullptr;
 
-	if (fopen_s(&fp, "Data/Scene/SceneTexData.csv", "r") == 0)
+	if (fopen_s(&fp, "Assets/Data/Scene/SceneTexData.csv", "r") == 0)
 	{
 		char dummy[250] = {};
 

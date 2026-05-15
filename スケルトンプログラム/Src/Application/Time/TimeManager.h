@@ -25,6 +25,7 @@ public:
 	
 	//生存時間セッター（デバッグ用）
 	void SetSurviveTime(int a_sec) { m_surviveTimeF = a_sec * 60; }
+	void AddSurviveTime(int a_sec) { m_surviveTimeF += a_sec * 60; }
 
 	//時間シリーズ
 	void SetTime(int a_sec) { m_timeF = a_sec * 60; }
@@ -47,6 +48,9 @@ public:
 	E_TimeChange GetTimeChange()const { return(m_timeChange); }
 	bool GetIsMaxCharge()const { return(m_timeChargeF == TIMECHARGE_MAX ? true : false); }
 	bool GetIsMaxCharged()const { return(m_isMaxCharged); }
+
+	//デバッグ
+	void SetTimeCharge(int TC) { m_timeChargeF = TC; }
 
 private:
 

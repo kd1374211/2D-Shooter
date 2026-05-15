@@ -70,10 +70,10 @@ void C_TimeManager::SubTime(int a_subF)
 
 void C_TimeManager::AddTimeCharge(int a_amount)
 {
-	//既に最大ならリセット
+	//既に最大ならリターン
 	if (m_timeChargeF == TIMECHARGE_MAX)return;
 
-	//停止中でもリセット
+	//停止中でもリターン
 	if (m_nowTimeState == E_TimeState::Stop)return;
 
 	m_timeChargeF += a_amount;
@@ -92,7 +92,7 @@ void C_TimeManager::SetTimeState(E_TimeState a_state)
 
 void C_TimeManager::Load()
 {
-	m_timeChargeTex.Load("Texture/Scene/Game/TimeChargeBar.png");
+	m_timeChargeTex.Load("Assets/Texture/Scene/Game/TimeChargeBar.png");
 }
 
 void C_TimeManager::Release()

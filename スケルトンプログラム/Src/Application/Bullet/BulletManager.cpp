@@ -111,7 +111,7 @@ void C_BulletManager::LoadTexData()
 {
 	FILE* fp = nullptr;
 
-	if (fopen_s(&fp, "Data/Bullet/BulletTexData.csv", "r") == 0)
+	if (fopen_s(&fp, "Assets/Data/Bullet/BulletTexData.csv", "r") == 0)
 	{
 		char dummy[250] = {};
 
@@ -147,7 +147,7 @@ void C_BulletManager::LoadStatData()
 {
 	FILE* fp = nullptr;
 
-	if (fopen_s(&fp, "Data/Bullet/BulletStatData.csv", "r") == 0)
+	if (fopen_s(&fp, "Assets/Data/Bullet/BulletStatData.csv", "r") == 0)
 	{
 		char dummy[250] = {};
 

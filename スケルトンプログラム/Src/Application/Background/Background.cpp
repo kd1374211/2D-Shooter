@@ -32,8 +32,8 @@ void C_Background::Draw()
 
 void C_Background::Init()
 {
-	m_bgTex.Load("Texture/Map/Background.png");
-	m_bgTex2.Load("Texture/Map/Background2.png");
+	m_bgTex.Load("Assets/Texture/Map/Background.png");
+	m_bgTex2.Load("Assets/Texture/Map/Background2.png");
 	m_texWidth = m_bgTex.GetInfo().Width;
 	m_posX = 0.0f;
 }
