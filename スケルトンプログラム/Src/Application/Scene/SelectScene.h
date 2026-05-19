@@ -32,4 +32,10 @@ private:
 
 	//選択フラグ
 	bool m_isSelect;
+
+	//フレームのアニメーション
+	static const int SHIPFRAMEANIMMAX = 20;
+	const float SHIPFRAMEANIMMULTI = 0.2f;
+
+	int m_shipFrameAnimCnt;
 };

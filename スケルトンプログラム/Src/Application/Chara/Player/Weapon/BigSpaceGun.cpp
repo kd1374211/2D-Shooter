@@ -1,6 +1,7 @@
 #include "BigSpaceGun.h"
 #include "../../../Key/KeyStateManager.h"
 #include "../../../Bullet/BulletManager.h"
+#include "../../../Sound/SoundManager.h"
 
 C_BigSpaceGun::C_BigSpaceGun(S_TexData* a_texData, Math::Vector3 a_texScale)
 {
@@ -24,6 +25,7 @@ void C_BigSpaceGun::Update(Math::Vector2 a_playerPos, bool a_isAuto)
 	if (m_texData->m_animCnt == 0)m_bIsShot = false;
 	else if (m_texData->m_animCnt == SHOTBULLET)
 	{
+		SOUNDMGR.PlaySE(SE::BSG_Shot);
 		Shot({ a_playerPos.x + POSOFSX_BULLET,a_playerPos.y });
 	}
 	

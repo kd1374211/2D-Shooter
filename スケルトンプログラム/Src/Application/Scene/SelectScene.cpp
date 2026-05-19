@@ -9,7 +9,7 @@
 #include "../Bullet/BulletManager.h"
 #include "../Chara/Player/Player.h"
 
-C_SelectScene::C_SelectScene() :m_weaponSelectIndex(SCENEMGR.GetSelectedWeapon()), m_isSelect(false)
+C_SelectScene::C_SelectScene() :m_weaponSelectIndex(SCENEMGR.GetSelectedWeapon()), m_isSelect(false), m_shipFrameAnimCnt(0)
 {
 	SetSceneTag(E_SceneTypeTag::Select);
 	m_back = new C_Background();
@@ -66,6 +66,10 @@ void C_SelectScene::Update()
 		}
 	}
 
+	//フレームアニメ更新
+	m_shipFrameAnimCnt++;
+	if (m_shipFrameAnimCnt >= SHIPFRAMEANIMMAX)m_shipFrameAnimCnt -= SHIPFRAMEANIMMAX;
+
 	m_back->Update();
 	CHARAMGR.Update();
 	BULLETMGR.Update();
@@ -93,6 +97,14 @@ void C_SelectScene::Draw()
 	S_SceneTexData* statWindow = SCENEMGR.GetSceneTexData(E_GameTextures::Select_StatWindow);
 	rec = { 0,0,(long)statWindow->m_texSize.x,(long)statWindow->m_texSize.y };
 	SHADER.m_spriteShader.DrawTex(&statWindow->m_tex, statWindow->m_texPos.x, statWindow->m_texPos.y, statWindow->m_texDrawSize.x, statWindow->m_texDrawSize.y, &rec);
+
+	//現在選択しているキャラ表示用フレーム
+	S_SceneTexData* shipFrame = SCENEMGR.GetSceneTexData(E_GameTextures::Select_ShipFrame);
+	rec = { (long)((int)(m_shipFrameAnimCnt * SHIPFRAMEANIMMULTI) * shipFrame->m_texSize.x),0,(long)shipFrame->m_texSize.x,(long)shipFrame->m_texSize.y };
+	SHADER.m_spriteShader.DrawTex(&shipFrame->m_tex, shipFrame->m_texPos.x, shipFrame->m_texPos.y, shipFrame->m_texDrawSize.x, shipFrame->m_texDrawSize.y, &rec);
+
+	//現在選択キャラ
+	CHARAMGR.DrawSelectShip(shipFrame->m_texPos, (E_WeaponName)m_weaponSelectIndex);
 
 	//決定ボタン
 	S_ButtonPosData* selectButton = nullptr;

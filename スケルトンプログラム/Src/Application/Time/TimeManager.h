@@ -58,7 +58,7 @@ private:
 	int m_timeChargeF;
 
 	//タイムゲージ画像
-	const Math::Vector2 texDrawStart = { -570,270 };
+	const Math::Vector2 texDrawStart = { -570,290 };
 	const Math::Vector2 texSize = { 8,12 };
 	const Math::Vector2 texDrawSize = { 16,24 };
 	static const int BARSECNUM = 25;

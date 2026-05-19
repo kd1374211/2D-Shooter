@@ -5,10 +5,13 @@ class C_SoundManager
 {
 public:
 
-	void PlayBGM(BGM a_bgm);
+	void PlayBGM(BGM a_bgm)const;
 	void PlaySE(SE a_se)const;
 
-	void StopBGM(BGM a_bgm);
+	void PauseBGM(BGM a_bgm)const { if (!m_bgmData[(int)a_bgm].m_inst->IsPause())m_bgmData[(int)a_bgm].m_inst->Pause(); }
+	void ResumeBGM(BGM a_bgm)const { if (m_bgmData[(int)a_bgm].m_inst->IsPause())m_bgmData[(int)a_bgm].m_inst->Resume(); }
+	
+	void StopBGM()const;
 	void StopSE(SE a_se)const;
 
 private:
@@ -21,6 +24,7 @@ private:
 	void LoadSE();
 	void StopAll();
 
+	S_SoundData m_bgmData[(int)BGM::Max];
 	S_SoundData m_seData[(int)SE::Max];
 
 public:

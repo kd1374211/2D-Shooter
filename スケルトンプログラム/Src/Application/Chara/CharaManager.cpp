@@ -161,6 +161,34 @@ void C_CharaManager::ClearEnemy()
 	m_enemy.clear();
 }
 
+void C_CharaManager::DrawSelectShip(Math::Vector2 a_pos, E_WeaponName a_weapon)
+{
+	//武器
+	S_PlayerSelectWeaponData weapon = GetSelectWeaponData(a_weapon);
+	Math::Vector2 texSize = weapon.m_texDatas->m_texSize;
+	Math::Rectangle rec = { 0,0,(long)texSize.x,(long)texSize.y };
+	SHADER.m_spriteShader.DrawTex(&weapon.m_texDatas->m_tex[E_SelectWeaponTexType::Select_Weapon], a_pos.x, a_pos.y, texSize.x * weapon.m_texScale.x, texSize.y * weapon.m_texScale.y, &rec);
+
+	//エンジン
+	S_PlayerSelectWeaponData engine = GetSelectWeaponData(a_weapon);
+	texSize = engine.m_texDatas->m_texSize;
+	rec = { 0,0,(long)texSize.x,(long)texSize.y };
+	SHADER.m_spriteShader.DrawTex(&engine.m_texDatas->m_tex[E_SelectWeaponTexType::Select_Engine], a_pos.x, a_pos.y, texSize.x * engine.m_texScale.x, texSize.y * engine.m_texScale.y, &rec);
+
+	//炎
+	S_PlayerSelectWeaponData fire = GetSelectWeaponData(a_weapon);
+	texSize = fire.m_texDatas->m_texSize;
+	rec = { 0,0,(long)texSize.x,(long)texSize.y };
+	SHADER.m_spriteShader.DrawTex(&fire.m_texDatas->m_tex[E_SelectWeaponTexType::Select_Fire], a_pos.x, a_pos.y, texSize.x * fire.m_texScale.x, texSize.y * fire.m_texScale.y, &rec);
+
+	//本体
+	S_BaseCharaTexData base = GetBaseTexData(E_CharaName::Player);
+	S_TexData texData = base.m_texDatas.find(E_CharaBaseTexType::Base)->second;
+	texSize = texData.m_texSize;
+	rec = { 0,0,(long)texSize.x,(long)texSize.y };
+	SHADER.m_spriteShader.DrawTex(texData.m_tex, a_pos.x, a_pos.y, texSize.x * base.m_texScale.x, texSize.y * base.m_texScale.y, &rec);
+}
+
 void C_CharaManager::Init()
 {
 	LoadBaseTex();

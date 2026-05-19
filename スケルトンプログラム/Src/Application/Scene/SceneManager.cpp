@@ -1,5 +1,6 @@
 #include "SceneManager.h"
 #include "../Const/TextureConst.h"
+#include "../Sound/SoundManager.h"
 
 void C_SceneManager::Update()
 {
@@ -44,6 +45,9 @@ void C_SceneManager::SpawnTransition(E_SceneTypeTag a_nextScene)
 
 void C_SceneManager::SetScene(E_SceneTypeTag a_tag)
 {
+	//BGM stop
+	SOUNDMGR.StopBGM();
+
 	E_SceneTypeTag scene = E_SceneTypeTag::None;
 	if (m_pCurrentScene != nullptr)
 	{

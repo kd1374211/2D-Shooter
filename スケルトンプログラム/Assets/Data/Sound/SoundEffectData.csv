@@ -1,3 +1,4 @@
 Ží—Þ,Path,Volume
-AC_Shot,Assets/Sound/SE/AC_Shot.wav,0.15
-BSG_Shot,Assets/Sound/SE/BSG_Shot.wav,0.15
+AC_Shot,Assets/Sound/SE/AC_Shot.wav,0.02
+BSG_Shot,Assets/Sound/SE/BSG_Shot.wav,0.02
+TimeStop,Assets/Sound/SE/TimeStop.wav,0.2

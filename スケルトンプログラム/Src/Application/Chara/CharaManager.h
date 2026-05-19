@@ -34,6 +34,9 @@ public:
 	void SpawnEnemy(Math::Vector2 a_pos, E_CharaName a_enemy);
 	void ClearEnemy();
 
+	//キャラ選択描画用
+	void DrawSelectShip(Math::Vector2 a_pos, E_WeaponName a_weapon);
+
 	//ゲッター
 	//画像
 	S_BaseCharaTexData GetBaseTexData(E_CharaName a_name) { return(m_texData[a_name]); }

@@ -2,9 +2,10 @@
 Title,Assets/Texture/Scene/Title/Title.png,0,80,686,266,1.5,1.5
 PressEnter,Assets/Texture/Scene/Title/PressEnter.png,0,-240,260,69,1.5,1.5
 TopBar,Assets/Texture/Scene/Select/SelectSceneTopBar.png,0,320,114,38,5,1.5
-StatWindow,Assets/Texture/Scene/Select/WeaponStatWindow.png,0,-180,695,377,1.5,0.9
-StatBar,Assets/Texture/Scene/Select/WeaponStatBar.png,-250,-200,48,6,4,4
-SelectArrow,Assets/Texture/Scene/Select/SelectArrow.png,180,-290,48,45,1.5,1.5
+StatWindow,Assets/Texture/Scene/Select/ShipStatWindow.png,0,-180,695,377,1.5,0.9
+ShipFrame,Assets/Texture/Scene/Select/SelectShipFrame.png,0,20,24,24,3,3
+StatBar,Assets/Texture/Scene/Select/ShipStatBar.png,-250,-200,48,6,4,4
+SelectArrow,Assets/Texture/Scene/Select/SelectArrow.png,90,20,48,45,1.5,1.5
 TopBar,Assets/Texture/Scene/Game/TopBar.png,0,300,1280,120,1,1
 ClockIcon,Assets/Texture/Scene/Game/Clock_Icon.png,-60,300,55,60,1,1
 FrameBar,Assets/Texture/Scene/Game/FrameBar.png,0,255,42,5,4,4

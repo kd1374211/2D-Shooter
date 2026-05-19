@@ -1,4 +1,5 @@
 #include "TimeManager.h"
+#include "../Sound/SoundManager.h"
 
 void C_TimeManager::Reset()
 {
@@ -18,6 +19,8 @@ void C_TimeManager::CheckTimeState()
 		if (m_timeChargeF <= 0)
 		{
 			SetTimeState(E_TimeState::Normal);
+			SOUNDMGR.ResumeBGM(BGM::Ingame);
+			SOUNDMGR.StopSE(SE::TimeStop);
 			return;
 		}
 		m_countF_state++;

@@ -9,6 +9,7 @@
 #include "../Score/ScoreManager.h"
 #include "../Fonts/FontManager.h"
 #include "../Level/LevelManager.h"
+#include "../Sound/SoundManager.h"
 
 #include "../Chara/Enemy/EnemyConst.h"
 #include "../Chara/Player/Player.h"
@@ -23,6 +24,7 @@ C_GameScene::C_GameScene() :m_back(nullptr), m_timeColor(1, 1, 1, 1), m_alphaCha
 	TIMEMGR.SetTime(60);
 	SCOREMGR.ResetScore();
 	CHARAMGR.RestartGame();
+	SOUNDMGR.PlayBGM(BGM::Ingame);
 }
 
 C_GameScene::~C_GameScene()
@@ -257,6 +259,36 @@ void C_GameScene::Draw()
 			{
 				FONTMGR.DrawWord(itr.m_pos, itr.m_textPos, itr.m_str, itr.m_scale, itr.m_color);
 			}
+		}
+		else if(itr.m_textTag == E_VariableTextsID::Game_TimeControlMode)
+		{
+			//文字取得
+			std::string text = itr.m_str;
+
+			//文字数取得
+			int leng = text.size();
+
+			text.append("    ");
+			FONTMGR.DrawWord(itr.m_pos, itr.m_textPos, text, itr.m_scale, itr.m_color);
+
+			//モード用テキスト
+			std::string mode = {};
+			for (int i = 0; i < leng; i++)mode.append(" ");
+
+			//色
+			Math::Color modeColor = {};
+
+			if (TIMEMGR.GetTimeState() == E_TimeState::Stop || TIMEMGR.GetIsMaxCharge())
+			{
+				mode.append("Stop");
+				modeColor = Math::Color(0.8f, 0.2f, 0.2f, 1);
+			}
+			else
+			{
+				mode.append("Slow");
+				modeColor = Math::Color(0.2f, 0.2f, 0.8f, 1);
+			}
+			FONTMGR.DrawWord(itr.m_pos, itr.m_textPos, mode, itr.m_scale, modeColor);
 		}
 		else if (itr.m_textTag == E_VariableTextsID::Game_Guide)
 		{

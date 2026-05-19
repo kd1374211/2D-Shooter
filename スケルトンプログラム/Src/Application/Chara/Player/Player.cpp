@@ -3,6 +3,7 @@
 #include "../CharaManager.h"
 #include "Weapon/WeaponConst.h"
 #include "../../Time/TimeManager.h"
+#include "../../Sound/SoundManager.h"
 
 C_Player::C_Player(E_WeaponName a_name, bool a_isBot) :m_weapon(nullptr), m_isInvincible(false), m_isBot(false), m_countF(10), m_invincibleF(0)
 {
@@ -77,6 +78,8 @@ void C_Player::Update()
 					{
 						//停止
 						TIMEMGR.SetTimeState(E_TimeState::Stop);
+						SOUNDMGR.PauseBGM(BGM::Ingame);
+						SOUNDMGR.PlaySE(SE::TimeStop);
 					}
 					else
 					{

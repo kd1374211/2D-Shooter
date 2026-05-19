@@ -2,6 +2,7 @@
 
 enum class BGM
 {
+	Ingame,
 	Max
 };
 
@@ -9,6 +10,7 @@ enum class SE
 {
 	AC_Shot,
 	BSG_Shot,
+	TimeStop,
 	Max
 };
 
