@@ -84,6 +84,7 @@ void C_TimeManager::AddTimeCharge(int a_amount)
 	{
 		m_timeChargeF = TIMECHARGE_MAX;
 		m_isMaxCharged = true;
+		SOUNDMGR.PlaySE(SE::FullCharge);
 	}
 }
 

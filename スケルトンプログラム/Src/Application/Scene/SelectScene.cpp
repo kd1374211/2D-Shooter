@@ -8,11 +8,13 @@
 #include "../Chara/CharaManager.h"
 #include "../Bullet/BulletManager.h"
 #include "../Chara/Player/Player.h"
+#include "../Sound/SoundManager.h"
 
 C_SelectScene::C_SelectScene() :m_weaponSelectIndex(SCENEMGR.GetSelectedWeapon()), m_isSelect(false), m_shipFrameAnimCnt(0)
 {
 	SetSceneTag(E_SceneTypeTag::Select);
 	m_back = new C_Background();
+	SOUNDMGR.PlayBGM(BGM::Select);
 
 	CHARAMGR.SpawnBotPlayer((E_WeaponName)m_weaponSelectIndex, BOTPLAYERPOS);
 }
@@ -38,6 +40,7 @@ void C_SelectScene::Update()
 			if (m_weaponSelectIndex < E_WeaponName::BigSpaceGun)
 			{
 				m_weaponSelectIndex++;
+				SOUNDMGR.PlaySE(SE::Cursor);
 				CHARAMGR.DeletePlayer();
 				BULLETMGR.ClearBullet();
 				CHARAMGR.SpawnBotPlayer((E_WeaponName)m_weaponSelectIndex, BOTPLAYERPOS);
@@ -48,6 +51,7 @@ void C_SelectScene::Update()
 			if (m_weaponSelectIndex > E_WeaponName::AutoCannon)
 			{
 				m_weaponSelectIndex--;
+				SOUNDMGR.PlaySE(SE::Cursor);
 				CHARAMGR.DeletePlayer();
 				BULLETMGR.ClearBullet();
 				CHARAMGR.SpawnBotPlayer((E_WeaponName)m_weaponSelectIndex, BOTPLAYERPOS);
@@ -58,6 +62,7 @@ void C_SelectScene::Update()
 			SCENEMGR.SpawnTransition(E_SceneTypeTag::Game);
 			SCENEMGR.SetSelectedWeapon((E_WeaponName)m_weaponSelectIndex);
 			m_isSelect = true;
+			SOUNDMGR.PlaySE(SE::Enter);
 		}
 		else if (KEYMGR.GetKeyState(E_KeyChecks::R) == E_KeyState::Pressed)
 		{

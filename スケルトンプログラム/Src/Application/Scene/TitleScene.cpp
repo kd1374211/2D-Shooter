@@ -3,11 +3,12 @@
 #include "SceneManager.h"
 #include "../Background/Background.h"
 #include "../Fonts/FontManager.h"
+#include "../Sound/SoundManager.h"
 
 C_TitleScene::C_TitleScene() :m_startButtonAlpha(1.0f), m_alphaChangeMulti(-1)
 {
 	SetSceneTag(E_SceneTypeTag::Title);
-
+	SOUNDMGR.PlayBGM(BGM::Title);
 	m_back = new C_Background();
 }
 
@@ -35,6 +36,7 @@ void C_TitleScene::Update()
 		if (KEYMGR.GetKeyState(E_KeyChecks::Enter) == E_KeyState::Pressed)
 		{
 			SCENEMGR.SpawnTransition(E_SceneTypeTag::Select);
+			SOUNDMGR.PlaySE(SE::Enter);
 		}
 	}
 }

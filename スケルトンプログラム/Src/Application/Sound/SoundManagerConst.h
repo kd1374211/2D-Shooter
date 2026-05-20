@@ -2,14 +2,19 @@
 
 enum class BGM
 {
+	Title,
+	Select,
 	Ingame,
 	Max
 };
 
 enum class SE
 {
+	Cursor,
+	Enter,
 	AC_Shot,
 	BSG_Shot,
+	FullCharge,
 	TimeStop,
 	Max
 };
