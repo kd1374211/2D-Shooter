@@ -25,21 +25,17 @@ void C_Background::Update()
 void C_Background::Draw()
 {
 	Math::Rectangle rec = { (long)m_posX,0,(long)SCREENSIZEHALF.x,(long)SCREENSIZEHALF.y };
-	SHADER.m_spriteShader.DrawTex(&m_bgTex, 0, 0, SCREENSIZE.x, SCREENSIZE.y, &rec);
+	SHADER.m_spriteShader.DrawTex(&(*m_bgTex), 0, 0, SCREENSIZE.x, SCREENSIZE.y, &rec);
 	Math::Color color = { 1.0f,1.0f,1.0f,0.7f };
-	SHADER.m_spriteShader.DrawTex(&m_bgTex2, 0, 0, SCREENSIZE.x, SCREENSIZE.y, &rec, &color);
+	SHADER.m_spriteShader.DrawTex(&(*m_bgTex2), 0, 0, SCREENSIZE.x, SCREENSIZE.y, &rec, &color);
 }
 
 void C_Background::Init()
 {
-	m_bgTex.Load("Assets/Texture/Map/Background.png");
-	m_bgTex2.Load("Assets/Texture/Map/Background2.png");
-	m_texWidth = m_bgTex.GetInfo().Width;
+	m_bgTex = std::make_shared<KdTexture>();
+	m_bgTex->Load("Assets/Texture/Map/Background.png");
+	m_bgTex2 = std::make_shared<KdTexture>();
+	m_bgTex2->Load("Assets/Texture/Map/Background2.png");
+	m_texWidth = m_bgTex->GetInfo().Width;
 	m_posX = 0.0f;
-}
-
-void C_Background::Release()
-{
-	m_bgTex.Release();
-	m_bgTex2.Release();
 }

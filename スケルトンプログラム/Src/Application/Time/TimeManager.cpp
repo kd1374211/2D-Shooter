@@ -52,7 +52,7 @@ void C_TimeManager::DrawTimeCharge()
 	for (int i = 0;i < BARSECNUM;i++)
 	{
 		Math::Rectangle rec = { (long)(texTypes[i % BARSEC_ONE] * texSize.x),(long)(i >= activeBar ? 0 : texSize.y),(long)texSize.x,(long)texSize.y };
-		SHADER.m_spriteShader.DrawTex(&m_timeChargeTex, texDrawStart.x + i * texDrawSize.x, texDrawStart.y, texDrawSize.x, texDrawSize.y, &rec);
+		SHADER.m_spriteShader.DrawTex(&(*m_timeChargeTex), texDrawStart.x + i * texDrawSize.x, texDrawStart.y, texDrawSize.x, texDrawSize.y, &rec);
 	}
 }
 
@@ -96,10 +96,6 @@ void C_TimeManager::SetTimeState(E_TimeState a_state)
 
 void C_TimeManager::Load()
 {
-	m_timeChargeTex.Load("Assets/Texture/Scene/Game/TimeChargeBar.png");
-}
-
-void C_TimeManager::Release()
-{
-	m_timeChargeTex.Release();
+	m_timeChargeTex = std::make_shared<KdTexture>();
+	m_timeChargeTex->Load("Assets/Texture/Scene/Game/TimeChargeBar.png");
 }

@@ -10,7 +10,7 @@
 #include "../Chara/Player/Player.h"
 #include "../Sound/SoundManager.h"
 
-C_SelectScene::C_SelectScene() :m_weaponSelectIndex(SCENEMGR.GetSelectedWeapon()), m_isSelect(false), m_shipFrameAnimCnt(0)
+C_SelectScene::C_SelectScene() :m_weaponSelectIndex(SCENEMGR.GetSelectedWeapon()), m_isSelect(false), m_shipFrameAnimCnt(0), m_arrowPos(ARROWPOSMIN), m_arrowMoveMulti(1.0f)
 {
 	SetSceneTag(E_SceneTypeTag::Select);
 	m_back = new C_Background();
@@ -40,6 +40,8 @@ void C_SelectScene::Update()
 			if (m_weaponSelectIndex < E_WeaponName::BigSpaceGun)
 			{
 				m_weaponSelectIndex++;
+				m_shipFrameAnimCnt = 0;
+				ResetArrowPos();
 				SOUNDMGR.PlaySE(SE::Cursor);
 				CHARAMGR.DeletePlayer();
 				BULLETMGR.ClearBullet();
@@ -51,6 +53,8 @@ void C_SelectScene::Update()
 			if (m_weaponSelectIndex > E_WeaponName::AutoCannon)
 			{
 				m_weaponSelectIndex--;
+				m_shipFrameAnimCnt = 0;
+				ResetArrowPos();
 				SOUNDMGR.PlaySE(SE::Cursor);
 				CHARAMGR.DeletePlayer();
 				BULLETMGR.ClearBullet();
@@ -75,6 +79,10 @@ void C_SelectScene::Update()
 	m_shipFrameAnimCnt++;
 	if (m_shipFrameAnimCnt >= SHIPFRAMEANIMMAX)m_shipFrameAnimCnt -= SHIPFRAMEANIMMAX;
 
+	//矢印位置更新
+	m_arrowPos += ARROWMOVE * m_arrowMoveMulti;
+	if (m_arrowPos >= ARROWPOSMAX || m_arrowPos <= ARROWPOSMIN)m_arrowMoveMulti *= -1.0f;
+
 	m_back->Update();
 	CHARAMGR.Update();
 	BULLETMGR.Update();
@@ -96,20 +104,48 @@ void C_SelectScene::Draw()
 	//上のバー
 	S_SceneTexData* topBar = SCENEMGR.GetSceneTexData(E_GameTextures::Select_TopBar);
 	Math::Rectangle rec = { 0,0,(long)topBar->m_texSize.x,(long)topBar->m_texSize.y };
-	SHADER.m_spriteShader.DrawTex(&topBar->m_tex, topBar->m_texPos.x, topBar->m_texPos.y, topBar->m_texDrawSize.x, topBar->m_texDrawSize.y, &rec);
+	SHADER.m_spriteShader.DrawTex(&(*topBar->m_tex), topBar->m_texPos.x, topBar->m_texPos.y, topBar->m_texDrawSize.x, topBar->m_texDrawSize.y, &rec);
 
 	//ステータスウィンドウ
 	S_SceneTexData* statWindow = SCENEMGR.GetSceneTexData(E_GameTextures::Select_StatWindow);
 	rec = { 0,0,(long)statWindow->m_texSize.x,(long)statWindow->m_texSize.y };
-	SHADER.m_spriteShader.DrawTex(&statWindow->m_tex, statWindow->m_texPos.x, statWindow->m_texPos.y, statWindow->m_texDrawSize.x, statWindow->m_texDrawSize.y, &rec);
+	SHADER.m_spriteShader.DrawTex(&(*statWindow->m_tex), statWindow->m_texPos.x, statWindow->m_texPos.y, statWindow->m_texDrawSize.x, statWindow->m_texDrawSize.y, &rec);
 
-	//現在選択しているキャラ表示用フレーム
+	//キャラ表示用フレーム
 	S_SceneTexData* shipFrame = SCENEMGR.GetSceneTexData(E_GameTextures::Select_ShipFrame);
-	rec = { (long)((int)(m_shipFrameAnimCnt * SHIPFRAMEANIMMULTI) * shipFrame->m_texSize.x),0,(long)shipFrame->m_texSize.x,(long)shipFrame->m_texSize.y };
-	SHADER.m_spriteShader.DrawTex(&shipFrame->m_tex, shipFrame->m_texPos.x, shipFrame->m_texPos.y, shipFrame->m_texDrawSize.x, shipFrame->m_texDrawSize.y, &rec);
 
-	//現在選択キャラ
-	CHARAMGR.DrawSelectShip(shipFrame->m_texPos, (E_WeaponName)m_weaponSelectIndex);
+	//選択確認
+	for (int i = 0; i < (int)E_WeaponName::WeaponMax; i++)
+	{
+		bool isSelect = i == m_weaponSelectIndex ? true : false;
+
+		//アニメーションチェック
+		rec = { isSelect ? (long)((int)(m_shipFrameAnimCnt * SHIPFRAMEANIMMULTI) * shipFrame->m_texSize.x) : 0,0,(long)shipFrame->m_texSize.x,(long)shipFrame->m_texSize.y };
+
+		//X反転チェック
+		Math::Vector2 pos = shipFrame->m_texPos * Math::Vector2(i == 0 ? 1.0f : -1.0f, 1.0f);
+
+		//描画
+		SHADER.m_spriteShader.DrawTex(&(*shipFrame->m_tex), pos.x, pos.y, shipFrame->m_texDrawSize.x, shipFrame->m_texDrawSize.y, &rec);
+
+		//キャラ
+		CHARAMGR.DrawSelectShip(pos, (E_WeaponName)i);
+
+		//選択しているなら矢印
+		if (isSelect)
+		{
+			S_SceneTexData* shipArrow = SCENEMGR.GetSceneTexData(E_GameTextures::Select_ShipArrow);
+			rec = { 0,0,(long)shipArrow->m_texSize.x,(long)shipArrow->m_texSize.y };
+
+			//X反転チェック
+			pos = shipArrow->m_texPos * Math::Vector2(i == 0 ? 1.0f : -1.0f, 1.0f);
+
+			//Yを足す
+			pos.y += m_arrowPos;
+
+			SHADER.m_spriteShader.DrawTex(&(*shipArrow->m_tex), pos.x, pos.y, shipArrow->m_texDrawSize.x, shipArrow->m_texDrawSize.y, &rec);
+		}
+	}
 
 	//決定ボタン
 	S_ButtonPosData* selectButton = nullptr;
@@ -128,29 +164,13 @@ void C_SelectScene::Draw()
 	rec = { 0,0,(long)BUTTONTEXSIZE.x,(long)BUTTONTEXSIZE.y };
 	SHADER.m_spriteShader.DrawTex(tex, selectButton->m_pos.x, selectButton->m_pos.y, selectButton->m_texDrawSize.x, selectButton->m_texDrawSize.y, &rec);
 
-	//矢印
-	S_SceneTexData* selectArrow = SCENEMGR.GetSceneTexData(E_GameTextures::Select_Arrow);
-	rec = { 0,0,(long)selectArrow->m_texSize.x,(long)selectArrow->m_texSize.y };
-
-	//一番左じゃなければ
-	if (m_weaponSelectIndex != E_WeaponName::AutoCannon)
-	{
-		SHADER.m_spriteShader.DrawTex(&selectArrow->m_tex, -(selectArrow->m_texPos.x), selectArrow->m_texPos.y, -(selectArrow->m_texDrawSize.x), selectArrow->m_texDrawSize.y, &rec);
-	}
-
-	//一番右じゃなければ
-	if (m_weaponSelectIndex != E_WeaponName::BigSpaceGun)
-	{
-		SHADER.m_spriteShader.DrawTex(&selectArrow->m_tex, selectArrow->m_texPos.x, selectArrow->m_texPos.y, selectArrow->m_texDrawSize.x, selectArrow->m_texDrawSize.y, &rec);
-	}
-
 	//キー色々
 	for (auto &itr : SCENEMGR.GetKeyPosData(E_SceneTypeTag::Select))
 	{
 		S_KeyTexData* data = SCENEMGR.GetKeyTexData(itr.m_key);
 
 		Math::Rectangle rec = { 0,0,(long)data->m_texSize.x ,(long)data->m_texSize.y };
-		SHADER.m_spriteShader.DrawTex(&data->m_tex, itr.m_pos.x, itr.m_pos.y, data->m_texDrawSize.x, data->m_texDrawSize.y, &rec);
+		SHADER.m_spriteShader.DrawTex(&(*data->m_tex), itr.m_pos.x, itr.m_pos.y, data->m_texDrawSize.x, data->m_texDrawSize.y, &rec);
 	}
 
 	//武器のステータスとバー画像データを持ってくる
@@ -159,13 +179,13 @@ void C_SelectScene::Draw()
 
 	//各ステータス
 	rec = { (long)((WEAPONSTAT_MAX - stat.m_damage) * statBar->m_texSize.x),0,(long)statBar->m_texSize.x,(long)statBar->m_texSize.y };
-	SHADER.m_spriteShader.DrawTex(&statBar->m_tex, statBar->m_texPos.x, statBar->m_texPos.y, statBar->m_texDrawSize.x, statBar->m_texDrawSize.y, &rec);
+	SHADER.m_spriteShader.DrawTex(&(*statBar->m_tex), statBar->m_texPos.x, statBar->m_texPos.y, statBar->m_texDrawSize.x, statBar->m_texDrawSize.y, &rec);
 	
 	rec = { (long)((WEAPONSTAT_MAX - stat.m_rate) * statBar->m_texSize.x),0,(long)statBar->m_texSize.x,(long)statBar->m_texSize.y };
-	SHADER.m_spriteShader.DrawTex(&statBar->m_tex, statBar->m_texPos.x + STATDRAWOFS_X, statBar->m_texPos.y, statBar->m_texDrawSize.x, statBar->m_texDrawSize.y, &rec);
+	SHADER.m_spriteShader.DrawTex(&(*statBar->m_tex), statBar->m_texPos.x + STATDRAWOFS_X, statBar->m_texPos.y, statBar->m_texDrawSize.x, statBar->m_texDrawSize.y, &rec);
 
 	rec = { (long)((WEAPONSTAT_MAX - stat.m_speed) * statBar->m_texSize.x),0,(long)statBar->m_texSize.x,(long)statBar->m_texSize.y };
-	SHADER.m_spriteShader.DrawTex(&statBar->m_tex, statBar->m_texPos.x + 2 * STATDRAWOFS_X, statBar->m_texPos.y, statBar->m_texDrawSize.x, statBar->m_texDrawSize.y, &rec);
+	SHADER.m_spriteShader.DrawTex(&(*statBar->m_tex), statBar->m_texPos.x + 2 * STATDRAWOFS_X, statBar->m_texPos.y, statBar->m_texDrawSize.x, statBar->m_texDrawSize.y, &rec);
 
 	std::string name = {};
 
@@ -194,4 +214,10 @@ void C_SelectScene::Draw()
 			FONTMGR.DrawWord(itr.m_pos, itr.m_textPos, itr.m_str, itr.m_scale, itr.m_color);
 		}
 	}
+}
+
+void C_SelectScene::ResetArrowPos()
+{
+	m_arrowPos = ARROWPOSMIN;
+	m_arrowMoveMulti = 1.0f;
 }

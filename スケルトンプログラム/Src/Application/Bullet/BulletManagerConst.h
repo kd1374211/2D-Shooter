@@ -21,7 +21,7 @@ enum class E_BulletTeam
 //画像
 struct S_BulletTexData
 {
-	KdTexture m_tex;
+	std::shared_ptr<KdTexture> m_tex;
 	int m_texAnimMax;
 	float m_texAnimMulti;
 	Math::Vector2 m_texSize;

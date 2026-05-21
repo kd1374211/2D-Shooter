@@ -93,14 +93,6 @@ void C_BulletManager::Init()
 	LoadData();
 }
 
-void C_BulletManager::Release()
-{
-	for (int i = 0;i < E_BulletType::BulletMax;i++)
-	{
-		m_bulletBaseTexData[i].m_tex.Release();
-	}
-}
-
 void C_BulletManager::LoadData()
 {
 	LoadTexData();
@@ -135,7 +127,8 @@ void C_BulletManager::LoadTexData()
 					&data->m_texAnimMulti);
 				data->m_texScale.z = 1.0f;
 
-				data->m_tex.Load(texPath);
+				data->m_tex = std::make_shared<KdTexture>();
+				data->m_tex->Load(texPath);
 			}
 		}
 

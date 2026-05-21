@@ -192,7 +192,7 @@ void C_GameScene::Draw()
 			Math::Rectangle rec = { 0,0,(long)slowAura->m_texSize.x,(long)slowAura->m_texSize.y };
 			Math::Vector2 DrawSize = slowAura->m_texSize * GetAuraScale();
 			Math::Color color = { 1,1,1,0.1f };
-			SHADER.m_spriteShader.DrawTex(&slowAura->m_tex, slowAura->m_texPos.x, slowAura->m_texPos.y, DrawSize.x, DrawSize.y, &rec, &color);
+			SHADER.m_spriteShader.DrawTex(&(*slowAura->m_tex), slowAura->m_texPos.x, slowAura->m_texPos.y, DrawSize.x, DrawSize.y, &rec, &color);
 		}
 		else if (m_currentState == E_TimeState::Stop)
 		{
@@ -200,7 +200,7 @@ void C_GameScene::Draw()
 			Math::Rectangle rec = { 0,0,(long)stopAura->m_texSize.x,(long)stopAura->m_texSize.y };
 			Math::Vector2 DrawSize = stopAura->m_texSize * GetAuraScale();
 			Math::Color color = { 1,1,1,0.2f };
-			SHADER.m_spriteShader.DrawTex(&stopAura->m_tex, stopAura->m_texPos.x, stopAura->m_texPos.y, DrawSize.x, DrawSize.y, &rec, &color);
+			SHADER.m_spriteShader.DrawTex(&(*stopAura->m_tex), stopAura->m_texPos.x, stopAura->m_texPos.y, DrawSize.x, DrawSize.y, &rec, &color);
 		}
 	}
 	
@@ -218,18 +218,18 @@ void C_GameScene::Draw()
 		Math::Vector2 playerPos = CHARAMGR.GetPlayer()->GetPos();
 		Math::Color color = playerPos.y > GUIDEALPHACHANGE_Y ? Math::Color(1, 1, 1, TRANSPARENTGUIDEALPHA) : Math::Color(1, 1, 1, DEFAULTGUIDEALPHA);
 		Math::Rectangle rec = { 0,0,(long)data->m_texSize.x ,(long)data->m_texSize.y };
-		SHADER.m_spriteShader.DrawTex(&data->m_tex, itr.m_pos.x, itr.m_pos.y, data->m_texDrawSize.x, data->m_texDrawSize.y, &rec, &color);
+		SHADER.m_spriteShader.DrawTex(&(*data->m_tex), itr.m_pos.x, itr.m_pos.y, data->m_texDrawSize.x, data->m_texDrawSize.y, &rec, &color);
 	}
 
 	//バー
 	S_SceneTexData* topBar = SCENEMGR.GetSceneTexData(E_GameTextures::Game_TopBar);
 	Math::Rectangle rec = { 0,0,(long)topBar->m_texSize.x,(long)topBar->m_texSize.y };
-	SHADER.m_spriteShader.DrawTex(&topBar->m_tex, topBar->m_texPos.x, topBar->m_texPos.y, topBar->m_texDrawSize.x, topBar->m_texDrawSize.y, &rec);
+	SHADER.m_spriteShader.DrawTex(&(*topBar->m_tex), topBar->m_texPos.x, topBar->m_texPos.y, topBar->m_texDrawSize.x, topBar->m_texDrawSize.y, &rec);
 
 	//時計
 	S_SceneTexData* clock = SCENEMGR.GetSceneTexData(E_GameTextures::Game_ClockIcon);
 	rec = { 0,0,(long)clock->m_texSize.x,(long)clock->m_texSize.y };
-	SHADER.m_spriteShader.DrawTex(&clock->m_tex, clock->m_texPos.x, clock->m_texPos.y, clock->m_texDrawSize.x, clock->m_texDrawSize.y, &rec);
+	SHADER.m_spriteShader.DrawTex(&(*clock->m_tex), clock->m_texPos.x, clock->m_texPos.y, clock->m_texDrawSize.x, clock->m_texDrawSize.y, &rec);
 
 	//タイムゲージ
 	TIMEMGR.DrawTimeCharge();
@@ -242,7 +242,7 @@ void C_GameScene::Draw()
 
 	S_SceneTexData* frameBar = SCENEMGR.GetSceneTexData(E_GameTextures::Game_FrameBar);
 	rec = { (long)(flame / 10 * frameBar->m_texSize.x),0,(long)frameBar->m_texSize.x,(long)frameBar->m_texSize.y };
-	SHADER.m_spriteShader.DrawTex(&frameBar->m_tex, frameBar->m_texPos.x, frameBar->m_texPos.y, frameBar->m_texDrawSize.x, frameBar->m_texDrawSize.y, &rec);
+	SHADER.m_spriteShader.DrawTex(&(*frameBar->m_tex), frameBar->m_texPos.x, frameBar->m_texPos.y, frameBar->m_texDrawSize.x, frameBar->m_texDrawSize.y, &rec);
 	
 	//文字
 	for (auto& itr : SCENEMGR.GetSceneTextsData(E_SceneTypeTag::Game))

@@ -3,9 +3,9 @@ Title,Assets/Texture/Scene/Title/Title.png,0,80,686,266,1.5,1.5
 PressEnter,Assets/Texture/Scene/Title/PressEnter.png,0,-240,260,69,1.5,1.5
 TopBar,Assets/Texture/Scene/Select/SelectSceneTopBar.png,0,320,114,38,5,1.5
 StatWindow,Assets/Texture/Scene/Select/ShipStatWindow.png,0,-180,695,377,1.5,0.9
-ShipFrame,Assets/Texture/Scene/Select/SelectShipFrame.png,0,20,24,24,3,3
+ShipFrame,Assets/Texture/Scene/Select/SelectShipFrame.png,-40,20,24,24,3,3
+SelectArrow,Assets/Texture/Scene/Select/SelectShipArrow.png,-40,80,24,18,2,2
 StatBar,Assets/Texture/Scene/Select/ShipStatBar.png,-250,-200,48,6,4,4
-SelectArrow,Assets/Texture/Scene/Select/SelectArrow.png,90,20,48,45,1.5,1.5
 TopBar,Assets/Texture/Scene/Game/TopBar.png,0,300,1280,120,1,1
 ClockIcon,Assets/Texture/Scene/Game/Clock_Icon.png,-60,300,55,60,1,1
 FrameBar,Assets/Texture/Scene/Game/FrameBar.png,0,255,42,5,4,4
@@ -13,5 +13,6 @@ SlowAura,Assets/Texture/Scene/Game/SlowdownAura.png,0,0,64,64,1,1
 StopAura,Assets/Texture/Scene/Game/StopAura.png,0,0,64,64,1,1
 ResultWindow,Assets/Texture/Scene/Result/ResultWindow.png,0,40,695,399,1.5,1.5
 RankingWindow,Assets/Texture/Scene/Ranking/RankingWindow.png,0,0,405,847,2.5,0.8
+Arrow,Assets/Texture/Scene/Ranking/RankingArrow.png,180,-280,48,45,1.5,1.5
 GoldCrown,Assets/Texture/Scene/Ranking/GoldCrown.png,0,0,64,64,1.5,1.5
 Transition,Assets/Texture/Scene/Transition/blackBack.png,0,0,128,72,10,10

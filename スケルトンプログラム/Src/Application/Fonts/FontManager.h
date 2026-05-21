@@ -20,14 +20,13 @@ private:
 	const char TEXTID[TEXTNUM] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789:.!";
 	
 	C_FontManager(){ Init(); }
-	~C_FontManager(){ Release(); }
+	~C_FontManager(){}
 
 	void Init();
-	void Release();
-
+	
 	Math::Rectangle FindTextRec(char a_word);
 
-	KdTexture m_fontTex;
+	std::shared_ptr<KdTexture> m_fontTex;
 
 public:
 

@@ -161,21 +161,21 @@ void C_Player::Draw()
 	Math::Vector2 texSize = tex->m_texSize;
 	Math::Rectangle rec = { (long)((int)(tex->m_animCnt * tex->m_texAnimMulti) * texSize.x),0,(long)texSize.x,(long)texSize.y };
 
-	SHADER.m_spriteShader.DrawTex(tex->m_tex, 0, 0, texSize.x, texSize.y, &rec);
+	SHADER.m_spriteShader.DrawTex(&(*tex->m_tex), 0, 0, texSize.x, texSize.y, &rec);
 
 	//炎
 	tex = &SELECT.m_texDatas[E_SelectWeaponTexType::Select_Fire];
 	texSize = tex->m_texSize;
 	rec = { (long)((int)(tex->m_animCnt * tex->m_texAnimMulti) * texSize.x),0,(long)texSize.x,(long)texSize.y };
 
-	SHADER.m_spriteShader.DrawTex(tex->m_tex, 0, 0, texSize.x, texSize.y, &rec);
+	SHADER.m_spriteShader.DrawTex(&(*tex->m_tex), 0, 0, texSize.x, texSize.y, &rec);
 
 	//本体
 	tex = GetTexData(E_CharaBaseTexType::Base);
 	texSize = tex->m_texSize;
 	rec = { (long)((int)(tex->m_animCnt * tex->m_texAnimMulti) * texSize.x),0,(long)texSize.x,(long)texSize.y };
 
-	SHADER.m_spriteShader.DrawTex(tex->m_tex, 0, 0, texSize.x, texSize.y, &rec);
+	SHADER.m_spriteShader.DrawTex(&(*tex->m_tex), 0, 0, texSize.x, texSize.y, &rec);
 
 	//無敵
 	if (m_isInvincible)
@@ -184,7 +184,7 @@ void C_Player::Draw()
 		texSize = tex->m_texSize;
 		rec = { (long)((int)(tex->m_animCnt * tex->m_texAnimMulti) * texSize.x),0,(long)texSize.x,(long)texSize.y };
 
-		SHADER.m_spriteShader.DrawTex(tex->m_tex, 0, 0, texSize.x, texSize.y, &rec);
+		SHADER.m_spriteShader.DrawTex(&(*tex->m_tex), 0, 0, texSize.x, texSize.y, &rec);
 	}
 
 	//リセット

@@ -41,7 +41,7 @@ void C_EnemyBase::DrawMainShip()
 	Math::Rectangle rec = { (long)((int)(tex->m_animCnt * tex->m_texAnimMulti) * texSize.x),0,(long)texSize.x,(long)texSize.y };
 	Math::Color color = { 1,1,1,m_texAlpha };
 
-	SHADER.m_spriteShader.DrawTex(tex->m_tex, 0, 0, texSize.x, texSize.y, &rec, &color);
+	SHADER.m_spriteShader.DrawTex(&(*tex->m_tex), 0, 0, texSize.x, texSize.y, &rec, &color);
 }
 
 void C_EnemyBase::UpdateTexAlpha()

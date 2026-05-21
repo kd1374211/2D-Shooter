@@ -100,7 +100,7 @@ void C_ResultScene::Draw()
 	//ウィンドウ画像
 	S_SceneTexData* ResultWindow = SCENEMGR.GetSceneTexData(E_GameTextures::Result_Window);
 	Math::Rectangle rec = { 0,0,(long)ResultWindow->m_texSize.x,(long)ResultWindow->m_texSize.y };
-	SHADER.m_spriteShader.DrawTex(&ResultWindow->m_tex, ResultWindow->m_texPos.x, ResultWindow->m_texPos.y, ResultWindow->m_texDrawSize.x, ResultWindow->m_texDrawSize.y, &rec);
+	SHADER.m_spriteShader.DrawTex(&(*ResultWindow->m_tex), ResultWindow->m_texPos.x, ResultWindow->m_texPos.y, ResultWindow->m_texDrawSize.x, ResultWindow->m_texDrawSize.y, &rec);
 
 	if(m_countF>=ENDF)
 	{

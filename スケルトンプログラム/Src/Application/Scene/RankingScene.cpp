@@ -55,30 +55,30 @@ void C_RankingScene::Draw()
 	//ウィンドウ
 	S_SceneTexData* window = SCENEMGR.GetSceneTexData(E_GameTextures::Ranking_Window);
 	Math::Rectangle rec = { 0,0,(long)window->m_texSize.x,(long)window->m_texSize.y };
-	SHADER.m_spriteShader.DrawTex(&window->m_tex, window->m_texPos.x, window->m_texPos.y, window->m_texDrawSize.x, window->m_texDrawSize.y, &rec);
+	SHADER.m_spriteShader.DrawTex(&(*window->m_tex), window->m_texPos.x, window->m_texPos.y, window->m_texDrawSize.x, window->m_texDrawSize.y, &rec);
 
 	std::string name = {};
 
 	//矢印
-	S_SceneTexData* selectArrow = SCENEMGR.GetSceneTexData(E_GameTextures::Select_Arrow);
-	rec = { 0,0,(long)selectArrow->m_texSize.x,(long)selectArrow->m_texSize.y };
+	S_SceneTexData* arrow = SCENEMGR.GetSceneTexData(E_GameTextures::Ranking_Arrow);
+	rec = { 0,0,(long)arrow->m_texSize.x,(long)arrow->m_texSize.y };
 
 	//一番左じゃなければ
 	if (m_nowRanking != E_WeaponName::AutoCannon)
 	{
-		SHADER.m_spriteShader.DrawTex(&selectArrow->m_tex, -(ARROWPOS.x), ARROWPOS.y, -(selectArrow->m_texDrawSize.x), selectArrow->m_texDrawSize.y, &rec);
+		SHADER.m_spriteShader.DrawTex(&(*arrow->m_tex), -arrow->m_texPos.x, arrow->m_texPos.y, -(arrow->m_texDrawSize.x), arrow->m_texDrawSize.y, &rec);
 	}
 
 	//一番右じゃなければ
 	if (m_nowRanking != E_WeaponName::BigSpaceGun)
 	{
-		SHADER.m_spriteShader.DrawTex(&selectArrow->m_tex, ARROWPOS.x, ARROWPOS.y, selectArrow->m_texDrawSize.x, selectArrow->m_texDrawSize.y, &rec);
+		SHADER.m_spriteShader.DrawTex(&(*arrow->m_tex), arrow->m_texPos.x, arrow->m_texPos.y, arrow->m_texDrawSize.x, arrow->m_texDrawSize.y, &rec);
 	}
 
 	//王冠
 	S_SceneTexData* goldCrown = SCENEMGR.GetSceneTexData(E_GameTextures::Ranking_GoldCrown);
 	rec = { 0,0,(long)goldCrown->m_texSize.x,(long)goldCrown->m_texSize.y };
-	SHADER.m_spriteShader.DrawTex(&goldCrown->m_tex, -350.0f, RANKINGPOSY[0], goldCrown->m_texDrawSize.x, goldCrown->m_texDrawSize.y, &rec);
+	SHADER.m_spriteShader.DrawTex(&(*goldCrown->m_tex), -350.0f, RANKINGPOSY[0], goldCrown->m_texDrawSize.x, goldCrown->m_texDrawSize.y, &rec);
 
 	//決定ボタン
 	S_ButtonPosData* returnButton = nullptr;

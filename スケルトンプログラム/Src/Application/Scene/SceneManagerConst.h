@@ -8,8 +8,8 @@ enum class E_GameTextures
 	Select_TopBar,
 	Select_StatWindow,
 	Select_ShipFrame,
+	Select_ShipArrow,
 	Select_StatBar,
-	Select_Arrow,
 	Game_TopBar,
 	Game_ClockIcon,
 	Game_FrameBar,
@@ -17,6 +17,7 @@ enum class E_GameTextures
 	Game_StopAura,
 	Result_Window,
 	Ranking_Window,
+	Ranking_Arrow,
 	Ranking_GoldCrown,
 	Transition,
 	Max
@@ -24,6 +25,8 @@ enum class E_GameTextures
 
 enum class E_KeyTextures
 {
+	LR,
+	Enter,
 	R,
 	Arrows,
 	Space,
@@ -66,7 +69,7 @@ enum class E_VariableTextsID
 
 struct S_SceneTexData
 {
-	KdTexture m_tex;
+	std::shared_ptr<KdTexture> m_tex;
 	Math::Vector2 m_texPos;
 	Math::Vector2 m_texSize;
 	Math::Vector2 m_texDrawSize;
@@ -74,7 +77,7 @@ struct S_SceneTexData
 
 struct S_KeyTexData
 {
-	KdTexture m_tex;
+	std::shared_ptr<KdTexture> m_tex;
 	Math::Vector2 m_texSize;
 	Math::Vector2 m_texDrawSize;
 };

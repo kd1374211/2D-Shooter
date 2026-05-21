@@ -28,15 +28,14 @@ public:
 private:
 
 	void Init();
-	void Release();
-
+	
 	void LoadData();
 
 	void LoadTexData();
 	void LoadStatData();
 
 	C_BulletManager() { Init(); }
-	~C_BulletManager() { Release(); }
+	~C_BulletManager() {}
 
 	//弾コンテナ
 	std::vector<C_BulletBase*> m_bullets;

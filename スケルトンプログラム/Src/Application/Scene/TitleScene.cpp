@@ -52,13 +52,13 @@ void C_TitleScene::Draw()
 	//タイトル
 	S_SceneTexData* title = SCENEMGR.GetSceneTexData(E_GameTextures::Title_Title);
 	Math::Rectangle rec = { 0,0,(long)title->m_texSize.x,(long)title->m_texSize.y };
-	SHADER.m_spriteShader.DrawTex(&title->m_tex, title->m_texPos.x, title->m_texPos.y, title->m_texDrawSize.x, title->m_texDrawSize.y, &rec);
+	SHADER.m_spriteShader.DrawTex(&(*title->m_tex), title->m_texPos.x, title->m_texPos.y, title->m_texDrawSize.x, title->m_texDrawSize.y, &rec);
 
 	//スタート
 	S_SceneTexData* start = SCENEMGR.GetSceneTexData(E_GameTextures::Title_PressEnter);
 	rec = { 0,0,(long)start->m_texSize.x,(long)start->m_texSize.y };
 	Math::Color color = { 1,1,1,m_startButtonAlpha };
-	SHADER.m_spriteShader.DrawTex(&start->m_tex, start->m_texPos.x, start->m_texPos.y, start->m_texDrawSize.x, start->m_texDrawSize.y, &rec, &color);
+	SHADER.m_spriteShader.DrawTex(&(*start->m_tex), start->m_texPos.x, start->m_texPos.y, start->m_texDrawSize.x, start->m_texDrawSize.y, &rec, &color);
 
 	//戻す
 	D3D.SetBlendState(BlendMode::Alpha);

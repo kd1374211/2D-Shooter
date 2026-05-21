@@ -5,7 +5,7 @@ class C_Background
 public:
 
 	C_Background() { Init(); }
-	~C_Background() { Release(); }
+	~C_Background() {}
 
 	void Update();
 	void Draw();
@@ -16,8 +16,7 @@ private:
 	const float MOVESPEED = 0.75f;
 
 	void Init();
-	void Release();
-
+	
 	//画像幅
 	float m_texWidth;
 
@@ -25,7 +24,7 @@ private:
 	float m_posX;
 
 	//画像
-	KdTexture m_bgTex;
-	KdTexture m_bgTex2;
+	std::shared_ptr<KdTexture> m_bgTex;
+	std::shared_ptr<KdTexture> m_bgTex2;
 
 };

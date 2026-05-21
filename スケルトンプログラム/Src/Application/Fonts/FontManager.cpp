@@ -28,7 +28,7 @@ void C_FontManager::DrawWord(Math::Vector2 a_pos, E_TextDrawPos a_drawPos, std::
 		char ch = *(a_word.begin() + i);
 		Math::Rectangle rec = FindTextRec(ch);
 
-		SHADER.m_spriteShader.DrawTex(&m_fontTex, LeftPosX + TextSize.x * i, a_pos.y, TextSize.x, TextSize.y, &rec, &a_color);
+		SHADER.m_spriteShader.DrawTex(&(*m_fontTex), LeftPosX + TextSize.x * i, a_pos.y, TextSize.x, TextSize.y, &rec, &a_color);
 	}
 }
 
@@ -79,7 +79,7 @@ void C_FontManager::DrawNumber(Math::Vector2 a_pos, E_TextDrawPos a_drawPos, int
 
 		Math::Rectangle rec = FindTextRec('0' + number);
 
-		SHADER.m_spriteShader.DrawTex(&m_fontTex, LeftPosX + NumberSize.x * i, a_pos.y, NumberSize.x, NumberSize.y, &rec, &a_color);
+		SHADER.m_spriteShader.DrawTex(&(*m_fontTex), LeftPosX + NumberSize.x * i, a_pos.y, NumberSize.x, NumberSize.y, &rec, &a_color);
 	}
 }
 
@@ -102,12 +102,8 @@ std::string C_FontManager::ConvertToTime(int a_min, int a_sec, int a_frame)
 
 void C_FontManager::Init()
 {
-	m_fontTex.Load("Assets/Texture/Fonts/Fonts.png");	
-}
-
-void C_FontManager::Release()
-{
-	m_fontTex.Release();
+	m_fontTex = std::make_shared<KdTexture>();
+	m_fontTex->Load("Assets/Texture/Fonts/Fonts.png");	
 }
 
 Math::Rectangle C_FontManager::FindTextRec(char a_word)

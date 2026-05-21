@@ -15,6 +15,8 @@ public:
 
 private:
 
+	void ResetArrowPos();
+
 	//プレイヤー
 	const Math::Vector2 BOTPLAYERPOS = { -580.0f,150.0f };
 
@@ -33,9 +35,20 @@ private:
 	//選択フラグ
 	bool m_isSelect;
 
+	//選んでないほうの船の描画位置
+	const Math::Vector2 NONSELECTSHIPX = { 120.0f ,0 };
+
 	//フレームのアニメーション
 	static const int SHIPFRAMEANIMMAX = 20;
 	const float SHIPFRAMEANIMMULTI = 0.2f;
 
 	int m_shipFrameAnimCnt;
+
+	//矢印のアニメーション
+	const float ARROWPOSMAX = 8.0f;
+	const float ARROWPOSMIN = 0.0f;
+	const float ARROWMOVE = 0.5f;
+
+	float m_arrowMoveMulti;
+	float m_arrowPos;
 };

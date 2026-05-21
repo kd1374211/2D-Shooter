@@ -104,8 +104,6 @@ C_SceneManager::~C_SceneManager()
 		delete m_pTransition;
 		m_pTransition = nullptr;
 	}
-
-	Release();
 }
 
 void C_SceneManager::Init()
@@ -202,7 +200,8 @@ void C_SceneManager::LoadButtonData()
 					path, STRLENG
 				);
 
-				m_buttonTex[i].Load(path);
+				m_buttonTex[i] = std::make_shared<KdTexture>();
+				m_buttonTex[i]->Load(path);
 			}
 		}
 
@@ -263,7 +262,8 @@ void C_SceneManager::LoadKeyData()
 				);
 
 				m_keyTex[i].m_texDrawSize = m_keyTex[i].m_texSize * scale;
-				m_keyTex[i].m_tex.Load(path);
+				m_keyTex[i].m_tex = std::make_shared<KdTexture>();
+				m_keyTex[i].m_tex->Load(path);
 			}
 		}
 
@@ -324,28 +324,11 @@ void C_SceneManager::LoadTex()
 				);
 
 				m_sceneTex[i].m_texDrawSize = m_sceneTex[i].m_texSize * scale;
-				m_sceneTex[i].m_tex.Load(path);
+				m_sceneTex[i].m_tex = std::make_shared<KdTexture>();
+				m_sceneTex[i].m_tex->Load(path);
 			}
 		}
 
 		fclose(fp);
-	}
-}
-
-void C_SceneManager::Release()
-{
-	for (int i = 0;i < (int)E_GameTextures::Max;i++)
-	{
-		m_sceneTex[i].m_tex.Release();
-	}
-
-	for (int i = 0;i < (int)E_ButtonState::Max;i++)
-	{
-		m_buttonTex[i].Release();
-	}
-
-	for (int i = 0;i < (int)E_KeyTextures::Max;i++)
-	{
-		m_keyTex[i].m_tex.Release();
 	}
 }

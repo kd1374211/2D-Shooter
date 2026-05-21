@@ -66,7 +66,7 @@ private:
 	static const int BARSEC_F = 12;
 	const int texTypes[BARSEC_ONE] = { 0,1,1,1,2 };
 
-	KdTexture m_timeChargeTex;
+	std::shared_ptr<KdTexture> m_timeChargeTex;
 
 	//チャージ最大フラグ
 	bool m_isMaxCharged;
@@ -90,10 +90,9 @@ private:
 	E_TimeChange m_timeChange;
 
 	C_TimeManager() :m_timeF(0), m_surviveTimeF(0), m_timeChargeF(0), m_nowTimeState(E_TimeState::Normal), m_isMaxCharged(false) { Load(); }
-	~C_TimeManager() { Release(); }
+	~C_TimeManager() {}
 
 	void Load();
-	void Release();
 
 public:
 

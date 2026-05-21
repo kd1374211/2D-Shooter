@@ -21,9 +21,6 @@ private:
 	//現在ページ
 	int m_nowRanking;
 
-	//矢印描画位置
-	const Math::Vector2 ARROWPOS = { 180,-280 };
-
 	//元居たシーン
 	E_SceneTypeTag m_backScene;
 

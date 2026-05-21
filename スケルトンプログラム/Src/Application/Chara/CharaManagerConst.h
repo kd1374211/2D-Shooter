@@ -37,7 +37,7 @@ enum E_SelectWeaponTexType
 //↓のsecond部分
 struct S_TexData
 {
-	KdTexture* m_tex;
+	std::shared_ptr<KdTexture> m_tex;
 	int m_animCnt;
 	int m_texAnimMax;
 	float m_texAnimMulti;

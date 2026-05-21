@@ -26,7 +26,7 @@ public:
 	S_SelectWeaponStat GetSelectedWeaponStat(E_WeaponName a_weapon)const { return(m_weaponStatData[a_weapon]); }
 	S_SceneTexData* GetSceneTexData(E_GameTextures a_tex) { return(&m_sceneTex[(int)a_tex]); }
 	std::vector<S_TextsData> GetSceneTextsData(E_SceneTypeTag a_scene) { return(m_sceneTexts[(int)a_scene]); }
-	KdTexture* GetButtonTex(E_ButtonState a_state) { return(&m_buttonTex[(int)a_state]); }
+	KdTexture* GetButtonTex(E_ButtonState a_state) { return(&(*m_buttonTex[(int)a_state])); }
 	S_ButtonPosData* GetButtonData(E_GameButtons a_button) { return(&m_sceneButtons[(int)a_button]); }
 	S_KeyTexData* GetKeyTexData(E_KeyTextures a_key) { return(&m_keyTex[(int)a_key]); }
 	std::vector<S_KeyPosData> GetKeyPosData(E_SceneTypeTag a_scene) { return(m_keyTexPos[(int)a_scene]); }
@@ -54,7 +54,7 @@ private:
 
 	//ボタン
 	S_ButtonPosData m_sceneButtons[(int)E_GameButtons::Max];
-	KdTexture m_buttonTex[(int)E_ButtonState::Max];
+	std::shared_ptr<KdTexture> m_buttonTex[(int)E_ButtonState::Max];
 
 	//フォント管理用
 	std::vector<S_TextsData> m_sceneTexts[(int)E_SceneTypeTag::Max];
@@ -74,8 +74,7 @@ private:
 	void LoadButtonData();
 	void LoadKeyData();
 	void LoadTex();
-	void Release();
-
+	
 public:
 
 	static C_SceneManager& GetInstance()

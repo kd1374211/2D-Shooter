@@ -33,15 +33,15 @@ void C_Transition::Draw()
 	if (m_countF < INENDF)
 	{
 		int time = INENDF - m_countF;
-		SHADER.m_spriteShader.DrawTex(&Transition->m_tex, time * TRANPOSMULTI, 0, Transition->m_texDrawSize.x, Transition->m_texDrawSize.y, &rec);
+		SHADER.m_spriteShader.DrawTex(&(*Transition->m_tex), time * TRANPOSMULTI, 0, Transition->m_texDrawSize.x, Transition->m_texDrawSize.y, &rec);
 	}
 	else if (m_countF > OUTSTARTF)
 	{
 		int time = m_countF - OUTSTARTF;
-		SHADER.m_spriteShader.DrawTex(&Transition->m_tex, -(time * TRANPOSMULTI), 0, Transition->m_texDrawSize.x, Transition->m_texDrawSize.y, &rec);
+		SHADER.m_spriteShader.DrawTex(&(*Transition->m_tex), -(time * TRANPOSMULTI), 0, Transition->m_texDrawSize.x, Transition->m_texDrawSize.y, &rec);
 	}
 	else
 	{
-		SHADER.m_spriteShader.DrawTex(&Transition->m_tex, Transition->m_texPos.x, Transition->m_texPos.y, Transition->m_texDrawSize.x, Transition->m_texDrawSize.y, &rec);
+		SHADER.m_spriteShader.DrawTex(&(*Transition->m_tex), Transition->m_texPos.x, Transition->m_texPos.y, Transition->m_texDrawSize.x, Transition->m_texDrawSize.y, &rec);
 	}
 }

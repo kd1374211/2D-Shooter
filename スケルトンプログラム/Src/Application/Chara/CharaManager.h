@@ -36,7 +36,7 @@ public:
 
 	//キャラ選択描画用
 	void DrawSelectShip(Math::Vector2 a_pos, E_WeaponName a_weapon);
-
+	
 	//ゲッター
 	//画像
 	S_BaseCharaTexData GetBaseTexData(E_CharaName a_name) { return(m_texData[a_name]); }
@@ -54,7 +54,7 @@ public:
 private:
 
 	C_CharaManager() :m_seedF(0) { Init(); }
-	~C_CharaManager() { Release(); }
+	~C_CharaManager() {}
 
 	//コンストラクタ（デストラクタ）で呼ぶ奴ら
 	void Init();
@@ -63,10 +63,9 @@ private:
 	void LoadPlayerSelectWeaponTex();
 	void LoadCharaStatData();
 	void LoadSpawnData();
-	void Release();
-
+	
 	//画像
-	KdTexture m_tex[CHARABASETEXNUM];
+	std::shared_ptr<KdTexture> m_tex[CHARABASETEXNUM];
 	S_BaseCharaTexData m_texData[E_CharaName::Max];
 	S_CharaStatData m_statData[E_CharaName::Max];
 	S_PlayerSelectWeaponData m_selectWeaponData[E_WeaponName::WeaponMax];
