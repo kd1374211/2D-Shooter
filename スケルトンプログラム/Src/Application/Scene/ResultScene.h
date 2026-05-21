@@ -24,6 +24,11 @@ private:
 
 	static const int RANKNUM = 5;
 	const char* RANKS[RANKNUM] = { "S","A","B","C","D" };
+	const Math::Color RANKCOLOR[RANKNUM] =	{	Math::Color(0.9f,0.9f,0,1),
+												Math::Color(1.0f,0.2f,0.0f,1),
+												Math::Color(0.2f,0,1.0f,1),
+												Math::Color(0,1.0f,0.2f,1),
+												Math::Color(0.6f,0.6f,0.6f,1) };
 	const int RANKTARGET[RANKNUM] = { 20000,16000,12000,6000,0 };
 
 	const Math::Color RESULTCOLOR = Math::Color{ 0.2f,0.9f,0,1 };

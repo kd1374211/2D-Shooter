@@ -12,9 +12,6 @@ void Scene::Draw2D()
 
 	//リセット
 	SHADER.m_spriteShader.SetMatrix(Math::Matrix::Identity);
-
-	// 文字列表示
-	//SHADER.m_spriteShader.DrawString(0, 0, "Hello World", Math::Vector4(1, 1, 0, 1));
 }
 
 void Scene::Update()

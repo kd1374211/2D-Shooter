@@ -197,7 +197,7 @@ void C_ResultScene::Draw()
 		{
 			if (m_countF >= RANKF)
 			{
-				FONTMGR.DrawWord(itr.m_pos, itr.m_textPos, RANKS[m_rank], itr.m_scale, RESULTCOLOR);
+				FONTMGR.DrawWord(itr.m_pos, itr.m_textPos, RANKS[m_rank], itr.m_scale, RANKCOLOR[m_rank]);
 			}
 			else
 			{
