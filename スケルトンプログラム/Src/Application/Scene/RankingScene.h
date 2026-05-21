@@ -36,4 +36,6 @@ private:
 													Math::Color(0.7f,0.2f,0.2f,1),
 													Math::Color(0.6f,0.6f,0.6f,1),
 													Math::Color(0.6f,0.6f,0.6f,1), };
+
+	bool m_isStartBGM;
 };

@@ -1,7 +1,12 @@
 Ží—Þ,Path,Volume
 Cursor,Assets/Sound/SE/Cursor.wav,0.5
 Enter,Assets/Sound/SE/Enter.wav,0.5
-AC_Shot,Assets/Sound/SE/AC_Shot.wav,0.05
-BSG_Shot,Assets/Sound/SE/BSG_Shot.wav,0.05
-FullCharge,Assets/Sound/SE/Full_Charge.wav,0.2
-TimeStop,Assets/Sound/SE/TimeStop.wav,0.2
+AC_Shot,Assets/Sound/SE/AC_Shot.wav,0.1
+BSG_Shot,Assets/Sound/SE/BSG_Shot.wav,0.15
+LevelUp,Assets/Sound/SE/LevelUp.wav,0.3
+GetHit,Assets/Sound/SE/GetHit.wav,0.2
+Explosion,Assets/Sound/SE/Explosion.wav,0.1
+FullCharge,Assets/Sound/SE/Full_Charge.wav,0.3
+TimeStop,Assets/Sound/SE/TimeStop.wav,0.3
+Drum,Assets/Sound/SE/Drum.wav,0.2
+DrumFinish,Assets/Sound/SE/DrumFinish.wav,0.2

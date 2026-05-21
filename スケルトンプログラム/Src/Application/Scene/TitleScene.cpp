@@ -5,10 +5,9 @@
 #include "../Fonts/FontManager.h"
 #include "../Sound/SoundManager.h"
 
-C_TitleScene::C_TitleScene() :m_startButtonAlpha(1.0f), m_alphaChangeMulti(-1)
+C_TitleScene::C_TitleScene() :m_startButtonAlpha(1.0f), m_alphaChangeMulti(-1), m_isStartBGM(false)
 {
 	SetSceneTag(E_SceneTypeTag::Title);
-	SOUNDMGR.PlayBGM(BGM::Title);
 	m_back = new C_Background();
 }
 
@@ -33,6 +32,12 @@ void C_TitleScene::Update()
 
 	if (!SCENEMGR.GetIsStop())
 	{
+		if (!m_isStartBGM)
+		{
+			SOUNDMGR.PlayBGM(BGM::Title);
+			m_isStartBGM = true;
+		}
+
 		if (KEYMGR.GetKeyState(E_KeyChecks::Enter) == E_KeyState::Pressed)
 		{
 			SCENEMGR.SpawnTransition(E_SceneTypeTag::Select);

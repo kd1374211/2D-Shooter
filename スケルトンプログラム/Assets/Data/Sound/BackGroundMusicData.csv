@@ -1,4 +1,6 @@
 Ží—Þ,Path,Volume
 Title,Assets/Sound/BGM/Title.wav,0.15
 Select,Assets/Sound/BGM/Select.wav,0.15
-Ingame,Assets/Sound/BGM/Ingame.wav,0.1
+Ingame,Assets/Sound/BGM/Ingame.wav,0.15
+Result,Assets/Sound/BGM/Result.wav,0.1
+Ranking,Assets/Sound/BGM/Ranking.wav,0.15

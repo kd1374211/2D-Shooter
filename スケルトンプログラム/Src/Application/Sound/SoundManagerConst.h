@@ -5,6 +5,8 @@ enum class BGM
 	Title,
 	Select,
 	Ingame,
+	Result,
+	Ranking,
 	Max
 };
 
@@ -14,8 +16,13 @@ enum class SE
 	Enter,
 	AC_Shot,
 	BSG_Shot,
+	LevelUp,
+	GetHit,
+	Explosion,
 	FullCharge,
 	TimeStop,
+	Drum,
+	DrumFinish,
 	Max
 };
 

@@ -198,6 +198,7 @@ void C_Player::GetHit()
 		m_isInvincible = true;
 		TIMEMGR.SubTime(300);
 		m_invincibleF = INVINCIBLETIME;
+		SOUNDMGR.PlaySE(SE::GetHit);
 	}
 }
 

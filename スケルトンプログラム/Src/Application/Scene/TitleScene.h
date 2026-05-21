@@ -27,4 +27,6 @@ private:
 	float m_startButtonAlpha;
 	int m_alphaChangeMulti;
 
+	//BGM
+	bool m_isStartBGM;
 };

@@ -5,8 +5,9 @@
 #include "../Fonts/FontManager.h"
 #include "../Key/KeyStateManager.h"
 #include "../Background/Background.h"
+#include "../Sound/SoundManager.h"
 
-C_RankingScene::C_RankingScene(E_SceneTypeTag a_scene) :m_nowRanking(E_WeaponName::AutoCannon)
+C_RankingScene::C_RankingScene(E_SceneTypeTag a_scene) :m_nowRanking(E_WeaponName::AutoCannon), m_isStartBGM(false)
 {
 	m_back = new C_Background();
 	m_backScene = a_scene;
@@ -26,19 +27,34 @@ void C_RankingScene::Update()
 {
 	if (!SCENEMGR.GetIsStop())
 	{
+		if (!m_isStartBGM)
+		{
+			SOUNDMGR.PlayBGM(BGM::Ranking);
+			m_isStartBGM = true;
+		}
+
 		//選択
 		if (KEYMGR.GetKeyState(E_KeyChecks::Right) == E_KeyState::Pressed)
 		{
-			if (m_nowRanking < E_WeaponName::BigSpaceGun)m_nowRanking++;
+			if (m_nowRanking < E_WeaponName::BigSpaceGun)
+			{
+				m_nowRanking++;
+				SOUNDMGR.PlaySE(SE::Cursor);
+			}
 		}
 		else if (KEYMGR.GetKeyState(E_KeyChecks::Left) == E_KeyState::Pressed)
 		{
-			if (m_nowRanking > E_WeaponName::AutoCannon)m_nowRanking--;
+			if (m_nowRanking > E_WeaponName::AutoCannon)
+			{
+				m_nowRanking--;
+				SOUNDMGR.PlaySE(SE::Cursor);
+			}
 		}
 
 		//戻る
 		if (KEYMGR.GetKeyState(E_KeyChecks::Enter) == E_KeyState::Pressed)
 		{
+			SOUNDMGR.PlaySE(SE::Enter);
 			SCENEMGR.SpawnTransition(m_backScene);
 		}
 	}

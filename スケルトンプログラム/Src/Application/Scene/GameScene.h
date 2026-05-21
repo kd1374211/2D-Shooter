@@ -73,4 +73,7 @@ private:
 	bool isEnemySpawn = true;
 	bool isPressedAS = false;
 	bool isPressedQWE = false;
+
+	//BGM
+	bool m_isStartBGM;
 };

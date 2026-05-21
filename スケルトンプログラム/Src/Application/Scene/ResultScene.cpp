@@ -6,8 +6,9 @@
 #include "../Time/TimeManager.h"
 #include "../Score/ScoreManager.h"
 #include "../Fonts/FontManager.h"
+#include "../Sound/SoundManager.h"
 
-C_ResultScene::C_ResultScene() :m_countF(0), m_nowSelect((int)E_ResultSelectIndex::ReturnTitle), m_isSelect(false), m_rank(0), m_isNewRecord(false)
+C_ResultScene::C_ResultScene() :m_countF(0), m_nowSelect((int)E_ResultSelectIndex::ReturnTitle), m_isSelect(false), m_rank(0), m_isNewRecord(false), m_isDrumEnd(false), m_isBGMstart(false)
 {
 	SetSceneTag(E_SceneTypeTag::Result);
 
@@ -32,6 +33,9 @@ C_ResultScene::C_ResultScene() :m_countF(0), m_nowSelect((int)E_ResultSelectInde
 
 	//1位かどうか
 	m_isNewRecord = SCOREMGR.GetIsNewRecord(score, SCENEMGR.GetSelectedWeapon());
+	
+	//ドラムロール
+	SOUNDMGR.PlaySE(SE::Drum);
 }
 
 C_ResultScene::~C_ResultScene()
@@ -47,26 +51,48 @@ void C_ResultScene::Update()
 {
 	if (!SCENEMGR.GetIsStop())
 	{
+		//フレーム更新
+		if (m_countF < BGMSTART)m_countF++;
+
+		if (m_countF >= BGMSTART && !m_isBGMstart)
+		{
+			SOUNDMGR.PlayBGM(BGM::Result);
+			m_isBGMstart = true;
+		}
+
 		//操作可能タイミング
 		if (m_countF < ENDF)
 		{
-			m_countF++;
-
 			if (KEYMGR.GetKeyState(E_KeyChecks::Enter) == E_KeyState::Pressed)
 			{
 				m_countF = ENDF;
+			}
+
+			if (m_countF >= RANKF && !m_isDrumEnd)
+			{
+				SOUNDMGR.StopSE(SE::Drum);
+				SOUNDMGR.PlaySE(SE::DrumFinish);
+				m_isDrumEnd = true;
 			}
 		}
 		else
 		{
 			if (KEYMGR.GetKeyState(E_KeyChecks::Right) == E_KeyState::Pressed)
 			{
-				if ((E_ResultSelectIndex)m_nowSelect != E_ResultSelectIndex::ReturnTitle)m_nowSelect++;
+				if ((E_ResultSelectIndex)m_nowSelect != E_ResultSelectIndex::ReturnTitle)
+				{
+					m_nowSelect++;
+					SOUNDMGR.PlaySE(SE::Cursor);
+				}
 			}
 
 			if (KEYMGR.GetKeyState(E_KeyChecks::Left) == E_KeyState::Pressed)
 			{
-				if ((E_ResultSelectIndex)m_nowSelect != E_ResultSelectIndex::PlayAgain)m_nowSelect--;
+				if ((E_ResultSelectIndex)m_nowSelect != E_ResultSelectIndex::PlayAgain)
+				{
+					m_nowSelect--;
+					SOUNDMGR.PlaySE(SE::Cursor);
+				}
 			}
 
 			if (KEYMGR.GetKeyState(E_KeyChecks::Enter) == E_KeyState::Pressed)
@@ -85,6 +111,7 @@ void C_ResultScene::Update()
 				}
 
 				m_isSelect = true;
+				SOUNDMGR.PlaySE(SE::Enter);
 			}
 		}
 	}

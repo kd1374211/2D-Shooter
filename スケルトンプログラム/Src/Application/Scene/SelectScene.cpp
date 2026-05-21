@@ -10,11 +10,10 @@
 #include "../Chara/Player/Player.h"
 #include "../Sound/SoundManager.h"
 
-C_SelectScene::C_SelectScene() :m_weaponSelectIndex(SCENEMGR.GetSelectedWeapon()), m_isSelect(false), m_shipFrameAnimCnt(0), m_arrowPos(ARROWPOSMIN), m_arrowMoveMulti(1.0f)
+C_SelectScene::C_SelectScene() :m_weaponSelectIndex(SCENEMGR.GetSelectedWeapon()), m_isSelect(false), m_shipFrameAnimCnt(0), m_arrowPos(ARROWPOSMIN), m_arrowMoveMulti(1.0f), m_isStartBGM(false)
 {
 	SetSceneTag(E_SceneTypeTag::Select);
 	m_back = new C_Background();
-	SOUNDMGR.PlayBGM(BGM::Select);
 
 	CHARAMGR.SpawnBotPlayer((E_WeaponName)m_weaponSelectIndex, BOTPLAYERPOS);
 }
@@ -35,6 +34,12 @@ void C_SelectScene::Update()
 {
 	if (!SCENEMGR.GetIsStop())
 	{
+		if (!m_isStartBGM)
+		{
+			SOUNDMGR.PlayBGM(BGM::Select);
+			m_isStartBGM = true;
+		}
+
 		if (KEYMGR.GetKeyState(E_KeyChecks::Right) == E_KeyState::Pressed)
 		{
 			if (m_weaponSelectIndex < E_WeaponName::BigSpaceGun)

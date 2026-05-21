@@ -51,4 +51,7 @@ private:
 
 	float m_arrowMoveMulti;
 	float m_arrowPos;
+
+	//BGM
+	bool m_isStartBGM;
 };

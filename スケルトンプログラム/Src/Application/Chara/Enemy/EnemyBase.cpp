@@ -2,8 +2,9 @@
 #include "../../Time/TimeManager.h"
 #include "../../Score/ScoreManager.h"
 #include "../../Level/LevelManager.h"
+#include "../../Sound/SoundManager.h"
 
-C_EnemyBase::C_EnemyBase() :m_health(0), m_isEnd(false), m_nowAction(E_EnemyAction::Idle), m_countF(0), m_texAlpha(1.0f)
+C_EnemyBase::C_EnemyBase() :m_health(0), m_isEnd(false), m_nowAction(E_EnemyAction::Idle), m_countF(0), m_texAlpha(1.0f), m_enemyType(E_CharaName::Max)
 {
 	m_texAngle = ENEMYANGLE;
 }
@@ -67,6 +68,7 @@ void C_EnemyBase::GetHit(int a_damage)
 		ChangeAction(E_EnemyAction::Dead);
 		TIMEMGR.AddTime(m_statData.m_timeAddOnKill * LEVELMGR.GetTimeMulti());
 		SCOREMGR.AddScore(m_statData.m_scoreOnKill);
+		SOUNDMGR.PlaySE(SE::Explosion);
 	}
 }
 

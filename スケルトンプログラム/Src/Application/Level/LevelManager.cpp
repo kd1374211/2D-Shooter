@@ -1,5 +1,6 @@
 #include "LevelManager.h"
 #include "../Time/TimeManager.h"
+#include "../Sound/SoundManager.h"
 
 void C_LevelManager::Reset()
 {
@@ -25,4 +26,5 @@ void C_LevelManager::LevelUp()
 	m_level++;
 	m_timeMulti *= TIMEMULTI_LEVEL;
 	m_isLevelUp = true;
+	SOUNDMGR.PlaySE(SE::LevelUp);
 }

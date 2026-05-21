@@ -14,7 +14,7 @@
 #include "../Chara/Enemy/EnemyConst.h"
 #include "../Chara/Player/Player.h"
 
-C_GameScene::C_GameScene() :m_back(nullptr), m_timeColor(1, 1, 1, 1), m_alphaChangeMulti_timeChargeMax(1.0f), m_textAlpha_timeChargeMax(1.0f), m_textAlpha_levelUp(MAXALPHA_LU), m_alphaChangeMulti_levelUp(-1.0f), m_isLevelUpText(false), m_countF_levelUp(0), m_currentState(E_TimeState::Normal), m_countF_timeState(0)
+C_GameScene::C_GameScene() :m_back(nullptr), m_timeColor(1, 1, 1, 1), m_alphaChangeMulti_timeChargeMax(1.0f), m_textAlpha_timeChargeMax(1.0f), m_textAlpha_levelUp(MAXALPHA_LU), m_alphaChangeMulti_levelUp(-1.0f), m_isLevelUpText(false), m_countF_levelUp(0), m_currentState(E_TimeState::Normal), m_countF_timeState(0), m_isStartBGM(false)
 {
 	SetSceneTag(E_SceneTypeTag::Game);
 	m_back = new C_Background();
@@ -24,7 +24,6 @@ C_GameScene::C_GameScene() :m_back(nullptr), m_timeColor(1, 1, 1, 1), m_alphaCha
 	TIMEMGR.SetTime(60);
 	SCOREMGR.ResetScore();
 	CHARAMGR.RestartGame();
-	SOUNDMGR.PlayBGM(BGM::Ingame);
 }
 
 C_GameScene::~C_GameScene()
@@ -43,6 +42,12 @@ void C_GameScene::Update()
 {
 	if (!SCENEMGR.GetIsStop())
 	{
+		if (!m_isStartBGM)
+		{
+			SOUNDMGR.PlayBGM(BGM::Ingame);
+			m_isStartBGM = true;
+		}
+
 		//先に減速管理
 		TIMEMGR.CheckTimeState();
 		TIMEMGR.Update();

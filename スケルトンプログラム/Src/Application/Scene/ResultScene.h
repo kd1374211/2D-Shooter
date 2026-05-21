@@ -24,8 +24,8 @@ private:
 
 	static const int RANKNUM = 5;
 	const char* RANKS[RANKNUM] = { "S","A","B","C","D" };
-	const Math::Color RANKCOLOR[RANKNUM] =	{	Math::Color(0.9f,0.9f,0,1),
-												Math::Color(1.0f,0.2f,0.0f,1),
+	const Math::Color RANKCOLOR[RANKNUM] =	{	Math::Color(1.0f,0.8f,0,1),
+												Math::Color(1.0f,0.2f,0,1),
 												Math::Color(0.2f,0,1.0f,1),
 												Math::Color(0,1.0f,0.2f,1),
 												Math::Color(0.6f,0.6f,0.6f,1) };
@@ -43,6 +43,7 @@ private:
 	static const int SCOREF = 80;
 	static const int RANKF = 110;
 	static const int ENDF = 120;
+	static const int BGMSTART = 180;
 
 	//選択ボタン
     int m_nowSelect;
@@ -55,4 +56,10 @@ private:
 
 	//一位かどうか
 	bool m_isNewRecord;
+
+	//効果音フラグ
+	bool m_isDrumEnd;
+
+	//BGMフラグ
+	bool m_isBGMstart;
 };
