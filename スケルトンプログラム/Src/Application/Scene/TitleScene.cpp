@@ -38,7 +38,7 @@ void C_TitleScene::Update()
 			m_isStartBGM = true;
 		}
 
-		if (KEYMGR.GetKeyState(E_KeyChecks::Enter) == E_KeyState::Pressed)
+		if (KEYMGR.GetKeyState(E_KeyChecks::Space) == E_KeyState::Pressed)
 		{
 			SCENEMGR.SpawnTransition(E_SceneTypeTag::Select);
 			SOUNDMGR.PlaySE(SE::Enter);
@@ -60,7 +60,7 @@ void C_TitleScene::Draw()
 	SHADER.m_spriteShader.DrawTex(&(*title->m_tex), title->m_texPos.x, title->m_texPos.y, title->m_texDrawSize.x, title->m_texDrawSize.y, &rec);
 
 	//スタート
-	S_SceneTexData* start = SCENEMGR.GetSceneTexData(E_GameTextures::Title_PressEnter);
+	S_SceneTexData* start = SCENEMGR.GetSceneTexData(E_GameTextures::Title_PressSpace);
 	rec = { 0,0,(long)start->m_texSize.x,(long)start->m_texSize.y };
 	Math::Color color = { 1,1,1,m_startButtonAlpha };
 	SHADER.m_spriteShader.DrawTex(&(*start->m_tex), start->m_texPos.x, start->m_texPos.y, start->m_texDrawSize.x, start->m_texDrawSize.y, &rec, &color);

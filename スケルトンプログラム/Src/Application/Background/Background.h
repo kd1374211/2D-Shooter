@@ -25,6 +25,5 @@ private:
 
 	//画像
 	std::shared_ptr<KdTexture> m_bgTex;
-	std::shared_ptr<KdTexture> m_bgTex2;
-
+	
 };

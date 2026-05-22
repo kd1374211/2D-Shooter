@@ -66,7 +66,7 @@ void C_SelectScene::Update()
 				CHARAMGR.SpawnBotPlayer((E_WeaponName)m_weaponSelectIndex, BOTPLAYERPOS);
 			}
 		}
-		else if (KEYMGR.GetKeyState(E_KeyChecks::Enter) == E_KeyState::Pressed)
+		else if (KEYMGR.GetKeyState(E_KeyChecks::Space) == E_KeyState::Pressed)
 		{
 			SCENEMGR.SpawnTransition(E_SceneTypeTag::Game);
 			SCENEMGR.SetSelectedWeapon((E_WeaponName)m_weaponSelectIndex);
@@ -158,7 +158,7 @@ void C_SelectScene::Draw()
 	selectButton = SCENEMGR.GetButtonData(E_GameButtons::Select_Start);
 
 	//決定後かつ決定ボタンを押しているか
-	if (m_isSelect && KEYMGR.GetIsPressed(E_KeyChecks::Enter))
+	if (m_isSelect && KEYMGR.GetIsPressed(E_KeyChecks::Space))
 	{
 		tex = SCENEMGR.GetButtonTex(E_ButtonState::Active);
 	}

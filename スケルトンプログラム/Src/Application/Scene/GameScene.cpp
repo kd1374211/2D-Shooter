@@ -242,13 +242,6 @@ void C_GameScene::Draw()
 	//時間取得
 	int timeF = TIMEMGR.GetTime();
 
-	//フレームバー
-	int flame = timeF % 60;
-
-	S_SceneTexData* frameBar = SCENEMGR.GetSceneTexData(E_GameTextures::Game_FrameBar);
-	rec = { (long)(flame / 10 * frameBar->m_texSize.x),0,(long)frameBar->m_texSize.x,(long)frameBar->m_texSize.y };
-	SHADER.m_spriteShader.DrawTex(&(*frameBar->m_tex), frameBar->m_texPos.x, frameBar->m_texPos.y, frameBar->m_texDrawSize.x, frameBar->m_texDrawSize.y, &rec);
-	
 	//文字
 	for (auto& itr : SCENEMGR.GetSceneTextsData(E_SceneTypeTag::Game))
 	{
@@ -265,46 +258,40 @@ void C_GameScene::Draw()
 				FONTMGR.DrawWord(itr.m_pos, itr.m_textPos, itr.m_str, itr.m_scale, itr.m_color);
 			}
 		}
-		else if(itr.m_textTag == E_VariableTextsID::Game_TimeControlMode)
-		{
-			//文字取得
-			std::string text = itr.m_str;
-
-			//文字数取得
-			int leng = text.size();
-
-			text.append("    ");
-			FONTMGR.DrawWord(itr.m_pos, itr.m_textPos, text, itr.m_scale, itr.m_color);
-
-			//モード用テキスト
-			std::string mode = {};
-			for (int i = 0; i < leng; i++)mode.append(" ");
-
-			//色
-			Math::Color modeColor = {};
-
-			if (TIMEMGR.GetTimeState() == E_TimeState::Stop || TIMEMGR.GetIsMaxCharge())
-			{
-				mode.append("Stop");
-				modeColor = Math::Color(0.8f, 0.2f, 0.2f, 1);
-			}
-			else
-			{
-				mode.append("Slow");
-				modeColor = Math::Color(0.2f, 0.2f, 0.8f, 1);
-			}
-			FONTMGR.DrawWord(itr.m_pos, itr.m_textPos, mode, itr.m_scale, modeColor);
-		}
-		else if (itr.m_textTag == E_VariableTextsID::Game_Guide)
+		else if (itr.m_textTag == E_VariableTextsID::Game_Guide || itr.m_textTag == E_VariableTextsID::Game_TimeControl)
 		{
 			Math::Vector2 playerPos = CHARAMGR.GetPlayer()->GetPos();
 			if (playerPos.y > GUIDEALPHACHANGE_Y)
 			{
 				FONTMGR.DrawWord(itr.m_pos, itr.m_textPos, itr.m_str, itr.m_scale, Math::Color(1, 1, 1, TRANSPARENTGUIDEALPHA));
+
+				if (itr.m_textTag == E_VariableTextsID::Game_TimeControl)
+				{
+					if (TIMEMGR.GetIsMaxCharge() || TIMEMGR.GetTimeState() == E_TimeState::Stop)
+					{
+						FONTMGR.DrawWord(itr.m_pos, itr.m_textPos, " Stop     ", itr.m_scale, Math::Color(0.8f, 0, 0, TRANSPARENTGUIDEALPHA));
+					}
+					else
+					{
+						FONTMGR.DrawWord(itr.m_pos, itr.m_textPos, " Slow     ", itr.m_scale, Math::Color(0, 0, 0.8f, TRANSPARENTGUIDEALPHA));
+					}
+				}
 			}
 			else
 			{
 				FONTMGR.DrawWord(itr.m_pos, itr.m_textPos, itr.m_str, itr.m_scale, itr.m_color);
+
+				if (itr.m_textTag == E_VariableTextsID::Game_TimeControl)
+				{
+					if (TIMEMGR.GetIsMaxCharge() || TIMEMGR.GetTimeState() == E_TimeState::Stop)
+					{
+						FONTMGR.DrawWord(itr.m_pos, itr.m_textPos, " Stop     ", itr.m_scale, Math::Color(0.8f, 0, 0, 0.8f));
+					}
+					else
+					{
+						FONTMGR.DrawWord(itr.m_pos, itr.m_textPos, " Slow     ", itr.m_scale, Math::Color(0.3f, 0.3f, 1.0f, 0.8f));
+					}
+				}
 			}
 		}
 		else if (itr.m_textTag == E_VariableTextsID::Game_LevelUp)
@@ -324,11 +311,11 @@ void C_GameScene::Draw()
 
 	//秒
 	int sec = timeF / 60;
-	FONTMGR.DrawNumber({ 30,300 },E_TextDrawPos::Center, sec, 2, 3.0f, m_timeColor);
+	FONTMGR.DrawNumber({ 30,280 },E_TextDrawPos::Center, sec, 2, 3.0f, m_timeColor);
 
 	//レベル
 	int level = LEVELMGR.GetLevel();
-	FONTMGR.DrawNumber({ 60,345 }, E_TextDrawPos::Center, level, 1, 1.25f, level > ENEMYMAXLEVEL ? LEVELCOLOR[ENEMYMAXLEVEL - 1] : LEVELCOLOR[level - 1]);
+	FONTMGR.DrawNumber({ 60,330 }, E_TextDrawPos::Center, level, 1, 1.25f, level > ENEMYMAXLEVEL ? LEVELCOLOR[ENEMYMAXLEVEL - 1] : LEVELCOLOR[level - 1]);
 
 	//得点
 	FONTMGR.DrawNumber({ 490,280 }, E_TextDrawPos::Center, SCOREMGR.GetScore(), 5, SCOREMGR.GetIsScoreAdded() ? 3.5f : 3.0f, Math::Color(1, 1, 1, 1));

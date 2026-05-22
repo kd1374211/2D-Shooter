@@ -63,9 +63,6 @@ void Scene::ImGuiUpdate()
 			case E_KeyChecks::Right:
 				key = "Right";
 				break;
-			case E_KeyChecks::Enter:
-				key = "Enter";
-				break;
 			case E_KeyChecks::Space:
 				key = "Space";
 				break;

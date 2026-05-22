@@ -52,7 +52,7 @@ void C_RankingScene::Update()
 		}
 
 		//戻る
-		if (KEYMGR.GetKeyState(E_KeyChecks::Enter) == E_KeyState::Pressed)
+		if (KEYMGR.GetKeyState(E_KeyChecks::Space) == E_KeyState::Pressed)
 		{
 			SOUNDMGR.PlaySE(SE::Enter);
 			SCENEMGR.SpawnTransition(m_backScene);
@@ -102,7 +102,7 @@ void C_RankingScene::Draw()
 	returnButton = SCENEMGR.GetButtonData(E_GameButtons::Ranking_Return);
 
 	//決定後かつ決定ボタンを押しているか
-	if (KEYMGR.GetIsPressed(E_KeyChecks::Enter))
+	if (KEYMGR.GetIsPressed(E_KeyChecks::Space))
 	{
 		tex = SCENEMGR.GetButtonTex(E_ButtonState::Active);
 	}

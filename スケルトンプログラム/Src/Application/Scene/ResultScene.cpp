@@ -63,7 +63,7 @@ void C_ResultScene::Update()
 		//操作可能タイミング
 		if (m_countF < ENDF)
 		{
-			if (KEYMGR.GetKeyState(E_KeyChecks::Enter) == E_KeyState::Pressed)
+			if (KEYMGR.GetKeyState(E_KeyChecks::Space) == E_KeyState::Pressed)
 			{
 				m_countF = ENDF;
 			}
@@ -95,7 +95,7 @@ void C_ResultScene::Update()
 				}
 			}
 
-			if (KEYMGR.GetKeyState(E_KeyChecks::Enter) == E_KeyState::Pressed)
+			if (KEYMGR.GetKeyState(E_KeyChecks::Space) == E_KeyState::Pressed)
 			{
 				switch ((E_ResultSelectIndex)m_nowSelect)
 				{
@@ -140,7 +140,7 @@ void C_ResultScene::Draw()
 		KdTexture* tex = nullptr;
 		if ((E_ResultSelectIndex)m_nowSelect == E_ResultSelectIndex::PlayAgain)
 		{
-			if (m_isSelect && KEYMGR.GetIsPressed(E_KeyChecks::Enter))
+			if (m_isSelect && KEYMGR.GetIsPressed(E_KeyChecks::Space))
 			{
 				tex = SCENEMGR.GetButtonTex(E_ButtonState::Active);
 			}
@@ -165,7 +165,7 @@ void C_ResultScene::Draw()
 		tex = nullptr;
 		if ((E_ResultSelectIndex)m_nowSelect == E_ResultSelectIndex::Ranking)
 		{
-			if (m_isSelect && KEYMGR.GetIsPressed(E_KeyChecks::Enter))
+			if (m_isSelect && KEYMGR.GetIsPressed(E_KeyChecks::Space))
 			{
 				tex = SCENEMGR.GetButtonTex(E_ButtonState::Active);
 			}
@@ -190,7 +190,7 @@ void C_ResultScene::Draw()
 		tex = nullptr;
 		if ((E_ResultSelectIndex)m_nowSelect == E_ResultSelectIndex::ReturnTitle)
 		{
-			if (m_isSelect && KEYMGR.GetIsPressed(E_KeyChecks::Enter))
+			if (m_isSelect && KEYMGR.GetIsPressed(E_KeyChecks::Space))
 			{
 				tex = SCENEMGR.GetButtonTex(E_ButtonState::Active);
 			}

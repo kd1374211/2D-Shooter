@@ -4,7 +4,7 @@
 enum class E_GameTextures
 {
 	Title_Title,
-	Title_PressEnter,
+	Title_PressSpace,
 	Select_TopBar,
 	Select_StatWindow,
 	Select_ShipFrame,
@@ -12,7 +12,6 @@ enum class E_GameTextures
 	Select_StatBar,
 	Game_TopBar,
 	Game_ClockIcon,
-	Game_FrameBar,
 	Game_SlowAura,
 	Game_StopAura,
 	Result_Window,
@@ -26,7 +25,6 @@ enum class E_GameTextures
 enum class E_KeyTextures
 {
 	LR,
-	Enter,
 	R,
 	Arrows,
 	Space,
@@ -58,8 +56,8 @@ enum class E_VariableTextsID
 	Title_PressEnter,
 	Select_SelectWeapon,
 	Game_TimeCharge,
-	Game_TimeControlMode,
 	Game_Guide,
+	Game_TimeControl,
 	Game_LevelUp,
 	Result_NewRecord,
 	Result_Rank,
