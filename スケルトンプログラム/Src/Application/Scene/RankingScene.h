@@ -7,7 +7,7 @@ class C_RankingScene :public C_SceneBase
 {
 public:
 
-	C_RankingScene(E_SceneTypeTag a_scene);
+	C_RankingScene();
 	~C_RankingScene()override;
 
 	void Update()override;
@@ -20,9 +20,6 @@ private:
 
 	//現在ページ
 	int m_nowRanking;
-
-	//元居たシーン
-	E_SceneTypeTag m_backScene;
 
 	//ランキングの色/場所/サイズ
 	static const int RANKINGNUM = 5;

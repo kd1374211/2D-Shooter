@@ -54,4 +54,19 @@ private:
 
 	//BGM
 	bool m_isStartBGM;
+
+	//ランキングの色/場所/サイズ
+	static const int RANKINGNUM = 5;
+
+	const float RANKINGPOSX_RANK = 320.0f;
+	const float RANKINGPOSX_SCORE = 420.0f;
+	const float RANKINGPOSY[RANKINGNUM] = { 250.0f,195.0f,140.0f,85.0f,30.0f };
+	const float POSYDIF_RANK = 5.0f;
+	float RANKINGSCALE = 1.5f;
+	float SCORESCALE = 2.0f;
+	const Math::Color RANKINGCOLOR[RANKINGNUM] = { Math::Color(0.8f,0.8f,0,1),
+													Math::Color(0.9f,0.9f,0.9f,1),
+													Math::Color(0.7f,0.2f,0.2f,1),
+													Math::Color(0.6f,0.6f,0.6f,1),
+													Math::Color(0.6f,0.6f,0.6f,1), };
 };

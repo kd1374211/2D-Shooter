@@ -69,11 +69,6 @@ private:
 	E_TimeState m_currentState;
 	int m_countF_timeState;
 
-	//デバッグ用
-	bool isEnemySpawn = true;
-	bool isPressedAS = false;
-	bool isPressedQWE = false;
-
 	//BGM
 	bool m_isStartBGM;
 };

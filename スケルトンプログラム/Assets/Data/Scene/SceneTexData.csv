@@ -3,6 +3,7 @@ Title,Assets/Texture/Scene/Title/Title.png,0,80,686,266,1.5,1.5
 PressSpace,Assets/Texture/Scene/Title/PressSpace.png,0,-240,320,58,1.5,1.5
 TopBar,Assets/Texture/Scene/Select/SelectSceneTopBar.png,0,320,114,38,5,1.5
 StatWindow,Assets/Texture/Scene/Select/ShipStatWindow.png,0,-180,695,377,1.5,0.9
+RankingWindow_Select,Assets/Texture/Scene/Ranking/RankingWindow.png,460,165,405,847,0.9,0.45
 ShipFrame,Assets/Texture/Scene/Select/SelectShipFrame.png,-40,20,24,24,3,3
 SelectArrow,Assets/Texture/Scene/Select/SelectShipArrow.png,-40,80,24,18,2,2
 StatBar,Assets/Texture/Scene/Select/ShipStatBar.png,-250,-200,48,6,4,4

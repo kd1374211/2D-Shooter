@@ -15,6 +15,7 @@ public:
 	//召喚
 	void CheckEnemySpawn();
 	void EnemySeedRand();
+	int SuperSeedCoolRand();
 
 	//消去確認
 	void CheckEnemyDelete();
@@ -81,6 +82,8 @@ private:
 
 	std::vector<S_EnemySpawnData> m_nowSeedData;
 	int m_seedF;
+	static const int SUPERSEEDMIN = 3;
+	int m_superSeedCool;
 
 public:
 

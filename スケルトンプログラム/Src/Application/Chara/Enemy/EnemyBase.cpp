@@ -3,6 +3,7 @@
 #include "../../Score/ScoreManager.h"
 #include "../../Level/LevelManager.h"
 #include "../../Sound/SoundManager.h"
+#include "../../TimeIcon/TimeIcon.h"
 
 C_EnemyBase::C_EnemyBase() :m_health(0), m_isEnd(false), m_nowAction(E_EnemyAction::Idle), m_countF(0), m_texAlpha(1.0f), m_enemyType(E_CharaName::Max)
 {
@@ -69,6 +70,7 @@ void C_EnemyBase::GetHit(int a_damage)
 		TIMEMGR.AddTime(m_statData.m_timeAddOnKill * LEVELMGR.GetTimeMulti());
 		SCOREMGR.AddScore(m_statData.m_scoreOnKill);
 		SOUNDMGR.PlaySE(SE::Explosion);
+		TIMEICON.SpawnIcon(m_pos, E_IconType::Plus);
 	}
 }
 

@@ -103,6 +103,9 @@
     <Filter Include="Src\Application\Sound">
       <UniqueIdentifier>{d444bd23-167e-4f09-9152-310c981197da}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Application\TimeIcon">
+      <UniqueIdentifier>{52923463-53c4-4f6c-bf6a-a726c0121806}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Pch.h">
@@ -324,6 +327,9 @@
     <ClInclude Include="Src\Application\Sound\SoundManagerConst.h">
       <Filter>Src\Application\Sound</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Application\TimeIcon\TimeIcon.h">
+      <Filter>Src\Application\TimeIcon</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Pch.cpp">
@@ -481,6 +487,9 @@
     </ClCompile>
     <ClCompile Include="Src\Application\Sound\SoundManager.cpp">
       <Filter>Src\Application\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\TimeIcon\TimeIcon.cpp">
+      <Filter>Src\Application\TimeIcon</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

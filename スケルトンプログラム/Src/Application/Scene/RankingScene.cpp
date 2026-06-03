@@ -7,10 +7,9 @@
 #include "../Background/Background.h"
 #include "../Sound/SoundManager.h"
 
-C_RankingScene::C_RankingScene(E_SceneTypeTag a_scene) :m_nowRanking(E_WeaponName::AutoCannon), m_isStartBGM(false)
+C_RankingScene::C_RankingScene() :m_nowRanking(E_WeaponName::AutoCannon), m_isStartBGM(false)
 {
 	m_back = new C_Background();
-	m_backScene = a_scene;
 	m_nowRanking = SCENEMGR.GetSelectedWeapon();
 }
 
@@ -55,7 +54,7 @@ void C_RankingScene::Update()
 		if (KEYMGR.GetKeyState(E_KeyChecks::Space) == E_KeyState::Pressed)
 		{
 			SOUNDMGR.PlaySE(SE::Enter);
-			SCENEMGR.SpawnTransition(m_backScene);
+			SCENEMGR.SpawnTransition(E_SceneTypeTag::Title);
 		}
 	}
 
@@ -133,6 +132,10 @@ void C_RankingScene::Draw()
 		if (itr.m_textTag == E_VariableTextsID::Ranking_SelectWeapon)
 		{
 			FONTMGR.DrawWord(itr.m_pos, itr.m_textPos, name, itr.m_scale, itr.m_color);
+		}
+		else if (itr.m_textTag == E_VariableTextsID::ButtonTexts)
+		{
+			FONTMGR.DrawWord(itr.m_pos, itr.m_textPos, itr.m_str, itr.m_scale, SCENEMGR.GetHoverTextColor());
 		}
 		else
 		{

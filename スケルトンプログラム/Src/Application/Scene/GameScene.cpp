@@ -10,6 +10,7 @@
 #include "../Fonts/FontManager.h"
 #include "../Level/LevelManager.h"
 #include "../Sound/SoundManager.h"
+#include "../TimeIcon/TimeIcon.h"
 
 #include "../Chara/Enemy/EnemyConst.h"
 #include "../Chara/Player/Player.h"
@@ -24,6 +25,7 @@ C_GameScene::C_GameScene() :m_back(nullptr), m_timeColor(1, 1, 1, 1), m_alphaCha
 	TIMEMGR.SetTime(60);
 	SCOREMGR.ResetScore();
 	CHARAMGR.RestartGame();
+	SOUNDMGR.Reset();
 }
 
 C_GameScene::~C_GameScene()
@@ -36,6 +38,7 @@ C_GameScene::~C_GameScene()
 
 	BULLETMGR.ClearBullet();
 	CHARAMGR.ClearChara();
+	TIMEICON.DeleteAllIcon();
 }
 
 void C_GameScene::Update()
@@ -56,110 +59,11 @@ void C_GameScene::Update()
 		LEVELMGR.Update();
 
 		//召喚
-		if (isEnemySpawn)CHARAMGR.CheckEnemySpawn();
-
-		//debug
-		if (GetAsyncKeyState('0') & 0x8000)
-		{
-			TIMEMGR.SubTime(TIMEMGR.GetTime());
-		}
+		CHARAMGR.CheckEnemySpawn();
 
 		if (TIMEMGR.GetTime() <= 0)
 		{
 			SCENEMGR.SpawnTransition(E_SceneTypeTag::Result);
-		}
-
-		//Debug Keys
-		if (GetAsyncKeyState('1') & 0x8000)
-		{
-			TIMEMGR.AddTime(20);
-		}
-
-		if (GetAsyncKeyState('2') & 0x8000)
-		{
-			TIMEMGR.SetTime(60);
-		}
-
-		if (GetAsyncKeyState('3') & 0x8000)
-		{
-			SCOREMGR.AddScore(100);
-		}
-
-		if (GetAsyncKeyState('4') & 0x8000)
-		{
-			TIMEMGR.SetTimeCharge(120);
-		}
-
-		if (GetAsyncKeyState('5') & 0x8000)
-		{
-			TIMEMGR.AddTimeCharge(10);
-		}
-
-		if (GetAsyncKeyState('6') & 0x8000)
-		{
-			TIMEMGR.SetSurviveTime(30);
-		}
-		if (GetAsyncKeyState('7') & 0x8000)
-		{
-			TIMEMGR.SetSurviveTime(60);
-		}
-		if (GetAsyncKeyState('8') & 0x8000)
-		{
-			TIMEMGR.SetSurviveTime(90);
-		}
-		if (GetAsyncKeyState('9') & 0x8000)
-		{
-			TIMEMGR.AddSurviveTime(1);
-		}
-
-		if (GetAsyncKeyState('A') & 0x8000)
-		{
-			if (!isPressedAS)
-			{
-				isEnemySpawn = false;
-			}
-			isPressedAS = true;
-		}
-		else if (GetAsyncKeyState('S') & 0x8000)
-		{
-			if (!isPressedAS)
-			{
-				isEnemySpawn = true;
-			}
-			isPressedAS = true;
-		}
-		else
-		{
-			isPressedAS = false;
-		}
-
-		if (GetAsyncKeyState('Q') & 0x8000)
-		{
-			if (!isPressedQWE)
-			{
-				CHARAMGR.SpawnEnemy({ 658.0f,40 }, E_CharaName::Fighter);
-			}
-			isPressedQWE = true;
-		}
-		else if (GetAsyncKeyState('W') & 0x8000)
-		{
-			if (!isPressedQWE)
-			{
-				CHARAMGR.SpawnEnemy({ 661.0f,-60 }, E_CharaName::Bomber);
-			}
-			isPressedQWE = true;
-		}
-		else if (GetAsyncKeyState('E') & 0x8000)
-		{
-			if (!isPressedQWE)
-			{
-				CHARAMGR.SpawnEnemy({ 652.0f,-160 }, E_CharaName::Torpedo);
-			}
-			isPressedQWE = true;
-		}
-		else
-		{
-			isPressedQWE = false;
 		}
 	}
 
@@ -180,6 +84,8 @@ void C_GameScene::Update()
 
 	UpdateLevelUpAlpha();
 	UpdateTimeAura();
+
+	TIMEICON.UpdateIcon();
 }
 
 void C_GameScene::Draw()
@@ -208,7 +114,8 @@ void C_GameScene::Draw()
 			SHADER.m_spriteShader.DrawTex(&(*stopAura->m_tex), stopAura->m_texPos.x, stopAura->m_texPos.y, DrawSize.x, DrawSize.y, &rec, &color);
 		}
 	}
-	
+
+	TIMEICON.DrawIcon();
 
 	BULLETMGR.Draw();
 

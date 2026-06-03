@@ -73,11 +73,6 @@ void C_SelectScene::Update()
 			m_isSelect = true;
 			SOUNDMGR.PlaySE(SE::Enter);
 		}
-		else if (KEYMGR.GetKeyState(E_KeyChecks::R) == E_KeyState::Pressed)
-		{
-			SCENEMGR.SpawnTransition(E_SceneTypeTag::Ranking);
-			SCENEMGR.SetSelectedWeapon((E_WeaponName)m_weaponSelectIndex);
-		}
 	}
 
 	//フレームアニメ更新
@@ -115,6 +110,11 @@ void C_SelectScene::Draw()
 	S_SceneTexData* statWindow = SCENEMGR.GetSceneTexData(E_GameTextures::Select_StatWindow);
 	rec = { 0,0,(long)statWindow->m_texSize.x,(long)statWindow->m_texSize.y };
 	SHADER.m_spriteShader.DrawTex(&(*statWindow->m_tex), statWindow->m_texPos.x, statWindow->m_texPos.y, statWindow->m_texDrawSize.x, statWindow->m_texDrawSize.y, &rec);
+
+	//ランキングウィンドウ
+	S_SceneTexData* rankingWindow = SCENEMGR.GetSceneTexData(E_GameTextures::Select_RankingWindow);
+	rec = { 0,0,(long)rankingWindow->m_texSize.x,(long)rankingWindow->m_texSize.y };
+	SHADER.m_spriteShader.DrawTex(&(*rankingWindow->m_tex), rankingWindow->m_texPos.x, rankingWindow->m_texPos.y, rankingWindow->m_texDrawSize.x, rankingWindow->m_texDrawSize.y, &rec);
 
 	//キャラ表示用フレーム
 	S_SceneTexData* shipFrame = SCENEMGR.GetSceneTexData(E_GameTextures::Select_ShipFrame);
@@ -214,10 +214,51 @@ void C_SelectScene::Draw()
 		{
 			FONTMGR.DrawWord(itr.m_pos, itr.m_textPos, name, itr.m_scale, itr.m_color);
 		}
+		else if (itr.m_textTag == E_VariableTextsID::ButtonTexts)
+		{
+			FONTMGR.DrawWord(itr.m_pos, itr.m_textPos, itr.m_str, itr.m_scale, SCENEMGR.GetHoverTextColor());
+		}
 		else
 		{
 			FONTMGR.DrawWord(itr.m_pos, itr.m_textPos, itr.m_str, itr.m_scale, itr.m_color);
 		}
+	}
+
+	//スコア
+	for (int i = 0; i < RANKINGNUM; i++)
+	{
+		//順位
+		int rank = i + 1;
+		std::string str = std::to_string(rank);
+		switch (rank)
+		{
+		case 1:
+			str.append("st");
+			break;
+		case 2:
+			str.append("nd");
+			break;
+		case 3:
+			str.append("rd");
+			break;
+		case 4:
+		case 5:
+			str.append("th");
+			break;
+		default:
+			break;
+		}
+		//座標
+		Math::Vector2 drawPos = { RANKINGPOSX_RANK, RANKINGPOSY[i] - POSYDIF_RANK };
+		//表示
+		FONTMGR.DrawWord(drawPos, E_TextDrawPos::Left, str, RANKINGSCALE, RANKINGCOLOR[i]);
+
+		//スコア取得
+		int score = SCOREMGR.GetRankingScore(i, (E_WeaponName)m_weaponSelectIndex);
+		//座標
+		drawPos = { RANKINGPOSX_SCORE, RANKINGPOSY[i] };
+		//表示
+		FONTMGR.DrawNumber(drawPos, E_TextDrawPos::Left, score, 5, SCORESCALE, RANKINGCOLOR[i]);
 	}
 }
 

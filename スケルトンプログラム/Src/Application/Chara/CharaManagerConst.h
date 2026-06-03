@@ -77,7 +77,7 @@ struct S_CharaStatData
 };
 
 //シード数
-static const int SEEDNUM = 20;
+static const int SEEDNUM = 28;
 
 //敵出現情報
 struct S_EnemySpawnData
@@ -92,5 +92,6 @@ struct S_EnemySeedData
 {
 	int m_minLevel;
 	int m_maxLevel;
+	bool m_isSuperSpawn;
 	std::vector<S_EnemySpawnData> m_enemy;
 };

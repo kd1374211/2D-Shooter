@@ -21,6 +21,7 @@ void C_TimeManager::CheckTimeState()
 			SetTimeState(E_TimeState::Normal);
 			SOUNDMGR.ResumeBGM(BGM::Ingame);
 			SOUNDMGR.StopSE(SE::TimeStop);
+			SOUNDMGR.SlowEnd();
 			return;
 		}
 		m_countF_state++;

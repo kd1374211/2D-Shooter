@@ -29,7 +29,8 @@ public:
 	KdTexture* GetButtonTex(E_ButtonState a_state) { return(&(*m_buttonTex[(int)a_state])); }
 	S_ButtonPosData* GetButtonData(E_GameButtons a_button) { return(&m_sceneButtons[(int)a_button]); }
 	S_KeyTexData* GetKeyTexData(E_KeyTextures a_key) { return(&m_keyTex[(int)a_key]); }
-	std::vector<S_KeyPosData> GetKeyPosData(E_SceneTypeTag a_scene) { return(m_keyTexPos[(int)a_scene]); }
+	std::vector<S_KeyPosData> GetKeyPosData(E_SceneTypeTag a_scene)const { return(m_keyTexPos[(int)a_scene]); }
+	Math::Color GetHoverTextColor()const { return(Math::Color(0.8f, 0.8f, 0, 1)); }
 
 private:
 

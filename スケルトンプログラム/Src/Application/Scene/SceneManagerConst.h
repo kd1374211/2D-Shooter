@@ -7,6 +7,7 @@ enum class E_GameTextures
 	Title_PressSpace,
 	Select_TopBar,
 	Select_StatWindow,
+	Select_RankingWindow,
 	Select_ShipFrame,
 	Select_ShipArrow,
 	Select_StatBar,
@@ -25,7 +26,6 @@ enum class E_GameTextures
 enum class E_KeyTextures
 {
 	LR,
-	R,
 	Arrows,
 	Space,
 	Shift,
@@ -53,7 +53,6 @@ enum class E_ButtonState
 enum class E_VariableTextsID
 {
 	None,
-	Title_PressEnter,
 	Select_SelectWeapon,
 	Game_TimeCharge,
 	Game_Guide,
@@ -61,7 +60,7 @@ enum class E_VariableTextsID
 	Game_LevelUp,
 	Result_NewRecord,
 	Result_Rank,
-	Result_ButtonTexts,
+	ButtonTexts,
 	Ranking_SelectWeapon
 };
 

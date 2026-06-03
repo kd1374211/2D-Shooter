@@ -43,6 +43,10 @@ private:
 	bool m_isBot;
 	int m_countF;
 	static const int TURNF = 30;
+
+	//位置記録
+	static const int POSMEMMAX = 5;
+	std::vector<Math::Vector2> m_posMemory;
 };
 
 #define SELECT m_selectTexData

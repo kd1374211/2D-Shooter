@@ -210,14 +210,26 @@ void C_ResultScene::Draw()
 
 	}
 	
+	//ゴリ押し
+	int buttonTextIndex = 0;
+
 	//文字
 	for (auto& itr : SCENEMGR.GetSceneTextsData(E_SceneTypeTag::Result))
 	{
-		if (itr.m_textTag == E_VariableTextsID::Result_ButtonTexts)
+		if (itr.m_textTag == E_VariableTextsID::ButtonTexts)
 		{
 			if (m_countF >= ENDF)
 			{
-				FONTMGR.DrawWord(itr.m_pos, itr.m_textPos, itr.m_str, itr.m_scale, itr.m_color);
+				if (buttonTextIndex == m_nowSelect)
+				{
+					FONTMGR.DrawWord(itr.m_pos, itr.m_textPos, itr.m_str, itr.m_scale, SCENEMGR.GetHoverTextColor());
+				}
+				else
+				{
+					FONTMGR.DrawWord(itr.m_pos, itr.m_textPos, itr.m_str, itr.m_scale, itr.m_color);
+				}
+				
+				buttonTextIndex++;
 			}
 		}
 		else if (itr.m_textTag == E_VariableTextsID::Result_Rank)

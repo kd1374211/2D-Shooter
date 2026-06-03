@@ -25,6 +25,16 @@ void C_SoundManager::PlaySE(SE a_se)const
 	inst->Play(false);
 }
 
+void C_SoundManager::SlowTime()
+{
+	m_bgmData[(int)BGM::Ingame].m_inst->SetVolume(INGAMEBGMVOL_SLOW);
+}
+
+void C_SoundManager::SlowEnd()
+{
+	m_bgmData[(int)BGM::Ingame].m_inst->SetVolume(INGAMEBGMVOL);
+}
+
 void C_SoundManager::StopBGM()const
 {
 	for (int i = 0; i < (int)BGM::Max; i++)
@@ -40,6 +50,11 @@ void C_SoundManager::StopSE(SE a_se)const
 
 	//動いていたら停止
 	if (inst->IsPlay())inst->Stop();
+}
+
+void C_SoundManager::Reset()
+{
+	SlowEnd();
 }
 
 void C_SoundManager::Init()

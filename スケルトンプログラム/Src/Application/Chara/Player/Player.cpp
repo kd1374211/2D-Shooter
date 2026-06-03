@@ -4,6 +4,7 @@
 #include "Weapon/WeaponConst.h"
 #include "../../Time/TimeManager.h"
 #include "../../Sound/SoundManager.h"
+#include "../../TimeIcon/TimeIcon.h"
 
 C_Player::C_Player(E_WeaponName a_name, bool a_isBot) :m_weapon(nullptr), m_isInvincible(false), m_isBot(false), m_countF(10), m_invincibleF(0)
 {
@@ -85,6 +86,7 @@ void C_Player::Update()
 					{
 						//減速
 						TIMEMGR.SetTimeState(E_TimeState::Half);
+						SOUNDMGR.SlowTime();
 					}
 				}
 			}
@@ -95,10 +97,23 @@ void C_Player::Update()
 			if (KEYMGR.GetKeyState(E_KeyChecks::Shift) == E_KeyState::Released)
 			{
 				TIMEMGR.SetTimeState(E_TimeState::Normal);
+				SOUNDMGR.SlowEnd();
 			}
 		}
 
-		
+		//減速中なら座標記録
+		if (TIMEMGR.GetTimeState() == E_TimeState::Half)
+		{
+			m_posMemory.push_back(m_pos);
+			if (m_posMemory.size() > POSMEMMAX)m_posMemory.erase(m_posMemory.begin());
+		}
+		else
+		{
+			if (!m_posMemory.empty())
+			{
+				m_posMemory.clear();
+			}
+		}
 
 		//画面端
 		if (m_pos.x > POSMAX.x)m_pos.x = POSMAX.x;
@@ -150,6 +165,34 @@ void C_Player::Update()
 
 void C_Player::Draw()
 {
+	if (TIMEMGR.GetTimeState() == E_TimeState::Half && !m_posMemory.empty())
+	{
+		float alpha = 1.0f;
+		
+		for (int i = 0; i < m_posMemory.size(); i++)
+		{
+			alpha *= 0.6f;
+			Math::Vector2 pos = *(m_posMemory.end() - i - 1);
+
+			//Matrix
+			Math::Matrix trans = Math::Matrix::CreateTranslation(pos.x, pos.y, 0);
+			Math::Matrix scale = Math::Matrix::CreateScale(TEXSCALE);
+			Math::Matrix rotat = Math::Matrix::CreateRotationZ(DirectX::XMConvertToRadians(m_texAngle));
+			SHADER.m_spriteShader.SetMatrix(rotat * scale * trans);
+
+			//本体
+			S_TexData* tex = GetTexData(E_CharaBaseTexType::Base);
+			Math::Vector2 texSize = tex->m_texSize;
+			Math::Rectangle rec = { (long)((int)(tex->m_animCnt * tex->m_texAnimMulti) * texSize.x),0,(long)texSize.x,(long)texSize.y };
+			Math::Color color = { 1,1,1,alpha };
+
+			SHADER.m_spriteShader.DrawTex(&(*tex->m_tex), 0, 0, texSize.x, texSize.y, &rec, &color);
+		}
+
+		//リセット
+		SHADER.m_spriteShader.SetMatrix(Math::Matrix::Identity);
+	}
+
 	//武器
 	m_weapon->Draw();
 
@@ -199,6 +242,7 @@ void C_Player::GetHit()
 		TIMEMGR.SubTime(300);
 		m_invincibleF = INVINCIBLETIME;
 		SOUNDMGR.PlaySE(SE::GetHit);
+		TIMEICON.SpawnIcon(m_pos, E_IconType::Minus);
 	}
 }
 

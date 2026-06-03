@@ -16,6 +16,11 @@ void C_CharaManager::Update()
 			itr->Update();
 		}
 	}
+
+	if (GetAsyncKeyState('S') & 0x8000)
+	{
+		m_superSeedCool = -500;
+	}
 }
 
 void C_CharaManager::Draw()
@@ -58,19 +63,33 @@ void C_CharaManager::CheckEnemySpawn()
 
 void C_CharaManager::EnemySeedRand()
 {
+	m_superSeedCool--;
 	int randMax = 0;
 	std::vector<int> availableSeeds;
 	int nowSeed = -1;
+
+	int randomNum = rand() % (abs(m_superSeedCool) + 2);
 	for (auto &itr : m_seedData)
 	{
 		nowSeed++;
-		if (itr.m_minLevel > LEVELMGR.GetLevel() || itr.m_maxLevel < LEVELMGR.GetLevel())continue;
-		randMax++;
-		availableSeeds.push_back(nowSeed);
+		if (m_superSeedCool > 0 || randomNum == 0)
+		{
+			if (itr.m_minLevel > LEVELMGR.GetLevel() || itr.m_maxLevel < LEVELMGR.GetLevel() || itr.m_isSuperSpawn)continue;
+			randMax++;
+			availableSeeds.push_back(nowSeed);
+		}
+		else
+		{
+			//スーパーシードロール
+			if (itr.m_minLevel > LEVELMGR.GetLevel() || itr.m_maxLevel < LEVELMGR.GetLevel() || !itr.m_isSuperSpawn)continue;
+			randMax++;
+			availableSeeds.push_back(nowSeed);
+		}
 	}
 	if (randMax == 0)return;
 
 	int a = rand() % randMax;
+	if (m_seedData[availableSeeds[a]].m_isSuperSpawn)m_superSeedCool = SUPERSEEDMIN;
 	m_nowSeedData = m_seedData[availableSeeds[a]].m_enemy;
 }
 
@@ -198,6 +217,7 @@ void C_CharaManager::Init()
 	LoadPlayerSelectWeaponTex();
 	LoadCharaStatData();
 	LoadSpawnData();
+	m_superSeedCool = SUPERSEEDMIN;
 }
 
 void C_CharaManager::LoadBaseTex()
@@ -366,10 +386,11 @@ void C_CharaManager::LoadSpawnData()
 
 			if (fgets(dummy, 250, fp) != nullptr)//1行読み
 			{
-				fscanf_s(fp, "%d,%d,%d,",
+				fscanf_s(fp, "%d,%d,%d,%d,",
 					&type,
 					&seed.m_minLevel,
-					&seed.m_maxLevel
+					&seed.m_maxLevel,
+					&seed.m_isSuperSpawn
 				);
 
 				while (1)

@@ -10,9 +10,13 @@ public:
 
 	void PauseBGM(BGM a_bgm)const { if (!m_bgmData[(int)a_bgm].m_inst->IsPause())m_bgmData[(int)a_bgm].m_inst->Pause(); }
 	void ResumeBGM(BGM a_bgm)const { if (m_bgmData[(int)a_bgm].m_inst->IsPause())m_bgmData[(int)a_bgm].m_inst->Resume(); }
+	void SlowTime();
+	void SlowEnd();
 	
 	void StopBGM()const;
 	void StopSE(SE a_se)const;
+
+	void Reset();
 
 private:
 
@@ -26,6 +30,9 @@ private:
 
 	S_SoundData m_bgmData[(int)BGM::Max];
 	S_SoundData m_seData[(int)SE::Max];
+
+	const float INGAMEBGMVOL_SLOW = 0.05f;
+	const float INGAMEBGMVOL = 0.15f;
 
 public:
 

@@ -48,24 +48,8 @@ void C_SceneManager::SetScene(E_SceneTypeTag a_tag)
 	//BGM stop
 	SOUNDMGR.StopBGM();
 
-	E_SceneTypeTag scene = E_SceneTypeTag::None;
 	if (m_pCurrentScene != nullptr)
 	{
-		if (a_tag == E_SceneTypeTag::Ranking)
-		{
-			switch (m_pCurrentScene->GetSceneTag())
-			{
-			case E_SceneTypeTag::Result:
-				scene = E_SceneTypeTag::Title;
-				break;
-			case E_SceneTypeTag::Select:
-				scene = E_SceneTypeTag::Select;
-				break;
-			default:
-				scene = E_SceneTypeTag::Title;
-				break;
-			}
-		}
 		delete m_pCurrentScene;
 	}
 
@@ -84,7 +68,7 @@ void C_SceneManager::SetScene(E_SceneTypeTag a_tag)
 		m_pCurrentScene = new C_ResultScene();
 		break;
 	case E_SceneTypeTag::Ranking:
-		m_pCurrentScene = new C_RankingScene(scene);
+		m_pCurrentScene = new C_RankingScene();
 		break;
 	default:
 		break;
