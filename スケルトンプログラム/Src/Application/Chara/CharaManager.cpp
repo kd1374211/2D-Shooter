@@ -121,6 +121,7 @@ void C_CharaManager::ClearChara()
 void C_CharaManager::RestartGame()
 {
 	m_seedF = 0;
+	m_superSeedCool = SUPERSEEDMIN;
 	EnemySeedRand();
 }
 

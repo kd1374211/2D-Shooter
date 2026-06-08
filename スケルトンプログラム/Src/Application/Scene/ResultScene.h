@@ -29,7 +29,7 @@ private:
 												Math::Color(0.2f,0,1.0f,1),
 												Math::Color(0,1.0f,0.2f,1),
 												Math::Color(0.6f,0.6f,0.6f,1) };
-	const int RANKTARGET[RANKNUM] = { 20000,16000,12000,6000,0 };
+	const int RANKTARGET[RANKNUM] = { 25000,18000,12000,6000,0 };
 
 	const Math::Color RESULTCOLOR = Math::Color{ 0.2f,0.9f,0,1 };
 

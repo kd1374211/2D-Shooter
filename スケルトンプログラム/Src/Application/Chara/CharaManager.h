@@ -15,7 +15,6 @@ public:
 	//召喚
 	void CheckEnemySpawn();
 	void EnemySeedRand();
-	int SuperSeedCoolRand();
 
 	//消去確認
 	void CheckEnemyDelete();

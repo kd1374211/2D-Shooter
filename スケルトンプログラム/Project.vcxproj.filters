@@ -106,6 +106,9 @@
     <Filter Include="Src\Application\TimeIcon">
       <UniqueIdentifier>{52923463-53c4-4f6c-bf6a-a726c0121806}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Resource">
+      <UniqueIdentifier>{e30aee82-2c58-421b-bb67-eb72abb192ca}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Pch.h">
@@ -330,6 +333,9 @@
     <ClInclude Include="Src\Application\TimeIcon\TimeIcon.h">
       <Filter>Src\Application\TimeIcon</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Resource\resource.h">
+      <Filter>Src\Resource</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Pch.cpp">
@@ -528,5 +534,13 @@
     <FxCompile Include="Src\System\Shader\StandardShader\KdStandardShader_VS.hlsl">
       <Filter>Src\System\Shader\StandardShader</Filter>
     </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Src\Resource\resource.rc">
+      <Filter>Src\Resource</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Assets\Texture\Icon\Clock_Icon.ico" />
   </ItemGroup>
 </Project>

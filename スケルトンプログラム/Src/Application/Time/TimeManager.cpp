@@ -77,15 +77,14 @@ void C_TimeManager::AddTimeCharge(int a_amount)
 	//既に最大ならリターン
 	if (m_timeChargeF == TIMECHARGE_MAX)return;
 
-	//停止中でもリターン
-	if (m_nowTimeState == E_TimeState::Stop)return;
-
 	m_timeChargeF += a_amount;
 	if (m_timeChargeF >= TIMECHARGE_MAX)
 	{
 		m_timeChargeF = TIMECHARGE_MAX;
 		m_isMaxCharged = true;
-		SOUNDMGR.PlaySE(SE::FullCharge);
+
+		//停止・スロー中ならSEを鳴らさない
+		if (m_nowTimeState == E_TimeState::Normal)SOUNDMGR.PlaySE(SE::FullCharge);
 	}
 }
 
